@@ -1,42 +1,39 @@
-# Contribution provenance and AI assistance
+# Hackathon contribution and development provenance
 
-Proposed primary track: Agent Memory and Coordination. Rules and eligibility are
-owned by the organizer: https://www.wemakedevs.org/hackathons/falkordb/rules .
-This document does not certify eligibility.
+**Aevora's hackathon entry centers on the Gen2 system designed, implemented and integrated during October 15–18, 2026: graph-native experience arbitration, trusted publication/evolution, accountable native-agent transfer, and the working product delivery.** Reusable infrastructure is credited separately below.
 
-## Reused foundations
+Primary track: **Agent Memory and Coordination**.
 
-OrderFlow Benchmark, first-generation Core/lifecycle, SDK, scoped MCP transport,
-three-page Observatory, packaging and isolation infrastructure were developed
-before this final sprint. They remain attributed as reused foundations. The
-private Benchmark and raw historical evidence are not part of this public source.
-Historic GraphSwarm names identify origin/compatibility, not the current brand.
+## Core work completed during the event
 
-## Gen2 and final-sprint work
+The official event window is October15 00:01 to October18 23:59 IST (UTC+05:30). The table uses original Git timestamps in UTC+08:00. Both author and committer times are preserved in the [verified contribution timeline](CONTRIBUTION_TIMELINE.csv).
 
-G20–G23 added Graph v2 contracts, complete Witness/phase/scope handling, graph-native
-arbitration, publication/evolution and exact native source/outcome joins. Their
-actual source changes are pinned in CONTRIBUTION_SOURCE_MAP.csv using Git commit
-and author/commit timestamps. The product baseline is a4d1450139cfcaff3c0c278e2476b07b532aa44d;
-the historical G23 runs used8e148f0852a961ca9f2e81bbdb5b9cb69022f450, followed by documentation.
-The new final-sprint diff adds a public synthetic verifier/demo, Gen2 Decision
-Journey, standalone deployment, current documentation and release verification.
-The final release manifest identifies its actual Commit/Tree. No dates are reset,
-and a new export or push timestamp is not evidence that reused source is new.
+| Contribution | Original implementation/design record (UTC+08:00) | Source commit |
+|---|---|---|
+| Gen2 architecture and contract freeze | Oct15 19:08 | `0aa5f25fab28` |
+| Graph v2 schema, tenant/scope contracts and complete Witness reader | Oct15 23:42 | `3a638b76c5c9` |
+| Deterministic graph-native WHEN/WHY arbitration | Oct15 23:42 | `d03de43ff4d4` |
+| Trusted v2 Source/Outcome admission and immutable preparation | Oct16 02:03 | `bf319920e53d` |
+| Q07 fenced publication, governance and revocation | Oct16 02:27 | `a1167d1be8a9` |
+| Native-v2 actor/proposal provenance and accountable transfer integration | Oct16 10:30 | `b2b4ff5c65cc` |
+| Gen2 Decision Journey, real graph demo and reproducible delivery | Oct18 15:03 | `d7215350c2a7` |
 
-## AI-assisted development
+These are substantive source/design changes, rather than dates assigned by a later public export. The timeline identifies new v2 mechanisms and extensions to reused components. Earlier WHEN/WHY ideas, Host interfaces and native tooling are not represented as having first existed during this event.
 
-OpenAI Codex/GPT-6.1 Sol (xhigh) is the primary engineering/review Agent for this
-final sprint. Earlier native Codex teams contributed to implementation and
-validation. DeepSeek was used in a separate G24 worktree during runtime outages;
-its Single-Agent protocol and failures remain separate, and no results are pooled.
-No new Native model challenge is claimed by this final productization release.
-The human owner directs scope, approves releases, reviews and must understand
-and explain architecture, graph queries, technical decisions and submission claims.
+G21/G22 source seals and the historical G23 Native evidence associate these implementations with actual validation. The historical S1/S2 runs each have28/28 original Oracle checks; **S2 Core APPLY / Agent VERIFY** and Host-approved follow-up remain distinct. See [Native transfer](NATIVE_TRANSFER.md). The final product integrates these mechanisms with public setup, real FalkorDB reads and a [working demo video](https://youtu.be/g5KCv_stZhg).
 
-## Limits
+## Reusable foundations and their role
 
-G23 functionality has accepted evidence with reliability conditions. G24 Pilot
-and formal causal controls have NOT RUN. Originality, team eligibility and the
-sufficiency of human contribution require organizer/owner judgment. The public
-summary never substitutes for that judgment or a private Oracle re-evaluation.
+Preparatory work provided OrderFlow Benchmark research, first-generation Core/lifecycle and Host interfaces, an SDK/scoped MCP transport, native Codex integration, isolation, an earlier Observatory and packaging tools. These supported development and validation; they are attributed as reused foundations, not counted as newly written Gen2 mechanisms. The private Benchmark and raw records remain separate from the public product. Historical GraphSwarm names identify origin/compatibility, not the current brand.
+
+The submitted contribution is the event-developed Gen2 design, core implementation and integrated Aevora product described above. The existence of those foundations does not by itself date completion of this submitted system.
+
+## Evidence and AI assistance
+
+- [Contribution timeline](CONTRIBUTION_TIMELINE.csv): specific event contributions, source hashes, original author/committer timestamps and affected paths.
+- [Earlier source map](CONTRIBUTION_SOURCE_MAP.csv): retained last-change snapshot, including reused files. A last-change timestamp alone is not a file-creation date.
+- Source commits come from the maintained engineering history; the public product export has its own Git history. Source hashes are provenance references, not claims that private maintainer commits or raw Oracle evidence are hosted in this public repository.
+- OpenAI Codex / GPT-6.1 Sol (xhigh) supported final engineering and review. Earlier Codex native teams supported implementation/validation. Separate DeepSeek G24 work and its protocol/failures are not pooled with Codex results. The human owner directed scope, reviewed and verified the work, and is responsible for explaining it.
+- The bundled G24 controlled comparison remains NOT_RUN and statistical causal benefit UNKNOWN. Final presentation work does not constitute a new Native model challenge.
+
+Original dates, prior code, failures and historical evidence are preserved. Registration and formal submission are owner actions. [Official rules](https://www.wemakedevs.org/hackathons/falkordb/rules).
