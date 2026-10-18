@@ -27,7 +27,7 @@
 [Known limitations](LIMITATIONS.md) · [Security](../SECURITY.md) ·
 [Public release boundary](PUBLIC_ALLOWLIST.md) · [Troubleshooting](TROUBLESHOOTING.md) ·
 [Contribution origins](HACKATHON_CONTRIBUTIONS.md) · [AI assistance](AI_DISCLOSURE.md) ·
-[Submission fields](SUBMISSION_FIELDS.md) · [GitHub About suggestions](GITHUB_ABOUT.md)
+[Submission fields](SUBMISSION_FIELDS.md) · [GitHub About metadata](GITHUB_ABOUT.md)
 
 ## Earlier interfaces and context
 

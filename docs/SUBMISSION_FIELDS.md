@@ -11,8 +11,10 @@
   demonstrated public graph mechanism, not an unmeasured autonomous benefit.
 - Repository: https://github.com/Renwang-Huang/Aevora — PUBLIC, verified through
   the GitHub API on 2026-10-19 (Asia/Hong_Kong). Published RC1 baseline:
-  `50df0a33453d59f4ad31b279e420f2a75e262cbd`. RC1.1 is a local presentation
-  candidate pending owner review; no push or visibility change is part of this iteration.
+  `50df0a33453d59f4ad31b279e420f2a75e262cbd`. The owner-approved RC1.1
+  presentation update `7fcaed34af1180754c2a9219bcef88c04963ab9c` was published
+  on 2026-10-19 (Asia/Hong_Kong), with About Description and Topics applied.
+  Repository visibility was unchanged.
 - Demo video URL: USER_ACTION_REQUIRED — upload the verified local video.
 - Live deployment URL: NOT_PROVIDED. Complete local Docker setup is in [Quickstart](QUICKSTART.md).
 - AI assistance: OpenAI Codex / GPT-6.1 Sol (xhigh) for this final sprint; earlier
@@ -22,6 +24,7 @@
 
 Official competition submission status: NOT_VERIFIED by this local audit. Public
 source availability is not proof of competition registration, eligibility or submission.
-No repository push, visibility change, video upload or competition submission is
-performed by the RC1.1 polish. Review [security](../SECURITY.md) and
-[limitations](LIMITATIONS.md) before approving publication changes.
+The owner-authorized RC1.1 publication updated the public source and About
+Description/Topics. It did not change visibility, upload a video or submit to the
+competition. Review [security](../SECURITY.md) and [limitations](LIMITATIONS.md)
+before deployment or competition use.
