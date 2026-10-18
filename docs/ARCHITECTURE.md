@@ -1,73 +1,36 @@
-# Aevora — Architecture Outline
-
-This document summarizes the existing local design. This GitHub tree is a
-documentation-only outline; interface names here do not mean an executable
-implementation or new validation result is included.
-
-## System boundaries
-
-```mermaid
-flowchart LR
-  Agent[Coding Agent] --> MCP[Scoped MCP Interface]
-  MCP --> Core[Aevora Core]
-  Core <--> Graph[(FalkorDB)]
-  Evaluator[Independent Evaluator] --> Host[Trusted Host Feedback]
-  Host --> Core
-  Core --> View[Read-only Observation API]
-  View --> Console[Experience Console]
-```
-
-### Core and graph
-
-Core owns applicability and evidence reasoning, candidate lifecycle and trusted
-feedback admission. Graph access belongs behind one repository boundary and
-uses the actual FalkorDB database. Missing premises remain unknown; a query or
-successful task does not establish adoption or causal benefit.
-
-The applicability vocabulary is APPLY / VERIFY / ABSTAIN. Evidence includes its
-source and factual scope, support and counterexamples. Source and outcome
-authority must remain distinguishable from untrusted Agent claims.
-
-### Agent integration
-
-The scoped MCP boundary presents experience retrieval, evidence inspection,
-decision recording and opt-in candidate proposals. Existing design names are
-`resolve_experience`, `build_evidence_bundle`, `record_decision` and
-`propose_experience`. The Agent-facing interface does not grant arbitrary graph
-administration, trusted Outcome creation or experience publication.
-
-### Trusted feedback
-
-An independent evaluator owns task scoring. A trusted Host checks the actual
-submission and its evidence before accepting feedback and reviewing a candidate.
-Agent self-tests, a recorded decision and a candidate proposal do not carry
-independent verification authority. Publication is a separate Host decision.
-
-### Console and demonstration
-
-The observation API is read-only. The planned documentation layout follows the
-existing Activity & Decisions, Experience Explorer and Governance Timeline
-views. LIVE and historical REPLAY remain explicit modes; an unavailable live
-database cannot silently become a successful replay response.
-
-## Repository outline
+# Aevora Gen2 public architecture
 
 ```text
-README.md
-docs/ARCHITECTURE.md
-aevora_core/README.md    # Core and MCP boundary placeholder
-console/README.md        # Read-only observation boundary placeholder
-h4/README.md             # Existing demo/onboarding asset boundary placeholder
+Agent / official MCP client
+  └─ four scoped MCP tools (official Python SDK; bounded, lossless continuation)
+      └─ Graph v2 repository + trust registry + deterministic WHEN/WHY
+          └─ real FalkorDB: authenticated catalogue, complete paths, revisions
+
+Local Console browser → read-only bounded HTTP projection → same Core/graph
+Trusted Host → source + independent Outcome verification → Q07 publication
 ```
 
-Directory names retain the existing local architecture. These Markdown
-placeholders do not introduce packages, executable APIs, database fixtures or
-deployment services. Future implementation imports require their own scope and
-verification.
+Core:`aevora_core/src/aevora`. Console:`console/src/aevora_observatory` and
+`console/web`. Neither ordinary query nor Console requires OrderFlow. The private
+Benchmark, hidden Oracle, reference patches, Native source verifier and production
+TrustedHost implementation are excluded from this source distribution. Deferred
+legacy Host bridges in Core are compatibility interfaces, not public authority.
 
-## Product and Benchmark separation
+## Demo and production boundaries
 
-OrderFlow Incident Lab remains a separate Benchmark. Hidden tests, private
-manifests, reference fixes, raw model archives, maintainer history and credentials
-are outside the product publication boundary. Public documentation must not be
-used as proof that a live experiment or regression was newly executed.
+`aevora.demo` runs the public SQLite verifier in a subprocess and seeds explicitly
+synthetic examples through existing Graph v2 record/manifests APIs. It does not
+replace Q07 or bypass production authentication. Its local registry is synthetic
+and meaningful only in that owned demo namespace. `aevora.demo_mcp` creates a
+short-lived synthetic session and uses the existing V2Service and official SDK.
+Only untrusted claims/Candidates can be written through those tools.
+
+The browser cannot seed, publish, submit Outcomes, choose arbitrary graph names,
+read arbitrary files or send Cypher. `/api/journey` accepts only context/stage
+selectors, bounds concurrent reads and fails closed. Existing HTTP Host/origin,
+CSP and response restrictions remain. The container listens internally on8080;
+Compose publishes only loopback. Production remote hosting needs separate auth,
+TLS, tenant lifecycle and deployment review.
+
+Historical G23 summaries are separate local public assets with explicit REPLAY
+classification. They are not fallback responses for a failed live query.

@@ -1,0 +1,7 @@
+graft src/aevora_observatory
+include README.md pyproject.toml LICENSE
+graft third_party
+prune node_modules
+prune browser
+prune web
+global-exclude *.pyc __pycache__ *.password *.key

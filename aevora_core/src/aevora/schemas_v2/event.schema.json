@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aevora.invalid/contracts/2.0.0-rc2/event",
+  "title": "event",
+  "$comment": "JSON Schema does not confer Host authority; UTF8 byte limits are additionally enforced by transport.",
+  "$defs": {},
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "aevora.event/2.0.0-rc2"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "kind": {
+      "enum": [
+        "SessionStarted",
+        "NativeChildStarted",
+        "TaskDelegated",
+        "ChildExecuted",
+        "ChildCompleted",
+        "ParentReceived",
+        "RetrievalComputed",
+        "ResponseDelivered",
+        "BundleDelivered",
+        "DecisionClaimRecorded",
+        "PatchObserved",
+        "SubmissionAccepted",
+        "OracleCompleted",
+        "CandidateProposed",
+        "SourceVerified",
+        "ReviewApproved",
+        "PublicationCommitted",
+        "FeedbackObserved",
+        "SubsequentRetrieval",
+        "GovernanceCommitted",
+        "RuntimeFailed",
+        "RuntimeCancelled"
+      ]
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "session_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "native_thread_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "parent_thread_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "identity_availability": {
+      "enum": [
+        "KNOWN",
+        "UNAVAILABLE",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "identity_reason": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "authority_class": {
+      "enum": [
+        "NATIVE_OBSERVED",
+        "BROKER_OBSERVED",
+        "HOST_VERIFIED",
+        "CORE_DERIVED",
+        "UNTRUSTED_CLAIM",
+        "EXTERNAL_UNVERIFIED",
+        "SYNTHETIC_PROBE"
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "official_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_ref": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9_.\\-/]+$",
+          "maxLength": 1024
+        },
+        "file_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "line_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "byte_scope": {
+          "const": "ARCHIVED_BYTES_INCLUDING_NEWLINE"
+        }
+      },
+      "required": [
+        "file",
+        "file_sha256",
+        "line",
+        "line_sha256",
+        "byte_scope"
+      ],
+      "additionalProperties": false
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "payload": {
+      "type": "object",
+      "maxProperties": 64
+    }
+  },
+  "required": [
+    "contract_version",
+    "event_id",
+    "kind",
+    "tenant_id",
+    "run_id",
+    "session_id",
+    "native_thread_id",
+    "parent_thread_id",
+    "identity_availability",
+    "identity_reason",
+    "authority_class",
+    "observed_at",
+    "official_at",
+    "source_ref",
+    "payload_sha256",
+    "payload"
+  ],
+  "additionalProperties": false
+}

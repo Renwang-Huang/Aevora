@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools==76.1.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aevora-console"
+version = "0.1.0"
+license = {file = "LICENSE"}
+description = "Read-only Aevora Experience Observatory and Console"
+requires-python = ">=3.12,<3.13"
+dependencies = ["aevora-core==0.1.0", "starlette==1.7.0", "uvicorn==0.54.0"]
+
+[project.scripts]
+aevora-console = "aevora_observatory.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aevora_observatory = ["*.json", "static/*", "static/assets/*"]

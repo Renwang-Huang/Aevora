@@ -1,0 +1,51 @@
+services:
+  graph:
+    image: falkordb/falkordb:v4.20.4@sha256:adbddd418916c25618564ff8597a919b08bc76452ebeb74eb985c38d7281df62
+    entrypoint: ["redis-server"]
+    command: ["--loadmodule", "/var/lib/falkordb/bin/falkordb.so", "--include", "/run/secrets/server.conf", "--appendonly", "no", "--save", ""]
+    ports: ["127.0.0.1:${AEVORA_DB_PORT:-19062}:6379"]
+    volumes: ["graph-data:/data"]
+    secrets: [server.conf, db.password]
+    healthcheck:
+      test: ["CMD-SHELL", 'test "$$(redis-cli ping)" = "NOAUTH Authentication required." && test "$$(REDISCLI_AUTH="$$(cat /run/secrets/db.password)" redis-cli -e ping)" = PONG']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    mem_limit: 768m
+    cpus: 1
+    pids_limit: 256
+    read_only: true
+    tmpfs: ["/tmp:rw,nosuid,nodev"]
+  console:
+    build:
+      context: ".."
+      dockerfile: "deploy/Dockerfile"
+      args: {AEVORA_UID: "${AEVORA_UID:-1000}", AEVORA_GID: "${AEVORA_GID:-1000}"}
+    image: ${AEVORA_IMAGE:-aevora-gen2:local-rc1}
+    ports: ["127.0.0.1:${AEVORA_CONSOLE_PORT:-19064}:8080"]
+    environment:
+      AEVORA_FALKORDB_HOST: graph
+      AEVORA_FALKORDB_PORT: "6379"
+      AEVORA_FALKORDB_GRAPH: aevora_v2_public_demo
+      AEVORA_FALKORDB_PASSWORD_FILE: /run/secrets/db.password
+    secrets: [db.password]
+    volumes: ["demo-state:/state"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; assert urllib.request.urlopen('http://127.0.0.1:8080/api/journey?context=threads',timeout=5).status==200"]
+      interval: 5s
+      timeout: 7s
+      retries: 12
+    depends_on: {graph: {condition: service_healthy}}
+    mem_limit: 512m
+    cpus: 1
+    pids_limit: 128
+    read_only: true
+    tmpfs: ["/tmp:rw,nosuid,nodev"]
+secrets:
+  server.conf:
+    file: ${AEVORA_REDIS_CONFIG_FILE:?Run the public external-secret bootstrap first}
+  db.password:
+    file: ${AEVORA_FALKORDB_PASSWORD_FILE:?Run the public external-secret bootstrap first}
+volumes:
+  graph-data:
+  demo-state:

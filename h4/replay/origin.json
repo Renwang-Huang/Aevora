@@ -1,0 +1,111 @@
+{
+  "agent_adoption": "UNKNOWN",
+  "authority": "VERIFIED_WITHIN_RECORDED_SCOPE",
+  "candidate_body_sha256": "acbed37c43e2777810422bcfb862cc260983d830bb8cf04b4030788dfc17c2d2",
+  "causal_benefit": "UNKNOWN",
+  "children": [
+    {
+      "agent_id": "01a13028-c715-78b0-b0b0-3c4730a2a954",
+      "agent_path": "/root/investigator",
+      "completed": true,
+      "completion": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-49-01-01a13028-c715-78b0-b0b0-3c4730a2a954.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 116,
+        "sha256": "10811182af54c09aef9ce0564748b5369002b169bed30a0807d6cb1b58003ba0",
+        "timestamp": "2026-10-12T12:53:57.025Z"
+      },
+      "parent_receipt": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-48-00-01a13027-d1e3-79b3-8c32-f53e3599cdd8.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 202,
+        "sha256": "5eb9831883c98319e93095f5567b2dbb10814d8e505f34ca827b4065e418339b",
+        "timestamp": null
+      },
+      "parent_thread_id": "01a13027-d1e3-79b3-8c32-f53e3599cdd8",
+      "spawn": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-48-00-01a13027-d1e3-79b3-8c32-f53e3599cdd8.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 60,
+        "sha256": "ba2a324d78ed5bfbcf77450e5e932177aa00d71cd4d2415152d8cff4a6d91dbe",
+        "timestamp": "2026-10-12T12:49:01.237Z"
+      },
+      "verified": true
+    },
+    {
+      "agent_id": "01a13028-e17b-7322-b03b-733968577c91",
+      "agent_path": "/root/test_engineer",
+      "completed": true,
+      "completion": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-49-07-01a13028-e17b-7322-b03b-733968577c91.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 96,
+        "sha256": "451de1287b42430981a1a076d28f51c69a7f4831bb373403b1a32690ac4e7937",
+        "timestamp": "2026-10-12T12:52:35.725Z"
+      },
+      "parent_receipt": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-48-00-01a13027-d1e3-79b3-8c32-f53e3599cdd8.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 161,
+        "sha256": "df0e0f69866574d020d2e76e49f098efadaa9a8678da1c475244a3398b084e3a",
+        "timestamp": null
+      },
+      "parent_thread_id": "01a13027-d1e3-79b3-8c32-f53e3599cdd8",
+      "spawn": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-48-00-01a13027-d1e3-79b3-8c32-f53e3599cdd8.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 66,
+        "sha256": "d426996c998e3d6bcb1ebcc6e246604d948215f25e1e3684e40f661b359fa83c",
+        "timestamp": "2026-10-12T12:49:07.979Z"
+      },
+      "verified": true
+    },
+    {
+      "agent_id": "01a1302f-270a-7190-9c14-95312c905a34",
+      "agent_path": "/root/reviewer",
+      "completed": true,
+      "completion": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-55-58-01a1302f-270a-7190-9c14-95312c905a34.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 111,
+        "sha256": "07081a5d03c8b87daa7f9cc6c1f45489ac5d375fdbabda629843b279154c116d",
+        "timestamp": "2026-10-12T13:00:15.206Z"
+      },
+      "parent_receipt": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-48-00-01a13027-d1e3-79b3-8c32-f53e3599cdd8.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 289,
+        "sha256": "4ff2f3bb81ca196868f294c79d0e98fc2bee30c8d04de088f5715709cb5ec6ab",
+        "timestamp": null
+      },
+      "parent_thread_id": "01a13027-d1e3-79b3-8c32-f53e3599cdd8",
+      "spawn": {
+        "artifact": "g1/live/candidate_origin_02/runs/405c481e-ae7a-420d-8502-fb1d9ede02e6/artifacts/native_rollouts/2026/10/12/rollout-2026-10-12T12-48-00-01a13027-d1e3-79b3-8c32-f53e3599cdd8.jsonl",
+        "included": "NOT_INCLUDED_RAW_LOG",
+        "line": 238,
+        "sha256": "16d0621d11d6d1ef4eddac9079c71496ceddb4b49620194f87e3d9d8a4142523",
+        "timestamp": "2026-10-12T12:55:59.003Z"
+      },
+      "verified": true
+    }
+  ],
+  "ended_at": "2026-10-12T13:03:02.022653+00:00",
+  "outcome_id": "orderflow:405c481e-ae7a-420d-8502-fb1d9ede02e6",
+  "patch_sha256": "286a0f85933d35353a2cfe208d70a02fe21eaf03c756c0a2ba2761b7b7065197",
+  "pytest_exit_code": 0,
+  "run_id": "405c481e-ae7a-420d-8502-fb1d9ede02e6",
+  "runtime_status": "PASS",
+  "session_id": "01a13027-d1e3-79b3-8c32-f53e3599cdd8",
+  "source_commit": "9cde147199959ed5862c624739dc8a83283ae9f5",
+  "source_tree": "dd1d7670da1d58d0d1c49ac20c7725afa6dd9460",
+  "source_verification_id": "source-verification:ca28a5ddaffde46ff5483ddca316e33ff3b3daacbba22b8a49ab88eed79771e3",
+  "started_at": "2026-10-12T12:47:57.224722+00:00",
+  "test_counts": {
+    "collected": 14,
+    "errors": 0,
+    "failed": 0,
+    "passed": 14,
+    "skipped": 0
+  },
+  "test_identity_disclosure": "NOT_INCLUDED_PRIVATE_SUITE"
+}

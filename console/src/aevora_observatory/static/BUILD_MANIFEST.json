@@ -1,0 +1,14 @@
+{
+  "product": "Aevora",
+  "kind": "PUBLIC_STATIC_BUILD",
+  "node": "v24.15.0",
+  "files": {
+    "index.html": "42ffdfbed36a8b89d7591d1e04a0a443b390687c922e93d3a20f7267e4fed0fd",
+    "journey.html": "a39f5161465827b6a80557e3365708433050ca609ea67961439cf0a53c8c5caf",
+    "gen2_history.json": "0dccdcb43d7cbfe45881d1779e4a03823c1d7ab793a3369bf7e28f5bb636fbf9",
+    "assets/app.css": "d39db79edb77230cbd41a8fa59987df7ce1f94dbdcc8e24c120312459e5f7bbc",
+    "assets/app.js": "6d84f52ce5ded9f05499ea5d5e43f71308bad5d3dfd78207b3b15fa9e803c41b",
+    "assets/journey.css": "03a3777a0f0851513df29a868aaf5a385b13326a8ed0530aa8370e0de33c0e5e",
+    "assets/journey.js": "4334c600b3660b0498fc4678445af85bf2770e573b1558ff9d8b672ba475b1db"
+  }
+}

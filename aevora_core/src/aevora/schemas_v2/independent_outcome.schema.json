@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aevora.invalid/contracts/2.0.0-rc2/independent_outcome.schema.json",
+  "$comment": "PROPOSED structural contract; only independently authorized Host may instantiate trusted records; schema alone grants no authority.",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "aevora.outcome/2.0.0-rc2"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "evaluator_run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "ERROR",
+        "TIMEOUT",
+        "NOT_IMPLEMENTED"
+      ]
+    },
+    "submission_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "candidate_tree_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "evaluator_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "private_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "test_suite_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "junit_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "oracle_receipt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "source_type": {
+      "enum": [
+        "current_independent_evaluation",
+        "historical_authorized_import",
+        "controlled_independent_negative"
+      ]
+    },
+    "attribution": {
+      "const": "UNKNOWN"
+    },
+    "causal_benefit": {
+      "const": "UNKNOWN"
+    }
+  },
+  "required": [
+    "contract_version",
+    "id",
+    "tenant_id",
+    "run_id",
+    "evaluator_run_id",
+    "verdict",
+    "submission_sha256",
+    "candidate_tree_sha256",
+    "source_manifest_sha256",
+    "evaluator_sha256",
+    "private_manifest_sha256",
+    "test_suite_sha256",
+    "junit_sha256",
+    "oracle_receipt_sha256",
+    "authority_ref",
+    "source_type",
+    "attribution",
+    "causal_benefit"
+  ],
+  "additionalProperties": false
+}
