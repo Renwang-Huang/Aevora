@@ -3,7 +3,7 @@
 [Start the local demo](QUICKSTART.md), then open
 **http://127.0.0.1:19064/journey.html**. No model API key is required.
 The live panels use real FalkorDB with controlled synthetic task facts. The
-historical Native section is labelled REPLAY. There is no hosted video URL yet.
+historical Native section is labelled REPLAY. [Watch the public demo on YouTube](https://youtu.be/g5KCv_stZhg).
 
 | Time | Screen and action | What to look for |
 |---|---|---|
@@ -31,8 +31,7 @@ responses. `demo:record` optionally records those same actions with narration
 pauses. Keep all source/mode labels visible and preserve failures.
 
 A sealed 138.48-second browser recording exists in the local release delivery,
-with separate captions; it has not been added here as a hosted video.
-Do not invent a video URL. See the [recording guide](DEMO_RECORDING_GUIDE.md).
+with separate captions. See the [recording guide](DEMO_RECORDING_GUIDE.md).
 
 Never record credentials, private Oracle assertions, Host pins, personal account
 UI or raw private model conversations. Public controls are demonstration inputs,
