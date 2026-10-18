@@ -1,102 +1,67 @@
-# Aevora: a standalone local developer path
+# Run the Aevora Decision Journey
 
-This public path needs Python3.12, Docker Compose and the official Codex CLI.
-It installs the independent `aevora-core` and optional `aevora-console` packages. No OrderFlow Runner, hidden tests, private
-archive, old Volume, author `.env` or Gateway key is required for installation,
-MCP protocol checks or the verified historical public replay.
+This starts a local, owned **LIVE synthetic demo** backed by real FalkorDB and
+the existing WHEN/WHY policy. No model API key or private Benchmark is required.
+For a fresh, unseeded ordinary project instead, see [standalone Core](STANDALONE_CORE.md).
 
-## 1. Install and create your own private database configuration
+## Requirements
 
-From a clean public source checkout:
+- Docker Engine and Docker Compose v2.
+- Python 3.10+ for the launcher; the application image uses Python 3.12.14.
+- Linux, at least 4 GB available RAM, free loopback ports 19062 and 19064.
+- A checkout of this repository. The first build needs network access for images
+  and pinned dependencies; browser assets are included, with no runtime CDN.
 
-```sh
-python3.12 -m venv .venv
-.venv/bin/python -m pip install ./aevora_core
-python3 scripts/aevora_bootstrap.py "$HOME/.config/aevora/product"
-export AEVORA_REDIS_CONFIG_FILE="$HOME/.config/aevora/product/falkordb.conf"
-export AEVORA_FALKORDB_PASSWORD_FILE="$HOME/.config/aevora/product/falkordb.password"
-export AEVORA_FALKORDB_HOST=127.0.0.1
-export AEVORA_FALKORDB_PORT=17692
-export AEVORA_FALKORDB_GRAPH=aevora_product
-export AEVORA_DB_PORT=17692
-```
+## Start
 
-Secrets stay outside the checkout: directory0700/files0600. Do not put these
-exports or DB credentials into Codex's environment. A normal same-UID local
-account is a trusted owner, not an adversarial isolation boundary.
-
-## 2. Start the actual graph and Core
+From the repository root:
 
 ```sh
-docker compose -f h4/deploy/compose.yaml up -d --wait
-.venv/bin/python -I -m aevora init
-.venv/bin/python -I -m aevora health
-.venv/bin/python -I -m aevora query --run-id first-query --context h4/context.json
+python3 scripts/aevora_public_demo.py start \
+  --project aevora-gen2-demo \
+  --secret-dir "$HOME/.config/aevora/public-demo"
 ```
 
-A new Volume has **no experiences**. `AVAILABLE` with `candidates: []` is the
-correct result, not a failed seed import or a hidden static fallback. Your
-own ordinary project may create untrusted proposals; its public tests cannot
-mint a VerifiedOutcome. Historic Hero evidence is a separately marked Replay.
+Open **http://127.0.0.1:19064/journey.html**.
 
-## 3. Grant a scoped MCP channel for your ordinary project
+The launcher builds Core and Console, creates new owned volumes, runs the public
+SQLite verifier in a separate process, and seeds baseline and withdrawn example
+graphs. Secrets are generated outside the checkout and are never printed.
+The synthetic trust registry grants no production publication authority.
+
+## Inspect three decisions
+
+1. **Shared threads → APPLY.** Inspect the known process premise and support.
+2. **Independent workers → ABSTAIN.** A process-local lock does not span workers.
+3. **Unknown premise → VERIFY.** Missing topology is not inferred as a match.
+4. Open **Experience Explorer** for the actual graph and Witness.
+5. Open **Governance Timeline** and choose **After withdrawal → ABSTAIN**.
+
+The [walkthrough](DEMO_WALKTHROUGH.md) explains the screens and the separate
+historical Native evidence. Live panels are synthetic graph observations, not
+new model runs; the historical section is labelled REPLAY.
+
+## Status, stop and repeat
 
 ```sh
-mkdir -p "$HOME/.local/state/aevora/product-session"
-chmod 700 "$HOME/.local/state/aevora/product-session"
-.venv/bin/python -I -m aevora serve --run-id ordinary-project \
-  --context h4/context.json \
-  --socket "$HOME/.local/state/aevora/product-session/mcp.sock" \
-  --capability-file "$HOME/.local/state/aevora/product-session/grant.json" \
-  --events "$HOME/.local/state/aevora/product-session/mcp_events.jsonl" \
-  --enable-proposals
+python3 scripts/aevora_public_demo.py status \
+  --project aevora-gen2-demo \
+  --secret-dir "$HOME/.config/aevora/public-demo"
+
+python3 scripts/aevora_public_demo.py stop \
+  --project aevora-gen2-demo \
+  --secret-dir "$HOME/.config/aevora/public-demo"
 ```
 
-Keep that trusted Host command running. In another terminal generate the
-config using absolute paths, then place the stanza in your separate Codex
-configuration (see [MCP setup](CODEX_MCP_SETUP.md)). Grant files are private
-ephemeral state; never commit/export their contents. Ctrl-C revokes the owner
-channel and deletes its grant/socket. An optional `--capability-ttl 3600` is an
-explicit local expiry, not the default Agent runtime completion deadline.
+Stop explicitly saves the owned graph before stopping and retains the volumes.
+For a fresh initialization, choose a **new project name and secret directory**.
+Do not reuse historical volumes as proof of a clean install.
+Use `--db-port` and `--console-port` if the defaults are occupied.
 
-## 4. Use your own project and inspect the evidence
+## Next steps
 
-Ask a fresh Codex Session to inspect its actual source and call
-`resolve_experience`, then obtain `build_evidence_bundle` for any returned
-experience. Empty results must be reported honestly. `record_decision` records
-an untrusted claim. `propose_experience` creates an untrusted candidate only.
-Host source verification/admission and Oracle are never Agent tools.
-
-The supplied `aevora_core/examples/receipt_store` is an owned controlled
-ordinary SQLite project with original public tests. It is not an independent
-Benchmark and is not already repaired. Actual H3 Gov/Raw observations both
-passed7 tests; their results remain EXTERNAL_UNVERIFIED.
-
-Start the read-only Console (prebuilt static files are delivered):
-
-```sh
-.venv/bin/python -m pip install ./console
-.venv/bin/python -I -m aevora_observatory.server --replay-root ./h4 \
-  --replay-sha256 c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776 \
-  --mcp-events "$HOME/.local/state/aevora/product-session/mcp_events.jsonl"
-```
-
-Open `http://127.0.0.1:17804`. Fresh-volume LIVE remains EMPTY; choose REPLAY
-for the independently pinned historical three-case walkthrough. The optional Host-configured `--mcp-events` displays only actual tool request
-headers; client/native Session identity remains UNAVAILABLE unless independently
-collected. No raw payload, DB key or grant file enters the browser. See [Demo](DEMO_WALKTHROUGH.md) and
-[Console](../console/README.md). To rebuild static assets use Node24.15.0 and
-`npm --prefix console ci --ignore-scripts && npm --prefix console run build`.
-The native validation owner/Benchmark scripts are not product dependencies.
-
-## 5. Save and clean up
-
-Ctrl-C Core serve, then `docker compose -f h4/deploy/compose.yaml stop` for a
-graceful stop. The named Volume is retained. Use `down` to remove only the owned
-containers/network; `down -v` permanently deletes that project's data and is
-an explicit disposable-demo choice. Do not run it on a historical deployment.
-
-Persistence is RDB at the latest completed SAVE/graceful stop. AOF is disabled
-because the pinned engine reproduced reload139. Unsaved crash-tail durability,
-shared-kernel hostile isolation and general prompt-injection immunity are not
-claimed. See [Troubleshooting](TROUBLESHOOTING.md).
+- [Connect an MCP client](CODEX_MCP_SETUP.md); keep authority and secrets on the trusted host.
+- [Install standalone Core](STANDALONE_CORE.md) for your own unseeded project.
+- [Build and run public tests](REPRODUCIBILITY.md), including real browser checks.
+- [Troubleshoot](TROUBLESHOOTING.md) and review [security](../SECURITY.md) and
+  [durability limits](LIMITATIONS.md) before adapting this local deployment.

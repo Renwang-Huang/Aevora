@@ -41,10 +41,24 @@ Demo container:`python -m aevora.demo_mcp --state-dir /state --context threads`.
 ## Browser source
 
 ```sh
-npm --prefix console ci
+npm --prefix console ci --ignore-scripts
 npm --prefix console run build
 npm --prefix console test
 ```
+
+With the [owned demo](QUICKSTART.md) running, install Chromium and run the actual
+Decision Journey browser checks (no private helper or empty-graph service):
+
+```sh
+./console/node_modules/.bin/playwright install chromium
+AEVORA_BROWSER_URL=http://127.0.0.1:19064 \
+AEVORA_BROWSER_OUTPUT=/absolute/new/external-evidence-directory \
+npm --prefix console run test:browser
+```
+
+An optional `PLAYWRIGHT_BROWSERS_PATH` must be identical for installation and test.
+The explicit output directory receives real screenshots, trace and RESULT.json.
+No model/API credential is involved. See the [Console guide](../console/README.md#browser-verification).
 
 The release archive includes static assets; Node is only needed to rebuild or
 run developer browser checks. Private Oracle/Benchmark tests are intentionally

@@ -1,13 +1,29 @@
-# Aevora Demo recording guide
+# Demo recording and sharing
 
-A final narrated competition video has **not** been recorded or uploaded. Real browser screenshots and Playwright traces are validation evidence. Use the four-minute [walkthrough](DEMO_WALKTHROUGH.md) to record a video later.
+The local RC1 delivery includes a **138.48-second real Playwright browser recording**
+and separate captions. It is not a new model run. No hosted video URL is available
+in this repository, and a narrated competition submission is not verified.
+The [walkthrough](DEMO_WALKTHROUGH.md) also supports a new two-minute recording.
 
-1. Start from the clean public package and verify the independent contract pin.
-2. Capture the browser at1280×800 or1440×960. Keep mode/archive/sourceSHA visible.
-3. Record the three actual cases in order, clicking a node/edge and public proof in each.
-4. For LIVE, record only an actual new Session; show real failures if they happen. If using archived native activity, explicitly say historical Replay.
-5. Show both ordinary pilot scores7/7 and their external authority. Say adoption/causal benefit unknown.
-6. Never show terminal environment values, capability content, API keys, DB passwords or maintainer private directories. Browser-only public projection is the recommended capture surface.
-7. End with scope/security/durability limitations and local artifact reproducibility. Remote publication and official competition submission remain pending user authorization.
+1. Start the [owned local demo](QUICKSTART.md). Use actual browser actions and actual graph responses.
+2. Record Activity & Decisions, Experience Explorer and Governance Timeline.
+3. Keep LIVE synthetic and historical REPLAY labels, timestamps and verdicts visible.
+4. Preserve **S2 Core APPLY / Agent VERIFY** and the Host-approved follow-up distinction.
+5. Explain the graph's decision mechanism; do not claim statistical improvement from the historical examples.
+6. Do not show API keys, database passwords, grant files, private model conversations, Oracle assertions or account UI.
+7. Review every frame before sharing. Only add a video link after its actual upload is verified.
 
-Before sharing a recording, review every frame for credentials and private context. Do not relabel the actual recorded timestamps or suggest competition eligibility has been certified.
+For a new recording from the repository root, after installing browser dependencies
+and starting the demo:
+
+```sh
+AEVORA_BROWSER_URL=http://127.0.0.1:19064 \
+AEVORA_BROWSER_OUTPUT=/absolute/new/external-evidence-directory \
+AEVORA_RECORD_VIDEO=1 \
+npm --prefix console run demo:record
+```
+
+The output directory holds the real browser video, screenshots, trace and RESULT.json.
+Review their contents before publication. Run without AEVORA_RECORD_VIDEO to
+validate without narration pauses. See [browser setup](REPRODUCIBILITY.md#browser-source).
+Official competition submission and eligibility remain owner/organizer actions.

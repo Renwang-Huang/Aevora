@@ -40,16 +40,29 @@ Viewer HTTP exposes no arbitrary Cypher, filesystem paths, approval or writes. B
 
 ## Browser verification
 
-The repository validation uses Playwright 1.64.0 and its independently installed Chromium. No personal browser profile or intercepted synthetic API response is used.
+`test:browser` uses the existing `web/record_demo.mjs` Playwright script against a
+running **Decision Journey**, not the legacy empty-graph test harness. Start your
+[owned local demo](../docs/QUICKSTART.md) first. The script performs actual clicks,
+checks live verdicts, graph and withdrawal, separates historical Core/Agent
+choices, checks read-only HTTP boundaries, offline behavior and layout, and saves
+RESULT.json, screenshots and a trace. It uses no mocked API responses.
+
+Use Playwright 1.64.0 and its Chromium, independently of a personal browser profile:
 
 ```sh
-PLAYWRIGHT_BROWSERS_PATH=/your/separate/browser/cache ./console/node_modules/.bin/playwright install chromium
-AEVORA_BROWSER_OUTPUT=/your/new/evidence/path \
-AEVORA_EMPTY_BROWSER_URL=http://127.0.0.1:17805 \
-PLAYWRIGHT_BROWSERS_PATH=/your/separate/browser/cache \
+./console/node_modules/.bin/playwright install chromium
+AEVORA_BROWSER_URL=http://127.0.0.1:19064 \
+AEVORA_BROWSER_OUTPUT=/absolute/new/external-evidence-directory \
 npm --prefix console run test:browser
 ```
 
-The second URL must be an actual Console connected to an initialized empty FalkorDB graph. The maintainer helper `scripts/aevora_h4_browser.py` creates and removes that owned graph, records commands and preserves failures. It is not a public runtime dependency. Browser tracing/screenshots contain only public Viewer projections; they remain validation evidence rather than model proof.
+`AEVORA_BROWSER_OUTPUT` must be explicit and outside the source checkout. An
+optional external `PLAYWRIGHT_BROWSERS_PATH` selects your own browser cache;
+use the same value when installing Chromium and running the test. No second
+empty-graph URL or private maintainer helper is required. A failing check returns
+nonzero and preserves FAILURE.txt/RESULT.json. Video is off by default; use
+`AEVORA_RECORD_VIDEO=1 npm --prefix console run demo:record` with the same URL and
+output variables to add actual video and narration pauses. These browser results
+are product validation evidence, never proof of a new model run.
 
 Cytoscape 3.34.3's fixed container CSS is preloaded from the external application stylesheet with its expected stylesheet identifier. This avoids its default inline style injection while preserving the strict self-only CSP. Public evidence tools are exact vendored copies with a source hash receipt, not a second Core decision engine.

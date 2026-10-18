@@ -2,7 +2,7 @@
 
 Runtime contracts are`aevora.graph/2.0.0-rc2`,`aevora.mcp/2.0.0-rc2` and
 `aevora.whenwhy/2.0.0-rc2`; these are release-candidate contracts, not a claim of
-stable v2.0 GA. Source:`aevora_core/src/aevora/contracts.py`,schemas_v2 and queries_v2.
+stable v2.0 GA. Source:`aevora_core/src/aevora/contracts.py`,schemas_v2 and graph_queries.py.
 
 - Experience is the stable identity; immutable ExperienceRevision selects Rule.
 - Rule → REQUIRES → Premise records phase, necessary/exclusion mode, exact typed
