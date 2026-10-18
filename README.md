@@ -2,107 +2,91 @@
 
 **AI agents shouldn't just remember what worked. They should know when to trust it.**
 
-A familiar fix can become the next incident when its assumptions change.
-Aevora helps agents reuse engineering experience with evidence: **WHEN** it
-applies, **WHY** it is supported, **ACCOUNTABILITY** for what the agent actually
-did, and **FEEDBACK** that can change the next decision.
+Evidence-grounded experience reuse, powered by FalkorDB.
 
-FalkorDB connects premises, outcomes, authority and revision history so a
-remembered success becomes a scoped recommendation—not an instruction to repeat it.
+[View Demo Walkthrough](docs/DEMO_WALKTHROUGH.md) · [Quickstart](docs/QUICKSTART.md) · [Graph Model](docs/GRAPH_MODEL.md)
 
-[Explore the demo](docs/DEMO_WALKTHROUGH.md) · [Quickstart](docs/QUICKSTART.md) · [Graph & Cypher](docs/GRAPH_MODEL.md) · [MCP integration](docs/CODEX_MCP_SETUP.md) · [Documentation](docs/README.md)
+## 02 · SEE THE PRODUCT
 
-## One experience. Three different decisions.
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/assets/rc12-activity-decisions-mobile.png">
+  <img src="docs/assets/rc12-activity-decisions-viewport.png" alt="Activity &amp; Decisions: actual FalkorDB-backed APPLY, with LIVE synthetic demo, observation time and no-model-execution labels visible" width="1024">
+</picture>
 
-**“Use one shared process-local lock around the complete inventory read/write.”**
-That experience has a boundary: every writer must share the process and lock object.
-Retrieving the advice alone does not establish that boundary.
+*Actual browser capture · LIVE synthetic demo · No model is executing.*
+[Capture provenance](docs/assets/RC12_VISUAL_PROVENANCE.json) · [Original full capture](docs/assets/activity-decisions.png)
 
-| Current engineering context | Core verdict | What the evidence permits |
-|---|---|---|
-| **Shared Threads** — writers share one process | **APPLY** | The known premise matches and complete applicable support is available. |
-| **Independent Workers** — separate processes | **ABSTAIN** | The process premise is violated; a process-local lock cannot coordinate these workers. |
-| **Unknown Premise** — process topology not established | **VERIFY** | Establish the missing premise before relying on the strategy. |
+One remembered fix: **one shared process-local lock around the complete inventory
+read/write**. Its boundary: every writer shares the same process and lock object.
 
-These are actual FalkorDB reads using the existing arbitration policy. The public
-contexts are controlled synthetic inputs; **no model is running in these panels**.
-[Follow the three cases](docs/DEMO_WALKTHROUGH.md).
+- **APPLY · Shared Threads** — the known premise matches complete applicable support.
+- **VERIFY · Unknown Premise** — establish the missing process-topology premise before reuse.
+- **ABSTAIN · Independent Workers** — a process-local lock cannot coordinate separate processes.
 
-## From memory to an accountable decision
+These verdicts are **Core recommendations**, not claims that an agent acted.
+Inspect [Experience Explorer](docs/assets/experience-explorer.png) and
+[Governance Timeline](docs/assets/governance-timeline.png), including the distinct historical REPLAY labels.
 
-| | Aevora makes this explicit |
-|---|---|
-| **WHEN** | Check typed premises, scope, permissions and active revisions before recommending reuse. |
-| **WHY** | Return a complete **Witness** connecting the rule to support, counterexamples, outcomes and authority. |
-| **ACCOUNTABILITY** | Keep the Core recommendation, the agent's recorded choice, code action and independent outcome distinct. |
-| **FEEDBACK** | Let trusted review, revisions and withdrawal change what later sessions may rely on. Agent claims alone cannot publish trusted experience. |
+## 03 · WHY IT WORKS
 
-### See the evidence in the Console
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/assets/rc12-mechanism-mobile.svg">
+  <img src="docs/assets/rc12-mechanism-desktop.svg" alt="WHEN checks applicability; WHY inspects a complete graph Witness; ACCOUNTABILITY separates advice and action; FEEDBACK is gated by trusted review." width="1000">
+</picture>
 
-| Activity & Decisions | Experience Explorer | Governance Timeline |
-|:---:|:---:|:---:|
-| [![Activity & Decisions: APPLY, with LIVE synthetic and historical REPLAY labels intact](docs/assets/activity-decisions.png)](docs/assets/activity-decisions.png) | [![Experience Explorer: actual premise, evidence, outcome and authority paths, with LIVE label intact](docs/assets/experience-explorer.png)](docs/assets/experience-explorer.png) | [![Governance Timeline: withdrawal changes the recommendation to ABSTAIN; historical REPLAY remains distinct](docs/assets/governance-timeline.png)](docs/assets/governance-timeline.png) |
-| Compare context and decision. | Inspect the graph behind the Witness. | See why a revision loses permission to guide. |
+**WHEN** checks context, premises, scope, active revisions and permissions.
+**WHY** returns a complete Witness linking support, counterexamples, VerifiedOutcome
+and Authority. **ACCOUNTABILITY** keeps Core advice, the agent's recorded choice,
+code action and independent evaluation distinct. **FEEDBACK** requires Trusted Host
+review for publication, revision, supersession and withdrawal; natural proposals
+alone remain untrusted.
 
-Click an image for the full view. These are **unchanged, archived browser captures**,
-not mockups. **LIVE synthetic demo** and **historical sanitized REPLAY** remain
-visible. [Image provenance](docs/SCREENSHOT_PROVENANCE.md).
+FalkorDB traverses this linked evidence and governance structure to determine
+which recommendation is admissible. Changes to those relationships can change
+the answer; graph storage alone does not certify an Oracle's truth.
 
-## Why FalkorDB is the decision mechanism
+[Graph model](docs/GRAPH_MODEL.md) · [Actual Cypher](docs/CORE_CYPHER.md) · [Arbitration source](aevora_core/src/aevora/arbitration.py)
 
-```text
-Experience → Revision → Rule → Premise
-                ├─ support / counterexample → Evidence → VerifiedOutcome → Authority
-                └─ GovernanceEvent governs revision / evidence
-```
+## 04 · PROVEN IN REAL AGENT SESSIONS
 
-Graph v2 traverses these relationships, checks the complete published evidence
-closure and permission epochs, then arbitrates **APPLY / VERIFY / ABSTAIN**.
-A scoped counterexample or withdrawn revision can change the answer even when
-the remembered text is unchanged. Missing required relationships fail integrity
-checks. A disconnected database makes the live path unavailable; it never falls
-back to Replay.
+*Historical G2-3 Codex Native Multi-Agent · separate genuine sessions · sanitized public summary.*
 
-The graph carries the conditions and provenance needed to decide—not just the
-retrieved text. Inspect the [schema](docs/GRAPH_MODEL.md),
-[parameterized Cypher](docs/CORE_CYPHER.md) and
-[arbitration source](aevora_core/src/aevora/arbitration.py).
-The public synthetic publisher is not the private production TrustedHost/Q07 service.
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/assets/rc12-transfer-mobile.svg">
+  <img src="docs/assets/rc12-transfer-desktop.svg" alt="Historical S1: patch, independent Oracle and natural proposal; Trusted Host: verify source and outcome, then Q07 publish; fresh S2: retrieve Witness, decide and create its own patch." width="1000">
+</picture>
 
-## Cross-session transfer, with the distinctions preserved
+**S1 → Trusted Host → Fresh S2.** Each historical run had three verified native
+children and an original independent Oracle result of **28/28**. S1's natural
+proposal became trusted only after source/Outcome verification and Q07 publication.
 
-The **historical G2-3 Codex Native Multi-Agent** summary records two independent
-sessions, actual patches, three verified native children per run and original
-independent Oracle results of **28/28** per run:
+Fresh S2 retrieved the published experience and Witness, then produced its own
+patch: **Core recommended APPLY; S2 Agent recorded VERIFY.** S2's additional
+support was a **Host-approved follow-up**, not direct publication of its natural proposal.
 
-- **S1:** a natural proposal passed Trusted Host verification and Q07 publication.
-- **Fresh S2:** retrieved that experience and produced its own patch.
-  **Core recommended APPLY; the agent recorded VERIFY.**
-- **Feedback:** S2 support was a **Host-approved follow-up**, not direct
-  publication of S2's natural proposal.
+[Evidence and limitations](docs/NATIVE_TRANSFER.md) · [Public historical summary](console/web/gen2_history.json)
 
-These runs establish a traceable mechanism, not statistical improvement. The
-bundled G2-4 comparison status is **NOT_RUN**; causal benefit is **UNKNOWN**.
-[Transfer story and evidence boundaries](docs/NATIVE_TRANSFER.md).
+Original Oracle assertions and model conversations are private. These historical
+results do not establish statistical improvement; the archived G2-4 comparison
+status is **NOT_RUN** and causal benefit is **UNKNOWN**.
 
-## Try it locally, then connect your agent
+## Get started
 
-The [Quickstart](docs/QUICKSTART.md) runs the Core, Console and public SQLite
-verifier through Docker Compose. **No model API key is needed.** Follow the
-[two-minute walkthrough](docs/DEMO_WALKTHROUGH.md).
+[Run the local demo](docs/QUICKSTART.md) · [Two-minute walkthrough](docs/DEMO_WALKTHROUGH.md) · [Reproduce and test](docs/REPRODUCIBILITY.md)
 
-For your own project, the scoped MCP tools are `resolve_experience`,
-`build_evidence_bundle`, `record_decision` and `propose_experience`.
-Proposals stay untrusted until Host review.
-[MCP setup](docs/CODEX_MCP_SETUP.md) · [Standalone Core](docs/STANDALONE_CORE.md)
+The public demo needs no model API key. For your own project, connect the
+[four scoped MCP tools](docs/CODEX_MCP_SETUP.md); proposals remain untrusted until Host review.
 
-## Scope and further reading
+## Explore the implementation
 
-Core and Console run independently of the private OrderFlow Benchmark.
-The local read-only Console is not an authenticated hosted service.
-Durability and isolation limits remain; the historical FalkorDB SIGSEGV/139
-root cause is **UNVERIFIED**.
+[Architecture](docs/ARCHITECTURE.md) · [Graph Model](docs/GRAPH_MODEL.md) · [Core Cypher](docs/CORE_CYPHER.md) · [MCP](docs/CODEX_MCP_SETUP.md) · [Documentation](docs/README.md)
 
-[Architecture](docs/ARCHITECTURE.md) · [Reproduce & test](docs/REPRODUCIBILITY.md) · [Security](SECURITY.md) · [Known limitations](docs/LIMITATIONS.md) · [Contributions & AI disclosure](docs/HACKATHON_CONTRIBUTIONS.md)
+Core and Console run independently of the private OrderFlow Benchmark. The Console
+is a **local read-only viewer**, not an authenticated hosted service. Live synthetic
+observations and historical REPLAY are separate. The public synthetic publisher
+is not the production TrustedHost/Q07 service. Historical FalkorDB SIGSEGV/139
+root cause remains **UNVERIFIED**; durability and isolation limits remain explicit.
 
-MIT licensed. See [LICENSE](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md).
+[Known limitations](docs/LIMITATIONS.md) · [Security](SECURITY.md) · [Contributions and AI disclosure](docs/HACKATHON_CONTRIBUTIONS.md)
+
+MIT licensed. [LICENSE](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
