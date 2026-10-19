@@ -10,7 +10,7 @@ The [walkthrough](DEMO_WALKTHROUGH.md) also supports a new two-minute recording.
 3. Keep LIVE synthetic and historical REPLAY labels, timestamps and verdicts visible.
 4. Preserve **S2 Core APPLY / Agent VERIFY** and the Host-approved follow-up distinction.
 5. Explain the graph's decision mechanism; do not claim statistical improvement from the historical examples.
-6. Do not show API keys, database passwords, grant files, private model conversations, Oracle assertions or account UI.
+6. Do not show real API keys, database passwords, production grant/capability files, private model conversations or personal account UI. Oracle/test/reference source is included as public historical evaluation material; label it accurately and do not present disclosed answers as future blind tests.
 7. Review every frame before sharing. Only add a video link after its actual upload is verified.
 
 For a new recording from the repository root, after installing browser dependencies

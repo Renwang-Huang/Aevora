@@ -33,7 +33,8 @@ pauses. Keep all source/mode labels visible and preserve failures.
 A sealed 138.48-second browser recording exists in the local release delivery,
 with separate captions. See the [recording guide](DEMO_RECORDING_GUIDE.md).
 
-Never record credentials, private Oracle assertions, Host pins, personal account
-UI or raw private model conversations. Public controls are demonstration inputs,
+Oracle/test/reference source is included in the full project and may be inspected
+as public historical evaluation material. Never record real credentials,
+production Host capabilities, personal account UI or raw private model conversations. Public controls are demonstration inputs,
 not new Agent behavior. G2-4's bundled formal comparison status remains NOT_RUN;
 causal benefit is UNKNOWN.

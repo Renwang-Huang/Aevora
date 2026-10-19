@@ -24,7 +24,7 @@ Aevora turns past experiences into **evidence-backed, context-dependent recommen
 
 ## Quick start
 
-Run the public **live synthetic demo** on a local FalkorDB instance. It needs Linux, Docker Engine with Compose v2, Python 3.10+, and approximately 4 GB of available RAM. **No model API key or private Benchmark is required.**
+Run the public **live synthetic demo** on a local FalkorDB instance. It needs Linux, Docker Engine with Compose v2, Python 3.10+, and approximately 4 GB of available RAM. **No model API key or Benchmark installation is required.**
 
 ```bash
 git clone https://github.com/Renwang-Huang/Aevora.git
@@ -68,7 +68,7 @@ flowchart TB
   Host["Trusted Host"] -.->|"publish"| Graph
 ```
 
-The public distribution includes the Core, the graph logic, scoped MCP transport, a read-only Console and a **synthetic** publisher for the local demo. The production Trusted Host/Q07 verifier and private independent Oracle are **not bundled**; the synthetic publisher does not stand in for them.
+The full-project source release includes Core, scoped MCP transport, Console, [Trusted Host/Q07 source](aevora_maintainer/host_v2.py), [source verification](aevora_maintainer/native_source.py), and the optional [Benchmark and Oracle](docs/BENCHMARK.md). The product-only Core/Console installation and demo image do not require the Benchmark or evaluator. The demo uses a **synthetic** publisher; production publication still requires explicitly registered authority, protected credentials and source/outcome verification.
 
 Explore the [graph model](docs/GRAPH_MODEL.md), [actual parameterized Cypher](docs/CORE_CYPHER.md), [arbitration source](aevora_core/src/aevora/arbitration.py), and [architecture details](docs/ARCHITECTURE.md).
 
@@ -92,7 +92,7 @@ Historical G2-3 Codex **native multi-agent** runs demonstrated an actual transfe
 
 Each recorded run involved three verified native children and an original **28/28** independent Oracle result. S2 retrieved a published Witness, but **the Core recommended APPLY while the S2 agent recorded VERIFY**. Its additional supporting evidence was accepted through a **Host-approved follow-up**, not by automatically trusting its proposal.
 
-This demonstrates a historical *mechanism*, **not** a measured causal advantage over ordinary or no memory. The bundled G2-4 controlled comparison is **NOT_RUN**; comparative causal benefit remains **UNKNOWN**. Raw model sessions and private Oracle assertions are not included in the public release.
+This demonstrates a historical *mechanism*, **not** a measured causal advantage over ordinary or no memory. The bundled G2-4 controlled comparison is **NOT_RUN**; comparative causal benefit remains **UNKNOWN**. The formerly hidden [Oracle tests and reference answers](historical_public_evaluation/README.md) are included as public historical evaluation source and are no longer future blind tests. Production keys, original private model conversations and some original historical run evidence remain unpublished. Reproducing the public evaluator does not independently re-certify every original session or its archived result.
 
 [Historical evidence and limitations](docs/NATIVE_TRANSFER.md) · [Sanitized public run summary](console/web/gen2_history.json)
 
@@ -111,7 +111,7 @@ The screenshot is an archived browser capture. [Source and capture provenance](d
 
 Aevora is **not** an authorization service or a production-ready remote multi-tenant deployment. The local Console is read-only. Synthetic graph observations, historical replay and live model actions are explicitly different evidence classes. Production outcome verification is outside the public demo.
 
-The historical FalkorDB SIGSEGV/139 root cause remains **unverified**; the documented restart and durability guarantees are bounded by explicit saved-state behavior. No general reliability or statistical success-rate claim is made.
+The historical FalkorDB SIGSEGV/139 root cause remains **unverified**; the documented restart and durability guarantees are bounded by explicit saved-state behavior. No general reliability or statistical success-rate claim is made. The approved full-source baseline retains **51 SKIP** results for legacy G1 tests requiring an authenticated historical import. Episodes **B/C remain PLANNED / NOT_IMPLEMENTED**; G24 Pilot/formal comparison remains **NOT_RUN**.
 
 [Security](SECURITY.md) · [Known limitations](docs/LIMITATIONS.md) · [Contribution provenance and AI disclosure](docs/HACKATHON_CONTRIBUTIONS.md)
 

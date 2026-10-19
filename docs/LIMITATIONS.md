@@ -17,10 +17,18 @@
   formal three-arm comparisons have NOT RUN. Comparative causal benefit UNKNOWN.
 - Live synthetic examples, historical sanitized G23 evidence and legacy Replay
   are different sources. Synthetic VerifiedOutcome records describe only an owned
-  public verifier, never an independent private engineering grade or Native model.
-- Production TrustedHost/Q07 verification requires private registered source and
-  Outcome authorities. It is not silently replaced by the public synthetic seed.
-- Historical public summaries do not allow third parties to re-run private Oracle
-  assertions. Their hashes verify public bytes, not externally attest private facts.
+  public verifier, never an independent Benchmark engineering grade or Native model.
+- TrustedHost/Q07 and Oracle implementation source is included in the full
+  engineering release. Production verification still requires explicitly
+  registered source/Outcome authorities and protected credentials; the synthetic
+  demo seed does not provide them.
+- Historical Oracle tests and reference answers are public and support new
+  reproductions. They are no longer future blind tests. Original private model
+  conversations and some historical run evidence remain unpublished; a new
+  reproduction or summary hash does not re-certify every original session.
+- The approved full-source baseline retains 51 SKIP results for legacy G1 tests
+  requiring an authenticated historical import. Episodes B/C remain
+  PLANNED / NOT_IMPLEMENTED; no historical skip or unfinished experiment is
+  converted into PASS by this documentation update.
 - Rules/eligibility are decided by the organizer. Reused foundations and in-period
   changes are disclosed; a recent push date is not evidence of original creation.

@@ -24,7 +24,7 @@ G21/G22 source seals and the historical G23 Native evidence associate these impl
 
 ## Reusable foundations and their role
 
-Preparatory work provided OrderFlow Benchmark research, first-generation Core/lifecycle and Host interfaces, an SDK/scoped MCP transport, native Codex integration, isolation, an earlier Observatory and packaging tools. These supported development and validation; they are attributed as reused foundations, not counted as newly written Gen2 mechanisms. The private Benchmark and raw records remain separate from the public product. Historical GraphSwarm names identify origin/compatibility, not the current brand.
+Preparatory work provided OrderFlow Benchmark research, first-generation Core/lifecycle and Host interfaces, an SDK/scoped MCP transport, native Codex integration, isolation, an earlier Observatory and packaging tools. These supported development and validation; they are attributed as reused foundations, not counted as newly written Gen2 mechanisms. Benchmark/Oracle and Trusted Host source are included in the full engineering release, while product-only deployment remains independent of the Benchmark. Original private model sessions and some historical raw run records remain unpublished. Historical GraphSwarm names identify origin/compatibility, not the current brand.
 
 The submitted contribution is the event-developed Gen2 design, core implementation and integrated Aevora product described above. The existence of those foundations does not by itself date completion of this submitted system.
 

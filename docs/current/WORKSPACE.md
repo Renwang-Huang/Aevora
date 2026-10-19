@@ -25,7 +25,11 @@ Private Audit, Maintainer Tests, Core Maintainer Tests, Maintainer Tools,
 Reproduction Scripts, Evidence Index and History Index. It has19 roots including
 intentional nested canonical-tool view. Core's full test directory includes
 privileged outcome/audit tests; it is deliberately not a Product root. These are
-local trusted development views, **not public source exports or security sandboxes**.
+local trusted development views, **not release selectors or security sandboxes**.
+The historic `Private Audit` label names owner-side tooling whose source is now
+included; generated sensitive audit/session data remains outside publication.
+The [full-project scope](../../FULL_PROJECT_SCOPE_AND_LICENSE.md) defines source
+inclusion independently of which editor view is open.
 
 Package metadata and root navigation stay in their stable paths. Use File → Open
 File, or these links: [README](../../README.md), [DEVELOPMENT](../../DEVELOPMENT.md),
@@ -41,7 +45,8 @@ use `tools/sync_public_evidence.py` and `--check`. Build static assets from
 All roots belong to the **same parent linked Git worktree**. Built-in Git opens
 parent repositories (`git.openRepositoryInParentFolders=always`), with recursive
 repository scanning disabled. SCM changes are repository-wide and may include
-maintainer files even in Product view. Never publish the workspace tree as a package.
+engineering files even in Product view. Package only the reviewed source selection;
+local generated files and secrets are not publication inputs.
 
 A new terminal starts at `${workspaceFolder:Core}/../..`, the true checkout root.
 Every provided process task explicitly uses that cwd. Tasks → Run Task offers
@@ -55,9 +60,12 @@ working. See the current validation receipts for actual argv/runtime/version.
 Global search spans selected roots; it does not include omitted archives. Cache
 filters cover only `.venv`, pytest/pycache, node_modules, build/dist and egg-info.
 They do not hide source, valid tests, failures or tracked static package resources.
-Search follows no symlinks. Full private1820 tests require Maintainer environment,
-real FalkorDB/history prerequisites and an external fresh JUnit output; public UI
-has its own Node tests. The Python testing extension is optional: test discovery
+Search follows no symlinks. The older 1820-test profile is historical. Current
+full-source tests require an engineering environment, owned real FalkorDB and
+fresh external outputs; legacy G1 history prerequisites retain 51 SKIPs in the
+approved source baseline. Public UI has its own Node tests. See the current
+[reproduction profiles](../REPRODUCIBILITY.md). The Python testing extension is
+optional: test discovery
 via terminal commands is authoritative, extension Test Explorer is unverified.
 
 ## Full root / history inspection
@@ -79,8 +87,9 @@ untouched; opening those old roots may still apply their ROS settings.
 ## Verification scope and manual visual acceptance
 
 The checker actually parses relative folders, verifies directories/real Git roots,
-checks named cwd and allowed process tasks, and rejects hidden source/private
-Product roots. Current native Extension Host receipts confirm actual8/19 roots, builtin Git SCM,
+checks named cwd and allowed process tasks, and rejects source-hiding filters
+or unlisted Product-view roots. View membership is not a publication boundary. The historical native Extension
+Host receipts confirm actual8/19 roots, builtin Git SCM,
 native findFiles search, three process tasks and the UI New Terminal command cwd.
 These do not prove GUI rendering. The extension API createTerminal default instead
 uses the first folder; its two original failed checks are retained. When writing

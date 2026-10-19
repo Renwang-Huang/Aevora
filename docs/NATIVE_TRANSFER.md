@@ -34,12 +34,21 @@ The [Console implementation](../console/web/journey.js) displays it as
 - This is transfer to a new instance of the same D-v01 family, not an unseen task family.
 - No statistical causal benefit is established. This public snapshot carries
   G2-4 Pilot/formal comparison status NOT_RUN and causal benefit UNKNOWN.
-- Original model conversations, official native source records and private
-  Oracle assertions are not shipped. Public summary hashes identify public
-  bytes; they do not independently attest private facts.
+- The full source release includes the [historical Oracle tests, manifests and
+  reference answers](../historical_public_evaluation/README.md), with original
+  code pins and an explicit disclosure label. These are public engineering
+  materials and are no longer future blind tests.
+- Original private model conversations and some original per-run native/evaluation
+  records remain unpublished. Public code supports new [model-free reproductions](BENCHMARK.md);
+  it does not supply every original run seal, session byte record or authority
+  record needed to independently re-certify the historical 28/28 outcomes.
+  Public summary hashes identify public bytes, not external attestation of
+  unpublished evidence.
 - Historical shared-kernel isolation is PARTIAL, and database reliability remains
   conditional. See [limitations](LIMITATIONS.md).
 
-The public synthetic publisher is intentionally not the production TrustedHost.
-The [MCP interface](CODEX_MCP_SETUP.md) exposes untrusted decisions/proposals, not
-Host approval, Oracle registration or Q07 publication.
+The demo's synthetic publisher is separate from the included
+[Trusted Host implementation](../aevora_maintainer/host_v2.py). Production use still
+requires owner-granted authority and protected keys; publishing its source does
+not grant that authority. The [MCP interface](CODEX_MCP_SETUP.md) exposes untrusted
+decisions/proposals, not Host approval, Oracle registration or Q07 publication.

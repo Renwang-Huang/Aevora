@@ -36,7 +36,7 @@ The graph initially displays up to 24 actual neighboring nodes from the bounded 
 
 REPLAY is a pinned, independently checked projection of sealed history. Its archive, capture time and SHA are visible. The three cases have different sources. LIVE queries actual Core/Graph state; missing publication, database failure and empty graphs do not fall back to Replay. Controlled `threads`, `workers` and `unknown` contexts are explicit public demonstration inputs, not claimed Agent task facts.
 
-Viewer HTTP exposes no arbitrary Cypher, filesystem paths, approval or writes. Bind address is loopback. Browser credentials are unnecessary. Raw MCP/model logs and private Oracle are outside the product package. Ordinary local MCP connection is a same-user developer boundary, not hostile participant isolation.
+Viewer HTTP exposes no arbitrary Cypher, filesystem paths, approval or writes. Bind address is loopback. Browser credentials are unnecessary. The product-only image does not install the optional Benchmark/evaluator. Their Oracle/tests/reference answers and Trusted Host source are included in the full engineering repository; production credentials, original private model sessions and some historical run evidence remain unpublished. Ordinary local MCP connection is a same-user developer boundary, not hostile participant isolation.
 
 ## Browser verification
 

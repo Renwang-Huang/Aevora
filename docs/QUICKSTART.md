@@ -1,7 +1,7 @@
 # Run the Aevora Decision Journey
 
 This starts a local, owned **LIVE synthetic demo** backed by real FalkorDB and
-the existing WHEN/WHY policy. No model API key or private Benchmark is required.
+the existing WHEN/WHY policy. No model API key or Benchmark installation is required.
 For a fresh, unseeded ordinary project instead, see [standalone Core](STANDALONE_CORE.md).
 
 ## Requirements
