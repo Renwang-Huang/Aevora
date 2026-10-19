@@ -1,19 +1,7 @@
-# Public release boundary
+# Reviewed full-source publication inputs
 
-The release builder `tools/public_release.py` in the private maintainer repository
-selects explicit product paths. The public package contains Core source/Schema v2/
-Cypher, public tests/example, Console source/static assets, whitelisted historical
-summary, h4 public evidence/verifier, deployment and public documentation.
+The owner-expanded 2026-10-19 scope includes product, Agent integration, Trusted Host, Benchmark, evaluator/Oracle, public historical answers, tests and engineering tools. The earlier non-Benchmark exclusion is superseded. See FULL_PROJECT_SCOPE_AND_LICENSE.md and docs/FULL_PUBLIC_SOURCE_MAP.md.
 
-The selection does not include OrderFlow app/benchmark/evaluator, hidden tests,
-reference patches, maintainer implementations, root AGENTS, model sessions,
-Host pins, full audit archives, .env, credentials, caches or Docker volumes.
-Core's deferred legacy Host bridges are compatibility code only; the private
-production authenticator and its pins are not shipped. Public synthetic fixtures
-are scoped examples, not authority to publish production Outcomes.
+`PUBLIC_SOURCE_FILES.txt` is the explicit reviewed source selection used by `tools/public_release.py`. It includes executable engineering code and deliberately labelled historical source. It excludes credentials, signing private keys, private raw model sessions, generated Host registries/grants, databases, build caches and installed third-party dependencies. Path traversal, symlinks, hard links and nonordinary files fail selection. Wheels/sdists and Git history receive a separate release safety scan.
 
-PUBLIC_SELECTION.json in the release evidence lists every selected path and hash.
-The independent Public staging Git starts with only those selected bytes; it does
-not copy the maintainer Git history. Tree and complete proposed public history
-are scanned separately. These checks are bounded release evidence and are not
-a claim that no security defect exists.
+The product Docker image still installs only Core/Console and public replay assets. Root optional Benchmark packaging does not enter ordinary Core imports or grant participants host/evaluation filesystem access. Public historical test and answer disclosure invalidates future blind-test claims, while trusted execution and publication boundaries remain enforced.

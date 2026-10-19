@@ -1,0 +1,15 @@
+gate,claim,source,evidence,status,qualification
+G0,"Three distinct honest cases, pinned verifier",h4/verify_hero.py,g0/GATE.json,PASS,"Local source hashes, not external attestation"
+G1,Standalone Core official SDK,aevora_core/src/aevora/mcp_connect.py,g1/GATE.json,PASS,"Same UID owner, Security PARTIAL"
+G2,Actual current Core/Graph read-only API,console/src/aevora_observatory/projection.py,g2/GATE.json,PASS,Bounded actual graph
+G3,Three pages and six actual UI states,console/web/app.js,g3/browser-validation-07/RECEIPT.json,PASS,Playwright isolated Chromium
+G4,Actual new untouched Agent patch,scripts/aevora_h4_native.py,g4/NATIVE_REPAIR_02_FACT_CHECK.json,PASS,"EXTERNAL_UNVERIFIED, not trusted outcome"
+G4,Current support edge necessity,scripts/aevora_h4_graph_demo.py,g4/actual-necessity-02/RESULT.json,PASS,"Maintainer-controlled, adoption UNKNOWN"
+G5,Zero-corpus native bridge,integrations/aevora.py,g5/FRESH_NATIVE_FACT_CHECK.json,PASS,Original ERROR/NO_PATCH retained
+G5,Public package install and provenance,scripts/aevora_h4_distribution_check.py,g5/INSTALLED_SOURCE_BYTE_CHECK.json,PASS,LinuxAMD64/UID1000
+G5,Actual public Docker/browser/no fallback,console/browser/product.mjs,g5/public-image-browser-final/RESULT.json,PASS,Actual browser/API bytes
+G5,Exact secret/private-copy scan,scripts/aevora_h4_delivery.py,g5/public-safety-final/RESULT.json,PASS,"3 actual classes, not hostile isolation proof"
+G5,Full regressions preserve H3 identities,scripts/aevora_h4_tests.py,g5/EMPTY_BRIDGE_FINAL_JUNIT_CHECK.json,PASS,1802/1714 zero missing/skip/error
+G5,Historical bytes preserved,scripts/aevora_h4_delivery.py,g5/history-preservation-02/RESULT.json,PASS,215589 history/79 tests/39 truth/25 reports
+G5,Strict Lite public benign patch controls,scripts/aevora_h4_lite_control.py,g5/lite-negative-controls-02/RESULT.json,PASS,Four hidden FAIL controls; not task success
+G5,Stopped Full and independent Lite export,scripts/aevora_h4_export.py,aevora_validation/audit_exports/H4-20261013T032951Z-7c8b693a-7f84-4e8b-b3c1-c2e9f37f48ef/DELIVERY_CHECKS.json,PASS,Full pointers NOT_INCLUDED remain unverified bytes

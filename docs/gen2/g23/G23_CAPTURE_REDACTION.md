@@ -1,0 +1,7 @@
+# Captured Failure Credential Redaction
+
+The pre-seal exact credential scanner found the newly owned original DB credential (not the long-term Gateway API key) in two pytest connection-failure artifacts: epoch2-inherited-1897/stdout.log and its failed JUnit. A preseal candidate package/extraction inherited that content and was explicitly invalidated. No participant or external upload received this package.
+
+Only newly captured G23 artifacts were redacted. Five original payloads are AES256-GCM encrypted in the private Full; the encryption key stays in a separate host-only0700/0600 directory outside all archives. Actual in-memory decryption verified every original whole-artifact SHA. Whole-artifact original/export SHA links are retained; no individual credential/hash is published. Original error counts, test identities, exit states, failure text and all unrelated bytes remain.
+
+The original newly owned DB remained stopped139; its credential was rotated in its host-only config. Live/regression/recovery and all legacy databases were not altered by this retirement. Final scans search current, retired and encryption keys plus their direct SHA/base64 representations without logging those values. The initial scanner FAIL and preseal invalidation stay in the failure evidence; final public/maintainer Lite is a new package with separate hashes. This is evidence hygiene, not an Oracle or historical-grade correction.

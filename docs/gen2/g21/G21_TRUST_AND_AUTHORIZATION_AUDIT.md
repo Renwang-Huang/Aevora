@@ -1,0 +1,13 @@
+# G21 trust and authorization audit
+
+Scope: new owned tenant physical graphs; all acceptance seeds HOST_CONTROLLED_SYNTHETIC_FIXTURE. This is read-side arbitration acceptance, not real G22 publication or G23 Agent execution.
+
+## Boundary
+Host-only TenantBinding fixes the physical graph; the four tools have no graph/tenant/Hostprincipal/Authority/Outcome parameters. Existing UDS bearer + kernel peer UID capability protects transport. V2 Session/ReadGrant pins tenant/run/session/generation/profile/TTL/authz_epoch, and each response carries actual epoch authorization. Per-connection HMAC cache binds exact args/view/document hash. New grants use a distinct generation and immutable Session identity. Broker checks again under its local owner lock immediately before sendall; a V2_RESPONSE_DELIVERED receipt is emitted only after successful complete send with delivered SHA/bytes and measured check-to-send interval. Existing JSONRPC processing logs alone do not prove delivery.
+
+Graph authorization is composed with Host capability, not a substitute. Current pages re-read actual committed witness, manifests, all negative edges and canonical payloads; even out-of-band negative-edge damage without epoch movement fails. A missing/foreign reference receives the same unauthorized error before resource lookup. Claims cannot establish facts. Candidate and Decision records remain UNTRUSTED_AGENT and cannot create COMMITS/VerifiedOutcome/Authority.
+
+## Residual timing and authority limits
+A DB state check and a network socket write are not a distributed atomic transaction. All controlled Host semantic writers must honor epoch fences; arbitrary external DB administrators are outside this boundary. A DB change after the final read but before/during socket send remains possible. Receipts expose the actual interval; bytes already delivered cannot be revoked. Local owner close requests may wait for an already-started bounded send, with authorization revocation effective under the broker lock, not retroactively at the cancellation request timestamp. No strict global atomic authorization claim is made.
+
+Host registry/source pins are local OS-rooted configuration, not cryptographic signatures or proof against a malicious maintainer. Synthetic acceptance registration is explicit. Production source review/publication/concurrent final Q07 CAS remains NOT_IMPLEMENTED/NOT_RUN G22. Shared kernel isolation, AOF139 and RDB last-save RPO are inherited limitations, not repaired or regraded here. Missing independent G20 audit attachment is disclosed; taskbook findings supplied the four entry amendments.

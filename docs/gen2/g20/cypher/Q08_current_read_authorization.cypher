@@ -1,0 +1,2 @@
+// PROPOSED / NOT_EXECUTED; Host params only; payload/manifest verification is mandatory.
+MATCH (s:TenantState {id:$state,tenant_id:$tenant}), (q:Query {id:$query,tenant_id:$tenant}), (session:Session {id:$session,tenant_id:$tenant}) WHERE s.epoch=$epoch AND s.authz_epoch=$authz_epoch AND q.run_id=$run AND q.session_id=session.session_id AND session.run_id=$run RETURN s.epoch,s.authz_epoch,q.id,session.session_id LIMIT 2

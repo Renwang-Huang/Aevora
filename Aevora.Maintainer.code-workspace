@@ -1,0 +1,187 @@
+{
+  "folders": [
+    {
+      "name": "Core",
+      "path": "aevora_core/src"
+    },
+    {
+      "name": "Core Docs",
+      "path": "aevora_core/docs"
+    },
+    {
+      "name": "Receipt Example",
+      "path": "aevora_core/examples/receipt_store"
+    },
+    {
+      "name": "Console Runtime",
+      "path": "console/src"
+    },
+    {
+      "name": "Public Tests and UI",
+      "path": "console/web"
+    },
+    {
+      "name": "Public UX",
+      "path": "h4"
+    },
+    {
+      "name": "Current Docs",
+      "path": "docs/current"
+    },
+    {
+      "name": "Dev Tools",
+      "path": "tools/public_evidence"
+    },
+    {
+      "name": "OrderFlow",
+      "path": "app"
+    },
+    {
+      "name": "Benchmark",
+      "path": "benchmark"
+    },
+    {
+      "name": "Trusted Evaluator",
+      "path": "evaluator"
+    },
+    {
+      "name": "Host Integrations",
+      "path": "integrations"
+    },
+    {
+      "name": "Private Audit",
+      "path": "aevora_maintainer"
+    },
+    {
+      "name": "Maintainer Tests",
+      "path": "tests"
+    },
+    {
+      "name": "Core Maintainer Tests",
+      "path": "aevora_core/tests"
+    },
+    {
+      "name": "Maintainer Tools",
+      "path": "tools"
+    },
+    {
+      "name": "Reproduction Scripts",
+      "path": "scripts"
+    },
+    {
+      "name": "Evidence Index",
+      "path": "evidence"
+    },
+    {
+      "name": "History Index",
+      "path": "docs/history"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.venv": true,
+      "**/.pytest_cache": true,
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/*.egg-info": true
+    },
+    "search.exclude": {
+      "**/.venv": true,
+      "**/.pytest_cache": true,
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/*.egg-info": true
+    },
+    "files.watcherExclude": {
+      "**/.venv": true,
+      "**/.pytest_cache": true,
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/*.egg-info": true
+    },
+    "search.followSymlinks": false,
+    "git.autoRepositoryDetection": true,
+    "git.openRepositoryInParentFolders": "always",
+    "git.repositoryScanMaxDepth": 0,
+    "terminal.integrated.cwd": "${workspaceFolder:Core}/../..",
+    "python.defaultInterpreterPath": "${workspaceFolder:Core}/../../.venv/bin/python"
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Aevora: Check developer views",
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "tools/workspace_check.py"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:Core}/../.."
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Aevora: Check generated public evidence",
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "tools/sync_public_evidence.py",
+          "--check"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:Core}/../.."
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Aevora: Current command map",
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "tools/dev.py",
+          "--help"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:Core}/../.."
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Aevora: Build Console",
+        "type": "process",
+        "command": "npm",
+        "args": [
+          "--prefix",
+          "console",
+          "run",
+          "build"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:Core}/../.."
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Aevora: Test public Console UI",
+        "type": "process",
+        "command": "npm",
+        "args": [
+          "--prefix",
+          "console",
+          "test"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:Core}/../.."
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+}

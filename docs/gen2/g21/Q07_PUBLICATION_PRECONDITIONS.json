@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0-rc2",
+  "status": "NOT_IMPLEMENTED_G22",
+  "required": [
+    "candidate_body_sha",
+    "expected_head_sha",
+    "source_sha",
+    "outcome_sha",
+    "authority_sha",
+    "manifest_document_sha",
+    "prepared_verification_sha",
+    "expected_epoch",
+    "expected_authz_epoch",
+    "host_principal",
+    "grant_generation",
+    "request_key",
+    "request_body_sha"
+  ],
+  "final_atomic_effects": [
+    "candidate_event",
+    "lifecycle_head",
+    "COMMITS",
+    "semantic_epoch"
+  ],
+  "negative": [
+    "stale_head",
+    "wrong_body",
+    "revoked_authority",
+    "missing_chunk",
+    "crash_before",
+    "crash_after",
+    "concurrent_commit"
+  ]
+}

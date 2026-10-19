@@ -1,0 +1,224 @@
+{
+  "changes_since_first_freeze": "CSV CRLF\u2192LF only; same semantic rows; prior commit/failure retained",
+  "changes_since_prior_freeze": "Strengthen registered fact types, explicitly map complete17-field legacy Host vocabulary and preserve strict schema checks; no production source changes.",
+  "contract_version": "aevora.gen2.contract/2.0.0-rc1",
+  "created_at": "2026-10-15T11:13:16.144042+00:00",
+  "current_design_checks": {
+    "classification": "SCHEMA_AND_ARTIFACT_CONTRACT_TESTS_ONLY_NOT_PRODUCT_OR_INHERITED_REGRESSION",
+    "errors": 0,
+    "failed": 0,
+    "junit_sha256": "372ee72343222be96da494b78bb248adea0d1b76c20bc6d77b4b09e0d1c902d8",
+    "passed": 59,
+    "skipped": 0
+  },
+  "files": {
+    "00_BASELINE_AND_AUTHORITY.md": {
+      "bytes": 2538,
+      "sha256": "d2de0eee833e4df5a4b140e4d437141974d6d7e9724aba41f0c706f0ecb58221"
+    },
+    "01_AS_IS_ARCHITECTURE_AUDIT.md": {
+      "bytes": 5952,
+      "sha256": "afc9a1f3818006790ec870b94eacc9e9bc8307232c7b7361467ce6be5c39b9a0"
+    },
+    "02_GEN2_FINAL_ARCHITECTURE.md": {
+      "bytes": 7364,
+      "sha256": "2d6de6d4d66cdc8c6a7e64f681d0c45c30e5174fa168b1d5430bfe65819d761d"
+    },
+    "03_EXPERIENCE_GRAPH_V2_SCHEMA.md": {
+      "bytes": 9606,
+      "sha256": "2643d91bdcd27d19267cab483211e186bba224df9755f2337ab2982fc128db93"
+    },
+    "04_AGENT_LIFECYCLE_AND_TRUST_CONTRACT.md": {
+      "bytes": 8322,
+      "sha256": "a681adb4874d95a06b7554ca5c0843f5f79a3584c19cc64c39578460b9ff9b66"
+    },
+    "05_BENCHMARK_AND_CAUSAL_EVIDENCE_PLAN.md": {
+      "bytes": 7463,
+      "sha256": "eccad6d46b20711195f65000a4ec2ee9408d1c24f6fc52dea6166642b31f2005"
+    },
+    "06_IMPLEMENTATION_AND_RELEASE_PLAN.md": {
+      "bytes": 6984,
+      "sha256": "aa49239dc0d9cce71bf699c866b6461010ec3b7796ee42a2242686f603fd3651"
+    },
+    "ARCHITECTURE_DECISIONS.md": {
+      "bytes": 9361,
+      "sha256": "dead7e352658f6b7128e8e6c9b1263592eef6c5ac0a093499d7dfb49963b4c3d"
+    },
+    "AS_IS_TO_GEN2_DELTA.csv": {
+      "bytes": 5584,
+      "sha256": "b5cbd9d1de994009bd3c5cca3298a4621a7e50a6470435b8009e1f98912c9471"
+    },
+    "CLAIM_TO_EVIDENCE_PLAN.csv": {
+      "bytes": 2663,
+      "sha256": "07b9c070c25e02cbbe659d17a72ee59590d3a38874bfceb383196ae123686cb9"
+    },
+    "GEN2_GATES_AND_DEPENDENCIES.csv": {
+      "bytes": 1933,
+      "sha256": "2f8461e5f2b9bfc0884ed94569e40bbbedb47cbecf0b91f12a9479c2b80f0dce"
+    },
+    "GRAPH_CYPHER_CONTRACTS.md": {
+      "bytes": 8164,
+      "sha256": "1ca469434aa0be2878e6d0026d0503faa8f88290d9bdfd81011a0db18970645b"
+    },
+    "HACKATHON_CONTRIBUTION_MATRIX.csv": {
+      "bytes": 274925,
+      "sha256": "098b52c84042512d968c4f8e83bde92975cd96cdc02118390a55af0a238d92e6"
+    },
+    "HERO_STORYBOARD_AND_EVIDENCE_SHOTS.md": {
+      "bytes": 4443,
+      "sha256": "3489b72a7307ae8e157818c2119a8c2f0348407df65c1470a61243469f0141dd"
+    },
+    "MCP_COMPATIBILITY_AND_VERSIONING.md": {
+      "bytes": 6941,
+      "sha256": "fcd429ce9e1c16dbef8c610e4917268008dbdf9412c677fdf03c11b82aed7960"
+    },
+    "PUBLIC_PRIVATE_BOUNDARY.md": {
+      "bytes": 3125,
+      "sha256": "b15698e52efcdcef55d3adb480f47d0d76152e7470acd6acff7c8b3071c97ec6"
+    },
+    "README.md": {
+      "bytes": 2397,
+      "sha256": "e22d3756e4bb6d86faf96f30ac53053b08099c2e57fe7f3e13e8398118918146"
+    },
+    "SOURCE_ENTRYPOINT_MAP.csv": {
+      "bytes": 10996,
+      "sha256": "ebe994d61d465de56ea184b5bb6f28838f1f19fd357fd229d7e17f904907db09"
+    },
+    "contracts/QUERY_CATALOG.json": {
+      "bytes": 3622,
+      "sha256": "a2e358e22198ce90d9c935f3f8f84a7eef572c4462747d137574bb010bc146a1"
+    },
+    "contracts/build_evidence_bundle.arguments.schema.json": {
+      "bytes": 1056,
+      "sha256": "55c31291e578021882b274e40faed4ddebbc3aba81106bc2da3de94bee4dd205"
+    },
+    "contracts/document_manifest.schema.json": {
+      "bytes": 2969,
+      "sha256": "fbd75ee92c5a691c8efbd541dcf41629644b36b4b03b81601c51ce78969c40c2"
+    },
+    "contracts/event.schema.json": {
+      "bytes": 4394,
+      "sha256": "06dda2f110cf1ebc1875b1a85b3e3e575877fd73ec1b30b570d3c35d55dee5ae"
+    },
+    "contracts/examples.json": {
+      "bytes": 21457,
+      "sha256": "8d3568d921467e5a157a0c7b80beb5bdc3c2d5e4491b35def9b72325eff29162"
+    },
+    "contracts/fact.schema.json": {
+      "bytes": 16730,
+      "sha256": "03a10d27ea66457dfc49a852ef08efeeb0daae408ac2e4ee441916c91116e554"
+    },
+    "contracts/graph_v2_catalog.json": {
+      "bytes": 6198,
+      "sha256": "3546fe9f13a07ed96111fd0b3dbd845ff079b0b5f36c40e4f86e6a2ecd1bc770"
+    },
+    "contracts/host_review.schema.json": {
+      "bytes": 3033,
+      "sha256": "62277ffada81df7729c6038ec19dc793f67d0f10355c5af9a5aef96e7a7e825c"
+    },
+    "contracts/independent_outcome.schema.json": {
+      "bytes": 2825,
+      "sha256": "c6211460ef4aecdbd91b4ef0c85677ba5a9a301bbb5a5c4f54537f76ee86edef"
+    },
+    "contracts/legacy_mcp_v1_2.schemas.json": {
+      "bytes": 20757,
+      "sha256": "a4da3eb8267d4ffc5efc2f3f97f8c3fa457e4202db4ab57dc7a64b3da3028703"
+    },
+    "contracts/lifecycle_event.schema.json": {
+      "bytes": 2561,
+      "sha256": "798ad788c304510a1db245a617a41fab64ee9ac68f64aecc4caba808b90d80cd"
+    },
+    "contracts/lifecycle_transition_catalog.json": {
+      "bytes": 1224,
+      "sha256": "8cf1e90e5dbf8d009c2fe14b9da77696725c34fa207c5bcf35df283cddb0dd78"
+    },
+    "contracts/mcp_v2.schema.json": {
+      "bytes": 30239,
+      "sha256": "4c56ea550bb833d32adfa4acf2e9fd73b1b16101aa0afefb61f4343354cb4089"
+    },
+    "contracts/propose_experience.arguments.schema.json": {
+      "bytes": 20813,
+      "sha256": "3ddd51ffacab41117648e652646552304f2f96ebde92b01734e17feb781275aa"
+    },
+    "contracts/recommendation.schema.json": {
+      "bytes": 4936,
+      "sha256": "64a09f2d66b44bb606acfadc4660bbcb2045444b0b2dc5d45f76b3bef6c632f1"
+    },
+    "contracts/record_decision.arguments.schema.json": {
+      "bytes": 2419,
+      "sha256": "561480b3d8f964440664f5985757532542a395721a64fb7ef111a3069d42a0d0"
+    },
+    "contracts/resolve_experience.arguments.schema.json": {
+      "bytes": 1975,
+      "sha256": "b39783aa08992d031db200c266d5b0f2a94fe798c1825a483faf2d327cdd0d80"
+    },
+    "contracts/tool_result.schema.json": {
+      "bytes": 13389,
+      "sha256": "24009f67701a3cbc6692957de3189eaba870ef877fa111ac15bc0051e0c4027b"
+    },
+    "cypher/Q00_tenant_state.cypher": {
+      "bytes": 243,
+      "sha256": "64ea05297594d30cff03b52cc3b2cba6b76fe950942986ad536103b425f69bec"
+    },
+    "cypher/Q01_candidate_identities.cypher": {
+      "bytes": 416,
+      "sha256": "5a3162b2fbeb8b62006cfcdccd3ed6d63a5c8882d8cd8dac10d8933a833bcd13"
+    },
+    "cypher/Q02_premise_paths.cypher": {
+      "bytes": 628,
+      "sha256": "ace7d4fd79c5334468dd3ef42d7abaf91a756b1eb61bd3d84ac9906b18ca6462"
+    },
+    "cypher/Q03_supersession_edges.cypher": {
+      "bytes": 379,
+      "sha256": "62296501e3a824f09abad2f866e2a4315a69fd99bc6ac0999b18000eff3d5777"
+    },
+    "cypher/Q04_evidence_paths.cypher": {
+      "bytes": 828,
+      "sha256": "46ca39b74f4f3c352d3554fd098bb795617bde5857677e9ea4c5da344f7a74f7"
+    },
+    "cypher/Q05_governance_paths.cypher": {
+      "bytes": 616,
+      "sha256": "54b966c974cba43ab0f2b3966ae90df9618a5a48f6b59def6c79c5ecb46abf2c"
+    },
+    "cypher/Q06_record_recommendation.cypher": {
+      "bytes": 627,
+      "sha256": "e0e9163accd83223233f09b3c6db89595beb423146ef47a74cc50974db13830f"
+    },
+    "cypher/Q07_epoch_fence_probe.cypher": {
+      "bytes": 349,
+      "sha256": "455408b8a94781410019b9f0b6ca4d555751f17e8d7fe41797f17cf506921f0a"
+    },
+    "cypher/Q07_publication_commit.cypher": {
+      "bytes": 1541,
+      "sha256": "5b819f6febcf937d22541faf30c677efa0ee21f2bae326fd95d3f2dcf4f02f3f"
+    },
+    "cypher/Q08_current_read_authorization.cypher": {
+      "bytes": 425,
+      "sha256": "963c939ea99836d2091158e770ad4441a4d48c8af47860ef20bb3cf545bec0fd"
+    },
+    "cypher/Q09_document_chunks.cypher": {
+      "bytes": 349,
+      "sha256": "81470b790b803ee4bc0a5b98abd7cfd58c7eae4ac64b841053afc052c4bb649a"
+    },
+    "test_design_contracts.py": {
+      "bytes": 7967,
+      "sha256": "1b82616e6d33dce73a75fa6186d5202ddbdd743d955e1d17643f314107b9dd83"
+    }
+  },
+  "graph_version": "aevora.graph/2.0.0-rc1",
+  "inherited1897_rerun": "NOT_RUN",
+  "mcp_version": "aevora.mcp/2.0.0-rc1",
+  "new_design_files": 49,
+  "new_native_multi_agent": "NOT_RUN",
+  "next_gate": "G2-1_NOT_AUTHORIZED_UNTIL_INDEPENDENT_REVIEW",
+  "production_gen2_implementation": "NOT_IMPLEMENTED",
+  "schema": "aevora.g20.freeze/1",
+  "self_boundary": [
+    "CONTRACT_FREEZE_INDEX.json"
+  ],
+  "source_base": "fc539c8524250b53af5353bfce13f1ee857b3695",
+  "source_base_tree": "0d6bf88c0a2087b0c6ea45336c35b4d7fe67a0d2",
+  "status": "FROZEN_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "supersedes_design_commit": "6f2fe705d1b0f9394a58fedeb708d496ca4188c8",
+  "synthetic_probe_status": "PASS_SYNTHETIC_QUERY_AND_CONSTRAINT_SHAPES_ONLY"
+}

@@ -1,0 +1,35 @@
+#!/bin/sh
+# Trusted Aevora launcher. Credentials never enter the nested Participant.
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+if [ -f "$root/.runtime.env" ]; then . "$root/.runtime.env"; fi
+: "${ORDERFLOW_PYTHON_RUNTIME:?Configure the existing Python 3.12 runtime}"
+aevora_password_file=${AEVORA_FALKORDB_PASSWORD_FILE:?Set an external owner-only database password file}
+aevora_graph=${AEVORA_FALKORDB_GRAPH:?Set an isolated graph}
+aevora_port=${AEVORA_FALKORDB_PORT:?Set an isolated database port}
+orderflow_cgroup_parent=${ORDERFLOW_CGROUP_PARENT:?Set a genuinely delegated cgroup v2 parent}
+set -- "$root/.venv/bin/python" "$@"
+if [ "${ORDERFLOW_ENABLE_CODEX:-0}" = 1 ]; then
+  aevora_codex_binary=$(readlink -f "${ORDERFLOW_CODEX_BINARY:-$(command -v codex)}")
+  aevora_secret_file=${ORDERFLOW_GATEWAY_SECRET_PATH:?Set an external owner-only gateway credential}
+  set -- --ro-bind "$aevora_secret_file" /maintainer/gateway.key \
+    --setenv ORDERFLOW_GATEWAY_SECRET_PATH /maintainer/gateway.key \
+    --setenv ORDERFLOW_GATEWAY_URL "${ORDERFLOW_GATEWAY_URL:-https://api.renwang-huang.top/v1}" \
+    --ro-bind "$(dirname "$aevora_codex_binary")/codex-code-mode-host" /tools/codex-code-mode-host \
+    --ro-bind "$aevora_codex_binary" /tools/codex --setenv ORDERFLOW_CODEX_BINARY /tools/codex "$@"
+fi
+exec bwrap --die-with-parent --unshare-user --unshare-pid \
+  --ro-bind "$ORDERFLOW_PYTHON_RUNTIME" /usr \
+  --ro-bind /usr/bin/bwrap /tools/bwrap --ro-bind /usr/bin/git /tools/git \
+  --ro-bind /etc/resolv.conf /etc/resolv.conf --ro-bind /etc/ssl/certs /etc/ssl/certs \
+  --ro-bind "$aevora_password_file" /maintainer/aevora-db.password \
+  --bind /sys/fs/cgroup /sys/fs/cgroup \
+  --symlink usr/lib /lib --symlink usr/lib64 /lib64 \
+  --proc /proc --dev /dev --tmpfs /tmp \
+  --bind "$root" "$root" --chdir "$root" --clearenv \
+  --setenv HOME /tmp --setenv PATH "$root/.venv/bin:/tools:/usr/bin" \
+  --setenv SSL_CERT_FILE /etc/ssl/certs/ca-certificates.crt \
+  --setenv ORDERFLOW_CGROUP_PARENT "$orderflow_cgroup_parent" \
+  --setenv AEVORA_FALKORDB_HOST 127.0.0.1 --setenv AEVORA_FALKORDB_PORT "$aevora_port" \
+  --setenv AEVORA_FALKORDB_GRAPH "$aevora_graph" \
+  --setenv AEVORA_FALKORDB_PASSWORD_FILE /maintainer/aevora-db.password "$@"

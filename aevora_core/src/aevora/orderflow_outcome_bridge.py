@@ -406,7 +406,7 @@ def _verify(anchor: TrustAnchor, archive: _Archive, source: _Archive,
         # Reuse OrderFlow's mature, non-executing bounded strict interpreter.
         # Import only in the trusted host, and only its pinned source version.
         parser_source = _sealed(source, source_files, prefix + "/benchmark/submission.py", _MAX_SOURCE)
-        import benchmark.submission as strict_submission
+        from . import source_integrity as strict_submission
         parser_path = Path(strict_submission.__file__).absolute()
         parser_archive = _Archive(parser_path.parent)
         try:

@@ -10,3 +10,13 @@
 **/*.key
 **/*.password
 grant.json
+.venv/
+.runtime.env
+.pytest_cache/
+*.pyc
+runs/
+.local/
+*.pem
+*.p12
+*.pfx
+auth.json

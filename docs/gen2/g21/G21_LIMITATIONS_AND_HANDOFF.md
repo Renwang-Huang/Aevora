@@ -1,0 +1,7 @@
+# Limitations / stop
+
+G21_CONDITIONAL:64×8 observedp95 above5s;100k/300k nottested. Auth check/socket send non-atomic across DB/network; already delivered bytes unretractable. Current OS-rooted registry trusts authorized Host setup, not malicious DB admins/signatures. Cross-partition revision/migration and1024 scope-head bound need review; prepared catalogue heads must be fenced with publication epoch in G22. Snapshot whole documents remain8MiB and may explicitly reject larger compound query snapshots. Native tool identity/join/new Agent outcomes NOT_RUN; all acceptance graph grades synthetic. G20 independent review attachment NOT_FOUND. Original AOF139/RDBRPO/sharedkernel/ClockUDS/eligibility limits remain.
+
+G22 source/admission/Host review/publication/concurrent CAS/crash-retry NOT_IMPLEMENTED. G23 native multi-agent, G24 causal controls, G25 final UI and G26 public release NOT_RUN. See NEXT_GATE_G22_ENTRY; await independent review and new authorization. No push or merge.
+
+Archive resource note: retained test graphs approached2GiB after all tests passed. The test DB received finite3GiB headroom only for final SAVE and was stopped. Final graph controls/performance ran on a separate fresh1GiB/2CPU owned DB; all original2GiB test receipts and earlier performance results remain. Parent Broker read clients are explicitly closed, and8-hop/9-hop/cycle boundaries have additional real controls.

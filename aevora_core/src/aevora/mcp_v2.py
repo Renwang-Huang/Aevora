@@ -11,7 +11,13 @@ import uuid
 from .contracts import *
 from .models import utc_now
 from .graph_repository import GraphRepository
-from .mcp_projection import PublicProjection, fits, _entries, MAX_DOCUMENT_BYTES
+from .mcp_projection import (
+    MAX_DOCUMENT_BYTES,
+    ProjectionCapacityError,
+    PublicProjection,
+    _entries,
+    fits,
+)
 
 
 @dataclass(frozen=True)
@@ -430,6 +436,8 @@ def create_server(service):
             return fn()
         except V2Error as e:
             raise ValueError(e.code) from None
+        except ProjectionCapacityError:
+            raise ValueError("PAGE_CAPACITY_EXCEEDED") from None
         except Exception:
             raise RuntimeError("AEVORA_V2_OPERATION_FAILED") from None
 

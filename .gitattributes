@@ -1,0 +1,6 @@
+# Markdown hard breaks, preserved historical source and unified-diff context
+# contain semantic trailing spaces. Do not rewrite historical answers/pins.
+*.md -whitespace
+*.csv whitespace=cr-at-eol
+historical_engineering/** -whitespace
+evaluator/reference_patches/*.diff -whitespace

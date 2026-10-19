@@ -1,0 +1,29 @@
+--- a/app/service.py
++++ b/app/service.py
+@@ -59,7 +59,8 @@
+             return self.inventory.audit(connection)
+ 
+ 
+-# Keep writer operations coordinated inside this service process.
++# Coordinate the complete writer operation using the shared database's lock.
++import fcntl
+ import functools
+ import threading
+ 
+@@ -69,7 +70,15 @@
+     @functools.wraps(method)
+     def coordinated(self, *args, **kwargs):
+         with _process_write_lock:
+-            return method(self, *args, **kwargs)
++            self.persistence.db_path.parent.mkdir(parents=True, exist_ok=True)
++            # The file is stable: unlinking it would create independent locks.
++            # Open separately for each operation rather than inherit one fd.
++            with open(str(self.persistence.db_path) + ".write.lock", "a+b") as lock:
++                fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
++                try:
++                    return method(self, *args, **kwargs)
++                finally:
++                    fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+     return coordinated
+ 
+ for _method_name in ("initialize", "create_order", "reserve_inventory",

@@ -1,0 +1,38 @@
+#!/bin/sh
+# Trusted Python launcher. Native Python first; explicit /usr runtime fallback.
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+if [ -z "${ORDERFLOW_PYTHON_RUNTIME:-}" ]; then
+  python=${AEVORA_PYTHON:-$root/.venv/bin/python}
+  if [ ! -x "$python" ]; then python=$(command -v python3.12 || true); fi
+  [ -n "$python" ] && "$python" -c 'import sys; assert sys.version_info[:2] == (3,12)' || {
+    echo 'Python 3.12 required; set AEVORA_PYTHON or ORDERFLOW_PYTHON_RUNTIME' >&2; exit 2;
+  }
+  exec "$python" "$@"
+fi
+[ -x "$ORDERFLOW_PYTHON_RUNTIME/bin/python3.12" ] || { echo 'Invalid explicit Python runtime' >&2; exit 2; }
+python=/usr/bin/python3.12
+if [ -f "$root/.venv/pyvenv.cfg" ]; then python=$root/.venv/bin/python; fi
+set -- "$python" "$@"
+# Only explicit external credentials enter the trusted launcher, never a Participant.
+if [ "${ORDERFLOW_ENABLE_CODEX:-0}" = 1 ]; then
+  : "${ORDERFLOW_CODEX_BINARY:?Set the verified official native binary}"
+  : "${ORDERFLOW_GATEWAY_SECRET_PATH:?Set an external owner-only gateway credential}"
+  : "${ORDERFLOW_GATEWAY_URL:?Set the explicitly authorized gateway API root}"
+  for credential in "$ORDERFLOW_GATEWAY_SECRET_PATH"; do
+    [ -f "$credential" ] && [ ! -L "$credential" ] && [ "$(stat -c %a "$credential")" = 600 ] && [ "$(stat -c %u "$credential")" = "$(id -u)" ] && [ "$(stat -c %h "$credential")" = 1 ] || { echo 'Credential file rejected' >&2; exit 2; }
+  done
+  set -- --ro-bind "$ORDERFLOW_GATEWAY_SECRET_PATH" /maintainer/gateway.key --setenv ORDERFLOW_GATEWAY_SECRET_PATH /maintainer/gateway.key --setenv ORDERFLOW_GATEWAY_URL "$ORDERFLOW_GATEWAY_URL" --ro-bind "$ORDERFLOW_CODEX_BINARY" /tools/codex --setenv ORDERFLOW_CODEX_BINARY /tools/codex "$@"
+  helper=$(dirname "$ORDERFLOW_CODEX_BINARY")/codex-code-mode-host
+  [ ! -f "$helper" ] || set -- --ro-bind "$helper" /tools/codex-code-mode-host "$@"
+fi
+if [ -n "${ORDERFLOW_CGROUP_PARENT:-}" ]; then
+  set -- --bind /sys/fs/cgroup /sys/fs/cgroup --setenv ORDERFLOW_CGROUP_PARENT "$ORDERFLOW_CGROUP_PARENT" "$@"
+fi
+exec bwrap --die-with-parent --unshare-user --unshare-pid \
+  --ro-bind "$ORDERFLOW_PYTHON_RUNTIME" /usr --symlink usr/lib /lib --symlink usr/lib64 /lib64 --symlink usr/bin /bin \
+  --ro-bind /usr/bin/git /tools/git --ro-bind /usr/bin/bwrap /tools/bwrap \
+  --ro-bind /etc/resolv.conf /etc/resolv.conf --ro-bind /etc/ssl/certs /etc/ssl/certs \
+  --proc /proc --dev /dev --tmpfs /tmp --bind "$root" "$root" --chdir "$root" \
+  --clearenv --setenv HOME /tmp --setenv PATH "$root/.venv/bin:/tools:/usr/bin" \
+  --setenv SSL_CERT_FILE /etc/ssl/certs/ca-certificates.crt "$@"

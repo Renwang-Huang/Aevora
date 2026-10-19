@@ -1,0 +1,8 @@
+path_or_group,decision,proof,removal_authorized,replacement
+h4,KEEP_ACTIVE_OR_COMPAT,public builder/Console/CLI actual callers,NO,No migration
+scripts/aevora_h*,KEEP_ACTIVE_OR_COMPAT,tools/dev.py/runner/current tests actual callers,NO,No migration
+aevora.audit_capsule,KEEP_ACTIVE_OR_COMPAT,private same-module alias identity contract,NO,No migration
+console static and generated verifier copies,KEEP_ACTIVE_OR_COMPAT,package-data/build manifest/exact-byte generation contracts,NO,No migration
+historic reports and taskbooks,KEEP_ACTIVE_OR_COMPAT,immutable provenance inbound refs,NO,No migration
+ambiguous scripts,KEEP_ACTIVE_OR_COMPAT,dynamic caller absence not proven,NO,No migration
+local environment/cache,VIEW_ONLY,Ignored actual paths; native view filters only,NO,Two relative role views
