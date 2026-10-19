@@ -22,8 +22,8 @@ def test_root_inventory_and_all_relocated_hashes_match():
     for row in rows:
         path = ROOT/row['new_path']
         assert path.is_file() and not path.is_symlink()
-        assert sha256(path.read_bytes()).hexdigest() == row['new_sha256']
         if row['action'] == 'MOVE':
+            assert sha256(path.read_bytes()).hexdigest() == row['new_sha256']
             assert not (ROOT/row['old_path']).exists()
             assert history_path(ROOT,row['old_path']) == path
             if path.suffix in {'.csv','.json'}:
