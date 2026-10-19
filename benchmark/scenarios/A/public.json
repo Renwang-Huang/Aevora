@@ -1,0 +1,37 @@
+{
+  "id": "A",
+  "version": "1.0.0",
+  "status": "IMPLEMENTED",
+  "metadata": {
+    "title": "Inventory inconsistencies under load",
+    "family": "inventory_concurrency",
+    "research_role": "Experience Generation"
+  },
+  "runtime": {
+    "python": "3.12",
+    "database": "sqlite",
+    "topology": "single_process_multi_thread",
+    "isolation": "bubblewrap",
+    "requests": 200,
+    "quantity_per_request": 1,
+    "thread_workers": 200
+  },
+  "initial_state": {
+    "stock": {
+      "SKU-1": 50
+    }
+  },
+  "public_task": {
+    "description": "库存服务在单进程多线程并发购买时出现订单与库存不一致。复现问题、修复业务实现并保留已有 API。基准为 50 件初始库存与 200 个独立订单，每次购买 1 件。所有请求须有明确业务结果，成功订单、库存和预留账本须一致。",
+    "constraints": [
+      "No overselling or negative inventory",
+      "Do not disable concurrency or reduce request capacity",
+      "Preserve order and inventory APIs and SQLite persistence",
+      "Preserve database integrity constraints",
+      "Do not fabricate tests or outcomes"
+    ]
+  },
+  "evaluation": {
+    "implemented": true
+  }
+}

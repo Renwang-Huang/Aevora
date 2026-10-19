@@ -1,0 +1,2 @@
+// PROPOSED / NOT_EXECUTED; Host params only; payload/manifest verification is mandatory.
+MATCH (s:TenantState {id:$state,tenant_id:$tenant})-[:COMMITS]->(m:PublicationManifest)<-[:PUBLISHED_BY]-(r:ExperienceRevision)<-[:HAS_REVISION]-(e:Experience) WHERE m.tenant_id=$tenant AND r.tenant_id=$tenant AND e.tenant_id=$tenant AND e.visibility='PUBLIC' AND m.epoch<=s.epoch RETURN DISTINCT e.id ORDER BY e.id LIMIT 257

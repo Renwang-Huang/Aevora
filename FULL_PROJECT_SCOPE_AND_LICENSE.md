@@ -1,0 +1,11 @@
+# Full project source and licensing scope
+
+On 2026-10-19 the repository owner affirmed MIT publication rights for the 96 paths identified in the lost non-Benchmark candidate audit, and authorized maximum practical publication of the owner-controlled Aevora engineering project, including Benchmark, evaluator, Oracle, reference solutions, tests, debug and experimental tooling. This is a present owner authorization, not a claim that every historical file already had a license header, nor a change to authorship or commit dates.
+
+The root MIT LICENSE covers owner-controlled code and documentation in this expanded candidate, including `app`, `benchmark`, `evaluator`, `integrations`, `aevora_maintainer`, `scripts`, `tools`, and project tests. Existing Core/Console MIT licenses remain. Dependency and vendored notices remain in THIRD_PARTY_NOTICES.md and their respective package license files. No external proprietary source, model binaries or privately licensed datasets are added.
+
+Formerly hidden evaluation code, labels and reference patches remain in their original `evaluator/` compatibility paths. `historical_public_evaluation/SOURCE_PINS.json` records the original surviving G2-FINAL bytes. Publication discloses the answers: subsequent trials against these suites are **not blind, held-out, or evidence of an independent future test**. The candidate does not rerun paid Agents or claim causal improvement.
+
+Actual credentials, signing private keys, Host registry/grant data, private raw model sessions, generated databases and unsafe raw evaluation data are not publication inputs. Synthetic credential strings in negative tests are deliberate test fixtures. Public source does not grant a caller production Host authority.
+
+The earlier 1,201-version matrix, 335-file candidate and receipts were accidentally deleted according to the owner. Their reported identifiers are historical references only. This release reconstructs provenance from surviving pinned Git worktrees and repeats validation. It cannot certify that the deleted artifacts are present or recreate their historical receipts. Original surviving archives are unchanged; sanitized copies redact personal home paths and are explicitly derivatives.

@@ -1,0 +1,5 @@
+[
+  {"id":"public-A-lock","episode":"A","fault":"read-only-lock","journal":"DELETE","busy_timeout":30},
+  {"id":"public-D-flock","episode":"D","fault":"flock","journal":"DELETE","busy_timeout":30},
+  {"id":"public-DV02-local","episode":"D-V02","fault":"local_lock","journal":"DELETE","busy_timeout":30}
+]

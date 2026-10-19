@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aevora.invalid/contracts/2.0.0-rc1/document_manifest.schema.json",
+  "$comment": "PROPOSED structural contract; only independently authorized Host may instantiate trusted records; schema alone grants no authority.",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "aevora.document-manifest/2.0.0-rc1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "document_kind": {
+      "enum": [
+        "QUERY_SNAPSHOT",
+        "PUBLICATION_RECORD_SET"
+      ]
+    },
+    "document_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "document_utf8_bytes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8388608
+    },
+    "encoding": {
+      "enum": [
+        "INLINE_CANONICAL_JSON",
+        "UTF8_TEXT_CHUNKS"
+      ]
+    },
+    "chunk_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 128
+    },
+    "chunks": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "index",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "inline_document": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "contract_version",
+    "id",
+    "tenant_id",
+    "document_kind",
+    "document_sha256",
+    "document_utf8_bytes",
+    "encoding",
+    "chunk_count",
+    "chunks",
+    "inline_document"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "encoding": {
+            "const": "INLINE_CANONICAL_JSON"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "chunk_count": {
+            "const": 0
+          },
+          "chunks": {
+            "maxItems": 0
+          },
+          "inline_document": {
+            "type": "object"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "chunk_count": {
+            "minimum": 1
+          },
+          "chunks": {
+            "minItems": 1
+          },
+          "inline_document": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

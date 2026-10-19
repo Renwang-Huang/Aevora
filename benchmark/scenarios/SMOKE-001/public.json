@@ -1,0 +1,32 @@
+{
+  "id": "SMOKE-001",
+  "version": "1.0.0",
+  "status": "IMPLEMENTED",
+  "metadata": {
+    "title": "Cancellation and inventory recovery",
+    "family": "smoke",
+    "research_role": "Framework smoke validation"
+  },
+  "runtime": {
+    "python": "3.12",
+    "database": "sqlite",
+    "topology": "single_process",
+    "isolation": "bubblewrap"
+  },
+  "initial_state": {
+    "stock": {
+      "SKU-1": 10
+    }
+  },
+  "public_task": {
+    "description": "Restore reserved inventory when cancelling an order. Repeated cancellation must succeed without releasing stock again.",
+    "constraints": [
+      "Preserve the public business API",
+      "Use persistent SQLite state",
+      "Do not fabricate test evidence"
+    ]
+  },
+  "evaluation": {
+    "implemented": true
+  }
+}

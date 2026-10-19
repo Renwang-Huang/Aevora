@@ -1,0 +1,1 @@
+MATCH(a:V2Record)-[r]->(b:V2Record) WHERE (a.id IN $ids AND type(r) IN $relations) OR (b.id IN $ids AND type(r)='GOVERNS') RETURN labels(a),a.id,type(r),properties(r),labels(b),b.id ORDER BY r.id LIMIT 8193

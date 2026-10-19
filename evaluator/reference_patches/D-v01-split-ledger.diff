@@ -1,0 +1,75 @@
+--- a/app/inventory.py
++++ b/app/inventory.py
+@@ -19,33 +19,25 @@
+         return dict(row)
+ 
+     def reserve(self, connection: sqlite3.Connection, order_id: str, *,
+-                snapshot: dict | None = None) -> dict:
++                record: bool = True) -> dict:
+         order = self.orders.get(connection, order_id)
+         if order["status"] == "cancelled":
+             raise InvalidOrderState("A cancelled order cannot reserve inventory")
+         if order["reservation_state"] == "active":
+             return order
+-        if snapshot is None:
+-            cursor = connection.execute(
+-                "UPDATE inventory SET available = available - ?, reserved = reserved + ? "
+-                "WHERE sku = ? AND available >= ?",
+-                (order["quantity"], order["quantity"], order["sku"], order["quantity"]),
+-            )
+-            if cursor.rowcount != 1:
+-                raise InsufficientInventory(order["sku"])
+-        else:
+-            if snapshot["available"] < order["quantity"]:
+-                raise InsufficientInventory(order["sku"])
+-            connection.execute(
+-                "UPDATE inventory SET available = ?, reserved = ? WHERE sku = ?",
+-                (snapshot["available"] - order["quantity"],
+-                 snapshot["reserved"] + order["quantity"], order["sku"]),
+-            )
++        cursor = connection.execute(
++            "UPDATE inventory SET available = available - ?, reserved = reserved + ? "
++            "WHERE sku = ? AND available >= ?",
++            (order["quantity"], order["quantity"], order["sku"], order["quantity"]),
++        )
++        if cursor.rowcount != 1:
++            raise InsufficientInventory(order["sku"])
+         connection.execute(
+             "UPDATE orders SET status = 'reserved', reservation_state = 'active' WHERE order_id = ?",
+             (order_id,),
+         )
+-        self._record(connection, order, "reserve", -order["quantity"], order["quantity"])
++        if record:
++            self._record(connection, order, "reserve", -order["quantity"], order["quantity"])
+         return self.orders.get(connection, order_id)
+ 
+     def release(self, connection: sqlite3.Connection, order_id: str) -> dict:
+--- a/app/service.py
++++ b/app/service.py
+@@ -20,17 +20,17 @@
+     def create_order(self, order_id: str, sku: str, quantity: int, *, reserve: bool = True) -> dict:
+         if type(reserve) is not bool:
+             raise InvalidInput("reserve must be a boolean")
+-        # Fetch stock before opening the write transaction so reads stay cheap.
+-        snapshot = self.get_inventory(sku) if reserve else None
+-        if snapshot is not None:
+-            checkpoint = getattr(self, "_schedule_checkpoint", None)
+-            if checkpoint is not None:
+-                checkpoint("inventory_read")
+         with self.persistence.transaction() as connection:
+             order = self.orders.create(connection, order_id, sku, quantity)
+-            if reserve and order["status"] == "created":
+-                order = self.inventory.reserve(connection, order_id, snapshot=snapshot)
+-            return order
++            newly_reserved = reserve and order["status"] == "created"
++            if newly_reserved:
++                order = self.inventory.reserve(connection, order_id, record=False)
++        # Keep accounting writes in a separate transaction after the order.
++        if newly_reserved:
++            with self.persistence.transaction() as connection:
++                self.inventory._record(connection, order, "reserve",
++                                       -order["quantity"], order["quantity"])
++        return order
+ 
+     def reserve_inventory(self, order_id: str) -> dict:
+         with self.persistence.transaction() as connection:

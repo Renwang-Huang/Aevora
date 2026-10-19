@@ -1,0 +1,25 @@
+# H2 isolated service; never uses the H1 name, port, or volume.
+services:
+  experience-graph:
+    image: falkordb/falkordb:v4.20.4@sha256:adbddd418916c25618564ff8597a919b08bc76452ebeb74eb985c38d7281df62
+    entrypoint: ["redis-server"]
+    command: ["--loadmodule", "/var/lib/falkordb/bin/falkordb.so", "--include", "/run/secrets/aevora_redis.conf", "--appendonly", "no"]
+    ports: ["127.0.0.1:${AEVORA_H2_PORT:?Set an explicitly owned H2 port}:6379"]
+    volumes: ["aevora-h2-data:/data"]
+    secrets: [aevora_redis.conf, aevora_db_password]
+    healthcheck:
+      test: ["CMD-SHELL", 'test "$$(redis-cli ping)" = "NOAUTH Authentication required." && test "$$(REDISCLI_AUTH="$$(cat /run/secrets/aevora_db_password)" redis-cli -e ping)" = PONG']
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+    mem_limit: 1g
+    cpus: 2
+    pids_limit: 256
+secrets:
+  aevora_redis.conf:
+    file: ${AEVORA_H2_SECRET_DIR:?set a private H2 project secret directory}/falkordb.conf
+  aevora_db_password:
+    file: ${AEVORA_H2_SECRET_DIR:?set a private H2 project secret directory}/falkordb.password
+volumes:
+  aevora-h2-data:

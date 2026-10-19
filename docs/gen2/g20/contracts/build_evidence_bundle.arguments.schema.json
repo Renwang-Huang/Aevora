@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aevora.invalid/contracts/2.0.0-rc1/build_evidence_bundle",
+  "title": "build_evidence_bundle",
+  "$comment": "PROPOSED design contract, not an implemented server; JSON Schema does not confer Host authority; UTF8 byte limits are additionally enforced by transport.",
+  "$defs": {},
+  "type": "object",
+  "properties": {
+    "experience_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "query_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$"
+    },
+    "cursor": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "view": {
+      "enum": [
+        "bundle",
+        "candidate",
+        "recommendation"
+      ],
+      "default": "bundle"
+    }
+  },
+  "required": [
+    "experience_id"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+{
+  "id": "B",
+  "version": "1.0.0",
+  "status": "PLANNED",
+  "metadata": {
+    "title": "Payment inconsistencies after retry",
+    "family": "payment_retry",
+    "research_role": "Experience Transfer"
+  },
+  "runtime": {
+    "python": "3.12",
+    "database": "sqlite",
+    "topology": "planned_worker",
+    "isolation": "bubblewrap"
+  },
+  "initial_state": {
+    "stock": null
+  },
+  "public_task": {
+    "description": "Investigate payment inconsistencies after retry and worker restart.",
+    "constraints": [
+      "Preserve the public business API",
+      "Use persistent SQLite state",
+      "Do not fabricate test evidence"
+    ]
+  },
+  "evaluation": {
+    "implemented": false
+  }
+}

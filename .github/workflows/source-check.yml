@@ -1,0 +1,22 @@
+name: Public source checks
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  model-free:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.15.0'
+      - run: sudo apt-get update && sudo apt-get install -y bubblewrap
+      - run: python -m pip install -e ./aevora_core -e ./console -e '.[dev,benchmark]'
+      - run: python -m pip check
+      - run: python -m pytest -q tests/test_full_release_boundaries.py tests/test_business.py tests/test_database_oracle.py tests/test_submission_fidelity.py tests/test_gateway_broker.py tests/test_codex_trace.py tests/test_g24_pagination_audit.py
+      - run: npm --prefix console ci && npm --prefix console run build && npm --prefix console test
+      - run: python tools/sync_public_evidence.py --check
+# Full Docker/Host/D/D-V02 acceptance uses an explicitly owned graph and actual
+# delegated cgroup v2 memory/pids controls; see docs/REPRODUCIBILITY.md. This job
+# does not fabricate those prerequisites or claim paid/native Agent execution.

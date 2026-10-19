@@ -1,0 +1,53 @@
+{
+  "version": "aevora.lifecycle/2.0.0-rc1",
+  "status": "PROPOSED",
+  "legacy_states_retained": true,
+  "trust_of_PROPOSED": "PROPOSED_UNTRUSTED",
+  "transitions": {
+    "PROPOSED": [
+      "EVIDENCE_PENDING",
+      "REJECTED"
+    ],
+    "EVIDENCE_PENDING": [
+      "ADMITTED_BOUNDED",
+      "REJECTED"
+    ],
+    "ADMITTED_BOUNDED": [
+      "PUBLISHING",
+      "WITHDRAWN"
+    ],
+    "PUBLISHING": [
+      "PUBLISHED",
+      "WITHDRAWN"
+    ],
+    "PUBLISHED": [
+      "WITHDRAWN",
+      "SUPERSEDED"
+    ],
+    "REJECTED": [],
+    "WITHDRAWN": [],
+    "SUPERSEDED": []
+  },
+  "head_mutable": true,
+  "events_immutable": true,
+  "publication_activation": "SAME_QUERY_HEAD_EVENT_COMMITS_EPOCH_FENCE",
+  "same_request_key_same_semantic_body": "RETURN_ORIGINAL_EVENT_NOT_CURRENT_HEAD",
+  "same_request_key_different_body": "IMMUTABLE_CONFLICT",
+  "request_digest_excludes": [
+    "ephemeral_grant_expiry",
+    "transport_connection_id"
+  ],
+  "request_digest_includes": [
+    "tenant",
+    "principal",
+    "candidate",
+    "action",
+    "expected_head",
+    "expected_epoch",
+    "source",
+    "scope",
+    "reason"
+  ],
+  "expiry_still_checked_on_new_execution": true,
+  "replay_does_not_reactivate_or_reauthorize": true
+}

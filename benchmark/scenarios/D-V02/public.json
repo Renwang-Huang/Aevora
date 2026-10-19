@@ -1,0 +1,50 @@
+{
+  "id": "D-V02",
+  "version": "1.0.0",
+  "status": "IMPLEMENTED",
+  "metadata": {
+    "title": "Request processing after worker handoff",
+    "family": "D",
+    "research_role": "Persistent request authority and recovery",
+    "variant": "v02"
+  },
+  "runtime": {
+    "python": "3.12",
+    "database": "sqlite",
+    "topology": "multi_process_shared_sqlite",
+    "isolation": "bubblewrap",
+    "worker_counts": [2, 4],
+    "clock": "monotonic integer milliseconds; ORDERFLOW_CLOCK_QUERY selects a shared read-only NOW protocol",
+    "governance_context": {
+      "operation_semantics": "request_lease_authority",
+      "authority_model": "lease_token_authority",
+      "authority_validation": null,
+      "clock_domain": "shared_monotonic_query",
+      "supported_operation_set": "order_inventory_and_two_phase_requests",
+      "observed_failure_mode": "handoff_request_inconsistency"
+    }
+  },
+  "initial_state": {
+    "stock": {"SKU-1": 50, "SKU-2": 9}
+  },
+  "public_task": {
+    "description": "Independent order-service workers share one SQLite database. A request may be prepared by one worker, handed off after its processing claim expires, cancelled, or retried after a worker exits. Single uninterrupted requests generally work, but handoffs and interruption sometimes leave the persisted request result and business records inconsistent. Investigate, repair the request processing and add useful public regressions. Preserve existing APIs, capacity, persistence and concurrent workers.",
+    "constraints": [
+      "Preserve initialize(stock, reset=False), create_order(order_id, sku, quantity), reserve_inventory(order_id), cancel_order(order_id), release_inventory(order_id), get_order(order_id), get_inventory(sku) and audit() semantics. Keep real SQLite orders, inventory and inventory_ledger base tables and constraints.",
+      "Add and preserve claim_request(request_id, order_id, sku, quantity, ttl), renew_request(handle, ttl), complete_request(handle), cancel_request(request_id) and get_request(request_id). IDs and tokens are nonempty strings. Quantity and TTL are positive integers excluding booleans. Quantity follows the existing SQLite INTEGER business domain. Large TTLs, including values above SQLite INTEGER range, remain valid; do not impose an arbitrary TTL business limit.",
+      "Each request ID permanently identifies its order ID/SKU/quantity payload. Conflicting payloads raise RequestConflict even when the request is terminal. Missing request IDs raise RequestNotFound. These are OrderFlowError business errors; invalid input, Clock, transport and SQLite failures retain distinct classifications.",
+      "States are PENDING, COMPLETED and CANCELLED. COMPLETED/CANCELLED are terminal with an immutable persisted receipt. Claiming alone neither creates an order nor reserves stock. A claim is valid only for the current token on a PENDING request with now < deadline; equality is expired. A stale handle may return STALE_HANDLE or discover the existing terminal receipt without mutation.",
+      "A handle is {request_id, token}, with an opaque unique token across durable claim history. A successful claim returns {outcome: CLAIM_GRANTED, handle: <handle>, request: <public request>}. A live claim returns {outcome: CLAIM_BUSY, request: <public request>} and does not disclose the token. A terminal claim returns its original receipt after payload equality validation.",
+      "A public request has request_id, order_id, sku, quantity, status, deadline (integer/null) and receipt (object/null). get_request does not disclose the current token. Receipt fields include outcome, request_id, order_id, sku and quantity. Compatible extra fields are permitted.",
+      "renew_request extends only the current unexpired PENDING claim to at least max(old_deadline, now + ttl). Success returns {outcome: CLAIM_RENEWED, handle: <same handle>, request: <public request>}. Renewal does not rewrite immutable issued_deadline history. A stale renewal cannot change a newer claim or any terminal state.",
+      "complete_request publishes the matching order/reservation and a durable receipt atomically under current authorization. COMPLETE_RESERVED means a matching active reservation exists. Identical retries have no extra stock or ledger effect. Independent request IDs may refer to the same matching order. A matching existing unreserved order can be reserved normally.",
+      "A matching already cancelled order is never resurrected: completion returns COMPLETE_DISCOVERED_CANCELLED with no new reservation. A later cancel_order does not invalidate the earlier request receipt. Existing legitimate orders must not be deleted as compensation.",
+      "Insufficient inventory returns INSUFFICIENT_INVENTORY_RETRYABLE, leaves the request PENDING, releases that claim and creates no new order/stock/ledger effects. Preserve an existing unreserved matching order. A later ordinary claim can retry. STALE_HANDLE includes request_id and has no business side effect.",
+      "cancel_request atomically cancels an unfinished intent and revokes its claim, returning the durable REQUEST_CANCELLED receipt; retry returns the same receipt. It does not cancel an existing order. Completed-first returns {outcome: ALREADY_COMPLETED, request_id, receipt: <original receipt>} with no mutation.",
+      "Use the shared authoritative Clock. Production ticks are monotonic_ns() // 1_000_000. ORDERFLOW_CLOCK_QUERY names a Unix socket: send exactly NOW followed by a newline; receive one JSON line containing only {tick: <canonical nonnegative decimal string>}. app.request_clock.now() returns the integer value; an equivalent use of the same public channel is permitted. The socket supports no time changes. Clock disconnection is an infrastructure error, not stock exhaustion.",
+      "Store tick and deadline audit fields as canonical nonnegative decimal TEXT and compare numeric values as Python integers rather than lexical text. The requests base table retains request_id primary key, order_id, sku, quantity, status, nullable current_token, nullable deadline and nullable receipt_json. request_claims retains unique token primary key, request_id foreign key to requests, fixed order_id/sku/quantity, issued_tick and immutable issued_deadline. SKU and positive quantity constraints remain real; a claim does not require an order row first. Additional real tables/columns are allowed; do not replace audit base tables by fabricated views.",
+      "Support real independent workers sharing the same database, rollback-journal and WAL, concurrent operations and restart/retry after interruption before a reply. A valid authorization point may precede a later COMMIT while conflicting writers cannot intervene. Do not disable concurrency, reject otherwise valid traffic, fabricate data or alter tests. Submit app Python source changes; public tests may be improved separately."
+    ]
+  },
+  "evaluation": {"implemented": true}
+}

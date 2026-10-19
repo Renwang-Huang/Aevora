@@ -1,0 +1,29 @@
+--- a/app/service.py
++++ b/app/service.py
+@@ -5,3 +5,26 @@
+ 
+ class OrderFlow(RequestAPI, LegacyOrderFlow):
+     pass
++
++
++import contextlib
++import functools
++import threading
++
++_service_writer_lock = threading.RLock()
++
++def _coordinate_writer(method):
++    @functools.wraps(method)
++    def coordinated(self, *args, **kwargs):
++        with _service_writer_lock:
++            with _shared_writer_guard(self):
++                return method(self, *args, **kwargs)
++    return coordinated
++
++
++def _shared_writer_guard(flow):
++    return contextlib.nullcontext()
++for _method in ("initialize", "create_order", "reserve_inventory", "cancel_order",
++                "release_inventory", "claim_request", "renew_request",
++                "complete_request", "cancel_request"):
++    setattr(OrderFlow, _method, _coordinate_writer(getattr(OrderFlow, _method)))
