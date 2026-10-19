@@ -11,7 +11,7 @@ Phase 3 增加了真实 `codex exec` 适配器、公开 Participant Workspace、
 
 本机使用 **Codex CLI 0.162.1**。初次受限环境中的尝试在 Broker 监听阶段遇到 `EPERM / Operation not permitted`，DNS 也失败；该轮归档 `runtime_result=ERROR`、`evaluation_result=NOT_RUN`，没有补丁或子 Agent 成绩。用户调整执行权限后，loopback listener、DNS、HTTPS 已实际恢复。正式 Run `339f7d73-29df-4242-8920-9e566bce8a9c` 启动了三个不同的原生子 Agent，均完成独立任务；实际补丁通过现有 14 项隐藏测试，Runtime、Multi-Agent、Isolation、Evaluation Integration 均为 PASS。
 
-版本探针、模型请求、子任务启动、子任务完成与最终隐藏评测是不同的证据门槛。正式挑战的最终 Runtime 状态、两个子任务完成记录、原始补丁、评测结果、实际命令与 Run ID，以 [PHASE3_VALIDATION_REPORT.md](../PHASE3_VALIDATION_REPORT.md) 为准。测试中的受控进程、合成 JSONL 和测试 HTTP 上游仅验证接口契约，不作为正式 Multi-Agent 运行证据。
+版本探针、模型请求、子任务启动、子任务完成与最终隐藏评测是不同的证据门槛。正式挑战的最终 Runtime 状态、两个子任务完成记录、原始补丁、评测结果、实际命令与 Run ID，以 [PHASE3_VALIDATION_REPORT.md](history/phase1-3/PHASE3_VALIDATION_REPORT.md) 为准。测试中的受控进程、合成 JSONL 和测试 HTTP 上游仅验证接口契约，不作为正式 Multi-Agent 运行证据。
 
 ## 模块与流程
 

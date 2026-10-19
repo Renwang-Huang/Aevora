@@ -10,7 +10,7 @@
 
 ## 2. 先设计、再实现
 
-`BASELINE.json`、`BASELINE_GATE.json`、`design_preimplementation/`、`DESIGN_GATE.json` 保存开发前状态、499 项实际回归与设计自审。设计门禁时间为 **2026-10-10 10:28:47 UTC**，发生在 D 实现之前。顶层规范见 [Task System](docs/TASK_SYSTEM_DESIGN.md)、[Admission Gates](docs/TASK_ADMISSION_GATES.md)、[Task Relations](docs/TASK_RELATIONS.md) 与根目录设计审查。
+`BASELINE.json`、`BASELINE_GATE.json`、`design_preimplementation/`、`DESIGN_GATE.json` 保存开发前状态、499 项实际回归与设计自审。设计门禁时间为 **2026-10-10 10:28:47 UTC**，发生在 D 实现之前。顶层规范见 [Task System](../../TASK_SYSTEM_DESIGN.md)、[Admission Gates](../../TASK_ADMISSION_GATES.md)、[Task Relations](../../TASK_RELATIONS.md) 与根目录设计审查。
 
 Engineering Truth 由独立数据库/业务测试判定；Decision Reference 是维护者私有策略适用性审查，两者不混分。`natural` 原始 Codex A 修复、`maintainer_seed` 本地锁/文件锁对照、`synthetic` 错误变体与信息不足条件均有不同来源声明。
 

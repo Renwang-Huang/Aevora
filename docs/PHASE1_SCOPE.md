@@ -1,6 +1,6 @@
 # Phase 1 完成范围与扩展接口
 
-下表保留 Phase 1 的交付边界。Phase 2 已在同一工程中增加 Episode A、Episode Registry、并发 RPC、宿主数据库 Oracle 和评测指纹；这些增量见 [Episode A](EPISODE_A.md)、[扩展规范](EPISODE_REGISTRY.md) 与 [Phase 2 验收报告](../PHASE2_VALIDATION_REPORT.md)。
+下表保留 Phase 1 的交付边界。Phase 2 已在同一工程中增加 Episode A、Episode Registry、并发 RPC、宿主数据库 Oracle 和评测指纹；这些增量见 [Episode A](EPISODE_A.md)、[扩展规范](EPISODE_REGISTRY.md) 与 [Phase 2 验收报告](history/phase1-3/PHASE2_VALIDATION_REPORT.md)。
 
 | 模块 | 已实现并需实测验收的能力 | 尚未实现 |
 |---|---|---|

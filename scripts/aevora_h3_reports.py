@@ -7,6 +7,8 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 from scripts.aevora_h3_audit import archive,ROOT,digest,now,write
 
+from tools.history_paths import write_phase_report
+
 
 def main(delivered=False):
     A=archive();E=ROOT/'aevora_validation/audit_exports'/A.name
@@ -60,7 +62,7 @@ Audit-Lite 使用原有 CAS/脱敏/完整行引用及标准库 verifier。工程
 
 没有 Dashboard、外部密码学存证、全局原子图快照或因果收益声明。
 '''
-    (ROOT/'AEVORA_H3_G4_OBSERVABILITY_REPORT.md').write_text(g4)
+    write_phase_report(A, 'AEVORA_H3_G4_OBSERVABILITY_REPORT.md', g4)
     limitations='''# Aevora H3 — Remaining Limits
 
 1. **PARTIAL**：共享 Linux 内核、采样资源限额，不能证明 hostile-kernel/VM 级隔离。22 项新物理/权限/SDK 负控通过，未因此升级安全结论。
@@ -76,7 +78,7 @@ Audit-Lite 使用原有 CAS/脱敏/完整行引用及标准库 verifier。工程
 11. **LIMITED**：输入边界和 text-as-data 防护不证明通用 prompt-injection 免疫。普通安装本身不产生隔离，需保持 Host/Consumer 物理挂载与最小 capability 边界。
 12. H3 完成后停止。没有 H4 Dashboard、完整 B/C、新 Agent orchestrator、多租户 SaaS、其它 Runtime SDK 或正式随机 G0–G3 实验。
 '''
-    (ROOT/'AEVORA_H3_LIMITATIONS.md').write_text(limitations)
+    write_phase_report(A, 'AEVORA_H3_LIMITATIONS.md', limitations)
     report=f'''# Aevora H3 Validation Report
 
 ## Verdict
@@ -138,7 +140,7 @@ Full: `{A.relative_to(ROOT)}`. Final export/verification sidecar: `{E.relative_t
 
 See [G0](AEVORA_H3_G0_READINESS_REPORT.md), [G1](AEVORA_H3_G1_EXPERIENCE_LIFECYCLE_REPORT.md), [G2](AEVORA_H3_G2_EXTERNAL_CODEX_INTEGRATION_REPORT.md), [G3](AEVORA_H3_G3_VALUE_CONTROLS_REPORT.md), [G4](AEVORA_H3_G4_OBSERVABILITY_REPORT.md), [limits](AEVORA_H3_LIMITATIONS.md), [traceability](AEVORA_H3_TRACEABILITY_MATRIX.csv), [release](AEVORA_H3_RELEASE_REPORT.md).
 '''
-    (ROOT/'AEVORA_H3_VALIDATION_REPORT.md').write_text(report)
+    write_phase_report(A, 'AEVORA_H3_VALIDATION_REPORT.md', report)
     release=f'''# Aevora H3 Release Report
 
 Stage: `{stage}`. Local authority only. Root index was not staged/reset; unrelated H1/H2/M1 dirty files were preserved. New release commits are made in the independent H3 source checkout.
@@ -149,7 +151,7 @@ Full `{A.relative_to(ROOT)}` → independent export `{E.relative_to(ROOT)}`. Aut
 
 H3 Overall {'CONDITIONAL PASS' if delivered else 'awaits final delivery validation'}; see validation report. No H4/B/C/dashboard/formal randomized experiment started. Host-only graph service continues at 17689; replicas 17690 (withdrawal/ablation) and 17691 (clean demo) retain independently owned Volumes. Do not remove or reinterpret them as historical baseline services. Secrets remain external mode0600/0700; serialized paths are not secret contents.
 '''
-    (ROOT/'AEVORA_H3_RELEASE_REPORT.md').write_text(release)
+    write_phase_report(A, 'AEVORA_H3_RELEASE_REPORT.md', release)
     requirements=[
         ('G0-public-build-boundary','scripts/aevora_build_backend.py','_guard','g0/packages-v2/RESULT.json','g0-clean-packages-v2','PARTIAL',''),
         ('G0-Native-UDS-compatible-business','tests/public/dv02_inprocess_contract.py','main','g0/native/RESULT.json','g0-native-compatibility','PARTIAL',''),
@@ -172,7 +174,7 @@ H3 Overall {'CONDITIONAL PASS' if delivered else 'awaits final delivery validati
         ('Regression-all-current-and-1655','scripts/aevora_h3_tests.py','main','final/full-regression-final/JUNIT.xml','final-all-current-developer-regression','PASS',''),
         ('Regression-history-test-source-truth','scripts/aevora_h3_audit.py','integrity','final/INTEGRITY.json','final-preserved-history-and-truth','PASS',''),
         ('Security-actual-physical-and-SDK','scripts/aevora_h2_security.py','physical_probes','final/security/summary.json','final-physical-and-proposal-sdk-isolation','PARTIAL','')]
-    with (ROOT/'AEVORA_H3_TRACEABILITY_MATRIX.csv').open('w',newline='') as f:
+    with (A/'reports/AEVORA_H3_TRACEABILITY_MATRIX.csv').open('x',newline='') as f:
         writer=csv.writer(f);writer.writerow(['requirement','source_function_line','actual_command_receipt','run_query_candidate_reference','evidence_file','evidence_exists','evidence_sha256','gate_verdict'])
         for name,path,fn,evidence,command,status,identity in requirements:
             source=ROOT/path;line='UNAVAILABLE'

@@ -16,6 +16,7 @@ import sys
 from uuid import UUID, uuid4
 
 from validate_phase3 import ROOT, audit_native, contracts_pass, isolation_verdict
+from tools.history_paths import history_path
 from evaluator.runner import read_junit
 from integrations.codex_trace import parse_trace
 
@@ -91,7 +92,7 @@ def main():
     checks["identity_not_mounted_and_state_removed"] = runtime["credentials_in_participant"] is False and formal["agent_state_cleanup"] == "PASS"
 
     regression = load(ROOT / original["phase2_regression_archive"] / "validation.json")
-    old_id = re.search(r"Validation ID：`([^`]+)`", (ROOT / "PHASE2_VALIDATION_REPORT.md").read_text()).group(1)
+    old_id = re.search(r"Validation ID：`([^`]+)`", history_path(ROOT, "PHASE2_VALIDATION_REPORT.md").read_text()).group(1)
     previous = load(ROOT / "runs/validation-phase2" / old_id / "validation.json")
     old_tests = previous["developer_tests"]["tests"]
     current_tests = {t["nodeid"]: t["outcome"] for t in regression["developer_tests"]["tests"]}

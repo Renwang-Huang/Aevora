@@ -54,7 +54,7 @@ def capture():
  seal=json.loads((H1/'EVIDENCE_MANIFEST.json').read_text())
  for rel,oldsha in seal['ordinary_files_sha256'].items():
   p=H1/rel;actual=digest(p);assert actual==oldsha,'H1 sealed file changed: '+rel;history[p.relative_to(ROOT).as_posix()]=actual
- for p in [H1/'EVIDENCE_MANIFEST.json',H1/'SHA256SUMS',*H1E.rglob('*'),*ROOT.glob('AEVORA_H1*')]:
+ for p in [H1/'EVIDENCE_MANIFEST.json',H1/'SHA256SUMS',*H1E.rglob('*'),*(ROOT/'docs/history/h1-h4').glob('AEVORA_H1*')]:
   if p.is_file() and not p.is_symlink():history[p.relative_to(ROOT).as_posix()]=digest(p)
  assert digest(H1E/'aevora-h1-audit-lite.zip')=='d38db23087f702b5f5320428b5e622a56de7aa2eacad25ad4ed8373e0bc4708e'
  write(base/'PROTECTED_HISTORY.json',history)

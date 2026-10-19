@@ -115,7 +115,7 @@ performs real clicks/offline-network checks without mocked routes. The physical
 probe is the existing `scripts.aevora_h2_security.physical_probes` on new evidence.
 
 The Gen1.5 validation commands/results remain in
-GEN1_5_VALIDATION_REPORT.md as historical evidence. Current profiles are in
+[Gen1.5 validation](docs/history/gen1.5/GEN1_5_VALIDATION_REPORT.md) as historical evidence. Current profiles are in
 [reproducibility](docs/REPRODUCIBILITY.md). Historical native collaboration is read-only evidence;
 no new paid multi-round challenge is necessary for this consolidation. Any future
 native challenge must keep completion-aware mode and the existing Host/Participant
@@ -124,6 +124,6 @@ its own owner authorization.
 
 ## Gen 1.5.1 verified handoff
 
-See [current validation](GEN1_5_1_VALIDATION_REPORT.md),
-[Gen 2 starting point](GEN1_5_1_GEN2_HANDOFF.md), and
-[migration record](GEN1_5_1_MIGRATION_RECORD.csv). Previous reports stay unchanged.
+See [current validation](docs/history/gen1.5/GEN1_5_1_VALIDATION_REPORT.md),
+[Gen 2 starting point](docs/history/gen1.5/GEN1_5_1_GEN2_HANDOFF.md), and
+[migration record](docs/history/gen1.5/GEN1_5_1_MIGRATION_RECORD.csv). Previous reports stay unchanged.

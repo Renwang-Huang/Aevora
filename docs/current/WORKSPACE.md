@@ -34,7 +34,7 @@ inclusion independently of which editor view is open.
 Package metadata and root navigation stay in their stable paths. Use File → Open
 File, or these links: [README](../../README.md), [DEVELOPMENT](../../DEVELOPMENT.md),
 [public Quickstart](../QUICKSTART.md), [MCP](../CODEX_MCP_SETUP.md),
-[ownership](../../GEN1_5_1_ROOT_CLASSIFICATION.csv),
+[ownership](../history/gen1.5/GEN1_5_1_ROOT_CLASSIFICATION.csv),
 [release boundary](../../PUBLIC_RELEASE_BOUNDARY.md). No source copies or phase
 path migration is necessary. Edit generated evidence only at its canonical root;
 use `tools/sync_public_evidence.py` and `--check`. Build static assets from

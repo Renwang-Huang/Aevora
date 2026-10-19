@@ -83,4 +83,4 @@ pattern redaction 不能识别任意未知秘密。导出不读取宿主真实�
 
 六次Session后的独立检查定位到原生最终文本与typed父回执比较：必须保留原文whitespace、比较完整回执正文，不能单边strip或使用子串命中。Runtime parser与离线verifier分别增加严格正反控制；旧测试/原Run/旧M1 ZIP不改写。原第六轮summary的2verified保留，纠正后的第三child证明另存。当前verifier与六次挑战当时的verifier有不同SHA，不得混用版本归属。
 
-M1.1新六Session的Audit-Lite在完整Full封存后写入外部release目录，独立验证、字节篡改、同created-at确定性和秘密扫描的实际大小/SHA/退出状态见 `M1_1_EVIDENCE_INDEX.json`。Full与release分开封存，避免向已经sealed的Full追加最终导出receipt。
+M1.1新六Session的Audit-Lite在完整Full封存后写入外部release目录，独立验证、字节篡改、同created-at确定性和秘密扫描的实际大小/SHA/退出状态见 [M1.1 evidence index](history/orderflow/M1_1_EVIDENCE_INDEX.json)。Full与release分开封存，避免向已经sealed的Full追加最终导出receipt。

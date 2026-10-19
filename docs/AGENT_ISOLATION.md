@@ -11,7 +11,7 @@ Phase 1/2 的 `benchmark/sandbox.py` 保护候选业务评测进程。Phase 3 �
 
 物理文件边界测试在这一外层 bubblewrap 配置中执行读取探针，覆盖维护者隐藏测试、参考补丁、Private Manifest、宿主源码、其他 Run、身份文件及 `/proc/1/root` 路径。测试中的私有 canary 是独立创建的合成内容，真实仓库目录也执行访问探针；测试工具运行不冒充 Codex 模型或原生子任务。
 
-真实 Codex 可执行文件已在相同文件边界中完成版本探针。最初的执行权限禁止 Broker 监听 socket，并且 DNS 解析失败；这轮失败保留为实际开发记录。用户调整执行权限后，listener、DNS 和 HTTPS 已恢复。正式 Run `339f7d73-29df-4242-8920-9e566bce8a9c` 已完成模型调用、三个原生子任务、实际提交和隐藏评测。随后在同一 Participant 树内调用安装 CLI 的 command sandbox，十四个实际私有/身份路径读取全部失败，公开源码可读。详细命令和结论见 [PHASE3_VALIDATION_REPORT.md](../PHASE3_VALIDATION_REPORT.md)。
+真实 Codex 可执行文件已在相同文件边界中完成版本探针。最初的执行权限禁止 Broker 监听 socket，并且 DNS 解析失败；这轮失败保留为实际开发记录。用户调整执行权限后，listener、DNS 和 HTTPS 已恢复。正式 Run `339f7d73-29df-4242-8920-9e566bce8a9c` 已完成模型调用、三个原生子任务、实际提交和隐藏评测。随后在同一 Participant 树内调用安装 CLI 的 command sandbox，十四个实际私有/身份路径读取全部失败，公开源码可读。详细命令和结论见 [PHASE3_VALIDATION_REPORT.md](history/phase1-3/PHASE3_VALIDATION_REPORT.md)。
 
 ## 两个可信层与 Participant
 

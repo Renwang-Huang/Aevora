@@ -1,7 +1,7 @@
 # Current architecture and ownership
 
-The canonical layered graph is [Gen1.5 architecture](../../GEN1_5_TARGET_ARCHITECTURE.md).
-Stable API paths/distribution names are preserved. [Dependency rules](../../GEN1_5_DEPENDENCY_RULES.md)
+The canonical layered graph is [Gen1.5 architecture](../history/gen1.5/GEN1_5_TARGET_ARCHITECTURE.md).
+Stable API paths/distribution names are preserved. [Dependency rules](../history/gen1.5/GEN1_5_DEPENDENCY_RULES.md)
 and the per-file migration map govern future changes.
 
 Core alone owns WHEN/WHY and trusted lifecycle logic. Console/API/public integration

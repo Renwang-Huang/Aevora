@@ -22,6 +22,7 @@ from uuid import uuid4
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from tools.history_paths import history_path
 from benchmark.participant_sandbox import participant_command
 from evaluator.runner import read_junit
 from integrations.codex_agent import CodexConfig
@@ -131,22 +132,23 @@ def main():
     connectivity = run("network-preflight", [sys.executable, "-c", "import socket,json,ssl,urllib.request,urllib.error; s=socket.socket(); s.bind(('127.0.0.1',0)); s.close(); print(json.dumps({'loopback_listener':True,'dns_addresses':len(socket.getaddrinfo('chatgpt.com',443)),'tls_ca':ssl.get_default_verify_paths().cafile}));\ntry: r=urllib.request.urlopen('https://chatgpt.com/backend-api/codex/models',timeout=15); print(r.status)\nexcept urllib.error.HTTPError as e: print('TLS verified; unauthenticated HTTP',e.code)"], expected=0, timeout=20)
 
     # Regenerate every effective Phase1/2 check (incl. 10 fresh suite pairs).
-    historical = {p: p.read_bytes() for p in (ROOT / "PHASE1_VALIDATION_REPORT.md", ROOT / "PHASE2_VALIDATION_REPORT.md")}
+    historical = {history_path(ROOT, name): history_path(ROOT, name).read_bytes()
+                  for name in ("PHASE1_VALIDATION_REPORT.md", "PHASE2_VALIDATION_REPORT.md")}
     before = set((ROOT / "runs/validation-phase2").glob("*"))
-    try:
-        run("phase1-and-phase2-regression", [sys.executable, str(ROOT / "scripts/validate_phase2.py")], expected=0)
-        for path in historical:
-            shutil.copyfile(path, archive / ("regenerated-" + path.name))
-    finally:
-        for path, content in historical.items():
-            path.write_bytes(content)
+    run("phase1-and-phase2-regression", [sys.executable, str(ROOT / "scripts/validate_phase2.py")], expected=0)
     created = set((ROOT / "runs/validation-phase2").glob("*")) - before
     if len(created) != 1:
         raise RuntimeError("Regression did not produce one Phase2 validation archive")
     regression_dir = created.pop()
     regression = json.loads((regression_dir / "validation.json").read_text())
+    phase1_dir = (ROOT / regression["phase1_validation"]).parent
+    for directory, name in ((phase1_dir, "PHASE1_VALIDATION_REPORT.md"),
+                            (regression_dir, "PHASE2_VALIDATION_REPORT.md")):
+        shutil.copyfile(directory / name, archive / ("regenerated-" + name))
+    if any(path.read_bytes() != content for path, content in historical.items()):
+        raise RuntimeError("Historical report bytes changed during regression")
     check("Every Phase1/2 regression command and check passes", regression["conclusion"] == "PASS")
-    previous_id = re.search(r"Validation ID：`([^`]+)`", historical[ROOT / "PHASE2_VALIDATION_REPORT.md"].decode())
+    previous_id = re.search(r"Validation ID：`([^`]+)`", historical[history_path(ROOT, "PHASE2_VALIDATION_REPORT.md")].decode())
     if previous_id:
         previous = json.loads((ROOT / "runs/validation-phase2" / previous_id.group(1) / "validation.json").read_text())
         current_ids = {t["nodeid"]: t["outcome"] for t in regression["developer_tests"]["tests"]}
@@ -263,7 +265,7 @@ assert positive and all(denied.values())
              "## 失败记录", "", f"正式 Run 的实际错误：`{json.dumps(formal['execution_errors'],ensure_ascii=False)}`。",
              "此前开发阶段失败（权限、CA 路径、startup warning 与 SSE idle timeout）保留原始归档，不改写旧 Run；修复后使用全新 Session 验证。", "",
              "## 停止边界", "", "本次停止在 Phase 3，等待下一轮架构审查与验收反馈。", ""]
-    (ROOT / "PHASE3_VALIDATION_REPORT.md").write_text("\n".join(lines))
+    (archive / "PHASE3_VALIDATION_REPORT.md").write_text("\n".join(lines))
     print(json.dumps({k: summary[k] for k in ("validation_id", "conclusion", "native_run_id", "episode_a_task_outcome")}), flush=True)
     return 0 if conclusion == "PASS" else 1
 

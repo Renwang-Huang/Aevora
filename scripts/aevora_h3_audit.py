@@ -4,6 +4,7 @@ Reuses mature collectors without changing H1/H2 historical archives or root
 Git index. Every new operation has an exclusive output directory.
 """
 from pathlib import Path
+from tools.history_paths import history_path
 import argparse
 import json
 import os
@@ -20,7 +21,7 @@ def archive():
 
 def sources():
     rows = inherited_sources()
-    for p in (ROOT / 'MANIFEST.in', ROOT / 'aevora_core/MANIFEST.in', ROOT / 'AEVORA_H3_TRACEABILITY_MATRIX.csv'):
+    for p in (ROOT / 'MANIFEST.in', ROOT / 'aevora_core/MANIFEST.in', history_path(ROOT, 'AEVORA_H3_TRACEABILITY_MATRIX.csv')):
         if p.exists(): rows[str(p.relative_to(ROOT))] = {'sha256': digest(p), 'mode': p.stat().st_mode & 0o777}
     return dict(sorted(rows.items()))
 

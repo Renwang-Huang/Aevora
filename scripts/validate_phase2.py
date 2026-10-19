@@ -285,7 +285,7 @@ OrderFlow.create_order = _serialized_create
               "- 后续 Episode 通过 registry/factory/private suite 接入，Runner 生命周期不改；Payment/Event 契约与经验接口留给后续阶段。",
               "- 源码、补丁、batch/Oracle、JUnit、报告和真实版本指纹提供未来经验产生的证据；本轮没有运行 Decision Trace、Experience Retrieval 或 Feedback Evolution。", "",
               f"最终验收：**{summary['conclusion']}**。停止在 Phase 2，等待下一轮架构审查。", ""]
-    (ROOT / "PHASE2_VALIDATION_REPORT.md").write_text("\n".join(lines))
+    (archive / "PHASE2_VALIDATION_REPORT.md").write_text("\n".join(lines))
     print(f"{summary['conclusion']}: {len(records)} commands, {len(checks)} checks; {archive}", flush=True)
     return 0 if success else 1
 

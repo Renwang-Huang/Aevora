@@ -2,6 +2,8 @@
 import json
 from scripts.aevora_h3_audit import ROOT,archive,write,digest,now
 
+from tools.history_paths import write_phase_report
+
 
 def main():
     A=archive();rows=[]
@@ -56,7 +58,7 @@ Gov 首次 SSE/上游 TLS 故障完整保留，不能抹去失败分母。成功
 
 新 Gate Commit/Tree 存于 `g3/SOURCE_COMMIT.json`；不得将 Gate 后续文档 Commit 归给已结束的 native Session epoch04。
 '''
-    (ROOT/'AEVORA_H3_G3_VALUE_CONTROLS_REPORT.md').write_text(report)
+    write_phase_report(A, 'AEVORA_H3_G3_VALUE_CONTROLS_REPORT.md', report)
     print(json.dumps({'status':'PASS','attempts':len(rows),'successful_pair':2,'graph_checks':5}));return 0
 
 

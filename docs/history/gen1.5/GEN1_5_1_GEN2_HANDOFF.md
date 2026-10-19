@@ -19,14 +19,14 @@ code --new-window .
 python3 tools/workspace_check.py
 ```
 
-[Workspace Guide](docs/current/WORKSPACE.md) documents actual8/19 roots, parent
+[Workspace Guide](../../current/WORKSPACE.md) documents actual8/19 roots, parent
 Git, real UI New Terminal vs extension API, process tasks and manual visual checks.
-Read [current Architecture](docs/current/ARCHITECTURE.md),
-[public Quickstart](docs/QUICKSTART.md), [MCP](docs/CODEX_MCP_SETUP.md),
-[DEVELOPMENT](DEVELOPMENT.md), [root/owner map](GEN1_5_1_ROOT_CLASSIFICATION.csv),
+Read [current Architecture](../../current/ARCHITECTURE.md),
+[public Quickstart](../../QUICKSTART.md), [MCP](../../CODEX_MCP_SETUP.md),
+[DEVELOPMENT](../../../DEVELOPMENT.md), [root/owner map](GEN1_5_1_ROOT_CLASSIFICATION.csv),
 [dependency rules](GEN1_5_DEPENDENCY_RULES.md),
-[release boundary](PUBLIC_RELEASE_BOUNDARY.md),
-[history index](docs/history/README.md), [evidence convention](evidence/README.md).
+[release boundary](../../../PUBLIC_RELEASE_BOUNDARY.md),
+[history index](../README.md), [evidence convention](../../../evidence/README.md).
 
 ## Authoritative edit locations and retained paths
 

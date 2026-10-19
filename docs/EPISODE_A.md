@@ -117,7 +117,7 @@ scripts/python312 scripts/validate_phase2.py
 
 手动统一补丁或含 `app/` 的工作区也可提交；Runner 在独立候选快照中处理。Run 结束后清理评测数据库并恢复公开初始数据库，归档提交与测试证据。重跑必须使用新的 Run ID。
 
-最终真实命令、退出状态、失败记录、10 轮 Buggy/Reference 独立初始化、Phase 1 回归与隔离验证见 [PHASE2_VALIDATION_REPORT.md](../PHASE2_VALIDATION_REPORT.md)。本说明描述实现与判据，不替代实际验收结果。
+最终真实命令、退出状态、失败记录、10 轮 Buggy/Reference 独立初始化、Phase 1 回归与隔离验证见 [PHASE2_VALIDATION_REPORT.md](history/phase1-3/PHASE2_VALIDATION_REPORT.md)。本说明描述实现与判据，不替代实际验收结果。
 
 ## 可追踪证据与边界
 
