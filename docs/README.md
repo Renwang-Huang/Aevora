@@ -1,5 +1,15 @@
 # Aevora documentation
 
+## Developer entrypoints
+
+| Start here | Purpose |
+|---|---|
+| [Quickstart](QUICKSTART.md) | Run the real local FalkorDB-backed product demo. |
+| [Architecture](ARCHITECTURE.md) | Core, MCP, Console, Trusted Host and optional evaluation boundaries. |
+| [MCP setup](CODEX_MCP_SETUP.md) | Connect an Agent through four scoped product tools. |
+| [Benchmark](BENCHMARK.md) | Install and reproduce the disclosed model-free OrderFlow evaluation. |
+| [Reproducibility](REPRODUCIBILITY.md) | Product-only and engineering installation, tests and packaging. |
+
 ## See the product
 
 | Start here | Purpose |
@@ -44,3 +54,7 @@ current product entry.
 [Earlier Hero scenario](H4_HERO_SCENARIO.md) ·
 [Core lifecycle](../aevora_core/docs/H3_LIFECYCLE.md) ·
 [Core graph schema](../aevora_core/docs/GRAPH_SCHEMA.md)
+
+## Engineering history
+
+[Phase reports and taskbooks](history/README.md) · [Root classification and hashes](history/ROOT_CLEANUP_MATRIX.csv) · [Old-to-new paths](history/PATH_RELOCATIONS.csv). Historical materials are secondary navigation; their original results and source epochs remain unchanged.

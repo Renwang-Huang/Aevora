@@ -4,11 +4,11 @@
 
 这是维护者设计材料，含根因、对照和私有参考条件，**不得复制到 Participant 工作区或模型输入**。本轮 M1.1 只设计、审查 D-v02；没有注册新 Variant，也没有实现业务代码、隐藏测试或参考补丁。D-v01 的业务、28 项必要隐藏测试、历史结果及 Oracle 保持其冻结真值。
 
-设计在 [R0 Gate PASS](../m1_1_validation/20261010T154658Z-4e5039eb-6ac2-49c7-8ece-824765e22f5f/R0_GATE.json) 之后编写，遵循 [M1.1 任务](../OrderFlow_M1_1_Runtime_Calibration_and_Evidence_Engineering_Codex_Task.md)、[Task System](TASK_SYSTEM_DESIGN.md)、[Task Relations](TASK_RELATIONS.md) 和 [双准入门禁](TASK_ADMISSION_GATES.md)。设计审查及未闭合事项见 [EPISODE_D_V02_DESIGN_REVIEW.md](EPISODE_D_V02_DESIGN_REVIEW.md)。任何未来实现都需要下一轮明确授权。
+设计在 [R0 Gate PASS](../m1_1_validation/20261010T154658Z-4e5039eb-6ac2-49c7-8ece-824765e22f5f/R0_GATE.json) 之后编写，遵循 [M1.1 任务](history/taskbooks/OrderFlow_M1_1_Runtime_Calibration_and_Evidence_Engineering_Codex_Task.md)、[Task System](TASK_SYSTEM_DESIGN.md)、[Task Relations](TASK_RELATIONS.md) 和 [双准入门禁](TASK_ADMISSION_GATES.md)。设计审查及未闭合事项见 [EPISODE_D_V02_DESIGN_REVIEW.md](EPISODE_D_V02_DESIGN_REVIEW.md)。任何未来实现都需要下一轮明确授权。
 
 ## 1. 为什么需要新的因果机制
 
-D-v01 的真实故障是事务外库存快照和绝对值回写，在独立 Worker 间造成 Lost Update。M1 三份实际 Agent 补丁均改回事务内条件相对库存更新；一个正式自动评测及两个另建 Run 的原样残留补丁评测均通过 28 项当前 Oracle。三次原正式结果仍为 **TIMEOUT / PASS / TIMEOUT，自动闭环 1/3**，不能改称三次完成。[M1 Pilot](../M1_PILOT_REPORT.md)
+D-v01 的真实故障是事务外库存快照和绝对值回写，在独立 Worker 间造成 Lost Update。M1 三份实际 Agent 补丁均改回事务内条件相对库存更新；一个正式自动评测及两个另建 Run 的原样残留补丁评测均通过 28 项当前 Oracle。三次原正式结果仍为 **TIMEOUT / PASS / TIMEOUT，自动闭环 1/3**，不能改称三次完成。[M1 Pilot](history/orderflow/M1_PILOT_REPORT.md)
 
 这些样本支持代码问题可解，并提示可能存在任务天花板；它们不能证明稳定成功率、Multi-Agent 收益或经验继承。D-v02 应要求调查新的持久授权与恢复事实。增加 Worker 数、SKU 数、SQL 行数或随机种子，只属于稳健性参数，不能构成新事故。
 

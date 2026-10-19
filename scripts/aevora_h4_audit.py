@@ -1,5 +1,6 @@
 """H4 evidence receipts and isolated source releases. Historical archives are read-only."""
 from pathlib import Path
+from tools.history_paths import history_path
 from datetime import datetime, timezone
 import argparse
 import json
@@ -22,7 +23,7 @@ def init():
     receipt = json.loads((export / 'FINAL_DELIVERY_RECEIPT.json').read_text())
     prior = json.loads((export / 'release-h3-final-delivery-closure/SOURCE_MANIFEST.json').read_text())
     mismatch = [p for p, v in prior['source_files'].items()
-                if not (ROOT/p).is_file() or digest(ROOT/p) != v['sha256']]
+                if not history_path(ROOT,p).is_file() or digest(history_path(ROOT,p)) != v['sha256']]
     if mismatch: raise ValueError('H3 delivery source mismatch: ' + repr(mismatch))
     name = 'H4-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '-' + str(uuid.uuid4())
     a = ROOT / 'aevora_validation' / name
@@ -66,8 +67,8 @@ def init():
 
 def sources():
     prior = json.loads((archive()/'g0/H3_SOURCE_MANIFEST.json').read_text())['source_files']
-    paths = {ROOT/p for p in prior}
-    paths.update(ROOT.glob('AEVORA_H4_*'))
+    paths = {history_path(ROOT,p) for p in prior}
+    paths.update((ROOT/'docs/history/h1-h4').glob('AEVORA_H4_*'))
     paths.update(ROOT.glob('scripts/aevora_h4_*'))
     paths.update(ROOT.glob('tests/test_aevora_h4*'))
     paths.update((ROOT/'aevora_core/src/aevora').glob('*.py'))
@@ -78,7 +79,7 @@ def sources():
             paths.update(p for p in (ROOT/folder).rglob('*') if not set(p.parts)&{'node_modules','__pycache__','.venv','dist','build'} and not any(part.endswith('.egg-info') for part in p.parts))
     paths.update((ROOT/'docs').glob('*.md'))
     paths.update((ROOT/'docs').glob('*.csv'))
-    paths.add(ROOT/'Aevora_H4_Competition_Product_Experience_Delivery_Codex_Task_v1.0.md')
+    paths.add(history_path(ROOT,'Aevora_H4_Competition_Product_Experience_Delivery_Codex_Task_v1.0.md'))
     return {str(p.relative_to(ROOT)):{'sha256':digest(p),'mode':p.stat().st_mode&0o777}
             for p in sorted(paths) if p.is_file() and not p.is_symlink()}
 

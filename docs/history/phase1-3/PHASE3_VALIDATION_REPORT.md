@@ -191,7 +191,7 @@ Python 3.12.13、SQLite 3.46.1、pytest 9.1.1、bubblewrap 0.6.1；可执行文�
 - 正式 Agent 挑战本阶段只需一次；本次实际完成一次最终完整验收。此前失败尝试保留，不能把一轮成绩当作 G0–G3 或统计效能实验。
 - Experience 保持 DISABLED，Run/Thread/Patch/Outcome 关联接口已形成；经验治理能力未实现。
 
-详细说明：[CODEX_INTEGRATION](docs/CODEX_INTEGRATION.md)、[AGENT_ISOLATION](docs/AGENT_ISOLATION.md)、[CLI](docs/CLI.md)、[ARCHITECTURE](docs/ARCHITECTURE.md)。
+详细说明：[CODEX_INTEGRATION](../../CODEX_INTEGRATION.md)、[AGENT_ISOLATION](../../AGENT_ISOLATION.md)、[CLI](../../CLI.md)、[ARCHITECTURE](../../ARCHITECTURE.md)。
 
 ## 9. 最终结论与停止边界
 

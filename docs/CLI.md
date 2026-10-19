@@ -75,7 +75,7 @@ scripts/python312 scripts/validate_phase1.py
 scripts/python312 scripts/validate_phase2.py
 ```
 
-复现器用于观察一个基准 batch，正式判分应使用 `orderflow evaluate`。连续独立初始化的 10 轮 Buggy/Reference 对照、命令真实退出状态和最终验收结论见 [Phase 2 验收报告](../PHASE2_VALIDATION_REPORT.md)。
+复现器用于观察一个基准 batch，正式判分应使用 `orderflow evaluate`。连续独立初始化的 10 轮 Buggy/Reference 对照、命令真实退出状态和最终验收结论见 [Phase 2 验收报告](history/phase1-3/PHASE2_VALIDATION_REPORT.md)。
 
 Run 的可信 Evaluator/Fixture/Suite/私有配置和环境指纹在准备时记录，在评测前后重算；期间变化将判 ERROR 并要求重新创建 Run。修改 Agent 公开工作区中的 app 是正常提交动作，不会改变宿主可信评测源码指纹。
 

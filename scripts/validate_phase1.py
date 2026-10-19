@@ -175,7 +175,7 @@ print(json.dumps({'available':v})); assert v==[10,7,10,13]
               "文件隔离、独立判分、数据库重置和手动提交流水线已验收；Phase 2 增加宿主数据库 Oracle。网络未隔离；CPU/内存/seccomp、敌对 RPC 限流、完整反作弊、原生 Windows、wheel 发布和同 Run 并发未验证或未实现。",
               "Payment/Event 是契约；Codex 自动接入未实现；经验四接口为 Disabled。无 Agent 运行指标、经验命中/决策/反馈或正式对照结果。",
               "本结论覆盖 Phase 1 回归。原始 Phase 1 验收记录保留在其 validation Run；Phase 2 结论见独立报告。", ""]
-    (ROOT / "PHASE1_VALIDATION_REPORT.md").write_text("\n".join(lines))
+    (archive / "PHASE1_VALIDATION_REPORT.md").write_text("\n".join(lines))
     print(f"{summary['conclusion']}: {len(records)} commands, {len(checks)} checks; {archive}")
     return 0 if success else 1
 

@@ -47,4 +47,4 @@ PASS 要求真实 pytest 退出 0、JUnit 解析成功、准确收集 8 项且�
 scripts/python312 scripts/validate_phase1.py
 ```
 
-脚本实际安装/检查依赖、执行开发者测试、业务闭环、公开沙箱命令、正确/缺陷 Smoke 提交重复评测、错误/超时提交、Episode 状态检查、报告查询及重置。Phase 2 将 A 的状态期望更新为已实现；B/C/D 的未实现检查保留。每条命令的 stdout/stderr、退出状态和时间写入唯一验收目录，并生成根目录 `PHASE1_VALIDATION_REPORT.md`。Episode A 的正式并发与 10 轮重复性验收归入 Phase 2 报告。
+脚本实际安装/检查依赖、执行开发者测试、业务闭环、公开沙箱命令、正确/缺陷 Smoke 提交重复评测、错误/超时提交、Episode 状态检查、报告查询及重置。Phase 2 将 A 的状态期望更新为已实现；B/C/D 的未实现检查保留。每条命令的 stdout/stderr、退出状态和时间写入唯一验收目录，并在该新验收目录生成 `PHASE1_VALIDATION_REPORT.md`；原报告已迁入 [历史记录](history/phase1-3/PHASE1_VALIDATION_REPORT.md)。Episode A 的正式并发与 10 轮重复性验收归入 Phase 2 报告。

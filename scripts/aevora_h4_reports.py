@@ -2,6 +2,8 @@
 import csv,json,shutil
 from pathlib import Path
 from scripts.aevora_h4_audit import ROOT,archive,write,digest,now
+from tools.history_paths import write_phase_report
+
 
 def main():
     A=archive();load=lambda p:json.loads((A/p).read_text());new=load('g5/FRESH_NATIVE_FACT_CHECK.json');public=load('g5/public-product-final/RESULT.json');safety=load('g5/public-safety-final/RESULT.json');tests=load('g5/EMPTY_BRIDGE_FINAL_JUNIT_CHECK.json');security=load('g1/security-empty-bridge-final/summary.json');history=load('g5/history-preservation-02/RESULT.json');sdk=load('g5/fresh-product-protocol-02/RESULT.json');install=load('g5/distribution-install/RESULT.json');browser=load('g5/public-image-browser-final/RESULT.json');fault=load('g5/public-image-database-disconnected/RESULT.json');denial=load('g5/provider-auth-denial/RESULT.json');controls=load('g5/lite-negative-controls-02/RESULT.json');dv=load('g5/dv02-regression/SUMMARY.json');cli=load('g5/cli-regression/summary.json')
@@ -110,15 +112,13 @@ Full：`{prefix}`。最终源码/命令索引/SECRET_SCAN/manifest在final/及�
 '''
     summary=summary.replace('SDK12检查（详见实际计数）','SDK'+str(len(sdk['checks']))+'检查')
     for name,text in [('AEVORA_H4_G5_RELEASE_REPORT.md',g5),('AEVORA_H4_LIMITATIONS.md',limitations),('AEVORA_H4_VALIDATION_REPORT.md',summary)]:
-        target=ROOT/name
-        if target.exists():raise ValueError('H4 report already exists; do not silently overwrite')
-        target.write_text(text)
+        write_phase_report(A,name,text)
     matrix=[('G0','Three distinct honest cases, pinned verifier','h4/verify_hero.py','g0/GATE.json','PASS','Local source hashes, not external attestation'),('G1','Standalone Core official SDK','aevora_core/src/aevora/mcp_connect.py','g1/GATE.json','PASS','Same UID owner, Security PARTIAL'),('G2','Actual current Core/Graph read-only API','console/src/aevora_observatory/projection.py','g2/GATE.json','PASS','Bounded actual graph'),('G3','Three pages and six actual UI states','console/web/app.js','g3/browser-validation-07/RECEIPT.json','PASS','Playwright isolated Chromium'),('G4','Actual new untouched Agent patch','scripts/aevora_h4_native.py','g4/NATIVE_REPAIR_02_FACT_CHECK.json','PASS','EXTERNAL_UNVERIFIED, not trusted outcome'),('G4','Current support edge necessity','scripts/aevora_h4_graph_demo.py','g4/actual-necessity-02/RESULT.json','PASS','Maintainer-controlled, adoption UNKNOWN'),('G5','Zero-corpus native bridge','integrations/aevora.py','g5/FRESH_NATIVE_FACT_CHECK.json','PASS','Original ERROR/NO_PATCH retained'),('G5','Public package install and provenance','scripts/aevora_h4_distribution_check.py','g5/INSTALLED_SOURCE_BYTE_CHECK.json','PASS','LinuxAMD64/UID1000'),('G5','Actual public Docker/browser/no fallback','console/browser/product.mjs','g5/public-image-browser-final/RESULT.json','PASS','Actual browser/API bytes'),('G5','Exact secret/private-copy scan','scripts/aevora_h4_delivery.py','g5/public-safety-final/RESULT.json','PASS','3 actual classes, not hostile isolation proof'),('G5','Full regressions preserve H3 identities','scripts/aevora_h4_tests.py','g5/EMPTY_BRIDGE_FINAL_JUNIT_CHECK.json','PASS','1802/1714 zero missing/skip/error'),('G5','Historical bytes preserved','scripts/aevora_h4_delivery.py','g5/history-preservation-02/RESULT.json','PASS','215589 history/79 tests/39 truth/25 reports'),('G5','Strict Lite public benign patch controls','scripts/aevora_h4_lite_control.py','g5/lite-negative-controls-02/RESULT.json','PASS','Four hidden FAIL controls; not task success'),('G5','Stopped Full and independent Lite export','scripts/aevora_h4_export.py','OUTSIDE_FULL/FINAL_DELIVERY_RECEIPT.json','PENDING_FINAL_RECEIPT','Full pointers NOT_INCLUDED remain unverified bytes')]
-    with (ROOT/'AEVORA_H4_TRACEABILITY_MATRIX.csv').open('x') as f:
+    with (A/'reports/AEVORA_H4_TRACEABILITY_MATRIX.csv').open('x') as f:
         writer=csv.writer(f);writer.writerow(['gate','claim','source','evidence','status','qualification']);writer.writerows(matrix)
-    reports=A/'reports';reports.mkdir(mode=0o700)
-    for p in ROOT.glob('AEVORA_H4_*'):
-        if p.is_file():shutil.copyfile(p,reports/p.name)
+    reports=A/'reports';reports.mkdir(mode=0o700,exist_ok=True)
+    for p in (ROOT/'docs/history/h1-h4').glob('AEVORA_H4_*'):
+        if p.is_file() and not (reports/p.name).exists():shutil.copyfile(p,reports/p.name)
     write(A/'g5/GATE.json',{'gate':'G5','status':'PASS_LOCAL_PRODUCT_FUNCTIONAL_REQUIREMENTS','overall':'CONDITIONAL_PASS_INHERITED_LIMITATIONS','at':now(),'developer_tests':1802,'inherited_required':1714,'public_product_source_commit':public['source_commit'],'public_product_source_tree':public['source_tree'],'public_source_zip_sha256':public['source_zip_sha256'],'new_native_run':new['run_id'],'native_observation':'PASS','original_native_runtime':'ERROR/NO_PATCH','new_trusted_outcomes':0,'security':'PARTIAL_SHARED_KERNEL','remote_publication':'DEFERRED_USER_REQUEST','final_seal_and_lite':'REQUIRED_OUTSIDE_FULL_FINAL_DELIVERY_RECEIPT','evidence':{name+'/command.json':digest(A/name/'command.json') for name in commands}})
     print(json.dumps({'status':'PASS_REPORTS_FROM_ACTUAL_RECEIPTS','reports':len(list(reports.iterdir())),'gate':'G5 local function gate; final delivery receipt still required'}))
 

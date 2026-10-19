@@ -136,9 +136,9 @@ Full项目密钥精确及base64/hex/URL encoding扫描无命中，4链接只扫�
 
 ## 8. 交付与停止
 
-- [基线与失效假设](M1_1_BASELINE_AND_FAILURE_HYPOTHESES.md)、[长运行策略](docs/LONG_RUNNING_CODEX_POLICY.md)、[证据导出规范](docs/EVIDENCE_EXPORT_POLICY.md)。
+- [基线与失效假设](M1_1_BASELINE_AND_FAILURE_HYPOTHESES.md)、[长运行策略](../../LONG_RUNNING_CODEX_POLICY.md)、[证据导出规范](../../EVIDENCE_EXPORT_POLICY.md)。
 - [六Session校准报告](M1_1_DIFFICULTY_CALIBRATION_REPORT.md)、[剩余事项](M1_1_REMAINING_ISSUES.md)、`M1_1_EVIDENCE_INDEX.json`。
-- [D-v02设计](docs/EPISODE_D_V02_DESIGN.md)、[双审查及版本记录](docs/EPISODE_D_V02_DESIGN_REVIEW.md)，推荐lease/authority、备选WALbackup/generation；仅设计。
+- [D-v02设计](../../EPISODE_D_V02_DESIGN.md)、[双审查及版本记录](../../EPISODE_D_V02_DESIGN_REVIEW.md)，推荐lease/authority、备选WALbackup/generation；仅设计。
 - 新Full源、两个轻量示例、确定性/篡改/离线receipt、精确patch SHA、原生timeline及current/cohort源码指纹分层保存；AGENTS.md补充当前维护规则。
 
 **到M1.1停止。没有开发B/C、D-v02实现、GraphSwarm/FalkorDB/MCP或G0–G3正式实验；没有追加联网挑战，也没有改变旧M1三次正式成绩。**

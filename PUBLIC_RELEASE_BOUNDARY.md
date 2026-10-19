@@ -3,7 +3,7 @@
 The current publication scope is defined by
 [FULL_PROJECT_SCOPE_AND_LICENSE.md](FULL_PROJECT_SCOPE_AND_LICENSE.md).
 The earlier selected Core/Console/H4 allowlist was a **historical product-only
-release profile**, not the scope of this full-project source candidate. Older
+release profile**, not the scope of the published full-project source. Older
 [product README](docs/PUBLIC_README.md), Gen1/H4 reports and archived taskbooks
 retain their original phase descriptions and results.
 
@@ -49,5 +49,8 @@ hashes establish consistency, not adoption or causal benefit.
 Source/ZIP/wheel/sdist and reachable Git history require security/license review;
 secret values and individual secret hashes must never enter artifacts. Preserve
 original failures, the 51 legacy G1 SKIPs, B/C NOT_IMPLEMENTED, G24 NOT_RUN and
-the unresolved FalkorDB SIGSEGV/139/AOF limits. This candidate remains local
-pending owner publication approval; no GitHub push is part of the hotfix.
+the unresolved FalkorDB SIGSEGV/139/AOF limits. The full engineering source was
+published at d1708746e26c7c1eaddcb7ac0cec92a65baf21d3. Subsequent local changes
+require their own publication approval. Historical paths and hashes are retained
+through the [history relocation index](docs/history/README.md); moving documents
+does not change their original source epoch or experimental results.

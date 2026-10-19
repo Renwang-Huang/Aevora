@@ -127,6 +127,8 @@ The historical FalkorDB SIGSEGV/139 root cause remains **unverified**; the docum
 
 MIT licensed: [LICENSE](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md).
 
-## Full project source candidate
+## Full project source
 
-The expanded local release includes the optional [OrderFlow Benchmark](docs/BENCHMARK.md), [public historical evaluator and Oracle](docs/EVALUATION.md), [debugging tools](docs/DEBUGGING.md) and [reproduction profiles](docs/REPRODUCIBILITY.md). Product-only installation remains the Quickstart above. Formerly hidden tests and reference answers are disclosed historical evaluation materials and are no longer future blind tests. See [scope and MIT authorization](FULL_PROJECT_SCOPE_AND_LICENSE.md) and the [source map](docs/FULL_PUBLIC_SOURCE_MAP.md). This does not add a new paid Agent run, completed B/C episode, G24 causal result or resolution of the documented FalkorDB crash.
+The full engineering repository includes the optional [OrderFlow Benchmark](docs/BENCHMARK.md), [public historical evaluator and Oracle](docs/EVALUATION.md), [debugging tools](docs/DEBUGGING.md) and [reproduction profiles](docs/REPRODUCIBILITY.md). Product-only installation remains the Quickstart above. Formerly hidden tests and reference answers are disclosed historical evaluation materials and are no longer future blind tests. See [scope and MIT authorization](FULL_PROJECT_SCOPE_AND_LICENSE.md) and the [source map](docs/FULL_PUBLIC_SOURCE_MAP.md). This does not add a new paid Agent run, completed B/C episode, G24 causal result or resolution of the documented FalkorDB crash.
+
+Earlier phase reports, taskbooks and migration records are indexed in [Engineering history](docs/history/README.md).
