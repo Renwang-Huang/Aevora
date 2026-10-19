@@ -13,19 +13,24 @@
 
 | Guide | Purpose |
 |---|---|
-| [Architecture](ARCHITECTURE.md) | Core, MCP, Console, trusted Host and the public/private boundary. |
+| [Architecture](ARCHITECTURE.md) | Full engineering source, independent product deployment and trusted authority. |
 | [Standalone Core](STANDALONE_CORE.md) | Install independent packages and connect an ordinary project. |
 | [MCP setup](CODEX_MCP_SETUP.md) | Four scoped tools; no Agent publication or arbitrary Cypher. |
 | [Graph v2 schema](GRAPH_MODEL.md) | Premises, evidence, authority, complete manifests and governance. |
 | [Actual Cypher](CORE_CYPHER.md) | Bounded, parameterized queries used by the current repository. |
 | [Core arbitration contract](../aevora_core/docs/GRAPH_V2_ARBITRATION.md) | Detailed WHEN/WHY behavior. |
 | [Console developer guide](../console/README.md) | Source build, state tests and real browser validation. |
-| [Reproducibility](REPRODUCIBILITY.md) | Clean install and public verification commands. |
+| [Reproducibility](REPRODUCIBILITY.md) | Product-only and optional engineering installs, tests and browser commands. |
+| [Benchmark](BENCHMARK.md) | Real model-free Runner/Oracle reproduction and unfinished episode limits. |
+| [Evaluation](EVALUATION.md) | Disclosed historical Oracle/tests/answers; no future blind-test claim. |
+| [Debugging](DEBUGGING.md) | Fresh owned outputs, graph/Host prerequisites and archived helper limits. |
 
 ## Review the claims
 
 [Known limitations](LIMITATIONS.md) · [Security](../SECURITY.md) ·
-[Public release boundary](PUBLIC_ALLOWLIST.md) · [Troubleshooting](TROUBLESHOOTING.md) ·
+[Full-project scope/license](../FULL_PROJECT_SCOPE_AND_LICENSE.md) ·
+[Release boundary](../PUBLIC_RELEASE_BOUNDARY.md) · [Reviewed selection](PUBLIC_ALLOWLIST.md) ·
+[Troubleshooting](TROUBLESHOOTING.md) ·
 [Contribution origins](HACKATHON_CONTRIBUTIONS.md) · [AI assistance](AI_DISCLOSURE.md) ·
 [Submission fields](SUBMISSION_FIELDS.md) · [GitHub About metadata](GITHUB_ABOUT.md)
 

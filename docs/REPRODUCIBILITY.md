@@ -6,6 +6,8 @@ Optional engineering/Benchmark: install all three distributions using docs/BENCH
 
 Python developer tests: `python -m pytest -q tests aevora_core/tests`. Supply graph/Host settings from docs/DEBUGGING.md. Three legacy G1 suites require the exact authenticated historical import and explicitly skip without `AEVORA_VERIFIED_G1_HISTORY_READY`; a synthetic replacement must not be called historical evidence. Strict native and multi-worker tests require delegated cgroup memory/pids controls. No cgroup fallback is allowed.
 
+## Browser source
+
 Console: `npm --prefix console ci`, `npm --prefix console run build`, `npm --prefix console test`. Browser tooling remains in `console/web`; the real Chromium recorder accepts its existing URL/output environment variables. Runtime/Node dependencies are installed from pinned manifests; no global upgrade is required.
 
 Build the explicit reviewed source and three wheel/sdist pairs with `python tools/public_release.py --output /absolute/fresh/path/build`. Source selection validates path traversal, links, file types and credential filenames before copying. Inspect the release security scan and artifact SHA256 manifest as well as build/test output. Test failures, environmental skips and expected negative evaluations are distinct statuses; none may be changed by editing a receipt.

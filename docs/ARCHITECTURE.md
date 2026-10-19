@@ -10,11 +10,21 @@ Local Console browser → read-only bounded HTTP projection → same Core/graph
 Trusted Host → source + independent Outcome verification → Q07 publication
 ```
 
-Core:`aevora_core/src/aevora`. Console:`console/src/aevora_observatory` and
-`console/web`. Neither ordinary query nor Console requires OrderFlow. The private
-Benchmark, hidden Oracle, reference patches, Native source verifier and production
-TrustedHost implementation are excluded from this source distribution. Deferred
-legacy Host bridges in Core are compatibility interfaces, not public authority.
+Core: `aevora_core/src/aevora`. Console: `console/src/aevora_observatory` and
+`console/web`. This full engineering repository also includes `app/`, `benchmark/`,
+`evaluator/`, `integrations/` and `aevora_maintainer/`: the actual task world,
+Runner, Oracle/tests/reference answers, Agent adapters, native source verifier and
+Trusted Host/Q07 implementation. See the [source scope](../FULL_PROJECT_SCOPE_AND_LICENSE.md)
+and [source map](FULL_PUBLIC_SOURCE_MAP.md). Formerly hidden evaluation material
+is labelled [public historical evaluation](../historical_public_evaluation/README.md);
+it is no longer a future blind test.
+
+Product-only Core/Console installation and the demo image remain independent of
+the optional Benchmark/evaluator. Repository inclusion does not grant production
+Host authority: keys, capability/registry data, original private model sessions
+and some historical run evidence remain unpublished. Optional Host verification
+uses explicit authority and matching sealed source pins; ordinary query and
+participant MCP tools do not acquire those privileges.
 
 ## Demo and production boundaries
 
