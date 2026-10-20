@@ -15,15 +15,15 @@ def negative():
            ('outcome-mismatch','origin',lambda c:c.update(outcome_id='orderflow:forged')),
            ('edge-endpoint-mismatch','evolution',lambda c:c['selected_edge'].update(target='orderflow:wrong'))]
     for label,artifact,change in cases:
-        dest=out/label;dest.mkdir();shutil.copytree(ROOT/'h4/replay',dest/'replay')
-        contract=json.loads((ROOT/'h4/hero_scenario_contract.json').read_text())
+        dest=out/label;dest.mkdir();shutil.copytree(ROOT/'examples/observatory/replay',dest/'replay')
+        contract=json.loads((ROOT/'examples/observatory/hero_scenario_contract.json').read_text())
         if artifact:
             p=dest/contract['artifacts'][artifact]['artifact_path'];value=json.loads(p.read_text());change(value)
             p.write_text(json.dumps(value,sort_keys=True)+'\n');contract['artifacts'][artifact]['sha256']=digest(p)
         else:change(contract)
         write(dest/'hero_scenario_contract.json',contract)
         pin=digest(dest/'hero_scenario_contract.json')
-        code=record(out,label+'-command',['python3','-I',str(ROOT/'h4/verify_hero.py'),str(dest),'--sha256',pin])
+        code=record(out,label+'-command',['python3','-I',str(ROOT/'examples/observatory/verify_hero.py'),str(dest),'--sha256',pin])
         results.append({'control':label,'actual_exit':code,'expected_exit':1,'status':'PASS' if code==1 else 'FAIL',
                         'contract_sha256':pin,'qualification':'Semantic mutation; artifact hash and supplied contract pin recomputed, so rejection is not just byte mismatch.'})
     result={'status':'PASS' if all(r['status']=='PASS' for r in results) else 'FAIL','checks':results}
@@ -34,8 +34,8 @@ def repeat():
     from scripts.aevora_h4_hero import build
     a=archive();dest=a/'g0/repeat-public-projection'
     build(dest,'hero-repeat')
-    paths=['hero_scenario_contract.json',*[str(p.relative_to(ROOT/'h4')) for p in sorted((ROOT/'h4/replay').glob('*.json'))]]
-    rows=[{'path':p,'original_sha256':digest(ROOT/'h4'/p),'repeat_sha256':digest(dest/p)} for p in paths]
+    paths=['hero_scenario_contract.json',*[str(p.relative_to(ROOT/'examples/observatory')) for p in sorted((ROOT/'examples/observatory/replay').glob('*.json'))]]
+    rows=[{'path':p,'original_sha256':digest(ROOT/'examples/observatory'/p),'repeat_sha256':digest(dest/p)} for p in paths]
     result={'status':'PASS' if all(x['original_sha256']==x['repeat_sha256'] for x in rows) else 'FAIL','files':rows,'scope':'Exact repeated projection bytes; no timestamp normalization or historical change'}
     write(a/'g0/PROJECTION_REPEATABILITY.json',result);print(json.dumps({'status':result['status'],'files':len(rows)}));return 0 if result['status']=='PASS' else 1
 
@@ -50,7 +50,7 @@ def scan():
         value=p.read_bytes().strip()
         if len(value)<16:raise ValueError('Actual bounded credential required for value scan')
         patterns.extend([value,sha256(value).hexdigest().encode(),sha256(value).hexdigest().upper().encode(),sha256(value).digest()])
-    files=[ROOT/'h4/hero_scenario_contract.json',*sorted((ROOT/'h4/replay').glob('*.json'))]
+    files=[ROOT/'examples/observatory/hero_scenario_contract.json',*sorted((ROOT/'examples/observatory/replay').glob('*.json'))]
     hits=[]
     for p in files:
         data=p.read_bytes()

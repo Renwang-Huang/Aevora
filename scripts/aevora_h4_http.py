@@ -15,8 +15,8 @@ from scripts.aevora_h4_audit import ROOT,archive,write,digest,now,launch
 def main(label='actual-http'):
     a=archive();out=a/'g2'/label;out.mkdir(mode=0o700)
     with socket.socket() as reserved:reserved.bind(('127.0.0.1',17804))
-    pin=digest(ROOT/'h4/hero_scenario_contract.json')
-    argv=launch('-m','aevora_observatory.server','--replay-root',str(ROOT/'h4'),'--replay-sha256',pin,'--activity-root',str(a),'--port','17804')
+    pin=digest(ROOT/'examples/observatory/hero_scenario_contract.json')
+    argv=launch('-m','aevora_observatory.server','--replay-root',str(ROOT/'examples/observatory'),'--replay-sha256',pin,'--activity-root',str(a),'--port','17804')
     stdout=(out/'server-stdout.log').open('wb');stderr=(out/'server-stderr.log').open('wb');started=now()
     proc=subprocess.Popen(argv,cwd=ROOT,stdout=stdout,stderr=stderr,start_new_session=True)
     receipts=[];checks=[]

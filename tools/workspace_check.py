@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VIEWS = ("Aevora.Product.code-workspace", "Aevora.Maintainer.code-workspace")
 PRODUCT_ROOTS = {
     "aevora_core/src", "aevora_core/docs", "aevora_core/examples/receipt_store",
-    "console/src", "console/web", "h4", "docs/current", "tools/public_evidence",
+    "console/src", "console/web", "examples/observatory", "docs", "tools/public_evidence",
 }
 MAINTAINER_ROOTS = PRODUCT_ROOTS | {
     "app", "benchmark", "evaluator", "integrations", "aevora_maintainer",

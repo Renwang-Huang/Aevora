@@ -74,7 +74,7 @@ def sources():
     paths.update((ROOT/'aevora_core/src/aevora').glob('*.py'))
     paths.update((ROOT/'aevora_core/tests').glob('test_h4*'))
     paths.add(ROOT/'aevora_core/LICENSE')
-    for folder in ('h4','console'):
+    for folder in ('examples/observatory','console'):
         if (ROOT/folder).exists():
             paths.update(p for p in (ROOT/folder).rglob('*') if not set(p.parts)&{'node_modules','__pycache__','.venv','dist','build'} and not any(part.endswith('.egg-info') for part in p.parts))
     paths.update((ROOT/'docs').glob('*.md'))

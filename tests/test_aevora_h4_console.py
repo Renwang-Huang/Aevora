@@ -14,8 +14,8 @@ def test_static_build_manifest_matches_all_delivered_bytes():
         assert sha256(path.read_bytes()).hexdigest()==expected
 
 def test_actual_index_preloads_cytoscape_external_style_without_unsafe_inline():
-    pin=sha256((ROOT/'h4/hero_scenario_contract.json').read_bytes()).hexdigest()
-    with TestClient(create_app(replay_root=ROOT/'h4',replay_sha256=pin),base_url='http://127.0.0.1') as c:
+    pin=sha256((ROOT/'examples/observatory/hero_scenario_contract.json').read_bytes()).hexdigest()
+    with TestClient(create_app(replay_root=ROOT/'examples/observatory',replay_sha256=pin),base_url='http://127.0.0.1') as c:
         res=c.get('/');assert res.status_code==200 and '__________cytoscape_stylesheet' in res.text
         assert "style-src 'self'" in res.headers['content-security-policy'] and 'unsafe-inline' not in res.headers['content-security-policy']
         assert c.get('/assets/app.css').status_code==200

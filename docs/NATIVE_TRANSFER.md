@@ -35,7 +35,7 @@ The [Console implementation](../console/web/journey.js) displays it as
 - No statistical causal benefit is established. This public snapshot carries
   G2-4 Pilot/formal comparison status NOT_RUN and causal benefit UNKNOWN.
 - The full source release includes the [historical Oracle tests, manifests and
-  reference answers](../historical_public_evaluation/README.md), with original
+  reference answers](../docs/history/evaluation/README.md), with original
   code pins and an explicit disclosure label. These are public engineering
   materials and are no longer future blind tests.
 - Original private model conversations and some original per-run native/evaluation

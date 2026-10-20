@@ -21,7 +21,7 @@ def main():
     write(a/'CONFIG.json',cfg)
     env={'AEVORA_DB_PORT':str(cfg['port']),'AEVORA_FALKORDB_PASSWORD_FILE':cfg['password_file'],
          'AEVORA_REDIS_CONFIG_FILE':cfg['redis_config_file']}
-    argv=['env',*[k+'='+v for k,v in env.items()],'docker','compose','-p',project,'-f',str(ROOT/'h4/deploy/compose.yaml'),'up','-d','--wait']
+    argv=['env',*[k+'='+v for k,v in env.items()],'docker','compose','-p',project,'-f',str(ROOT/'examples/observatory/deploy/compose.yaml'),'up','-d','--wait']
     code=record(out,'compose-empty-volume',argv)
     if code:raise ValueError('Fresh product deployment failed; receipts preserved')
     inspect=subprocess.run(['docker','image','inspect','falkordb/falkordb:v4.20.4@sha256:adbddd418916c25618564ff8597a919b08bc76452ebeb74eb985c38d7281df62','--format','{{json .RepoDigests}}'],capture_output=True,text=True)

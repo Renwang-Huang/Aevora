@@ -32,7 +32,7 @@ def test_actual_graph_v2_journey(demo_state,context,stage,expected):
 
 @pytest.fixture
 def viewer(demo_state):
-    return TestClient(create_app(replay_root=ROOT/'h4',replay_sha256=PIN,demo_state=demo_state),base_url='http://127.0.0.1')
+    return TestClient(create_app(replay_root=ROOT/'examples/observatory',replay_sha256=PIN,demo_state=demo_state),base_url='http://127.0.0.1')
 
 def test_http_live_projection_and_root(viewer):
     response=viewer.get('/api/journey?context=threads&stage=before');assert response.status_code==200

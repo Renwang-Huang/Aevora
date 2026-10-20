@@ -5,8 +5,8 @@ import json
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PAIRS = {
-    "tools/public_evidence/hero_verify.py": ["h4/verify_hero.py", "console/src/aevora_observatory/_hero_verify.py"],
-    "tools/public_evidence/projection.py": ["h4/public_projection.py", "console/src/aevora_observatory/_public_projection.py"],
+    "tools/public_evidence/hero_verify.py": ["examples/observatory/verify_hero.py", "console/src/aevora_observatory/_hero_verify.py"],
+    "tools/public_evidence/projection.py": ["examples/observatory/public_projection.py", "console/src/aevora_observatory/_public_projection.py"],
 }
 def synchronize(root=ROOT, *, check=False):
     rows=[]

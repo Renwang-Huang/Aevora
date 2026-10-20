@@ -41,7 +41,7 @@ def worker(root,output,runs,supports,stamp):
             if proof and _support_size(root,source)<=8*1024*1024:selected.add(source)
             if source.startswith(('final/source_snapshot/','final/source_snapshot_closure/')):
                 local=source.split('/',2)[2]
-                if local.startswith(('h4/','console/src/','scripts/aevora_h4_')) and name.endswith(('.py','.json','.js','.css','.html','.md')) and _support_size(root,source)<=MAX_SUPPORT_BYTES:selected.add(source)
+                if local.startswith(('examples/observatory/','console/src/','scripts/aevora_h4_')) and name.endswith(('.py','.json','.js','.css','.html','.md')) and _support_size(root,source)<=MAX_SUPPORT_BYTES:selected.add(source)
             if any(source.startswith(p+'/') for p in observations.values()):
                 local=next(source[len(p)+1:] for p in observations.values() if source.startswith(p+'/'))
                 if local in {'external_report.json','EXTERNAL_OBSERVATION.json','submission_integrity.json','PROJECT_GIT.json','public-tests/command.json','public-tests/stdout.log','public-tests/stderr.log'}:selected.add(source)

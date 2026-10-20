@@ -195,8 +195,8 @@ no Redis-based business database or new lock service is introduced.
 - [SQLite transactions](https://www.sqlite.org/lang_transaction.html)
 - [SQLite isolation](https://www.sqlite.org/isolation.html)
 - [Redis distributed-lock ownership and renewal](https://github.com/redis/redis-doc/blob/master/docs/manual/patterns/distributed-locks.md)
-- [Original D-v02 design](EPISODE_D_V02_DESIGN.md)
-- [Original independent design review](EPISODE_D_V02_DESIGN_REVIEW.md)
+- [Original D-v02 design](../../EPISODE_D_V02_DESIGN.md)
+- [Original independent design review](../../EPISODE_D_V02_DESIGN_REVIEW.md)
 
 This document freezes the implementation contract. It does not certify a tested
 fixture, stable failure, legal alternative, solving difficulty or governance gain.

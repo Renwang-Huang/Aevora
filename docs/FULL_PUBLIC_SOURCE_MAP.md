@@ -2,14 +2,16 @@
 
 | Source | Purpose |
 |---|---|
-| aevora_core, console, deploy, h4 | Product, MCP/graph implementation, browser and pinned public replay |
+| aevora_core, console, deploy | Product, MCP/graph implementation, browser and local deployment |
+| examples/observatory | Optional pinned replay, evidence verifier and deployment example |
 | integrations | Native Adapter, Gateway/Model/MCP brokers, input/output and runtime control |
 | aevora_maintainer | Trusted source verification, review, publish/revise/revoke and publication fencing |
 | app, benchmark | OrderFlow task world, episode construction, Runner and CLI |
 | evaluator | Real independent evaluation, Oracle, worker/recovery controls and disclosed historical answers |
 | tests, aevora_core/tests | Business, integration, security, contract and graph tests |
 | scripts, tools | Debug, validation, export, reproducibility and experiment tooling |
-| historical_public_evaluation | Immutable original source pins and answer-disclosure statement |
+| docs/history/evaluation | Immutable original source pins and answer-disclosure statement |
+| docs/history/engineering, docs/history/graph-governance | Archived development programs and original design/implementation records |
 | docs/history, historical phase reports | Historical context; not a current test certificate |
 
 The release-level FULL_PROJECT_SOURCE_MATRIX.csv traces each recovered source content variant to an included equivalent, an inspected successor or an explicit exclusion. It is part of the original external release evidence, not a tracked root file, and remains unchanged. [Root classification](history/ROOT_CLEANUP_MATRIX.csv) and [path relocations](history/PATH_RELOCATIONS.csv) map the published root layout at d1708746 to the current history locations without rewriting frozen source pins or old provenance records. Generated private run stores and credentials are not implementation dependencies. New source provenance is derived from surviving real Git objects and dirty worktree bytes, not from the lost earlier matrix.

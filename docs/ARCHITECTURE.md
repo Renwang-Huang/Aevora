@@ -1,4 +1,4 @@
-# Aevora Gen2 public architecture
+# Aevora architecture
 
 ```text
 Agent / official MCP client
@@ -16,7 +16,7 @@ Core: `aevora_core/src/aevora`. Console: `console/src/aevora_observatory` and
 Runner, Oracle/tests/reference answers, Agent adapters, native source verifier and
 Trusted Host/Q07 implementation. See the [source scope](../FULL_PROJECT_SCOPE_AND_LICENSE.md)
 and [source map](FULL_PUBLIC_SOURCE_MAP.md). Formerly hidden evaluation material
-is labelled [public historical evaluation](../historical_public_evaluation/README.md);
+is labelled [public historical evaluation](../docs/history/evaluation/README.md);
 it is no longer a future blind test.
 
 Product-only Core/Console installation and the demo image remain independent of

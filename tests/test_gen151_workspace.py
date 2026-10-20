@@ -83,4 +83,4 @@ def test_full_release_selects_portable_developer_views():
     selected = {str(p.relative_to(ROOT)) for p in chosen()}
     assert set(VIEWS) <= selected
     assert "tools/workspace_check.py" in selected
-    assert "docs/current/WORKSPACE.md" in selected
+    assert "docs/WORKSPACES.md" in selected

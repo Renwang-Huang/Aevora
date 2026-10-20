@@ -37,7 +37,7 @@ def main(label='clean-onboarding'):
     check('public_wheel_no_private_members',not bad,{'members':names,'private_matches':bad,'wheel_sha256':digest(wheel)})
     venv=out/'venv';cmd([sys.executable,'-m','venv',venv]);python=venv/'bin/python'
     cmd([python,'-m','pip','install',wheel]);cmd([python,'-m','pip','check'])
-    ordinary=out/'ordinary-project';ordinary.mkdir();context=json.loads((ROOT/'h4/context.json').read_text());write(ordinary/'context.json',context)
+    ordinary=out/'ordinary-project';ordinary.mkdir();context=json.loads((ROOT/'examples/observatory/context.json').read_text());write(ordinary/'context.json',context)
     env={k:v for k,v in os.environ.items() if k not in ['PYTHONPATH','PYTHONHOME']};env['AEVORA_FALKORDB_GRAPH']='aevora_h4_user_'+uuid.uuid4().hex
     cmd([python,'-I','-c',"import importlib.util;assert importlib.util.find_spec('benchmark') is None;assert importlib.util.find_spec('integrations') is None;import aevora.mcp_connect;print('STANDALONE_CORE_ONLY')"],ordinary,env)
     cmd([python,'-I','-m','aevora','init'],ordinary,env)

@@ -89,7 +89,7 @@ Mandatory file/network boundaries can be PASS while overall security remains CON
 - [ ] Safety limits and local-hash/non-attestation limits remain stated; no key value or key digest enters an artifact.
 - [ ] Final review reports unfinished gates and stops at M1.
 
-See [Task System Design](TASK_SYSTEM_DESIGN.md), [Task Relations](TASK_RELATIONS.md) and [preimplementation design review](M1_DESIGN_REVIEW.md). This file intentionally does not prefill PASS checkboxes before dynamic validation.
+See [Task System Design](TASK_SYSTEM_DESIGN.md), [Task Relations](TASK_RELATIONS.md) and [preimplementation design review](history/orderflow/M1_DESIGN_REVIEW.md). This file intentionally does not prefill PASS checkboxes before dynamic validation.
 
 ## Final M1 execution addendum — 2026-10-10
 

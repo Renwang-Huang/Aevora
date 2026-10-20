@@ -9,6 +9,8 @@
 | [MCP setup](CODEX_MCP_SETUP.md) | Connect an Agent through four scoped product tools. |
 | [Benchmark](BENCHMARK.md) | Install and reproduce the disclosed model-free OrderFlow evaluation. |
 | [Reproducibility](REPRODUCIBILITY.md) | Product-only and engineering installation, tests and packaging. |
+| [Repository layout](REPOSITORY_LAYOUT.md) | Components, examples, current entrypoints and historical source boundaries. |
+| [Development](../DEVELOPMENT.md) | Set up the environment, work on a component and run checks. |
 
 ## See the product
 
@@ -50,8 +52,8 @@ Earlier public Observatory and first-generation interfaces remain available for
 compatibility. Read them in that context; the Decision Journey above is the
 current product entry.
 
-[Legacy Observatory API](H4_OBSERVATORY_API.md) ·
-[Earlier Hero scenario](H4_HERO_SCENARIO.md) ·
+[Legacy Observatory API](OBSERVATORY_API.md) ·
+[Earlier Hero scenario](REPLAY_SCENARIO.md) ·
 [Core lifecycle](../aevora_core/docs/H3_LIFECYCLE.md) ·
 [Core graph schema](../aevora_core/docs/GRAPH_SCHEMA.md)
 

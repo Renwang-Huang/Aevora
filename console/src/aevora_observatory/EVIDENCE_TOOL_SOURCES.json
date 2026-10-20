@@ -1,6 +1,6 @@
 [
   {
-    "destination": "h4/verify_hero.py",
+    "destination": "examples/observatory/verify_hero.py",
     "exact_copy": true,
     "sha256": "32a4ce5c8e48b207e6536508a2a3a590aeb1122b441bb10702b6cefdd7976ac3",
     "source": "tools/public_evidence/hero_verify.py"
@@ -12,7 +12,7 @@
     "source": "tools/public_evidence/hero_verify.py"
   },
   {
-    "destination": "h4/public_projection.py",
+    "destination": "examples/observatory/public_projection.py",
     "exact_copy": true,
     "sha256": "4f64d5343280c574324e70023031dbc7331d25ea338e5fdb78bbe16257f89eae",
     "source": "tools/public_evidence/projection.py"

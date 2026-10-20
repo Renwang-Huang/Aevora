@@ -6,10 +6,10 @@ from pathlib import Path
 import shutil
 
 import pytest
-from h4.verify_hero import verify
-from h4.public_projection import project
+from examples.observatory.verify_hero import verify
+from examples.observatory.public_projection import project
 
-SOURCE=Path(__file__).resolve().parents[1]/'h4'
+SOURCE=Path(__file__).resolve().parents[1]/'examples/observatory'
 
 
 @pytest.fixture

@@ -28,10 +28,10 @@ account is a trusted owner, not an adversarial isolation boundary.
 ## 2. Start the actual graph and Core
 
 ```sh
-docker compose -f h4/deploy/compose.yaml up -d --wait
+docker compose -f examples/observatory/deploy/compose.yaml up -d --wait
 .venv/bin/python -I -m aevora init
 .venv/bin/python -I -m aevora health
-.venv/bin/python -I -m aevora query --run-id first-query --context h4/context.json
+.venv/bin/python -I -m aevora query --run-id first-query --context examples/observatory/context.json
 ```
 
 A new Volume has **no experiences**. `AVAILABLE` with `candidates: []` is the
@@ -45,7 +45,7 @@ mint a VerifiedOutcome. Historic Hero evidence is a separately marked Replay.
 mkdir -p "$HOME/.local/state/aevora/product-session"
 chmod 700 "$HOME/.local/state/aevora/product-session"
 .venv/bin/python -I -m aevora serve --run-id ordinary-project \
-  --context h4/context.json \
+  --context examples/observatory/context.json \
   --socket "$HOME/.local/state/aevora/product-session/mcp.sock" \
   --capability-file "$HOME/.local/state/aevora/product-session/grant.json" \
   --events "$HOME/.local/state/aevora/product-session/mcp_events.jsonl" \
@@ -91,7 +91,7 @@ The native validation owner/Benchmark scripts are not product dependencies.
 
 ## 5. Save and clean up
 
-Ctrl-C Core serve, then `docker compose -f h4/deploy/compose.yaml stop` for a
+Ctrl-C Core serve, then `docker compose -f examples/observatory/deploy/compose.yaml stop` for a
 graceful stop. The named Volume is retained. Use `down` to remove only the owned
 containers/network; `down -v` permanently deletes that project's data and is
 an explicit disposable-demo choice. Do not run it on a historical deployment.
