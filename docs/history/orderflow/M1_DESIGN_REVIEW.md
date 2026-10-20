@@ -2,9 +2,9 @@
 
 **Review version:** `1.2.0` · **Reviewer marker:** `maintainer_codex:m1_blueprint` · **Review kind:** static design self-review plus evidence-aware status addendum, not an external independent certification.
 
-**Design conclusion: PASS for implementation readiness.** This review accepts the contracts in [TASK_SYSTEM_DESIGN.md](TASK_SYSTEM_DESIGN.md), [TASK_ADMISSION_GATES.md](TASK_ADMISSION_GATES.md) and [TASK_RELATIONS.md](TASK_RELATIONS.md). **Episode D Engineering/Research/Pilot gates are UNVERIFIED at this preimplementation review.** Their final conclusions require new dynamic evidence and must not be inferred from this design PASS.
+**Design conclusion: PASS for implementation readiness.** This review accepts the contracts in [TASK_SYSTEM_DESIGN.md](../../TASK_SYSTEM_DESIGN.md), [TASK_ADMISSION_GATES.md](../../TASK_ADMISSION_GATES.md) and [TASK_RELATIONS.md](../../TASK_RELATIONS.md). **Episode D Engineering/Research/Pilot gates are UNVERIFIED at this preimplementation review.** Their final conclusions require new dynamic evidence and must not be inferred from this design PASS.
 
-The original review and four design documents are preserved in `design_preimplementation/` with `DESIGN_GATE.json` inside the archive identified by [m1_validation/CURRENT](../m1_validation/CURRENT). This working-document update does not edit those historical bytes. **Current D status is IMPLEMENTED**, Scenario `2.0.0`, Fixture `1.0.0`, Suite `1.2.0` with **28** required identities, Evaluator `3.1.0`. It has a real 2/4-worker supervisor, trusted peer/process/FD identity, a direct D Oracle and a stable-flock legal alternative. Earlier exact-artifact A/D strategy measurements and the old Suite `1.0.0` 30-run series remain preserved; new Suite `1.2.0` exact-artifact transfer and 30-run validation are separately linked in [Task Relations](TASK_RELATIONS.md). The new cohort has 10 Buggy FAIL, 10 Reference PASS and 10 flock PASS; regression is 664/664 PASS with all 499 old test identities retained. These executed findings are current evidence, while terminal root reports record Research/Overall CONDITIONAL PASS and original closure1/3.
+The original review and four design documents are preserved in `design_preimplementation/` with `DESIGN_GATE.json` inside the archive identified by [m1_validation/CURRENT](../m1_validation/CURRENT). This working-document update does not edit those historical bytes. **Current D status is IMPLEMENTED**, Scenario `2.0.0`, Fixture `1.0.0`, Suite `1.2.0` with **28** required identities, Evaluator `3.1.0`. It has a real 2/4-worker supervisor, trusted peer/process/FD identity, a direct D Oracle and a stable-flock legal alternative. Earlier exact-artifact A/D strategy measurements and the old Suite `1.0.0` 30-run series remain preserved; new Suite `1.2.0` exact-artifact transfer and 30-run validation are separately linked in [Task Relations](../../TASK_RELATIONS.md). The new cohort has 10 Buggy FAIL, 10 Reference PASS and 10 flock PASS; regression is 664/664 PASS with all 499 old test identities retained. These executed findings are current evidence, while terminal root reports record Research/Overall CONDITIONAL PASS and original closure1/3.
 
 ### Newly found falsifier: custom transaction hides an incorrect split commit
 
@@ -28,7 +28,7 @@ The legal sample persists a provisional creation marker, then performs coherent 
 
 ## 1. Inputs actually reviewed
 
-- Original root [taskbook](history/taskbooks/OrderFlow_M1_Task_System_and_Episode_D_Codex_Implementation.md) in full; Roadmap v1.0 including M1, M3 variant and M4 exposure boundaries; overall specification v1.0.
+- Original root [taskbook](../taskbooks/OrderFlow_M1_Task_System_and_Episode_D_Codex_Implementation.md) in full; Roadmap v1.0 including M1, M3 variant and M4 exposure boundaries; overall specification v1.0.
 - Root maintainer guide, README, architecture, Episode A and Registry documents.
 - Current manifest/Registry/suite protocol, A fixture, business service/persistence/payments/events, generic RPC worker/client, submission boundary and Codex/public-workspace entry points.
 - Phase 2 actual alternative-strategy report and construction code; Phase 3.5 root report, corresponding original final report and recovery aggregate evidence.
@@ -93,7 +93,7 @@ No box below is a result at design time:
 - [ ] Three new bounded Gateway native-agent blind pilots with source/input freeze, raw child evidence, real submissions and independent evaluator results.
 - [ ] Final command/result/claim matrix, all failures, source hashes and local sealing limits.
 
-The main agent's final [design review](history/orderflow/M1_TASK_SYSTEM_DESIGN_REVIEW.md) may reference this preimplementation review and add actual evidence. It must preserve the distinction between this static readiness decision and dynamic admission.
+The main agent's final [design review](M1_TASK_SYSTEM_DESIGN_REVIEW.md) may reference this preimplementation review and add actual evidence. It must preserve the distinction between this static readiness decision and dynamic admission.
 
 ## 6. Mature implementation sources checked
 
@@ -105,4 +105,4 @@ SWE-bench's existing harness and bubblewrap's caller-owned namespace primitives 
 
 ## Final M1 execution addendum — 2026-10-10
 
-Final evidence: [engineering](history/orderflow/M1_EPISODE_D_VALIDATION_REPORT.md), [design review](history/orderflow/M1_TASK_SYSTEM_DESIGN_REVIEW.md), [Pilot](history/orderflow/M1_PILOT_REPORT.md), [matrix](history/orderflow/M1_EVIDENCE_MATRIX.md), [limits](history/orderflow/M1_REMAINING_ISSUES.md). Design PASS; D Engineering PASS within declared tested scope; Research/Overall CONDITIONAL PASS. OriginalPilot TIMEOUT/PASS/TIMEOUT, closure1/3; two separate unchanged-Agent offline28PASS results do not upgrade original trials. This update does not rewrite archived preimplementation/history or assert arbitrary hostile safety. Stop atM1; B/C planned, Experience disabled.
+Final evidence: [engineering](M1_EPISODE_D_VALIDATION_REPORT.md), [design review](M1_TASK_SYSTEM_DESIGN_REVIEW.md), [Pilot](M1_PILOT_REPORT.md), [matrix](M1_EVIDENCE_MATRIX.md), [limits](M1_REMAINING_ISSUES.md). Design PASS; D Engineering PASS within declared tested scope; Research/Overall CONDITIONAL PASS. OriginalPilot TIMEOUT/PASS/TIMEOUT, closure1/3; two separate unchanged-Agent offline28PASS results do not upgrade original trials. This update does not rewrite archived preimplementation/history or assert arbitrary hostile safety. Stop atM1; B/C planned, Experience disabled.

@@ -19,7 +19,7 @@ for kind,pattern in [('wheel','*.whl'),('sdist','*.tar.gz')]:
     facts[kind]=json.loads(command([sys.executable,'-I','-c',code]));assert facts[kind]['prebuilt_frontend']
 assert facts['wheel']==facts['sdist']
 command([sys.executable,'-m','pip','check'])
-command([sys.executable,'-I','/opt/aevora/h4/verify_hero.py','/opt/aevora/h4','--sha256','c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776'])
+command([sys.executable,'-I','/opt/aevora/examples/observatory/verify_hero.py','/opt/aevora/examples/observatory','--sha256','c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776'])
 freeze=command([sys.executable,'-m','pip','freeze']);(out/'ACTUAL_DEPENDENCIES.txt').write_bytes(freeze)
 result={'status':'PASS','actual_commands':commands,'installed_package_sources':facts,'python':platform.python_version(),'sqlite':sqlite3.sqlite_version,'model_calls':0,'scope':'Public-only actual wheel/sdist installation, prebuilt frontend and independently pinned Hero verifier; no Benchmark imports'}
 (out/'RESULT.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({'status':'PASS','commands':len(commands),'python':result['python'],'sqlite':result['sqlite']}))

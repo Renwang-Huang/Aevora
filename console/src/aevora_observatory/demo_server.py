@@ -11,7 +11,7 @@ from .server import create_app
 def main():
     directory=Path('/state')
     if not (directory/'baseline.json').exists():seed(directory)
-    app=create_app(replay_root='/opt/aevora/h4',
+    app=create_app(replay_root='/opt/aevora/examples/observatory',
                    replay_sha256='c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776',
                    demo_state=directory)
     import uvicorn

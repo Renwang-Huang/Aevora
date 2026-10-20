@@ -18,7 +18,7 @@ initialized=subprocess.run(init_argv,capture_output=True)
 (out/'init-stdout.log').write_bytes(initialized.stdout);(out/'init-stderr.log').write_bytes(initialized.stderr)
 check('documented_public_cli_initialization',initialized.returncode==0,{'argv':init_argv,'exit_code':initialized.returncode,'result':json.loads(initialized.stdout) if initialized.returncode==0 else None})
 repo=GraphRepository.from_environment();check('new_volume_empty_published_graph',repo.experience_ids()==[],{'experiences':repo.experience_ids(),'graph':repo.graph_name});repo.close()
-run_id='fresh-user-sdk';argv=[sys.executable,'-I','-m','aevora','serve','--run-id',run_id,'--context','/opt/aevora/h4/context.json','--socket',str(sock),'--capability-file',str(cap),'--events',str(events),'--enable-proposals']
+run_id='fresh-user-sdk';argv=[sys.executable,'-I','-m','aevora','serve','--run-id',run_id,'--context','/opt/aevora/examples/observatory/context.json','--socket',str(sock),'--capability-file',str(cap),'--events',str(events),'--enable-proposals']
 stdout=(out/'serve-stdout.log').open('wb');stderr=(out/'serve-stderr.log').open('wb');proc=subprocess.Popen(argv,stdout=stdout,stderr=stderr)
 try:
     deadline=time.monotonic()+30

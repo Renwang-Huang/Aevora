@@ -4,7 +4,7 @@ On 2026-10-19 the repository owner affirmed MIT publication rights for the 96 pa
 
 The root MIT LICENSE covers owner-controlled code and documentation in this expanded candidate, including `app`, `benchmark`, `evaluator`, `integrations`, `aevora_maintainer`, `scripts`, `tools`, and project tests. Existing Core/Console MIT licenses remain. Dependency and vendored notices remain in THIRD_PARTY_NOTICES.md and their respective package license files. No external proprietary source, model binaries or privately licensed datasets are added.
 
-Formerly hidden evaluation code, labels and reference patches remain in their original `evaluator/` compatibility paths. `historical_public_evaluation/SOURCE_PINS.json` records the original surviving G2-FINAL bytes. Publication discloses the answers: subsequent trials against these suites are **not blind, held-out, or evidence of an independent future test**. The candidate does not rerun paid Agents or claim causal improvement.
+Formerly hidden evaluation code, labels and reference patches remain in their original `evaluator/` compatibility paths. `docs/history/evaluation/SOURCE_PINS.json` records the original surviving G2-FINAL bytes. Publication discloses the answers: subsequent trials against these suites are **not blind, held-out, or evidence of an independent future test**. The candidate does not rerun paid Agents or claim causal improvement.
 
 Actual credentials, signing private keys, Host registry/grant data, private raw model sessions, generated databases and unsafe raw evaluation data are not publication inputs. Synthetic credential strings in negative tests are deliberate test fixtures. Public source does not grant a caller production Host authority.
 

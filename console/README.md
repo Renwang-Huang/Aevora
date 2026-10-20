@@ -1,13 +1,8 @@
-# Gen2 Decision Journey — current public entry
-
-From the public source root, follow the [release README](../README.md). The new
-`/journey.html` presents live synthetic Graph v2 observations separately from
-the sanitized G23 historical evidence. The legacy server/pages below remain
-available with their explicit source classifications.
-
 # Aevora Experience Console
 
 A read-only companion to Aevora's MCP interface. The existing Core resolves WHEN/WHY using actual FalkorDB relationships. This Console displays public projections; it does not approve candidates or create trusted outcomes.
+
+The current product entry is `/journey.html`, started through the [Quickstart](../docs/QUICKSTART.md). It displays live synthetic Graph v2 observations separately from historical Agent evidence. The optional pinned Observatory replay below serves the same read-only API with explicit source classifications.
 
 ## Build and run
 

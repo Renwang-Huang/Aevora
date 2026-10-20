@@ -21,12 +21,12 @@
       "path": "console/web"
     },
     {
-      "name": "Public UX",
-      "path": "h4"
+      "name": "Replay example",
+      "path": "examples/observatory"
     },
     {
-      "name": "Current Docs",
-      "path": "docs/current"
+      "name": "Documentation",
+      "path": "docs"
     },
     {
       "name": "Dev Tools",

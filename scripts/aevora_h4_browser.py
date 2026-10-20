@@ -8,7 +8,7 @@ def main(label):
     create="from aevora.graph_repository import GraphRepository; r=GraphRepository.from_environment(); r.initialize(); print(r.state_fingerprint()); r.close()"
     rc=record(a,label+'-empty-graph-init',launch('-c',create,graph=name))
     if rc:raise ValueError('Actual empty graph init failed')
-    argv=launch('-m','aevora_observatory.server','--replay-root',ROOT/'h4','--replay-sha256',digest(ROOT/'h4/hero_scenario_contract.json'),'--port','17805',graph=name)
+    argv=launch('-m','aevora_observatory.server','--replay-root',ROOT/'examples/observatory','--replay-sha256',digest(ROOT/'examples/observatory/hero_scenario_contract.json'),'--port','17805',graph=name)
     begin=now();stdout=(out/'server-stdout.log').open('wb');stderr=(out/'server-stderr.log').open('wb');proc=subprocess.Popen(argv,cwd=ROOT,stdout=stdout,stderr=stderr,start_new_session=True)
     try:
         deadline=time.monotonic()+20

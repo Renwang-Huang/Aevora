@@ -15,6 +15,11 @@ def history_path(root, relative):
         raise ValueError('Canonical repository-relative path required')
     with (root / 'docs/history/PATH_RELOCATIONS.csv').open(newline='') as stream:
         paths = {row['old_path']: row['new_path'] for row in csv.DictReader(stream)}
+    overlay = root / 'docs/history/PRODUCT_PATH_RELOCATIONS.csv'
+    if overlay.is_file():
+        with overlay.open(newline='') as stream:
+            paths.update({row['old_path']: row['new_path'] for row in csv.DictReader(stream)
+                          if row['new_path'].startswith('docs/history/')})
     mapped = paths.get(relative, relative)
     target = root / mapped
     if mapped != relative and not mapped.startswith('docs/history/'):

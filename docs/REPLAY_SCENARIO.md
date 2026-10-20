@@ -1,4 +1,4 @@
-# H4 Hero: three actual cases
+# Observatory replay: three evidence cases
 
 All three acts below are REPLAY of frozen H3 evidence. LIVE means an actual current graph read and never silently substitutes these files.
 
@@ -12,12 +12,12 @@ Act I is not the origin of Case B/C. The product narrative does not turn a displ
 
 ## Independent evidence contract
 
-`h4/hero_scenario_contract.json` explicitly declares identities, PUBLIC/REPLAY, source fingerprints and excluded material. `h4/replay/*.json` are allowlisted projections of immutable actual artifacts. `g0/hero/PROJECTION_SOURCES.json` in the maintainer H4 archive binds all original file hashes. Public native references retain line/hash/identity, while raw task prose/logs remain NOT_INCLUDED.
+`examples/observatory/hero_scenario_contract.json` explicitly declares identities, PUBLIC/REPLAY, source fingerprints and excluded material. `examples/observatory/replay/*.json` are allowlisted projections of immutable actual artifacts. `g0/hero/PROJECTION_SOURCES.json` in the maintainer H4 archive binds all original file hashes. Public native references retain line/hash/identity, while raw task prose/logs remain NOT_INCLUDED.
 
 Run a separately trusted verifier with a separately trusted contract pin:
 
 ```sh
-python3 -I h4/verify_hero.py h4 --sha256 c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776
+python3 -I examples/observatory/verify_hero.py h4 --sha256 c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776
 python3 -m scripts.aevora_h4_hero demo --sha256 c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776
 ```
 

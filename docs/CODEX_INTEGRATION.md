@@ -1,6 +1,6 @@
 # Codex Native Multi-Agent Integration
 
-> **Phase 3.5 current profile:** new live runs use the hardened Gateway provider, `gpt-5.6-terra`, explicit `max`, isolated network namespaces and a per-run authenticated Unix model channel. Legacy descriptions below document Phase 3 behavior; they do not describe new live runs. See [PHASE3_5_HARDENING.md](PHASE3_5_HARDENING.md) and [GATEWAY_PROVIDER.md](GATEWAY_PROVIDER.md). New live Legacy entry fails closed.
+> **Phase 3.5 current profile:** new live runs use the hardened Gateway provider, `gpt-5.6-terra`, explicit `max`, isolated network namespaces and a per-run authenticated Unix model channel. Legacy descriptions below document Phase 3 behavior; they do not describe new live runs. See [PHASE3_5_HARDENING.md](history/phase1-3/PHASE3_5_HARDENING.md) and [GATEWAY_PROVIDER.md](GATEWAY_PROVIDER.md). New live Legacy entry fails closed.
 >
 > The Gateway profile enables the official Code Mode helper and native collaboration, uses a fresh private CODEX_HOME without `--ephemeral` so same-run child forks can work, seals exact public stdin before launch, archives redacted official run rollouts after process cleanup, and removes state. Upstream credentials stay exclusively in the trusted broker. The documented CPU/disk sampling and candidate resource limitations require a conditional adversarial security assessment.
 

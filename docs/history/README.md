@@ -6,6 +6,11 @@ These records describe their original source epochs. Past PASS, FAIL, PARTIAL, S
 
 ## Paths, bytes and provenance
 
+- [Product path relocations](PRODUCT_PATH_RELOCATIONS.csv): the later component-oriented layout, including the former root `h4/` replay example and consolidated historical engineering source. This overlay preserves earlier maps and records both byte-exact moves and Markdown destination adjustments.
+- [Historical engineering programs](engineering/README.md): retained development/debugging harness source, with its original stage identities and limits.
+- [Historical evaluation disclosure](evaluation/README.md): original Oracle source pins and public-answer disclosure.
+- [Graph and governance development](graph-governance/README.md): original architecture, contracts, implementation and native transfer records.
+
 - [Root cleanup matrix](ROOT_CLEANUP_MATRIX.csv): all 101 original root files, including the 19 active files kept at the root, classification evidence, old/new paths and SHA256.
 - [Path relocation map](PATH_RELOCATIONS.csv): all 82 moved files; unchanged bytes are distinguished from Markdown destination-only adjustments.
 - The original files remain accessible in [the published pre-cleanup tree](https://github.com/Renwang-Huang/Aevora/tree/d1708746e26c7c1eaddcb7ac0cec92a65baf21d3). No dates, source pins, CSV/JSON historical matrices, test identities, assertions or recorded outcomes are rewritten.
@@ -115,4 +120,4 @@ These records describe their original source epochs. Past PASS, FAIL, PARTIAL, S
 
 ## Later generations and evidence boundaries
 
-[Gen2 design and implementation records](../gen2/) are maintained at their existing paths where available; use the [source map](../FULL_PUBLIC_SOURCE_MAP.md) for current implementation ownership. [Evidence policy](../../evidence/README.md) distinguishes included source and summaries from unpublished raw sessions or sealed run stores.
+[Graph and governance design records](graph-governance/README.md) retain their original source epochs; use the [source map](../FULL_PUBLIC_SOURCE_MAP.md) for current implementation ownership. [Evidence policy](../../evidence/README.md) distinguishes included source and summaries from unpublished raw sessions or sealed run stores.

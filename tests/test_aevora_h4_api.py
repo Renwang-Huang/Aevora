@@ -13,10 +13,10 @@ from aevora.experience_resolver import ExperienceResolver
 from aevora_observatory.server import create_app
 from aevora_observatory.projection import CONTEXTS,activity
 
-ROOT=Path(__file__).resolve().parents[1];PIN=sha256((ROOT/'h4/hero_scenario_contract.json').read_bytes()).hexdigest()
+ROOT=Path(__file__).resolve().parents[1];PIN=sha256((ROOT/'examples/observatory/hero_scenario_contract.json').read_bytes()).hexdigest()
 
 
-def client(**kwargs):return TestClient(create_app(replay_root=ROOT/'h4',replay_sha256=PIN,**kwargs),base_url='http://127.0.0.1')
+def client(**kwargs):return TestClient(create_app(replay_root=ROOT/'examples/observatory',replay_sha256=PIN,**kwargs),base_url='http://127.0.0.1')
 
 
 @pytest.fixture
@@ -123,7 +123,7 @@ def test_actual_oversized_graph_fails_before_unbounded_reads(repo):
 
 
 def test_independent_replay_tamper_detected_after_startup(tmp_path):
-    replay=tmp_path/'replay';replay.mkdir();shutil.copytree(ROOT/'h4/replay',replay/'replay');shutil.copyfile(ROOT/'h4/hero_scenario_contract.json',replay/'hero_scenario_contract.json')
+    replay=tmp_path/'replay';replay.mkdir();shutil.copytree(ROOT/'examples/observatory/replay',replay/'replay');shutil.copyfile(ROOT/'examples/observatory/hero_scenario_contract.json',replay/'hero_scenario_contract.json')
     with TestClient(create_app(replay_root=replay,replay_sha256=PIN),base_url='http://127.0.0.1') as c:
         with (replay/'replay/origin.json').open('ab') as f:f.write(b' ')
         assert c.get('/api/overview').status_code==422
@@ -145,8 +145,8 @@ def test_native_activity_public_header_is_exact_bytes(tmp_path):
 
 def test_vendor_is_exact_public_source_no_new_when_logic():
     d=ROOT/'console/src/aevora_observatory'
-    assert (d/'_hero_verify.py').read_bytes()==(ROOT/'h4/verify_hero.py').read_bytes()
-    assert (d/'_public_projection.py').read_bytes()==(ROOT/'h4/public_projection.py').read_bytes()
+    assert (d/'_hero_verify.py').read_bytes()==(ROOT/'examples/observatory/verify_hero.py').read_bytes()
+    assert (d/'_public_projection.py').read_bytes()==(ROOT/'examples/observatory/public_projection.py').read_bytes()
 
 
 def test_actual_typed_header_exposes_snapshot_time_and_unknown_liveness(tmp_path):

@@ -36,7 +36,7 @@ the FalkorDB SDK/password. It reuses the existing byte proxy; the fixed-path
 Benchmark Participant proxy is unchanged.
 
 ```sh
-python3 h4/mcp_config.py --python "$(pwd)/.venv/bin/python" \
+python3 examples/observatory/mcp_config.py --python "$(pwd)/.venv/bin/python" \
   --capability-file "$HOME/.local/state/aevora/product-session/grant.json"
 ```
 

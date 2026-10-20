@@ -8,7 +8,7 @@ DOCS=['QUICKSTART.md','CODEX_MCP_SETUP.md','TROUBLESHOOTING.md','H4_HERO_SCENARI
 
 def chosen():
     paths=set()
-    bases=['aevora_core/src','aevora_core/docs','aevora_core/examples/receipt_store','console/src','console/web','console/third_party','h4']
+    bases=['aevora_core/src','aevora_core/docs','aevora_core/examples/receipt_store','console/src','console/web','console/third_party','examples/observatory']
     for base in bases:
         for p in (ROOT/base).rglob('*'):
             if p.is_file() and not p.is_symlink() and not set(p.parts)&SKIP and not any(x.endswith('.egg-info') for x in p.parts):paths.add(p)

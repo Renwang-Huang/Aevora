@@ -8,7 +8,7 @@ channel only. Do not mount database secrets in an Agent container.
 Build from the public source root (Linux AMD64, Python 3.12.14 pinned digest):
 
 ```sh
-docker build -f h4/deploy/Dockerfile -t aevora-local:0.1.0 .
+docker build -f examples/observatory/deploy/Dockerfile -t aevora-local:0.1.0 .
 ```
 
 After the Quickstart's owned FalkorDB deployment, initialize using the actual

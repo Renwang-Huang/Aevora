@@ -1,6 +1,6 @@
 # Public historical evaluator
 
-The actual supervisor/worker, Oracle, clock and recovery admission code is in `evaluator/`. Former `hidden_tests/`, `private_manifests/`, `private_labels/` and `reference_patches/` names are compatibility namespaces, not current secrecy claims. The original source byte pins and disclosure label are in `historical_public_evaluation/`.
+The actual supervisor/worker, Oracle, clock and recovery admission code is in `evaluator/`. Former `hidden_tests/`, `private_manifests/`, `private_labels/` and `reference_patches/` names are compatibility namespaces, not current secrecy claims. The original source byte pins and disclosure label are in `docs/history/evaluation/`.
 
 The trusted evaluator launches a fresh isolated pytest process, checks exact registered test identities, derives counts from actual JUnit cases, reads durable SQLite records independently, and verifies recovery observations. Candidate source is never imported into the trusted pytest interpreter. Physical worker isolation, UDS peer/process identity, resource limits, fail-closed setup and exact source pin checks remain enforced. Making verifier source public does not confer Host authorization.
 

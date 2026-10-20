@@ -6,12 +6,12 @@ def main(label):
     from aevora.graph_repository import GraphRepository
     from aevora.experience_resolver import ExperienceResolver
     from aevora_observatory.projection import CONTEXTS
-    from h4.public_projection import decision_view
+    from examples.observatory.public_projection import decision_view
     a=archive();out=a/'g4'/label;out.mkdir(mode=0o700)
     source=GraphRepository.from_environment();before_source=source.state_fingerprint();name='aevora_h4_control_'+uuid.uuid4().hex;source._graph.copy(name)
     import os
     os.environ['AEVORA_FALKORDB_GRAPH']=name;repo=GraphRepository.from_environment()
-    edge=json.loads((ROOT/'h4/replay/evolution.json').read_text())['selected_edge'];eid='experience:sqlite-atomic-reservation'
+    edge=json.loads((ROOT/'examples/observatory/replay/evolution.json').read_text())['selected_edge'];eid='experience:sqlite-atomic-reservation'
     commands=[]
     def query(statement,params,readonly=True):
         at=now();value=repo.query(statement,params,read_only=readonly);commands.append({'cypher':statement,'params':params,'rows':value,'read_only':readonly,'started_at':at,'ended_at':now()});return value

@@ -5,12 +5,12 @@ import json
 import re
 from hashlib import sha256
 from scripts.aevora_h4_audit import ROOT,archive,write,digest,now
-from h4.public_projection import project,decision_view
+from examples.observatory.public_projection import project,decision_view
 
 
 def build(destination=None,receipt_label='hero'):
     a=archive(); old=Path((ROOT/'aevora_validation/H3_CURRENT').read_text().strip())
-    root=Path(destination or ROOT/'h4');root.mkdir(parents=True,exist_ok=True)
+    root=Path(destination or ROOT/'examples/observatory');root.mkdir(parents=True,exist_ok=True)
     out=root/'replay'; out.mkdir(mode=0o755)
     artifacts={};sources={}
     frozen=json.loads((old/'EVIDENCE_MANIFEST.json').read_text())['ordinary_files_sha256']
@@ -158,13 +158,13 @@ def build(destination=None,receipt_label='hero'):
 
 
 def demo(root,expected):
-    from h4.verify_hero import verify
+    from examples.observatory.verify_hero import verify
     receipt=verify(root,expected)
     contract=json.loads((root/'hero_scenario_contract.json').read_text())
     print(json.dumps({'verification':receipt,'acts':contract['acts'],'claims':contract['claims']},indent=2))
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('op',choices=['build','demo']);p.add_argument('--root',type=Path,default=ROOT/'h4');p.add_argument('--sha256');p.add_argument('--receipt-label',default='hero');args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('op',choices=['build','demo']);p.add_argument('--root',type=Path,default=ROOT/'examples/observatory');p.add_argument('--sha256');p.add_argument('--receipt-label',default='hero');args=p.parse_args()
     if args.op=='build':build(args.root,args.receipt_label)
     else:demo(args.root,args.sha256)

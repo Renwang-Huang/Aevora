@@ -48,7 +48,7 @@ def test_full_selection_contains_engineering_but_excludes_run_credentials():
             'integrations/codex_agent.py','aevora_maintainer/host_v2.py',
             'tools/public_evidence/hero_verify.py'} <= paths
     assert not any(p.startswith(('runs/','owned_secrets/','.venv/')) for p in paths)
-    assert {'AGENTS.md','historical_engineering/maintainer/AGENTS.md'} <= paths
+    assert {'AGENTS.md','docs/history/engineering/maintainer/AGENTS.md'} <= paths
 
 
 def test_current_output_guard_preserves_sealed_archive(tmp_path):

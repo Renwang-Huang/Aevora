@@ -11,6 +11,16 @@ from tools.public_release import chosen
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def current_hashes():
+    # Earlier maps describe their original source epoch. A later layout can
+    # adjust Markdown destinations while preserving that frozen receipt.
+    overlay = ROOT/'docs/history/PRODUCT_PATH_RELOCATIONS.csv'
+    if not overlay.is_file():
+        return {}
+    with overlay.open(newline='') as stream:
+        return {row['new_path']: row['new_sha256'] for row in csv.DictReader(stream)}
+
+
 def test_root_inventory_and_all_relocated_hashes_match():
     with (ROOT/'docs/history/ROOT_CLEANUP_MATRIX.csv').open(newline='') as stream:
         rows = list(csv.DictReader(stream))
@@ -19,11 +29,12 @@ def test_root_inventory_and_all_relocated_hashes_match():
     expected_root = {row['new_path'] for row in rows if row['action'] == 'KEEP'}
     # Ignore local build/cache files; all baseline root entrypoints are retained.
     assert len(expected_root) == 19
+    hashes = current_hashes()
     for row in rows:
         path = ROOT/row['new_path']
         assert path.is_file() and not path.is_symlink()
         if row['action'] == 'MOVE':
-            assert sha256(path.read_bytes()).hexdigest() == row['new_sha256']
+            assert sha256(path.read_bytes()).hexdigest() == hashes.get(row['new_path'],row['new_sha256'])
             assert not (ROOT/row['old_path']).exists()
             assert history_path(ROOT,row['old_path']) == path
             if path.suffix in {'.csv','.json'}:

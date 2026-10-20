@@ -172,7 +172,7 @@ The common-API recovery observer is implemented and has fresh supported-API posi
 
 Final M1 reports must bind real command receipts, complete result denominators, new Run IDs, patch/tree hashes, exact test/fingerprint data, PID/shared-DB/operation records, crash-window coverage, original failures and unresolved limitations. Preserve all historical archives and old D=PLANNED assertions in their original baseline snapshots; current-state assertion migrations are explicit.
 
-See [task design](TASK_SYSTEM_DESIGN.md), [task relations and exact A origins](TASK_RELATIONS.md), and [preimplementation self-review](M1_DESIGN_REVIEW.md). Stop after M1; B/C, governance systems and formal G0–G3 remain outside this implementation.
+See [task design](TASK_SYSTEM_DESIGN.md), [task relations and exact A origins](TASK_RELATIONS.md), and [preimplementation self-review](history/orderflow/M1_DESIGN_REVIEW.md). Stop after M1; B/C, governance systems and formal G0–G3 remain outside this implementation.
 
 ## Final M1 execution addendum — 2026-10-10
 
