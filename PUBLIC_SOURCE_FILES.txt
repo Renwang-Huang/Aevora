@@ -4,6 +4,7 @@
 .gitattributes
 .github/workflows/source-check.yml
 .gitignore
+.mailmap
 AGENTS.md
 Aevora.Maintainer.code-workspace
 Aevora.Product.code-workspace
