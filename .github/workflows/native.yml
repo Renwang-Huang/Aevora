@@ -33,8 +33,6 @@ jobs:
         run: go build -mod=readonly -buildvcs=false -trimpath -o "${RUNNER_TEMP}/aevora" ./cmd/aevora
   runtime:
     runs-on: ubuntu-24.04
-    env:
-      GOCACHE: ${{ runner.temp }}/aevora-go-cache
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -44,6 +42,8 @@ jobs:
           go-version: "1.27.3"
           cache: false
       - name: Runtime unit contracts
+        env:
+          GOCACHE: ${{ runner.temp }}/aevora-go-cache
         working-directory: go-runtime
         run: go test -race -count=1 -timeout=60s ./...
       - name: Build supported targets (not native runtime validation)

@@ -30,6 +30,10 @@ def build(output,*,go,goreleaser,licenses,version,stable=False):
     if not re.fullmatch(pattern if stable else pattern+r'-dev(?:\.[A-Za-z0-9.-]+)?',version):
         raise ValueError('Stable artifacts require --stable with an exact release version; snapshots require a development version')
     env={**os.environ,'CGO_ENABLED':'0','PYTHONDONTWRITEBYTECODE':'1','PATH':str(Path(go).parent)+os.pathsep+os.environ.get('PATH','')}
+    # A relocated helper may have been built with another GOROOT. Its package
+    # loader must identify the selected toolchain's standard library correctly.
+    env.pop('GOROOT',None)
+    env['GOROOT']=run([str(go),'env','GOROOT'],env).strip()
     if run(['git','status','--porcelain','-uall'],env,ROOT).strip():raise ValueError('Commit functional changes before building a reviewable snapshot')
     revision=run(['git','rev-parse','HEAD'],env,ROOT).strip()
     synchronize(check=True)
