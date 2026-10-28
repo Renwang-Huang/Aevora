@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aevora-core"
-version = "0.1.0"
+version = "0.2.0"
 license = {file = "LICENSE"}
 description = "Aevora Experience Accountability Core powered by FalkorDB"
 requires-python = ">=3.12,<3.13"
-dependencies = ["falkordb==1.7.1", "redis==8.1.0", "mcp==1.26.0", "jsonschema==4.26.0"]
+dependencies = ["falkordb==1.7.1", "redis==8.1.0", "mcp==1.26.0"]
 
 [project.scripts]
 aevora = "aevora.cli:entrypoint"
@@ -20,7 +20,4 @@ namespaces = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra"
-
-[tool.setuptools.package-data]
-aevora = ["schemas_v2/*.json", "queries_v2/*.cypher"]
+addopts = "-ra --import-mode=importlib"

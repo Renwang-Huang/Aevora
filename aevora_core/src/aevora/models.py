@@ -11,7 +11,7 @@ LEGACY_SCHEMA_VERSION = "aevora.graph/1.0"
 LEGACY_QUERY_VERSION = "aevora.multihop/1.0"
 SCHEMA_VERSION = "aevora.graph/1.1"
 QUERY_VERSION = "aevora.multihop/1.1"
-RULE_VERSION = "aevora.when/1.1"
+RULE_VERSION = "aevora.when/1.2"
 LEGACY_LABELS = frozenset({"Experience", "ExperienceRevision", "Rule", "Premise", "Evidence",
                     "VerifiedOutcome", "Context", "Task", "Agent", "Query", "Decision",
                     "ObservedAction", "Feedback", "AuditEvent", "Schema"})
@@ -25,12 +25,9 @@ RELATIONSHIPS = LEGACY_RELATIONSHIPS | {"SUPERSEDES", "GOVERNS", "AT_SNAPSHOT"}
 LIFECYCLE_SCHEMA_VERSION = "aevora.graph/1.2"
 LIFECYCLE_LABELS = LABELS | {"Candidate", "LifecycleHead", "CandidateEvent", "SourceVerification", "ExternalObservation"}
 LIFECYCLE_RELATIONSHIPS = RELATIONSHIPS | {"HAS_LIFECYCLE", "HAS_CANDIDATE_EVENT", "PREVIOUS_EVENT", "HAS_SOURCE_VERIFICATION", "PUBLISHED_FROM"}
-PUBLIC_CONTEXT_FACTS = frozenset({"concurrency_scope", "worker_count", "worker_count_known",
-    "shared_state_kind", "synchronization_scope", "transaction_guarantees", "observed_failure_mode",
-    "shared_object_scope", "sqlite_journal_mode", "operation_semantics", "authority_model",
-    "clock_domain", "failure_domain", "contract_version", "lease_expiry_semantics",
-    "authority_validation", "supported_operation_set"})
-SOURCE_TYPES = frozenset({"natural_agent_run", "maintainer_seed", "synthetic_or_test_fixture"})
+from .fact_catalog import PUBLIC_FACT_KEYS, valid_value
+PUBLIC_CONTEXT_FACTS = frozenset(PUBLIC_FACT_KEYS)
+SOURCE_TYPES = frozenset({"natural_agent_run", "maintainer_seed", "synthetic_or_test_fixture", "independent_project"})
 ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:/@+\-]{0,239}$")
 
 
@@ -101,11 +98,13 @@ def parse_timestamp(value: Any) -> datetime:
 def validate_scope(value: Any) -> dict:
     if not isinstance(value, dict) or len(value) > 32 or set(value) - PUBLIC_CONTEXT_FACTS:
         raise InvalidRecord("Scope requires allowlisted public semantic facts")
-    for values in value.values():
+    for key, values in value.items():
         if not isinstance(values, list) or not 1 <= len(values) <= 32:
             raise InvalidRecord("Scope values must be a bounded nonempty list")
         if any(v is None or isinstance(v, (dict, list)) for v in values):
             raise InvalidRecord("Scope values must be known scalars")
+        if any(not valid_value(key, v) for v in values):
+            raise InvalidRecord("Fact value does not match the public catalog")
     return json.loads(canonical_json(value))
 
 
@@ -204,6 +203,8 @@ def normalize_context(context: dict[str, Any]) -> dict[str, Any]:
         validate_id(key)
         if isinstance(value, (dict, list)):
             raise InvalidRecord("Context facts must be scalar")
+        if not valid_value(key, value):
+            raise InvalidRecord("Fact value does not match the public catalog")
     return json.loads(canonical_json(context))
 
 

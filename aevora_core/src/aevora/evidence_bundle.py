@@ -34,6 +34,6 @@ def build_evidence_bundle(repo, experience_id: str) -> dict:
             "retrieval_snapshot_sha256": digest(snapshot),
             "governance": governance,
             "governance_evidence_sha256": digest({"legacy_evidence": snapshot, "governance": governance, **lifecycle}),
-            "snapshot_assurance": "Actual bounded Cypher path retrieval; no distributed transaction assertion",
+            "snapshot_assurance": "Actual bounded relationship-path retrieval; no distributed transaction assertion",
             "attribution": "UNKNOWN",
             "disclosure": "PUBLIC_ALLOWLIST_PROJECTION; no private report, suite identities or patch"}

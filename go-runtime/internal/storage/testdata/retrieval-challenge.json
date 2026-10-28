@@ -1,0 +1,523 @@
+{
+  "schema_version": "aevora.retrieval-challenge/1",
+  "provenance": "Hand-labelled public synthetic harder-neighbor cases. Frozen after lexical-concept-coverage/1; evaluate without tuning this policy on these labels. Known labels, not blind or production utility evidence. Multi-answer recall and nDCG use the complete relevant set.",
+  "documents": [
+    {
+      "id": "experience:challenge:go-cancel",
+      "title": "Go context cancellation",
+      "public_summary": "Go goroutine worker context cancellation select loop",
+      "strategy": "Stop worker goroutines by selecting on context Done; ensure the caller cancels the context."
+    },
+    {
+      "id": "experience:challenge:go-race",
+      "title": "Go concurrent map data race",
+      "public_summary": "Go concurrent map writes race detector mutex",
+      "strategy": "Protect shared Go map access with a mutex and verify with the race detector."
+    },
+    {
+      "id": "experience:challenge:go-ticker",
+      "title": "Go ticker resource cleanup",
+      "public_summary": "Go time ticker goroutine cleanup stop",
+      "strategy": "Stop tickers and cancel their owning goroutine loop during shutdown."
+    },
+    {
+      "id": "experience:challenge:go-private",
+      "title": "Go private module SSH access",
+      "public_summary": "Go private module GOPRIVATE SSH fetch authentication",
+      "strategy": "Configure GOPRIVATE and verify SSH repository access without logging credentials."
+    },
+    {
+      "id": "experience:challenge:npm-peer",
+      "title": "npm peer dependency conflict",
+      "public_summary": "npm peer dependency ERESOLVE version conflict",
+      "strategy": "Inspect the peer dependency ranges and install compatible package versions."
+    },
+    {
+      "id": "experience:challenge:npm-cache",
+      "title": "npm cache ownership EACCES",
+      "public_summary": "npm cache directory ownership EACCES",
+      "strategy": "Check the cache directory owner and repair that directory ownership before retrying install."
+    },
+    {
+      "id": "experience:challenge:npm-integrity",
+      "title": "npm tarball integrity failure",
+      "public_summary": "npm package tarball checksum EINTEGRITY",
+      "strategy": "Verify the registry tarball checksum and invalidate the corrupt cached tarball."
+    },
+    {
+      "id": "experience:challenge:npm-esm",
+      "title": "Node ESM CommonJS import mismatch",
+      "public_summary": "Node ESM CommonJS ERR_REQUIRE_ESM import",
+      "strategy": "Use the supported module import form and check package type and exports."
+    },
+    {
+      "id": "experience:challenge:git-detach",
+      "title": "Git detached HEAD work preservation",
+      "public_summary": "Git detached HEAD commits branch",
+      "strategy": "Create a branch at the detached commit before switching away to preserve work."
+    },
+    {
+      "id": "experience:challenge:git-conflict",
+      "title": "Git rebase conflict resolution",
+      "public_summary": "Git rebase conflict index resolve continue",
+      "strategy": "Resolve conflicted files, stage the intended resolution, and continue the rebase."
+    },
+    {
+      "id": "experience:challenge:git-untracked",
+      "title": "Git untracked file checkout collision",
+      "public_summary": "Git untracked files checkout overwrite",
+      "strategy": "Preserve untracked files outside the target checkout path before switching branches."
+    },
+    {
+      "id": "experience:challenge:git-lfs",
+      "title": "Git LFS missing object fetch",
+      "public_summary": "Git LFS object fetch smudge missing",
+      "strategy": "Fetch the missing LFS objects and verify the remote LFS endpoint before checkout."
+    },
+    {
+      "id": "experience:challenge:docker-owner",
+      "title": "Docker bind mount ownership",
+      "public_summary": "Docker bind mount UID GID permission denied",
+      "strategy": "Compare container UID GID with the host bind mount owner before changing directory permissions."
+    },
+    {
+      "id": "experience:challenge:docker-health",
+      "title": "Docker HTTP healthcheck readiness",
+      "public_summary": "Docker container HTTP healthcheck readiness",
+      "strategy": "Set an application readiness endpoint and verify the configured healthcheck response."
+    },
+    {
+      "id": "experience:challenge:docker-build",
+      "title": "Docker multi stage build cache",
+      "public_summary": "Docker multi stage build dependency cache layers",
+      "strategy": "Copy dependency manifests before source files so source edits do not invalidate dependency installation layers."
+    },
+    {
+      "id": "experience:challenge:docker-network",
+      "title": "Docker bridge DNS discovery",
+      "public_summary": "Docker bridge network DNS container name",
+      "strategy": "Place containers on the intended bridge network and verify DNS name discovery from the requesting container."
+    }
+  ],
+  "queries": [
+    {
+      "id": "go-cancel-positive-0",
+      "split": "challenge",
+      "query": "Go context cancellation goroutine",
+      "relevant_ids": [
+        "experience:challenge:go-cancel"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-cancel-positive-1",
+      "split": "challenge",
+      "query": "Go goroutine 取消等待",
+      "relevant_ids": [
+        "experience:challenge:go-cancel"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-cancel-negative",
+      "split": "challenge",
+      "query": "Go context cancellation distributed tracing",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "go-race-positive-0",
+      "split": "challenge",
+      "query": "Go concurrent map race mutex",
+      "relevant_ids": [
+        "experience:challenge:go-race"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-race-positive-1",
+      "split": "challenge",
+      "query": "Go shared map 写入竞争",
+      "relevant_ids": [
+        "experience:challenge:go-race"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-race-negative",
+      "split": "challenge",
+      "query": "Go map allocator arena tuning",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "go-ticker-positive-0",
+      "split": "challenge",
+      "query": "Go ticker cleanup shutdown",
+      "relevant_ids": [
+        "experience:challenge:go-ticker"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-ticker-positive-1",
+      "split": "challenge",
+      "query": "Go ticker 关闭泄漏",
+      "relevant_ids": [
+        "experience:challenge:go-ticker"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-ticker-negative",
+      "split": "challenge",
+      "query": "Go ticker clock synchronization",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "go-private-positive-0",
+      "split": "challenge",
+      "query": "GOPRIVATE SSH module authentication",
+      "relevant_ids": [
+        "experience:challenge:go-private"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-private-positive-1",
+      "split": "challenge",
+      "query": "Go private module 拉取失败",
+      "relevant_ids": [
+        "experience:challenge:go-private"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "go-private-negative",
+      "split": "challenge",
+      "query": "Go private module checksum database design",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "npm-peer-positive-0",
+      "split": "challenge",
+      "query": "npm ERESOLVE peer dependency",
+      "relevant_ids": [
+        "experience:challenge:npm-peer"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-peer-positive-1",
+      "split": "challenge",
+      "query": "npm peer 依赖版本冲突",
+      "relevant_ids": [
+        "experience:challenge:npm-peer"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-peer-negative",
+      "split": "challenge",
+      "query": "npm peer dependency automatic vulnerability remediation",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "npm-cache-positive-0",
+      "split": "challenge",
+      "query": "npm cache EACCES owner",
+      "relevant_ids": [
+        "experience:challenge:npm-cache"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-cache-positive-1",
+      "split": "challenge",
+      "query": "npm cache 目录权限",
+      "relevant_ids": [
+        "experience:challenge:npm-cache"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-cache-negative",
+      "split": "challenge",
+      "query": "npm cache distributed invalidation protocol",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "npm-integrity-positive-0",
+      "split": "challenge",
+      "query": "npm tarball checksum EINTEGRITY",
+      "relevant_ids": [
+        "experience:challenge:npm-integrity"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-integrity-positive-1",
+      "split": "challenge",
+      "query": "npm tarball 校验失败",
+      "relevant_ids": [
+        "experience:challenge:npm-integrity"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-integrity-negative",
+      "split": "challenge",
+      "query": "npm package signature key rotation",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "npm-esm-positive-0",
+      "split": "challenge",
+      "query": "Node ESM ERR_REQUIRE_ESM",
+      "relevant_ids": [
+        "experience:challenge:npm-esm"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-esm-positive-1",
+      "split": "challenge",
+      "query": "Node CommonJS import 错误",
+      "relevant_ids": [
+        "experience:challenge:npm-esm"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "npm-esm-negative",
+      "split": "challenge",
+      "query": "Node ESM import sandbox isolation",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "git-detach-positive-0",
+      "split": "challenge",
+      "query": "Git detached HEAD branch",
+      "relevant_ids": [
+        "experience:challenge:git-detach"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-detach-positive-1",
+      "split": "challenge",
+      "query": "Git detached HEAD 保存提交",
+      "relevant_ids": [
+        "experience:challenge:git-detach"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-detach-negative",
+      "split": "challenge",
+      "query": "Git detached HEAD branch cryptographic signing",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "git-conflict-positive-0",
+      "split": "challenge",
+      "query": "Git rebase conflict resolve",
+      "relevant_ids": [
+        "experience:challenge:git-conflict"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-conflict-positive-1",
+      "split": "challenge",
+      "query": "Git rebase 冲突处理",
+      "relevant_ids": [
+        "experience:challenge:git-conflict"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-conflict-negative",
+      "split": "challenge",
+      "query": "Git rebase conflict generated binary merge driver",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "git-untracked-positive-0",
+      "split": "challenge",
+      "query": "Git untracked checkout overwrite",
+      "relevant_ids": [
+        "experience:challenge:git-untracked"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-untracked-positive-1",
+      "split": "challenge",
+      "query": "Git untracked 文件切换",
+      "relevant_ids": [
+        "experience:challenge:git-untracked"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-untracked-negative",
+      "split": "challenge",
+      "query": "Git untracked file security classification",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "git-lfs-positive-0",
+      "split": "challenge",
+      "query": "Git LFS missing object fetch",
+      "relevant_ids": [
+        "experience:challenge:git-lfs"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-lfs-positive-1",
+      "split": "challenge",
+      "query": "Git LFS object 缺失",
+      "relevant_ids": [
+        "experience:challenge:git-lfs"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "git-lfs-negative",
+      "split": "challenge",
+      "query": "Git LFS object retention legal hold",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "docker-owner-positive-0",
+      "split": "challenge",
+      "query": "Docker bind mount UID permission",
+      "relevant_ids": [
+        "experience:challenge:docker-owner"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-owner-positive-1",
+      "split": "challenge",
+      "query": "Docker UID GID 目录权限",
+      "relevant_ids": [
+        "experience:challenge:docker-owner"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-owner-negative",
+      "split": "challenge",
+      "query": "Docker bind mount UID namespace remapping design",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "docker-health-positive-0",
+      "split": "challenge",
+      "query": "Docker HTTP healthcheck readiness",
+      "relevant_ids": [
+        "experience:challenge:docker-health"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-health-positive-1",
+      "split": "challenge",
+      "query": "Docker healthcheck 就绪检查",
+      "relevant_ids": [
+        "experience:challenge:docker-health"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-health-negative",
+      "split": "challenge",
+      "query": "Docker HTTP healthcheck bearer authentication",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "docker-build-positive-0",
+      "split": "challenge",
+      "query": "Docker multi stage dependency cache",
+      "relevant_ids": [
+        "experience:challenge:docker-build"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-build-positive-1",
+      "split": "challenge",
+      "query": "Docker build cache 依赖层",
+      "relevant_ids": [
+        "experience:challenge:docker-build"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-build-negative",
+      "split": "challenge",
+      "query": "Docker multi stage build reproducible timestamp policy",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "docker-network-positive-0",
+      "split": "challenge",
+      "query": "Docker bridge DNS discovery",
+      "relevant_ids": [
+        "experience:challenge:docker-network"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-network-positive-1",
+      "split": "challenge",
+      "query": "Docker bridge network 名称发现",
+      "relevant_ids": [
+        "experience:challenge:docker-network"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "docker-network-negative",
+      "split": "challenge",
+      "query": "Docker bridge DNS encrypted transport",
+      "relevant_ids": [],
+      "kind": "no_answer"
+    },
+    {
+      "id": "go-resources-multi",
+      "split": "challenge",
+      "query": "Go goroutine shutdown cleanup cancellation",
+      "relevant_ids": [
+        "experience:challenge:go-cancel",
+        "experience:challenge:go-ticker"
+      ],
+      "kind": "answerable"
+    },
+    {
+      "id": "node-package-multi",
+      "split": "challenge",
+      "query": "npm package registry tarball checksum",
+      "relevant_ids": [
+        "experience:challenge:npm-integrity"
+      ],
+      "kind": "answerable"
+    }
+  ]
+}

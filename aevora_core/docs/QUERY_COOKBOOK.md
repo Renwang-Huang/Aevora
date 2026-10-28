@@ -1,8 +1,7 @@
 # Aevora executable Cypher cookbook
 
-These statements are executed by the repository and G1/G2 dynamic checks against
-the actual pinned FalkorDB server. They are trusted-host queries; MCP does not
-offer a Cypher endpoint. Supply values through `params`, never concatenate
+These are trusted-host reference queries for the actual FalkorDB schema.
+MCP does not offer a Cypher endpoint. Supply values through `params`, never concatenate
 Participant input into query text.
 
 ## Rule premises: a real relationship path
@@ -66,14 +65,12 @@ ORDER BY s.id, type(r), r.id, t.id
 
 The canonical digest over the actual node/edge rows identifies a graph state;
 it is a local byte provenance measurement, not a third-party signed execution
-attestation. The H1 commands and their raw result files, including restart and
-disconnect tests, are indexed in the new validation archive.
+attestation. Source references and raw observations remain distinct from third-party attestation.
 
-## H2 explicit revision and governance paths
+## Explicit revision and governance paths
 
 These queries use actual graph edges. Aggregated results order by projected
-aliases. The installed FalkorDB rejects ordering by an unprojected `r.id` after
-aggregation; the original failed execution remains archived.
+aliases. Order aggregated results by projected aliases.
 
 ```cypher
 MATCH (:Experience {id:$id})-[:HAS_REVISION]->(r:ExperienceRevision)
@@ -102,7 +99,7 @@ The host validates canonical payloads, completion AuditEvents, declared typed
 targets and explicit SUPERSEDES edges. Targets retain label and ID. There is no
 created-time winner and no task identifier routing.
 
-## H2 immutable Query replay
+## Immutable Query replay
 
 ```cypher
 MATCH (:Query {id:$source})-[r:AT_SNAPSHOT]->(:QuerySnapshot {id:$target})
@@ -115,7 +112,6 @@ replay/feedback. Node content and immutable snapshot ID are validated separately
 A legacy Query has no invented snapshot; current evidence cannot substitute for
 its unavailable historical body.
 
-`scripts/aevora_h2_governance.py` records actual statements/parameters/results in
-trusted Full evidence and links snapshot captures to original raw line SHA256.
-These are separate calls. Neither ordering nor FalkorDB's schema-cache version
+When recording query evidence, bind actual statements/parameters/results to
+original line references. These are separate calls. Neither ordering nor FalkorDB's schema-cache version
 makes this an atomic content snapshot.

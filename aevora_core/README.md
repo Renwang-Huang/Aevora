@@ -1,81 +1,30 @@
-# Gen2 release candidate — current product path
+# Aevora Core
 
-Use the [public release README](../README.md), [Graph v2 model](../docs/GRAPH_MODEL.md),
-[actual Cypher](../docs/CORE_CYPHER.md) and [synthetic Decision Journey](../docs/DEMO_WALKTHROUGH.md).
-The current public path includes complete scoped Graph v2 WHEN/WHY and the four
-MCP tools. Production TrustedHost/Q07 authentication stays a separate trusted
-integration; the demo's synthetic publisher is never production admission.
-The following reference also documents preserved legacy/H4 compatibility.
+此包保留Python/FalkorDB历史对照和维护者API。原生用户安装与Go/SQLite入口见
+[项目快速开始](../docs/QUICKSTART.md)；不需要安装本包才能运行原生产品。
 
-# Aevora Experience Accountability Core
-
-Aevora is an independent MCP-first experience governance product. FalkorDB is
-its actual graph authority. OrderFlow Incident Lab remains a separate trusted
-Benchmark and is not required to install, query or serve this package.
-
-Aevora explains when an engineering experience applies, why its evidence is
-relevant, and what a trusted outcome can support. A query is not proof of
-adoption. External project self-tests and Agent claims remain unverified.
-
-## Standalone runtime
-
-Python >=3.12,<3.13; pinned dependencies FalkorDB SDK1.7.1, Redis8.1.0 and
-MCP1.26.0. No automatic substitution of upstream SDKv2.
+独立的经验治理 Python 包。FalkorDB 保存实际图记录；Core 提供适用性解析、
+证据解释、候选生命周期、受限 MCP 和可信 Host CLI。
 
 ```sh
-python3.12 -m venv .venv
-.venv/bin/python -m pip install ./aevora_core
+python3.12 -m pip install ./aevora_core
 ```
 
-Follow [the product Quickstart](../docs/QUICKSTART.md) for an independently
-owned, authenticated loopback FalkorDB deployment and an ordinary project MCP
-connection. A fresh graph is empty; no static success or historical database
-is silently loaded. The installed package works without benchmark/integrations.
+部署和普通项目接入见[快速开始](../docs/QUICKSTART.md)。公开安装不依赖
+OrderFlow Runner、Evaluator、私有审计或原始模型记录。
 
-## Interfaces and authority
+## 接口
 
-- `GraphRepository`: real official SDK, canonical records, bounded Cypher and
-  actual graph constraints. No JSON database fallback.
-- `ExperienceResolver` / evidence bundle: authoritative WHEN/WHY, support,
-  counterexamples, scoped/unknown premises and immutable QuerySnapshots.
-- Candidate lifecycle: untrusted proposal, evidence-pending, independently
-  verified Host admission, publication, rejection and withdrawal.
-- Official MCP: resolve_experience, build_evidence_bundle, record_decision;
-  opt-in typed propose_experience. No admin/Cypher/Outcome tool.
-- `aevora serve`: trusted Host owns DB credentials and a revocable scoped
-  channel. `aevora.mcp_connect` is the stdlib ordinary consumer. The benchmark
-  participant's fixed-path proxy and physical boundaries remain unchanged.
-- Host CLI init/health/query/inspect/review/source-orderflow is administrative;
-  never install its DB credentials in an untrusted Agent environment. The
-  source-orderflow bridge is optional trusted maintainer integration, not a
-  public project self-test shortcut to VerifiedOutcome.
+- `GraphRepository`：真实 SDK、约束、稳定记录与有界 Cypher。
+- `ExperienceResolver` / evidence bundle：图中的前提、支持、反例与 UNKNOWN。
+- `CandidateLifecycle`：不可信提议、来源核验、有界 review、发布与撤回。
+- CLI：可信 Host 初始化、健康、查询、检查和管理。
+- Host 启动：configure 保存设置，serve 每次创建新会话，mcp-config 生成稳定连接配置。
+- `source-project`：独立项目来源契约与 Host 核验，见[完整接入路径](../docs/PROJECT_SOURCES.md)。
+- MCP：查询、证据包、记录不可信决策与可选提议，不提供 admin/Cypher/Outcome 工具。
 
-Default grant lifetime follows its Owner. Optional explicit capability TTL
-is available for local demonstrations; it is not a fixed runtime deadline for
-healthy completion-aware Codex. Source pins, raw events and actual Outcome
-receipts remain separate from natural-language Agent statements.
+图为空和零候选合法。Agent 的声明或项目自测不会自动成为 VerifiedOutcome；
+实际结果也不单独证明经验采纳或因果收益。多语句写入不保证全局事务。
 
-## Hero evidence and limits
-
-The H4 three-case Hero uses actual H3 natural publication, factual conflict and
-controlled graph intervention. The public replay has a separately pinned
-independent standard-library verifier. Its presentation sequence is not one
-invented cross-Rule causal history. Governance and Raw Memory's ordinary H3
-pilot both passed seven public tests and remain EXTERNAL_UNVERIFIED.
-
-H1-H3 historical evidence remains unchanged. H3 overall CONDITIONAL PASS and
-its limitations persist: native cross-process UDS EPERM, AOF reload139, RDB
-last-completed-SAVE recovery boundary, shared-kernel/EOL, unknown causal benefit
-and adoption. Multi-step graph operations are not globally transactional;
-local hashes are not external attestation. Ordinary same-UID developer mode
-is not a hostile execution sandbox.
-
-H4 was the preceding public product iteration. See the separately delivered
-product docs for actual Gate/source epochs and observations; configuration
-files alone are not evidence of live model execution or task success.
-
-## Core reference
-
-[Architecture](docs/ARCHITECTURE.md), [schema](docs/GRAPH_SCHEMA.md),
-[queries](docs/QUERY_COOKBOOK.md), [WHEN/WHY](docs/WHEN_WHY_FEEDBACK.md),
-[trust boundary](docs/TRUST_BOUNDARY.md), [lifecycle](docs/H3_LIFECYCLE.md).
+参考：[架构](docs/ARCHITECTURE.md) · [Schema](docs/GRAPH_SCHEMA.md) ·
+[查询](docs/QUERY_COOKBOOK.md) · [安全与生命周期](docs/SECURITY.md)。

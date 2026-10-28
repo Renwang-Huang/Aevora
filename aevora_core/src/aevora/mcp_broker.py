@@ -27,7 +27,8 @@ import uuid
 
 
 PROTOCOL = "aevora-mcp-uds-v1"
-TOOLS = frozenset({"resolve_experience", "build_evidence_bundle", "record_decision"})
+TOOLS = frozenset({"resolve_experience", "build_evidence_bundle", "record_decision",
+                   "search_observations", "record_observation_use", "read_observation_sources"})
 MAX_MESSAGE_BYTES = 262_144
 _REVOCATION_DISCARD_CHUNK_BYTES = 65_536
 _REVOCATION_DISCARD_MAX_READS = 4
@@ -126,8 +127,7 @@ class MCPBroker:
                  run_token: str, event_path: Path, max_connections: int = 4,
                  request_budget: int = 4096, request_timeout: float = 60,
                  allowed_peer_uid: int | None = None, server_command: list[str] | None = None,
-                 server_environment: dict[str, str] | None = None, enable_proposals: bool = False,
-                 protocol_profile: str = "aevora.mcp/1.2", v2_config_path: str | None = None):
+                 server_environment: dict[str, str] | None = None, enable_proposals: bool = False):
         if not isinstance(run_id, str) or not _ID.fullmatch(run_id):
             raise ValueError("A stable bounded run ID is required")
         if not isinstance(run_token, str) or not _TOKEN.fullmatch(run_token):
@@ -143,14 +143,6 @@ class MCPBroker:
         self.run_id, self.public_context = run_id, json.loads(json.dumps(public_context))
         if type(enable_proposals) is not bool:
             raise ValueError('Explicit trusted proposal capability required')
-        if protocol_profile not in {"aevora.mcp/1.2", "aevora.mcp/2.0.0-rc2"}:
-            raise ValueError("Explicit supported MCP profile required")
-        if (protocol_profile == "aevora.mcp/2.0.0-rc2") != (v2_config_path is not None):
-            raise ValueError("Explicit v2 trusted configuration required")
-        if protocol_profile != "aevora.mcp/1.2" and not enable_proposals:
-            raise ValueError("v2 requires the four-tool catalog")
-        self.protocol_profile, self.v2_config_path = protocol_profile, v2_config_path
-        self._v2_guard = None
         self.enable_proposals = enable_proposals
         self.tools = TOOLS | {'propose_experience'} if enable_proposals else TOOLS
         self.socket_path, self.event_path = Path(socket_path), Path(event_path)
@@ -352,8 +344,6 @@ class MCPBroker:
                          "public_context": self.public_context, "connection_id": connection_id}
             if self.enable_proposals:
                 authority['enable_proposals'] = True
-            if self.v2_config_path is not None:
-                authority.update(protocol_profile=self.protocol_profile, v2_config_path=self.v2_config_path)
             self._write_input(process, json.dumps(authority, separators=(",", ":")).encode() + b"\n")
             connection.sendall(b'{"aevora_transport":"READY"}\n')
             ready = True
@@ -453,25 +443,7 @@ class MCPBroker:
                             # not hold the trusted transport in sendall forever.
                             connection.settimeout(self.request_timeout)
                             try:
-                                if self.v2_config_path is None:
-                                    connection.sendall(raw)
-                                else:
-                                    # Owner revocation and send are serialized locally.
-                                    # The DB check/network interval is explicitly not a distributed transaction.
-                                    with self._lock:
-                                        if self._stopped.is_set() or self._token is None:
-                                            raise ValueError("REVOKED")
-                                        if self._v2_guard is None:
-                                            from .mcp_v2 import OutputGuard
-                                            self._v2_guard = OutputGuard(self.v2_config_path, self._environment)
-                                        checked = time.monotonic()
-                                        authorization = self._v2_guard.check(value)
-                                        connection.sendall(raw)
-                                        self._event("V2_RESPONSE_DELIVERED", connection_id,
-                                                    read_scope=authorization,
-                                                    check_to_send_seconds=time.monotonic()-checked,
-                                                    delivered_bytes=len(raw),
-                                                    delivered_sha256=hashlib.sha256(raw).hexdigest())
+                                connection.sendall(raw)
                             finally:
                                 connection.settimeout(None)
                 if process.poll() is not None:
@@ -576,9 +548,6 @@ class MCPBroker:
             except FileNotFoundError:
                 pass
         with self._lock:
-            if self._v2_guard is not None and not self._handlers and not self._children:
-                self._v2_guard.repo.transport.close()
-                self._stats["v2_repository_closed"] = True
             self._token = None
             self._stats.update(status="CLOSED", ended_at=_timestamp(),
                                server_thread_stopped=self._thread is None or not self._thread.is_alive(),

@@ -1,0 +1,57 @@
+name: Native runtime
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  platform:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm, macos-15-intel, macos-15, windows-2025]
+    runs-on: ${{ matrix.runner }}
+    env:
+      CGO_ENABLED: "0"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff
+        with:
+          go-version: "1.27.3"
+          cache: false
+      - name: Native storage, permissions, IPC and domain contracts on this runner
+        working-directory: go-runtime
+        run: go test -count=1 -timeout=180s ./...
+      - name: Build this platform executable
+        working-directory: go-runtime
+        shell: bash
+        run: go build -mod=readonly -buildvcs=false -trimpath -o "${RUNNER_TEMP}/aevora" ./cmd/aevora
+  runtime:
+    runs-on: ubuntu-24.04
+    env:
+      GOCACHE: ${{ runner.temp }}/aevora-go-cache
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff
+        with:
+          go-version: "1.27.3"
+          cache: false
+      - name: Runtime unit contracts
+        working-directory: go-runtime
+        run: go test -race -count=1 -timeout=60s ./...
+      - name: Build supported targets (not native runtime validation)
+        working-directory: go-runtime
+        shell: bash
+        run: |
+          for target in linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64; do
+            target_os="${target%/*}"
+            target_arch="${target#*/}"
+            CGO_ENABLED=0 GOOS="$target_os" GOARCH="$target_arch" go build -mod=readonly -buildvcs=false -trimpath -o "${RUNNER_TEMP}/aevora-${target_os}-${target_arch}" ./cmd/aevora
+          done

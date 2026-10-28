@@ -1,0 +1,50 @@
+{
+  "authority": "EXTERNAL_UNVERIFIED",
+  "causal_benefit": "UNKNOWN",
+  "failed_attempt_run_id": "af26fb0c-865d-472c-97e3-c2a2c73fd597",
+  "failed_attempt_status": "PROVIDER_FAILURE",
+  "governance": {
+    "baseline_tree_sha256": "3f4a648d7a2156d589b2c9f3acf64ff3c24945072b49ed8d0370677af02dfb73",
+    "exit_code": 0,
+    "passed": 7,
+    "public_test_identities": [
+      "test_receipts.ReceiptContract.test_conflicting_retry::test_conflicting_retry",
+      "test_receipts.ReceiptContract.test_idempotent_retry::test_idempotent_retry",
+      "test_receipts.ReceiptContract.test_independent_process_totals::test_independent_process_totals",
+      "test_receipts.ReceiptContract.test_input_rejection::test_input_rejection",
+      "test_receipts.ReceiptContract.test_persisted_ledger::test_persisted_ledger",
+      "test_receipts.ReceiptContract.test_sequential_total::test_sequential_total",
+      "test_receipts.ReceiptContract.test_threaded_totals::test_threaded_totals"
+    ],
+    "public_test_receipt_sha256": "455e859df255c72fc2b3e22ebfa6ac9f57b50b8fbaffdd475d877cb73a29997d",
+    "run_id": "c8a6a7ae-fb65-4b2d-98ea-0651eb939a7b",
+    "session_id": "01a13136-8831-7c92-978f-0997b48e36b1",
+    "source_report_sha256": "b51d94d238c641f3861ed8d57cde158fc1cb24c6870a93291ef02bcebaa6d670",
+    "stderr_sha256": "2d4ed8fa65c137041fdf19f58e97dcdbd83e5eb3dc448b3a54699fc12449f592",
+    "submission_sha256": "1504f1196a4b95e09c5062b324e7ead535054bf195bbd09e7e3dc8b27dcc0ed0",
+    "verified_outcome_count": 0
+  },
+  "limitation": "One successful paired pilot, different runtime overhead; no statistical/causal benefit claim.",
+  "raw_memory": {
+    "baseline_tree_sha256": "3f4a648d7a2156d589b2c9f3acf64ff3c24945072b49ed8d0370677af02dfb73",
+    "exit_code": 0,
+    "passed": 7,
+    "public_test_identities": [
+      "test_receipts.ReceiptContract.test_conflicting_retry::test_conflicting_retry",
+      "test_receipts.ReceiptContract.test_idempotent_retry::test_idempotent_retry",
+      "test_receipts.ReceiptContract.test_independent_process_totals::test_independent_process_totals",
+      "test_receipts.ReceiptContract.test_input_rejection::test_input_rejection",
+      "test_receipts.ReceiptContract.test_persisted_ledger::test_persisted_ledger",
+      "test_receipts.ReceiptContract.test_sequential_total::test_sequential_total",
+      "test_receipts.ReceiptContract.test_threaded_totals::test_threaded_totals"
+    ],
+    "public_test_receipt_sha256": "8583677ff96cf38b1396615c6aede8c30a3b99f1a57fb408cb20d0a6e3afbd2c",
+    "run_id": "f4406efc-d94d-4d21-b30f-d350248f3d4e",
+    "session_id": "01a13144-af4e-7592-95f2-f7d730380795",
+    "source_report_sha256": "ce58a16ebcbd2ad9b14f12122a0c6f689542da86ba8b88f27eaf194adcf6d7d2",
+    "stderr_sha256": "bc27509266bb4fc66cefd1bfb88e06e855c2ebc85982099fd8eada4cd362523a",
+    "submission_sha256": "a80f114932bf87203a71925903696fb406027cb2781ad2055a34f6d8165e9300",
+    "verified_outcome_count": 0
+  },
+  "verified_outcomes": 0
+}

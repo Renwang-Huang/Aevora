@@ -1,7 +1,0 @@
-path_or_group,decision,callers_or_reason,replacement,removal_authorized,rollback
-scripts/aevora_h1_*;aevora_h2_*;aevora_h3_*;aevora_h4_*,RETAIN_PHASE_ADAPTER,Tests/reproduction/release callers remain; no stage-name deletion,tools/dev.py current entry; original phase adapters preserved,NO,baseline commit
-console/sync_evidence_tools.py,COMPATIBILITY_SHIM,Public documented script and exact vendor tests,tools/sync_public_evidence.py,NO,revert slice
-aevora.audit_capsule,OPTIONAL_MAINTAINER_ALIAS,"Host-only Audit-Lite helpers, legacy imports and monkeypatches",aevora_maintainer.audit_capsule,NO,revert slice
-h4/verify_hero.py;h4/public_projection.py,GENERATED_COMPATIBILITY,"Public standalone stdlib tools, inherited tests and Docker",tools/public_evidence,NO,regenerate baseline sources
-Full/Lite/Raw/history/DB volumes,IMMUTABLE,Historical facts and frozen truth,External original paths and hash index,NO,Never move/delete
-Unknown/ambiguous scripts,KEEP_PENDING_REVIEW,No proven absence of caller,ownership map and current command index,NO,not removed

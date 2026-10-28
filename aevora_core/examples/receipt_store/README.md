@@ -1,6 +1,6 @@
 # Durable Receipt Store — controlled maintainer example
 
-This is a newly authored independent Python engineering example for H3 external
+This independent Python engineering example demonstrates external project
 integration. It is not an OrderFlow Episode, reference patch, or industrial
 production claim. It has its own Git baseline when copied into a clean project.
 It uses Python's standard SQLite DB-API; no dependency on Aevora, OrderFlow, or

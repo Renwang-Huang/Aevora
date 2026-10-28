@@ -1,5 +1,0 @@
-from audit import *
-from aevora.orderflow_outcome_bridge import TrustAnchor,verify_outcome
-cases=json.loads((E/'02_source/cases/CASES.json').read_text());run=next((E/'03_world/seed-runs').iterdir());report=json.loads((run/'evaluation_report.json').read_text())
-anchor=TrustAnchor(run,sha(run/'HOST_RUN_MANIFEST.json'),{'evaluation_report.json':run.name},profile='current_live',manifest_relative_path='HOST_RUN_MANIFEST.json',source_snapshot_relative_path='frozen_source_snapshot',source_archive_root=Path(cases['source_root']),source_manifest_sha256=cases['source_manifest_sha256'],source_manifest_relative_path='SOURCE_MANIFEST.json')
-o=verify_outcome(anchor,'evaluation_report.json');print({k:o.get(k) for k in ['run_id','candidate_tree_sha256','patch_sha256','evaluator_fingerprint','test_suite_fingerprint']});print('report',report['submission'],report['submission_integrity']['patch_sha256']);print('fp',report['fingerprints']['evaluator']['sha256'],report['fingerprints']['test_suite']['sha256'])

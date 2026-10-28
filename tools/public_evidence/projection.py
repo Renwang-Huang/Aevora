@@ -22,16 +22,26 @@ FIELDS = {
  'GovernanceEvent': 'id target_id target_label event_type authority source_type public_reason scope effective_at created_at',
  'AuditEvent': 'id event_type candidate_id record_id authority public_reason created_at',
  'Schema': 'id version',
- 'Candidate': 'id run_id body_sha256 authority provenance created_at schema_version',
+ 'Candidate': 'id run_id body_sha256 authority provenance created_at schema_version title public_summary strategy necessary_conditions inapplicable_conditions scope unknown_fields limitations derived_from_candidate_id',
  'LifecycleHead': 'id candidate_id state sequence event_id',
  'CandidateEvent': 'id candidate_id from_state to_state sequence previous_event_id event_key authority principal reason created_at',
  'SourceVerification': 'id candidate_id run_id origin authority source_sha256 submission_sha256 outcome_id facts native_thread_id source_epoch causal_benefit',
- 'ExternalObservation': 'id run_id status authority source_sha256 public_summary created_at trusted_outcome attribution',
+ 'ExternalObservation': 'id run_id status authority source_sha256 public_summary created_at trusted_outcome attribution record_kind candidate_id purpose disposition elapsed_seconds',
 }
 FACTS = frozenset('concurrency_scope worker_count worker_count_known shared_state_kind synchronization_scope transaction_guarantees observed_failure_mode sqlite_journal_mode failure_domain supported_operation_set operation_kind durability_requirement'.split())
+FACTS = FACTS | frozenset('shared_object_scope operation_semantics authority_model clock_domain contract_version lease_expiry_semantics authority_validation runtime_os runtime_arch runtime_engine storage_backend console_access'.split())
+FACTS = FACTS | {'runtime_version','runtime_revision'}
 
 
 def project(label, payload):
+    if label == 'Candidate' and isinstance(payload.get('body'), dict):
+        # Only explicitly public, already validated proposal fields. Never
+        # disclose the raw body, source references, receipts or arbitrary keys.
+        body = payload['body']
+        payload = {**payload, **{k: body[k] for k in (
+            'title', 'public_summary', 'strategy', 'necessary_conditions',
+            'inapplicable_conditions', 'scope', 'unknown_fields', 'limitations',
+            'derived_from_candidate_id') if k in body}}
     result={k:payload[k] for k in FIELDS.get(label,'id').split() if k in payload}
     if 'facts' in result:result['facts']={k:v for k,v in result['facts'].items() if k in FACTS and not isinstance(v,(dict,list))}
     if 'scope' in result:result['scope']={k:v for k,v in result['scope'].items() if k in FACTS}

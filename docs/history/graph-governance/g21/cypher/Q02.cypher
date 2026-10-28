@@ -1,1 +1,0 @@
-MATCH(e:Experience {id:$experience})-[h:HAS_REVISION]->(r:ExperienceRevision)-[u:USES_RULE]->(rule:Rule) OPTIONAL MATCH(rule)-[q:REQUIRES]->(p:Premise) RETURN properties(e),properties(h),properties(r),properties(u),properties(rule),properties(q),properties(p) LIMIT 1025

@@ -19,13 +19,15 @@ class CandidateProposal(BaseModel):
     title:str=Field(min_length=1,max_length=4000)
     strategy:str=Field(min_length=1,max_length=4000,description='Observed engineering principle as untrusted narrative')
     public_summary:str=Field(min_length=1,max_length=4000)
-    necessary_conditions:dict[FactKey,list[FactScalar]]=Field(min_length=1,
-        description='OBJECT mapping public semantic fact names to allowed scalar ARRAYS; NOT a list of sentences')
+    necessary_conditions:dict[FactKey,list[FactScalar]]=Field(
+        description='OBJECT mapping known public fact names to scalar ARRAYS. Use {} for an unscoped draft when no necessary conditions are established. Empty conditions cannot pass admission or publication; never invent facts.')
     inapplicable_conditions:dict[FactKey,list[FactScalar]]=Field(
         description='OBJECT of factual exclusion conditions. Empty object if none established; narrative limitations belong in limitations')
-    scope:dict[FactKey,list[FactScalar]]=Field(min_length=1,
-        description='OBJECT of bounded factual conditions from real context. Do not invent unknown factual values')
+    scope:dict[FactKey,list[FactScalar]]=Field(
+        description='OBJECT of bounded factual conditions from real context. Use {} for an unscoped draft. Submit a new bounded proposal once verified scope is known; do not invent unknown values.')
     unknown_fields:list[FactKey]=Field(max_length=32,
         description='Public fact NAMES whose values are unproved. Free-text uncertainty goes in limitations. Required unknown premises remain pending')
     limitations:list[str]=Field(max_length=32)
     source_references:list[SourceReference]=Field(max_length=32)
+    derived_from_candidate_id:str|None=Field(default=None,min_length=1,max_length=240,
+        description='Optional actual original candidate ID in this Run; preserves history and grants no trust.')

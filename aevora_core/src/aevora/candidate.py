@@ -24,6 +24,20 @@ _SENSITIVE = re.compile(r'(?i)(sk-[a-z0-9-]{16,}|/home/|/maintainer/|/proc/|hidd
 _SHA = re.compile(r'[0-9a-f]{64}\Z')
 
 
+def lifecycle_next_steps(state):
+    steps = {
+        'PROPOSED': 'Host inspects the immutable proposal, then reviews it into EVIDENCE_PENDING or REJECTED.',
+        'EVIDENCE_PENDING': 'Run an independent verifier; import with source-project, then review ADMITTED_BOUNDED using --source and --scope. Self-test PASS is insufficient.',
+        'ADMITTED_BOUNDED': 'Host publishes with review --state PUBLISHED and the inspected expected head.',
+        'PUBLISHING': 'Retry review --state PUBLISHED with the current inspected head to finish the same publication, or withdraw.',
+        'PUBLISHED': 'Query with a new Run and independently known context; inspect the evidence bundle. Adoption and causal benefit remain UNKNOWN.',
+        'REJECTED': 'Retain this rejected proposal; submit a corrected proposal with a new candidate key.',
+        'WITHDRAWN': 'This candidate is excluded from recommendations. New evidence requires a new reviewed candidate.',
+        'SUPERSEDED': 'Retain this history and query the independently published replacement.',
+    }
+    return {'host_only': True, 'action': steps[state], 'guide': 'docs/PROJECT_SOURCES.md'}
+
+
 def public_text(value, maximum=4000):
     if not isinstance(value, str) or not value.strip() or len(value) > maximum or '\x00' in value:
         raise InvalidRecord('Bounded public text required')
@@ -32,19 +46,38 @@ def public_text(value, maximum=4000):
     return value
 
 
+def candidate_checklist(body, state):
+    missing = [key for key in ('necessary_conditions', 'scope') if not body.get(key)]
+    unknown = [key for key in body.get('unknown_fields', [])
+               if key in body.get('necessary_conditions', {}) or key in body.get('scope', {})]
+    action = ('DECLARE_BOUNDS' if missing else 'ESTABLISH_REQUIRED_FACTS' if unknown else {
+        'PROPOSED': 'REQUEST_EVIDENCE_REVIEW', 'ADMITTED_BOUNDED': 'REVIEW_PUBLICATION',
+        'PUBLISHING': 'REVIEW_PUBLICATION', 'PUBLISHED': 'QUERY_NEW_TASK',
+        'REJECTED': 'RETAIN_HISTORY', 'WITHDRAWN': 'RETAIN_HISTORY',
+        'SUPERSEDED': 'RETAIN_HISTORY'}.get(state, 'VERIFY_SOURCE'))
+    return {'scope_status': 'UNSCOPED_DRAFT' if missing else 'DECLARED_UNVERIFIED',
+            'missing_fields': missing, 'unknown_required_facts': unknown, 'next_action': action,
+            'authority': 'UNTRUSTED_DECLARATION', 'adoption': 'UNKNOWN', 'causal_benefit': 'UNKNOWN'}
+
+
 def validate_proposal(value):
     allowed = {'candidate_key', 'title', 'strategy', 'public_summary', 'necessary_conditions',
                'inapplicable_conditions', 'scope', 'unknown_fields', 'limitations', 'source_references'}
-    if not isinstance(value, dict) or set(value) != allowed:
+    if not isinstance(value, dict) or set(value) - {'derived_from_candidate_id'} != allowed:
         raise InvalidRecord('Proposal requires documented fields only; authority fields forbidden')
+    if 'derived_from_candidate_id' in value:
+        validate_id(value['derived_from_candidate_id'])
     validate_id(value['candidate_key'])
     if len(value['candidate_key']) > 64 or ':' in value['candidate_key'] or '/' in value['candidate_key']:
         raise InvalidRecord('Short local candidate key required')
     for key in ('title', 'strategy', 'public_summary'): public_text(value[key])
     for key in ('necessary_conditions', 'inapplicable_conditions', 'scope'):
         validate_scope(value[key])
-    if not value['necessary_conditions'] or not value['scope']:
-        raise InvalidRecord('Explicit necessary conditions and bounded scope required')
+        if any(isinstance(item, str) and _SENSITIVE.search(item)
+               for allowed in value[key].values() for item in allowed):
+            raise InvalidRecord('Sensitive proposal conditions rejected')
+    # Capture incomplete observations without weakening the independent
+    # nonempty-scope checks in bounded admission and publication.
     for key in ('unknown_fields', 'limitations'):
         rows = value[key]
         if not isinstance(rows, list) or len(rows) > 32: raise InvalidRecord('Bounded text list required')
@@ -79,7 +112,7 @@ def validate_lifecycle_record(label, payload):
         parse_timestamp(payload.get('created_at'))
     elif label == 'SourceVerification':
         if payload.get('authority') != 'TRUSTED_HOST_SOURCE_VERIFIER' or payload.get('origin') not in {
-                'natural_agent_run', 'maintainer_seed', 'synthetic_or_test_fixture', 'external_unverified'}:
+                'natural_agent_run', 'maintainer_seed', 'synthetic_or_test_fixture', 'external_unverified', 'independent_project'}:
             raise InvalidRecord('Source authority required')
         validate_id(payload.get('run_id')); normalize_context(payload.get('facts', {}))
         for key in ('source_sha256', 'submission_sha256'):
@@ -129,6 +162,10 @@ class CandidateLifecycle:
             raise GraphError('Trusted lifecycle schema initialization required before proposal')
         validate_id(run_id); body = validate_proposal(proposal)
         identifier = 'candidate:' + run_id + ':' + body['candidate_key']; validate_id(identifier)
+        if parent := body.get('derived_from_candidate_id'):
+            original = self.repo.get_node('Candidate', parent)
+            if not original or original.get('run_id') != run_id or parent == identifier:
+                raise InvalidRecord('Original candidate must exist in this Run')
         for ref in body['source_references']:
             record = self.repo.get_node(ref['kind'], ref['id'])
             if not record or record.get('run_id') != run_id:
@@ -154,8 +191,11 @@ class CandidateLifecycle:
             if not self.repo.get_node('LifecycleHead', head_id): raise
         self.repo.put_edge('HAS_LIFECYCLE', 'Candidate', identifier, 'LifecycleHead', head_id)
         self.repo.put_edge('HAS_CANDIDATE_EVENT', 'Candidate', identifier, 'CandidateEvent', event_id)
+        unscoped = not body['necessary_conditions'] or not body['scope']
         return {'status': 'PROPOSED_UNTRUSTED', 'candidate_id': identifier, 'body_sha256': digest(body),
-            'run_id': run_id, 'publication': 'NOT_PUBLISHED', 'source_type': 'UNVERIFIED', 'schema_version': VERSION}
+            'run_id': run_id, 'publication': 'NOT_PUBLISHED', 'source_type': 'UNVERIFIED', 'schema_version': VERSION,
+            'scope_status': 'UNSCOPED_DRAFT' if unscoped else 'DECLARED_UNVERIFIED',
+            'next_step': ('Retain this draft. Once conditions and scope are established, submit a new bounded proposal with a new candidate_key. This draft cannot be admitted or published.' if unscoped else 'Host must independently verify the declared bounds and source before admission.')}
 
     def inspect(self, identifier):
         validate_id(identifier)
@@ -180,6 +220,11 @@ class CandidateLifecycle:
         for newer, older in zip(chain, chain[1:]):
             if newer['from_state'] != older['to_state'] or newer['to_state'] not in TRANSITIONS.get(older['to_state'], set()):
                 raise GraphError('Invalid recorded transition')
+        # A valid old chain can still straddle a concurrent withdrawal. Heads
+        # advance monotonically; reject an observed change rather than returning
+        # that old publication as current. This is not a global read snapshot.
+        if self.repo.get_node('LifecycleHead', head['id']) != head:
+            raise ImmutableConflict('Candidate changed during non-atomic lifecycle read; retry fresh inspection')
         return {'candidate': candidate, 'head': head, 'head_sha256': digest(head), 'events': list(reversed(chain)),
                 'consistency': 'Actual multi-query observation; immutable event chain; not atomic read snapshot'}
 
@@ -271,7 +316,8 @@ class CandidateLifecycle:
                 event_key=event_key + '-begin', reason=reason, grant=grant, metadata={'experience_id': eid})
             view = self.inspect(identifier)
         elif view['head']['state'] == 'PUBLISHED':
-            self.publication_allowed(identifier, eid)
+            if not self.publication_allowed(identifier, eid):
+                raise ImmutableConflict('Publication was withdrawn during replay')
             return {'status': 'PUBLISHED', 'experience_id': eid, 'candidate_id': identifier, 'idempotent_replay': True}
         elif view['head']['state'] != 'PUBLISHING' or view['head_sha256'] != expected_head_sha256:
             raise ImmutableConflict('Publication requires current admitted/staged head')

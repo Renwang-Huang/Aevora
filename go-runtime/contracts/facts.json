@@ -1,0 +1,320 @@
+{
+  "context_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "authority_model": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "authority_validation": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "clock_domain": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "concurrency_scope": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "console_access": {
+        "description": "原生 Console 的本机只读接入契约。",
+        "enum": [
+          "loopback_read_only"
+        ],
+        "type": "string"
+      },
+      "contract_version": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "failure_domain": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "lease_expiry_semantics": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "observed_failure_mode": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "operation_semantics": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "runtime_arch": {
+        "description": "当前原生程序的运行架构（Go GOARCH）；不证明物理 CPU 或其他平台已验证。",
+        "pattern": "^[a-z0-9_]{1,32}$",
+        "type": "string"
+      },
+      "runtime_engine": {
+        "description": "执行经验服务的运行时。",
+        "enum": [
+          "go_native",
+          "python_reference"
+        ],
+        "type": "string"
+      },
+      "runtime_os": {
+        "description": "当前原生程序的操作系统目标（Go GOOS）；不替代宿主或硬件诊断。",
+        "pattern": "^[a-z0-9_]{1,32}$",
+        "type": "string"
+      },
+      "runtime_revision": {
+        "description": "当前可信原生程序的源码版本标识；可将经验限定到受控核验覆盖的固定实现。",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.+~-]{0,127}$",
+        "type": "string"
+      },
+      "runtime_version": {
+        "description": "当前可信原生运行时的发行版本；经验可限定到实际验证的版本。",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.+~-]{0,79}$",
+        "type": "string"
+      },
+      "shared_object_scope": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "shared_state_kind": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "sqlite_journal_mode": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "storage_backend": {
+        "description": "当前项目配置的存储后端；不证明数据已恢复。",
+        "enum": [
+          "sqlite",
+          "falkordb"
+        ],
+        "type": "string"
+      },
+      "supported_operation_set": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "synchronization_scope": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "target_branch": {
+        "description": "任务建立时目标工作区的 Git 分支；detached HEAD 时保持未知。",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.+/@-]{0,127}$",
+        "type": "string"
+      },
+      "target_dependency_snapshot": {
+        "description": "已注册根和有界一级模块的固定依赖清单/锁文件汇总；不递归解析工作区或执行脚本，范围降级明确披露。",
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "target_go_requirement": {
+        "description": "go.mod 声明的 go 指令；不是本机 Go 版本。",
+        "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$",
+        "type": "string"
+      },
+      "target_manifest_set": {
+        "description": "已观察根和一级模块的清单种类，不等于全部语言、依赖或实际安装版本；不同模块声明不同时单值版本保持未知。",
+        "pattern": "^[a-z]+(\\+[a-z]+)*$",
+        "type": "string"
+      },
+      "target_node_requirement": {
+        "description": "package.json 声明的 engines.node 版本范围；不是实际 Node 版本。",
+        "pattern": "^[0-9.<>=|^~*+,! xX-]{1,80}$",
+        "type": "string"
+      },
+      "target_project": {
+        "description": "受保护本地注册中的目标项目名称；不是 Host 身份或 Agent 自述。",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$",
+        "type": "string"
+      },
+      "target_python_requirement": {
+        "description": "pyproject.toml 的 project.requires-python 声明；不是实际 Python 版本。",
+        "pattern": "^[0-9.<>=|^~*+,! xX-]{1,80}$",
+        "type": "string"
+      },
+      "target_revision": {
+        "description": "任务建立时目标工作区 Git HEAD 的实测提交；不证明未提交文件、测试结果或因果收益。",
+        "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+        "type": "string"
+      },
+      "target_worktree_snapshot": {
+        "description": "Git 状态、暂存区差异和变化文件元数据的汇总；不公开路径或文件内容，不是内容证明。",
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "target_worktree_state": {
+        "description": "Git porcelain 状态的有界观察；不是所有文件内容的独立完整性证明。",
+        "enum": [
+          "CLEAN",
+          "DIRTY",
+          "CONFLICTED"
+        ],
+        "type": "string"
+      },
+      "transaction_guarantees": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "worker_count": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "worker_count_known": {
+        "description": "既有公共条件；值和来源由可信 Host 独立建立。",
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    "type": "object"
+  },
+  "default_domain": "concurrency",
+  "domains": {
+    "concurrency": {
+      "fact_keys": [
+        "authority_model",
+        "authority_validation",
+        "clock_domain",
+        "concurrency_scope",
+        "contract_version",
+        "failure_domain",
+        "lease_expiry_semantics",
+        "observed_failure_mode",
+        "operation_semantics",
+        "shared_object_scope",
+        "shared_state_kind",
+        "sqlite_journal_mode",
+        "supported_operation_set",
+        "synchronization_scope",
+        "transaction_guarantees",
+        "worker_count",
+        "worker_count_known"
+      ],
+      "support_context_keys": [
+        "concurrency_scope"
+      ]
+    },
+    "native_runtime": {
+      "fact_keys": [
+        "console_access",
+        "runtime_arch",
+        "runtime_engine",
+        "runtime_os",
+        "runtime_revision",
+        "runtime_version",
+        "storage_backend"
+      ],
+      "support_context_keys": [
+        "runtime_engine",
+        "storage_backend"
+      ]
+    },
+    "target_project": {
+      "fact_keys": [
+        "target_branch",
+        "target_dependency_snapshot",
+        "target_go_requirement",
+        "target_manifest_set",
+        "target_node_requirement",
+        "target_project",
+        "target_python_requirement",
+        "target_revision",
+        "target_worktree_snapshot",
+        "target_worktree_state"
+      ],
+      "support_context_keys": [
+        "target_project"
+      ]
+    }
+  },
+  "registration": "RELEASE_CONTROLLED_NOT_AGENT_DEFINED",
+  "schema_version": "aevora.fact-catalog/1"
+}

@@ -1,0 +1,62 @@
+{
+  "replay_contract_sha256": "c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776",
+  "schema_version": "aevora.native-assets/1",
+  "sources": {
+    "CYTOSCAPE_LICENSE": {
+      "path": "console/third_party/CYTOSCAPE_LICENSE",
+      "sha256": "eb319c6e6f233607f71e8e2f450391751883cfc0eeb3ca7ef574c13d1d9c2203"
+    },
+    "replay/hero_scenario_contract.json": {
+      "path": "demo/hero_scenario_contract.json",
+      "sha256": "c460d927331db3e2b262c848337afd3bb5b93007538941c546827b895bd86776"
+    },
+    "replay/replay/evolution.json": {
+      "path": "demo/replay/evolution.json",
+      "sha256": "35ee141bffe8de78eb50cfa17c09778e870e14ae2cab95f01a84ee524d4c06b2"
+    },
+    "replay/replay/graph.json": {
+      "path": "demo/replay/graph.json",
+      "sha256": "2962d5da69ccb8ceff0ba289f25624020a8383a7a5aba3fc031dd26461301c85"
+    },
+    "replay/replay/lifecycle.json": {
+      "path": "demo/replay/lifecycle.json",
+      "sha256": "b7cc1f749ff66393bbe1909c6ebb41c2231d4efc05741ecc6fd0e8a0c26526ce"
+    },
+    "replay/replay/origin.json": {
+      "path": "demo/replay/origin.json",
+      "sha256": "c9625ab9affaa996a29b3631bc1b7e969d98e4f7a217ec1b57eeb4901e11f77e"
+    },
+    "replay/replay/pilot.json": {
+      "path": "demo/replay/pilot.json",
+      "sha256": "42cea7f7ad9792b156b1fdd3fa09886050ab2f23f716f8c415e235569dc850b2"
+    },
+    "replay/replay/queries.json": {
+      "path": "demo/replay/queries.json",
+      "sha256": "7fb60d40a60e3128b1fedd5bf6a4fdc76f7b4e258cf69b336909520c662510ec"
+    },
+    "replay/replay/readback.json": {
+      "path": "demo/replay/readback.json",
+      "sha256": "82d7f8c8b3c119d21a5aa67fab9d916dfb8792c61feac353a8aa69f0f06f2ade"
+    },
+    "replay/replay/views.json": {
+      "path": "demo/replay/views.json",
+      "sha256": "1ebf77b112da0f9efeff95c10ab4b750de0a2db67cd85f7a2c34b67e0e03dd63"
+    },
+    "static/BUILD_MANIFEST.json": {
+      "path": "console/src/aevora_observatory/static/BUILD_MANIFEST.json",
+      "sha256": "042c155750fe71a65421a5add478f1bd337d02761b61003358ff3e2061cab721"
+    },
+    "static/assets/app.css": {
+      "path": "console/src/aevora_observatory/static/assets/app.css",
+      "sha256": "2ff98e464fbd7bdf57048c42a3981828269459716c40736175d201396d87049b"
+    },
+    "static/assets/app.js": {
+      "path": "console/src/aevora_observatory/static/assets/app.js",
+      "sha256": "59c72ddd337be467d0c80232e4ad08e317d73dac41f9cfee2dde54f3235ad0f2"
+    },
+    "static/index.html": {
+      "path": "console/src/aevora_observatory/static/index.html",
+      "sha256": "be6e81c87200432f9ce470a58cb841c9a472ae8030a8499555797ef53beb128d"
+    }
+  }
+}

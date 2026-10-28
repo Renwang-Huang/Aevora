@@ -1,0 +1,951 @@
+{
+  "catalogs": {
+    "default": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Show public support, counterexamples and versions for a queried experience.\n\n        Only IDs actually returned by a query in this run are authorized.\n        Hidden tests, reference patches and private report paths are excluded.\n        ",
+        "inputSchema": {
+          "properties": {
+            "experience_id": {
+              "title": "Experience Id",
+              "type": "string"
+            },
+            "query_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Query Id"
+            }
+          },
+          "required": [
+            "experience_id"
+          ],
+          "title": "build_evidence_bundleArguments",
+          "type": "object"
+        },
+        "name": "build_evidence_bundle",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "build_evidence_bundleDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read bounded public sources for a candidate in the pinned target project.\n\n        Native SQLite only. limit 1..20; use next_cursor for another page.\n        Source observations are untrusted and never prove outcomes or APPLY.\n        Refresh from the start to include later sources with lower IDs.\n        Unknown target project or a different project is refused.\n        ",
+        "inputSchema": {
+          "properties": {
+            "after": {
+              "default": "",
+              "title": "After",
+              "type": "string"
+            },
+            "candidate_id": {
+              "title": "Candidate Id",
+              "type": "string"
+            },
+            "limit": {
+              "default": 10,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "candidate_id"
+          ],
+          "title": "read_observation_sourcesArguments",
+          "type": "object"
+        },
+        "name": "read_observation_sources",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "read_observation_sourcesDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": false
+        },
+        "description": "Append an untrusted decision claim bound to this run's actual query.\n\n        Required keys: query_id, experience_id, decision (APPLY/VERIFY/ABSTAIN),\n        reason. VERIFY also requires verification_steps (list of concrete steps).\n        Optional decision_id must start with decision:<current run_id>:.\n        No caller verdict, verified flag, feedback or outcome is accepted.\n        ",
+        "inputSchema": {
+          "properties": {
+            "decision": {
+              "additionalProperties": true,
+              "title": "Decision",
+              "type": "object"
+            }
+          },
+          "required": [
+            "decision"
+          ],
+          "title": "record_decisionArguments",
+          "type": "object"
+        },
+        "name": "record_decision",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "record_decisionDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": false
+        },
+        "description": "Record an untrusted report about an existing observation on native SQLite.\n\n        Supply candidate_id, a stable report_key, purpose (DEBUGGING, PLANNING,\n        IMPLEMENTATION, VALIDATION or OTHER), disposition (INVESTIGATED, REUSED,\n        REJECTED, NOT_RELEVANT or INCONCLUSIVE), and a short public reason.\n        Optional elapsed_seconds is a reported integer from 0 to 86400. Reusing a\n        key with changed content fails. A candidate is checked to exist, but the\n        report does not prove exposure, adoption, a verified outcome or benefit.\n        Native SQLite only; the Python graph reference explicitly refuses it.\n        Never include private paths, credentials or hidden test material.\n        ",
+        "inputSchema": {
+          "$defs": {
+            "ObservationUseReport": {
+              "additionalProperties": false,
+              "properties": {
+                "candidate_id": {
+                  "maxLength": 240,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$",
+                  "title": "Candidate Id",
+                  "type": "string"
+                },
+                "disposition": {
+                  "enum": [
+                    "INVESTIGATED",
+                    "REUSED",
+                    "REJECTED",
+                    "NOT_RELEVANT",
+                    "INCONCLUSIVE"
+                  ],
+                  "title": "Disposition",
+                  "type": "string"
+                },
+                "elapsed_seconds": {
+                  "description": "Optional reported time; omit when unknown",
+                  "maximum": 86400,
+                  "minimum": 0,
+                  "title": "Elapsed Seconds",
+                  "type": "integer"
+                },
+                "purpose": {
+                  "enum": [
+                    "DEBUGGING",
+                    "PLANNING",
+                    "IMPLEMENTATION",
+                    "VALIDATION",
+                    "OTHER"
+                  ],
+                  "title": "Purpose",
+                  "type": "string"
+                },
+                "reason": {
+                  "description": "Public reason without private paths or credentials",
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "title": "Reason",
+                  "type": "string"
+                },
+                "report_key": {
+                  "maxLength": 64,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                  "title": "Report Key",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "candidate_id",
+                "report_key",
+                "purpose",
+                "disposition",
+                "reason"
+              ],
+              "title": "ObservationUseReport",
+              "type": "object"
+            }
+          },
+          "properties": {
+            "report": {
+              "$ref": "#/$defs/ObservationUseReport"
+            }
+          },
+          "required": [
+            "report"
+          ],
+          "title": "record_observation_useArguments",
+          "type": "object"
+        },
+        "name": "record_observation_use",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "record_observation_useDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": false
+        },
+        "description": "Recall task-relevant experience, then check pinned facts against graph evidence.\n\n        Native SQLite: query is a short public task description (max 1000 characters;\n        no credentials/private paths). Missing query returns TASK_QUERY_REQUIRED and\n        no recommendations. limit is 1..20 (default 5); detail is summary or full.\n        Summaries contain bounded excerpts; fetch complete evidence with query_id.\n        Native uses BM25, Chinese fragments and disclosed aliases; a protected\n        optional local embedding adapter adds cosine/RRF hybrid retrieval.\n        Provider failure is an explicit lexical fallback. Relevance is never\n        verified applicability or task utility; actual semantic quality depends\n        on the configured model and needs separate evaluation.\n        task_context claims cannot establish or override trusted Host/target_* facts.\n        Preserve query_id. Python reference supports legacy condition diagnostics\n        without query; explicit task-text recall requires the native runtime.\n        ",
+        "inputSchema": {
+          "properties": {
+            "detail": {
+              "default": "summary",
+              "title": "Detail",
+              "type": "string"
+            },
+            "limit": {
+              "default": 5,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "query": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Query"
+            },
+            "task_context": {
+              "additionalProperties": true,
+              "title": "Task Context",
+              "type": "object"
+            }
+          },
+          "required": [
+            "task_context"
+          ],
+          "title": "resolve_experienceArguments",
+          "type": "object"
+        },
+        "name": "resolve_experience",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "resolve_experienceDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Search public untrusted observations across this project using concrete literal keywords.\n\n        Native SQLite additionally accepts mode=ranked: FTS5/BM25, Chinese fragments\n        and a disclosed engineering alias list; bounded public excerpts. Default\n        literal preserves old substring behavior; Python reference is literal only.\n        Ranked native results include up to two ID-ordered untrusted usage claims;\n        they do not change rank or establish exposure, adoption or outcomes.\n        Native auto-diagnostic groups can show an unverified source project hint,\n        source IDs and a count of captured records, not a count of proven failures.\n        Returns at most 20 matches. These are investigative leads only,\n        never verified experience or APPLY. Original Run and current lifecycle\n        remain visible; rejected/withdrawn records are history, not advice.\n        ",
+        "inputSchema": {
+          "properties": {
+            "limit": {
+              "default": 10,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "mode": {
+              "default": "literal",
+              "title": "Mode",
+              "type": "string"
+            },
+            "query": {
+              "title": "Query",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "title": "search_observationsArguments",
+          "type": "object"
+        },
+        "name": "search_observations",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "search_observationsDictOutput",
+          "type": "object"
+        }
+      }
+    ],
+    "proposals": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Show public support, counterexamples and versions for a queried experience.\n\n        Only IDs actually returned by a query in this run are authorized.\n        Hidden tests, reference patches and private report paths are excluded.\n        ",
+        "inputSchema": {
+          "properties": {
+            "experience_id": {
+              "title": "Experience Id",
+              "type": "string"
+            },
+            "query_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Query Id"
+            }
+          },
+          "required": [
+            "experience_id"
+          ],
+          "title": "build_evidence_bundleArguments",
+          "type": "object"
+        },
+        "name": "build_evidence_bundle",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "build_evidence_bundleDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": false
+        },
+        "description": "Propose UNTRUSTED conditional experience, never publish or verify it.\n\n            Required exact fields: candidate_key (short local ID), title,\n            strategy, public_summary; necessary_conditions, inapplicable_conditions\n            and scope (public fact keys mapped to lists of scalar values);\n            unknown_fields (public fact NAMES only), limitations (free-text lists); source_references (list of\n            {kind: Query|Decision|ObservedAction, id: actual current-run ID}).\n            Empty necessary_conditions and scope are accepted as unscoped drafts, never admitted or published.\n            Never fabricate facts to fill these fields. Use unknown_fields for unproved public premises. No paths, credentials,\n            run_id, source_type, verified, outcome or publication authority.\n            The trusted host independently establishes origin and admission.\n            ",
+        "inputSchema": {
+          "$defs": {
+            "CandidateProposal": {
+              "additionalProperties": false,
+              "properties": {
+                "candidate_key": {
+                  "maxLength": 64,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.@+\\-]{0,63}$",
+                  "title": "Candidate Key",
+                  "type": "string"
+                },
+                "derived_from_candidate_id": {
+                  "anyOf": [
+                    {
+                      "maxLength": 240,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Optional actual original candidate ID in this Run; preserves history and grants no trust.",
+                  "title": "Derived From Candidate Id"
+                },
+                "inapplicable_conditions": {
+                  "additionalProperties": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "description": "OBJECT of factual exclusion conditions. Empty object if none established; narrative limitations belong in limitations",
+                  "propertyNames": {
+                    "enum": [
+                      "authority_model",
+                      "authority_validation",
+                      "clock_domain",
+                      "concurrency_scope",
+                      "console_access",
+                      "contract_version",
+                      "failure_domain",
+                      "lease_expiry_semantics",
+                      "observed_failure_mode",
+                      "operation_semantics",
+                      "runtime_arch",
+                      "runtime_engine",
+                      "runtime_os",
+                      "runtime_revision",
+                      "runtime_version",
+                      "shared_object_scope",
+                      "shared_state_kind",
+                      "sqlite_journal_mode",
+                      "storage_backend",
+                      "supported_operation_set",
+                      "synchronization_scope",
+                      "target_branch",
+                      "target_dependency_snapshot",
+                      "target_go_requirement",
+                      "target_manifest_set",
+                      "target_node_requirement",
+                      "target_project",
+                      "target_python_requirement",
+                      "target_revision",
+                      "target_worktree_snapshot",
+                      "target_worktree_state",
+                      "transaction_guarantees",
+                      "worker_count",
+                      "worker_count_known"
+                    ]
+                  },
+                  "title": "Inapplicable Conditions",
+                  "type": "object"
+                },
+                "limitations": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 32,
+                  "title": "Limitations",
+                  "type": "array"
+                },
+                "necessary_conditions": {
+                  "additionalProperties": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "description": "OBJECT mapping known public fact names to scalar ARRAYS. Use {} for an unscoped draft when no necessary conditions are established. Empty conditions cannot pass admission or publication; never invent facts.",
+                  "propertyNames": {
+                    "enum": [
+                      "authority_model",
+                      "authority_validation",
+                      "clock_domain",
+                      "concurrency_scope",
+                      "console_access",
+                      "contract_version",
+                      "failure_domain",
+                      "lease_expiry_semantics",
+                      "observed_failure_mode",
+                      "operation_semantics",
+                      "runtime_arch",
+                      "runtime_engine",
+                      "runtime_os",
+                      "runtime_revision",
+                      "runtime_version",
+                      "shared_object_scope",
+                      "shared_state_kind",
+                      "sqlite_journal_mode",
+                      "storage_backend",
+                      "supported_operation_set",
+                      "synchronization_scope",
+                      "target_branch",
+                      "target_dependency_snapshot",
+                      "target_go_requirement",
+                      "target_manifest_set",
+                      "target_node_requirement",
+                      "target_project",
+                      "target_python_requirement",
+                      "target_revision",
+                      "target_worktree_snapshot",
+                      "target_worktree_state",
+                      "transaction_guarantees",
+                      "worker_count",
+                      "worker_count_known"
+                    ]
+                  },
+                  "title": "Necessary Conditions",
+                  "type": "object"
+                },
+                "public_summary": {
+                  "maxLength": 4000,
+                  "minLength": 1,
+                  "title": "Public Summary",
+                  "type": "string"
+                },
+                "scope": {
+                  "additionalProperties": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "description": "OBJECT of bounded factual conditions from real context. Use {} for an unscoped draft. Submit a new bounded proposal once verified scope is known; do not invent unknown values.",
+                  "propertyNames": {
+                    "enum": [
+                      "authority_model",
+                      "authority_validation",
+                      "clock_domain",
+                      "concurrency_scope",
+                      "console_access",
+                      "contract_version",
+                      "failure_domain",
+                      "lease_expiry_semantics",
+                      "observed_failure_mode",
+                      "operation_semantics",
+                      "runtime_arch",
+                      "runtime_engine",
+                      "runtime_os",
+                      "runtime_revision",
+                      "runtime_version",
+                      "shared_object_scope",
+                      "shared_state_kind",
+                      "sqlite_journal_mode",
+                      "storage_backend",
+                      "supported_operation_set",
+                      "synchronization_scope",
+                      "target_branch",
+                      "target_dependency_snapshot",
+                      "target_go_requirement",
+                      "target_manifest_set",
+                      "target_node_requirement",
+                      "target_project",
+                      "target_python_requirement",
+                      "target_revision",
+                      "target_worktree_snapshot",
+                      "target_worktree_state",
+                      "transaction_guarantees",
+                      "worker_count",
+                      "worker_count_known"
+                    ]
+                  },
+                  "title": "Scope",
+                  "type": "object"
+                },
+                "source_references": {
+                  "items": {
+                    "$ref": "#/$defs/SourceReference"
+                  },
+                  "maxItems": 32,
+                  "title": "Source References",
+                  "type": "array"
+                },
+                "strategy": {
+                  "description": "Observed engineering principle as untrusted narrative",
+                  "maxLength": 4000,
+                  "minLength": 1,
+                  "title": "Strategy",
+                  "type": "string"
+                },
+                "title": {
+                  "maxLength": 4000,
+                  "minLength": 1,
+                  "title": "Title",
+                  "type": "string"
+                },
+                "unknown_fields": {
+                  "description": "Public fact NAMES whose values are unproved. Free-text uncertainty goes in limitations. Required unknown premises remain pending",
+                  "items": {
+                    "enum": [
+                      "authority_model",
+                      "authority_validation",
+                      "clock_domain",
+                      "concurrency_scope",
+                      "console_access",
+                      "contract_version",
+                      "failure_domain",
+                      "lease_expiry_semantics",
+                      "observed_failure_mode",
+                      "operation_semantics",
+                      "runtime_arch",
+                      "runtime_engine",
+                      "runtime_os",
+                      "runtime_revision",
+                      "runtime_version",
+                      "shared_object_scope",
+                      "shared_state_kind",
+                      "sqlite_journal_mode",
+                      "storage_backend",
+                      "supported_operation_set",
+                      "synchronization_scope",
+                      "target_branch",
+                      "target_dependency_snapshot",
+                      "target_go_requirement",
+                      "target_manifest_set",
+                      "target_node_requirement",
+                      "target_project",
+                      "target_python_requirement",
+                      "target_revision",
+                      "target_worktree_snapshot",
+                      "target_worktree_state",
+                      "transaction_guarantees",
+                      "worker_count",
+                      "worker_count_known"
+                    ],
+                    "type": "string"
+                  },
+                  "maxItems": 32,
+                  "title": "Unknown Fields",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "candidate_key",
+                "title",
+                "strategy",
+                "public_summary",
+                "necessary_conditions",
+                "inapplicable_conditions",
+                "scope",
+                "unknown_fields",
+                "limitations",
+                "source_references"
+              ],
+              "title": "CandidateProposal",
+              "type": "object"
+            },
+            "SourceReference": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "description": "Actual graph identity returned in this scoped Run",
+                  "maxLength": 240,
+                  "minLength": 1,
+                  "title": "Id",
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "Query",
+                    "Decision",
+                    "ObservedAction"
+                  ],
+                  "title": "Kind",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind",
+                "id"
+              ],
+              "title": "SourceReference",
+              "type": "object"
+            }
+          },
+          "properties": {
+            "proposal": {
+              "$ref": "#/$defs/CandidateProposal"
+            }
+          },
+          "required": [
+            "proposal"
+          ],
+          "title": "propose_experienceArguments",
+          "type": "object"
+        },
+        "name": "propose_experience",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "propose_experienceDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read bounded public sources for a candidate in the pinned target project.\n\n        Native SQLite only. limit 1..20; use next_cursor for another page.\n        Source observations are untrusted and never prove outcomes or APPLY.\n        Refresh from the start to include later sources with lower IDs.\n        Unknown target project or a different project is refused.\n        ",
+        "inputSchema": {
+          "properties": {
+            "after": {
+              "default": "",
+              "title": "After",
+              "type": "string"
+            },
+            "candidate_id": {
+              "title": "Candidate Id",
+              "type": "string"
+            },
+            "limit": {
+              "default": 10,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "candidate_id"
+          ],
+          "title": "read_observation_sourcesArguments",
+          "type": "object"
+        },
+        "name": "read_observation_sources",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "read_observation_sourcesDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": false
+        },
+        "description": "Append an untrusted decision claim bound to this run's actual query.\n\n        Required keys: query_id, experience_id, decision (APPLY/VERIFY/ABSTAIN),\n        reason. VERIFY also requires verification_steps (list of concrete steps).\n        Optional decision_id must start with decision:<current run_id>:.\n        No caller verdict, verified flag, feedback or outcome is accepted.\n        ",
+        "inputSchema": {
+          "properties": {
+            "decision": {
+              "additionalProperties": true,
+              "title": "Decision",
+              "type": "object"
+            }
+          },
+          "required": [
+            "decision"
+          ],
+          "title": "record_decisionArguments",
+          "type": "object"
+        },
+        "name": "record_decision",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "record_decisionDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": false
+        },
+        "description": "Record an untrusted report about an existing observation on native SQLite.\n\n        Supply candidate_id, a stable report_key, purpose (DEBUGGING, PLANNING,\n        IMPLEMENTATION, VALIDATION or OTHER), disposition (INVESTIGATED, REUSED,\n        REJECTED, NOT_RELEVANT or INCONCLUSIVE), and a short public reason.\n        Optional elapsed_seconds is a reported integer from 0 to 86400. Reusing a\n        key with changed content fails. A candidate is checked to exist, but the\n        report does not prove exposure, adoption, a verified outcome or benefit.\n        Native SQLite only; the Python graph reference explicitly refuses it.\n        Never include private paths, credentials or hidden test material.\n        ",
+        "inputSchema": {
+          "$defs": {
+            "ObservationUseReport": {
+              "additionalProperties": false,
+              "properties": {
+                "candidate_id": {
+                  "maxLength": 240,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/@+\\-]{0,239}$",
+                  "title": "Candidate Id",
+                  "type": "string"
+                },
+                "disposition": {
+                  "enum": [
+                    "INVESTIGATED",
+                    "REUSED",
+                    "REJECTED",
+                    "NOT_RELEVANT",
+                    "INCONCLUSIVE"
+                  ],
+                  "title": "Disposition",
+                  "type": "string"
+                },
+                "elapsed_seconds": {
+                  "description": "Optional reported time; omit when unknown",
+                  "maximum": 86400,
+                  "minimum": 0,
+                  "title": "Elapsed Seconds",
+                  "type": "integer"
+                },
+                "purpose": {
+                  "enum": [
+                    "DEBUGGING",
+                    "PLANNING",
+                    "IMPLEMENTATION",
+                    "VALIDATION",
+                    "OTHER"
+                  ],
+                  "title": "Purpose",
+                  "type": "string"
+                },
+                "reason": {
+                  "description": "Public reason without private paths or credentials",
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "title": "Reason",
+                  "type": "string"
+                },
+                "report_key": {
+                  "maxLength": 64,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                  "title": "Report Key",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "candidate_id",
+                "report_key",
+                "purpose",
+                "disposition",
+                "reason"
+              ],
+              "title": "ObservationUseReport",
+              "type": "object"
+            }
+          },
+          "properties": {
+            "report": {
+              "$ref": "#/$defs/ObservationUseReport"
+            }
+          },
+          "required": [
+            "report"
+          ],
+          "title": "record_observation_useArguments",
+          "type": "object"
+        },
+        "name": "record_observation_use",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "record_observation_useDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": false
+        },
+        "description": "Recall task-relevant experience, then check pinned facts against graph evidence.\n\n        Native SQLite: query is a short public task description (max 1000 characters;\n        no credentials/private paths). Missing query returns TASK_QUERY_REQUIRED and\n        no recommendations. limit is 1..20 (default 5); detail is summary or full.\n        Summaries contain bounded excerpts; fetch complete evidence with query_id.\n        Native uses BM25, Chinese fragments and disclosed aliases; a protected\n        optional local embedding adapter adds cosine/RRF hybrid retrieval.\n        Provider failure is an explicit lexical fallback. Relevance is never\n        verified applicability or task utility; actual semantic quality depends\n        on the configured model and needs separate evaluation.\n        task_context claims cannot establish or override trusted Host/target_* facts.\n        Preserve query_id. Python reference supports legacy condition diagnostics\n        without query; explicit task-text recall requires the native runtime.\n        ",
+        "inputSchema": {
+          "properties": {
+            "detail": {
+              "default": "summary",
+              "title": "Detail",
+              "type": "string"
+            },
+            "limit": {
+              "default": 5,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "query": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Query"
+            },
+            "task_context": {
+              "additionalProperties": true,
+              "title": "Task Context",
+              "type": "object"
+            }
+          },
+          "required": [
+            "task_context"
+          ],
+          "title": "resolve_experienceArguments",
+          "type": "object"
+        },
+        "name": "resolve_experience",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "resolve_experienceDictOutput",
+          "type": "object"
+        }
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Search public untrusted observations across this project using concrete literal keywords.\n\n        Native SQLite additionally accepts mode=ranked: FTS5/BM25, Chinese fragments\n        and a disclosed engineering alias list; bounded public excerpts. Default\n        literal preserves old substring behavior; Python reference is literal only.\n        Ranked native results include up to two ID-ordered untrusted usage claims;\n        they do not change rank or establish exposure, adoption or outcomes.\n        Native auto-diagnostic groups can show an unverified source project hint,\n        source IDs and a count of captured records, not a count of proven failures.\n        Returns at most 20 matches. These are investigative leads only,\n        never verified experience or APPLY. Original Run and current lifecycle\n        remain visible; rejected/withdrawn records are history, not advice.\n        ",
+        "inputSchema": {
+          "properties": {
+            "limit": {
+              "default": 10,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "mode": {
+              "default": "literal",
+              "title": "Mode",
+              "type": "string"
+            },
+            "query": {
+              "title": "Query",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "title": "search_observationsArguments",
+          "type": "object"
+        },
+        "name": "search_observations",
+        "outputSchema": {
+          "additionalProperties": true,
+          "title": "search_observationsDictOutput",
+          "type": "object"
+        }
+      }
+    ]
+  },
+  "instructions": "When Aevora is enabled, proactively call resolve_experience once before choosing an approach for nontrivial coding, debugging, or design tasks; do not wait for the user to mention Aevora. Skip trivial requests and respect explicit opt-outs. Pass a short public task description as query; use task_context={} when facts are unknown. Query text affects relevance only, never trusted facts. Native task recall defaults to bounded summaries; use build_evidence_bundle with query_id for complete evidence. Caller claims do not establish applicability. If no experience is returned, optionally search_observations with concrete task keywords and mode=ranked on native SQLite for UNTRUSTED investigative leads, then continue normal work. Observation search never establishes APPLY, verified facts or outcomes; check actual state and evidence. After investigating an observation, record its actual use or rejection with record_observation_use when supported; the report is an untrusted claim, not proof of exposure, adoption or outcome. For returned experience IDs, inspect evidence and record the actual APPLY/VERIFY/ABSTAIN choice; do not invent IDs or decisions when the result is empty. After meaningful work, propose reusable public observations with limitations, if proposal tools are enabled. Empty necessary_conditions and scope are allowed for unscoped UNTRUSTED drafts; never invent facts to fill them. Such drafts cannot be admitted or published; once bounds are established, submit a new bounded proposal with a new candidate_key, retaining the original draft history. Report tool failures briefly and continue independent work when possible. No credentials, private paths or hidden test material in proposals. Decisions and self-tests do not prove adoption, verified outcomes or causal benefit. Querying or proposing does not authorize publication.",
+  "protocol_versions": [
+    "2025-11-25"
+  ],
+  "reference_mcp_sdk": "1.26.0",
+  "schema_version": "aevora.tool-contract/1"
+}

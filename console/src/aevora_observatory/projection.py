@@ -7,8 +7,6 @@ import re
 from ._hero_verify import verify,read,strict_json
 from ._public_projection import project,decision_view
 
-MAX_NODES=500
-MAX_EDGES=1200
 CONTEXTS={
  'threads':{'concurrency_scope':'single_process_threads','shared_state_kind':'sqlite_file','synchronization_scope':'shared_process_object','transaction_guarantees':'sqlite_atomic_write_transactions','worker_count_known':True},
  'workers':{'concurrency_scope':'independent_processes','shared_state_kind':'sqlite_file','synchronization_scope':'per_process','transaction_guarantees':'sqlite_atomic_write_transactions','worker_count_known':True},
@@ -123,11 +121,20 @@ def channel_activity(path):
     events=[];run_id=None
     for number,line in enumerate(complete,1):
         event=strict_json(line)
-        if event.get('source')!='aevora.authenticated_mcp_broker':raise ValueError('Not a Core broker event file')
+        native=event.get('source')=='aevora.native_host' and event.get('schema_version')=='aevora.runtime-event/1'
+        if not native and event.get('source')!='aevora.authenticated_mcp_broker':raise ValueError('Not a Core broker event file')
         identity=event.get('run_id')
         if not isinstance(identity,str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.:\-]{0,127}',identity):raise ValueError('Invalid owned channel identity')
         if run_id is not None and run_id!=identity:raise ValueError('Mixed channel identity')
         run_id=identity
+        if native:
+            tool=event.get('category')
+            if tool in {'resolve_experience','build_evidence_bundle','record_decision','propose_experience'}:
+                events.append({'tool':tool,'timestamp':event.get('timestamp'),'line':number,
+                    'line_sha256':sha256(line).hexdigest(),'source_artifact':'OWNER_CONFIGURED_CORE_MCP_LOG',
+                    'operation_id':event.get('operation_id'),'operation_state':event.get('state'),
+                    'source_kind':'NATIVE_HOST_OPERATION_METADATA'})
+            continue
         if event.get('category')!='JSONRPC':continue
         message=strict_json(event['raw_json'])
         if message.get('method')!='tools/call':continue
@@ -144,60 +151,53 @@ def channel_activity(path):
 
 
 class LiveReader:
-    def __init__(self,activity_root=None,mcp_events=None):self.activity_root=activity_root;self.mcp_events=mcp_events
+    def __init__(self,activity_root=None,mcp_events=None,session_root=None):
+        self.activity_root=activity_root;self.mcp_events=mcp_events;self.session_root=session_root
 
-    def overview(self,case,experience=None,context='workers'):
+    def proof(self,candidate):
+        """Inspect exactly one current candidate through Core's checked event chain."""
         from aevora.graph_repository import GraphRepository
-        from aevora.experience_resolver import ExperienceResolver
-        repo=GraphRepository.from_environment()
+        from aevora.candidate import CandidateLifecycle
+        from .live_graph import BoundedRepository
+        repo=BoundedRepository(GraphRepository.from_environment())
         try:
-            counts=repo.query('MATCH(n) RETURN count(n)')[0][0]
-            edges=repo.query('MATCH()-[r]->() RETURN count(r)')[0][0]
-            experience_count=repo.query('MATCH(n:Experience) RETURN count(n)')[0][0]
-            if counts>MAX_NODES or edges>MAX_EDGES or experience_count>16:raise OverflowError('Graph exceeds public read budget')
-            # Graph RO queries and existing Core authority only. No snapshot,
-            # Decision, Outcome, review or feedback write from an HTTP read.
-            resolved=ExperienceResolver(repo).resolve(CONTEXTS[context],persist_snapshots=False)
-            nodes=[];raw_bytes=0
-            for labels,identity,raw,fingerprint in repo.query('MATCH(n) RETURN labels(n),n.id,n.payload_json,n.payload_sha256 ORDER BY n.id LIMIT 501'):
-                if len(labels)!=1:raise ValueError('Ambiguous graph label')
-                raw_bytes+=len(raw.encode())
-                if raw_bytes>8*1024*1024:raise OverflowError('Graph payload read budget exceeded')
-                payload=repo._decode(labels[0],raw,fingerprint)
-                nodes.append({'id':identity,'label':labels[0],'public':project(labels[0],payload),'stored_payload_sha256':fingerprint})
-            relationships=[dict(zip(['source','relation','id','stored_payload_sha256','target'],e)) for e in repo.query('MATCH(s)-[r]->(t) RETURN s.id,type(r),r.id,r.payload_sha256,t.id ORDER BY s.id,r.id LIMIT 1201')]
-            graph={'nodes':nodes,'edges':relationships};decisions=[decision_view(r) for r in resolved['candidates']]
-            experiences=[n['public'] for n in nodes if n['label']=='Experience']
-            selected=experience or ('experience:process-local-reservation-lock' if case=='case-b' else 'experience:sqlite-atomic-reservation' if case=='case-c' else None)
-            # Missing Case A in a current graph is UNAVAILABLE, never replayed.
-            if case=='case-a' and not selected:
-                natural=[n['public'] for n in nodes if n['label']=='Experience' and n['public'].get('publication_candidate_id')]
-                selected=natural[0]['id'] if natural else None
-            lifecycle=None
-            if selected:
-                record=next((x for x in experiences if x['id']==selected),None)
-                if record and record.get('publication_candidate_id'):
-                    from aevora.candidate import CandidateLifecycle
-                    full=CandidateLifecycle(repo).inspect(record['publication_candidate_id'])
-                    lifecycle={'candidate':project('Candidate',full['candidate']),'head':full['head'],'events':[project('CandidateEvent',e) for e in full['events']]}
-            sessions=activity(self.activity_root)+channel_activity(self.mcp_events)
-            query_records=[n['public'] for n in nodes if n['label']=='Query']
-            known={s['run_id'] for s in sessions}
-            for q in query_records:
-                if q.get('run_id') and q['run_id'] not in known:
-                    sessions.append({'run_id':q['run_id'],'session_id':None,'status':'UNAVAILABLE','source':'ACTUAL_CORE_QUERY_RECORD','authority':'UNTRUSTED_PARTICIPANT_CLAIM'});known.add(q['run_id'])
-            if selected:decisions=[r for r in decisions if r['experience_id']==selected]
-            return {'mode':'LIVE','visibility':'PUBLIC','observed_at':now(),'captured_at':None,'archive':None,'contract_sha256':None,
-                'status':'UNAVAILABLE' if case=='case-a' and not selected else 'EMPTY' if not experiences else 'AVAILABLE',
-                'case':{'case_id':case,'experience_id':selected,'missing_source_reason':'Natural publication not present in current graph' if case=='case-a' and not selected else None},
-                'sessions':sessions,'decisions':decisions,'experiences':experiences,'graph':focus(graph,selected),
-                'lifecycle':lifecycle,'candidates':[n['public'] for n in nodes if n['label']=='Candidate'],
-                'candidate_heads':[n['public'] for n in nodes if n['label']=='LifecycleHead'],
-                'timeline':[n['public'] for n in nodes if n['label'] in ['CandidateEvent','GovernanceEvent','AuditEvent','Decision','Query']],
-                'outcomes':{'trusted':[n['public'] for n in nodes if n['label']=='VerifiedOutcome'],'external':[n['public'] for n in nodes if n['label']=='ExternalObservation'],'authority_policy':'Only graph VerifiedOutcome records are trusted; external observations remain unverified'},
-                'activity_queries':query_records,'recorded_decisions':[n['public'] for n in nodes if n['label']=='Decision'],
-                'live_query_context':CONTEXTS[context],'context_authority':'MAINTAINER_CONTROLLED_PUBLIC_CONTEXT; not an invented Agent task context',
-                'comparison':None,'evolution':None,'sources':{'core':'Existing ExperienceResolver, persist_snapshots=False','graph':repo.graph_name,'query_version':resolved['query_version'],'actual_read_cypher':['MATCH(n) RETURN count(n)','MATCH(n) RETURN labels(n),n.id,n.payload_json,n.payload_sha256 ORDER BY n.id LIMIT 501','MATCH(s)-[r]->(t) RETURN s.id,type(r),r.id,r.payload_sha256,t.id ORDER BY s.id,r.id LIMIT 1201']},
-                'health':{'database':'AVAILABLE','mcp':'UNAVAILABLE_NOT_ACTIVE_PROBED','recent_core_query_records':len(query_records),'live_fallback':False},
-                'causal_benefit':'UNKNOWN','agent_adoption':'UNKNOWN','consistency':'Actual multi-query observation, not atomic snapshot','ordering':'Stored identity presentation order; no inferred time or total causality'}
+            if repo.get_node('Candidate',candidate) is None:return None
+            full=CandidateLifecycle(repo).inspect(candidate)
+            if full['candidate']['id']!=candidate or full['head']['candidate_id']!=candidate:
+                raise ValueError('Lifecycle identity mismatch')
+            return {'mode':'LIVE','visibility':'PUBLIC','status':'AVAILABLE','observed_at':now(),
+                'candidate_id':candidate,'fallback':False,
+                'source':{'core':'CandidateLifecycle.inspect','graph':repo.graph_name},
+                'data':{'candidate':project('Candidate',full['candidate']),
+                    'head':project('LifecycleHead',full['head']),
+                    'events':[project('CandidateEvent',e) for e in full['events']],
+                    'head_sha256':full['head_sha256'],'consistency':full['consistency']}}
         finally:repo.close()
+
+    def runtime_activity(self):
+        sessions = activity(self.activity_root) + channel_activity(self.mcp_events)
+        if self.session_root and (Path(self.session_root).exists() or Path(self.session_root).is_symlink()):
+            from aevora.local_session import current_session
+            current = current_session(self.session_root, required=False)
+            if current:
+                managed = channel_activity(current['events'])
+                if any(s['run_id'] != current['run_id'] for s in managed):
+                    raise ValueError('Session activity identity mismatch')
+                sessions += managed
+        merged = {}
+        for session in sessions:
+            previous = merged.get(session['run_id'], {})
+            merged[session['run_id']] = {**previous, **session,
+                'tool_events': previous.get('tool_events', []) + session.get('tool_events', [])}
+        return list(merged.values())
+
+    def overview(self,case=None,experience=None,context=None,run=None,*,resource='overview',limit=20,offset=0,after=None):
+        """Only requested pages and local graph records; no whole-project payload scan."""
+        from aevora.graph_repository import GraphRepository
+        from .live_view import overview
+        repo = GraphRepository.from_environment()
+        try:
+            return overview(repo, observed_at=now(), runtime=self.runtime_activity, resource=resource,
+                            run=run, experience=experience, limit=limit, offset=offset, after=after)
+        finally:
+            repo.close()

@@ -48,19 +48,23 @@ def read_grant(path):
 
 
 def main(argv=None):
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--capability-file',type=Path,required=True);args=p.parse_args(argv)
+    p=argparse.ArgumentParser(description=__doc__)
+    group=p.add_mutually_exclusive_group(required=True);group.add_argument('--capability-file',type=Path);group.add_argument('--session-root',type=Path);args=p.parse_args(argv)
     try:
+        if args.session_root:
+            from .local_session import current_session
+            args.capability_file=current_session(args.session_root)['capability']
         grant=read_grant(args.capability_file)
         # The ordinary connector cannot be a DB client; strip any mistakenly
         # inherited database settings before starting the stdlib byte proxy.
         for key in list(os.environ):
-            if key.startswith('AEVORA_FALKORDB_'):os.environ.pop(key)
+            if key.startswith('AEVORA_FALKORDB_') or key=='AEVORA_CONFIG':os.environ.pop(key)
         os.environ['AEVORA_RUN_ID']=grant['AEVORA_RUN_ID'];os.environ['AEVORA_RUN_TOKEN']=grant['AEVORA_RUN_TOKEN']
         from . import mcp_proxy
         mcp_proxy.SOCKET_PATH=grant['socket'];del grant
         return mcp_proxy.main()
     except (ValueError,KeyError,TypeError,OSError):
-        sys.stderr.write('Aevora scoped connection unavailable or revoked.\n');return 1
+        sys.stderr.write('Aevora scoped connection unavailable or revoked. Start the Host with aevora serve, then reconnect the client; --session-root follows the new session.\n');return 1
 
 
 if __name__=='__main__':raise SystemExit(main())

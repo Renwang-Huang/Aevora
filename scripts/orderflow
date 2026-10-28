@@ -1,7 +1,0 @@
-#!/bin/sh
-set -eu
-root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-for orderflow_argument in "$@"; do
-  if [ "$orderflow_argument" = run-codex ]; then export ORDERFLOW_ENABLE_CODEX=1; fi
-done
-exec "$root/scripts/python312" "$root/.venv/bin/orderflow" "$@"

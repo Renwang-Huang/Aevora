@@ -1,0 +1,48 @@
+{
+  "completion_implies_disk_persistence": false,
+  "consumer_operations": {
+    "build_evidence_bundle": {
+      "side_effects": false
+    },
+    "propose_experience": {
+      "opt_in": true,
+      "side_effects": true
+    },
+    "read_observation_sources": {
+      "side_effects": false
+    },
+    "record_decision": {
+      "side_effects": true
+    },
+    "record_observation_use": {
+      "side_effects": true
+    },
+    "resolve_experience": {
+      "side_effects": true
+    },
+    "search_observations": {
+      "side_effects": false
+    }
+  },
+  "limits": {
+    "active_seconds": 60,
+    "auth_bytes": 4096,
+    "auth_seconds": 10,
+    "connections": 4,
+    "frames": 4096,
+    "json_depth": 16,
+    "json_nodes": 20000,
+    "max_active_seconds": 120,
+    "message_bytes": 262144,
+    "worker_result_bytes": 65536
+  },
+  "schema_version": "aevora.operation-contract/1",
+  "states": [
+    "QUEUED",
+    "DISPATCHED",
+    "COMPLETED",
+    "FAILED_KNOWN",
+    "UNKNOWN"
+  ],
+  "unknown_replay": false
+}

@@ -8,6 +8,7 @@ from __future__ import annotations
 from .evidence_bundle import build_evidence_bundle
 from .models import QUERY_VERSION, RULE_VERSION, canonical_json, digest, normalize_context, utc_now
 from .governance import fact_state, project, SEMANTIC_SCOPE_KEYS, scope_relation as candidate_scope_relation
+from .fact_catalog import support_coverage
 
 
 def is_unknown(value) -> bool:
@@ -101,7 +102,7 @@ class ExperienceResolver:
         premise_keys = {p["fact_key"] for p in premises.values() if p.get("required", True)}
         # A matching predicate cannot extrapolate a one-process success into
         # every deployment. Current topology needs observed support coverage.
-        coverage_keys = premise_keys | {"concurrency_scope"}
+        coverage_keys = support_coverage(premise_keys)
         material_keys = set(governance["material_fact_keys"]) | (set(context) & SEMANTIC_SCOPE_KEYS)
         excluded = {(row["target_label"],row["target_id"]) for row in governance["excluded_targets"]}
         principal_support, missing_material, unrelated_paths, inactive_paths = [], [], [], []
@@ -241,10 +242,3 @@ class ExperienceResolver:
                 "query_version": QUERY_VERSION, "decision_engine_version": RULE_VERSION,
                 "recommendation_scope": "Conditional principle within evidenced premises; investigate the whole operation and do not copy a patch blindly",
                 "attribution": "UNKNOWN"}
-
-
-def resolve_v2(repository, facts, query_id, as_of):
-    """Explicit profile only. Reuses the legacy governance comparison semantics."""
-    from .arbitration import arbitrate
-    state, witnesses = repository.resolve_witnesses(facts)
-    return state, [(arbitrate(w, facts, query_id, as_of), w) for w in witnesses]

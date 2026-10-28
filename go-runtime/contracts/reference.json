@@ -1,0 +1,3817 @@
+{
+  "candidate_checklists": [
+    {
+      "body": {},
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [
+          "necessary_conditions",
+          "scope"
+        ],
+        "next_action": "DECLARE_BOUNDS",
+        "scope_status": "UNSCOPED_DRAFT",
+        "unknown_required_facts": []
+      },
+      "state": "PROPOSED"
+    },
+    {
+      "body": {},
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [
+          "necessary_conditions",
+          "scope"
+        ],
+        "next_action": "DECLARE_BOUNDS",
+        "scope_status": "UNSCOPED_DRAFT",
+        "unknown_required_facts": []
+      },
+      "state": "EVIDENCE_PENDING"
+    },
+    {
+      "body": {},
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [
+          "necessary_conditions",
+          "scope"
+        ],
+        "next_action": "DECLARE_BOUNDS",
+        "scope_status": "UNSCOPED_DRAFT",
+        "unknown_required_facts": []
+      },
+      "state": "ADMITTED_BOUNDED"
+    },
+    {
+      "body": {},
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [
+          "necessary_conditions",
+          "scope"
+        ],
+        "next_action": "DECLARE_BOUNDS",
+        "scope_status": "UNSCOPED_DRAFT",
+        "unknown_required_facts": []
+      },
+      "state": "PUBLISHED"
+    },
+    {
+      "body": {},
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [
+          "necessary_conditions",
+          "scope"
+        ],
+        "next_action": "DECLARE_BOUNDS",
+        "scope_status": "UNSCOPED_DRAFT",
+        "unknown_required_facts": []
+      },
+      "state": "WITHDRAWN"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_engine": [
+            "go_native"
+          ]
+        },
+        "scope": {
+          "storage_backend": [
+            "sqlite"
+          ]
+        }
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "REQUEST_EVIDENCE_REVIEW",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": []
+      },
+      "state": "PROPOSED"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_engine": [
+            "go_native"
+          ]
+        },
+        "scope": {
+          "storage_backend": [
+            "sqlite"
+          ]
+        }
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "VERIFY_SOURCE",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": []
+      },
+      "state": "EVIDENCE_PENDING"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_engine": [
+            "go_native"
+          ]
+        },
+        "scope": {
+          "storage_backend": [
+            "sqlite"
+          ]
+        }
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "REVIEW_PUBLICATION",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": []
+      },
+      "state": "ADMITTED_BOUNDED"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_engine": [
+            "go_native"
+          ]
+        },
+        "scope": {
+          "storage_backend": [
+            "sqlite"
+          ]
+        }
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "QUERY_NEW_TASK",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": []
+      },
+      "state": "PUBLISHED"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_engine": [
+            "go_native"
+          ]
+        },
+        "scope": {
+          "storage_backend": [
+            "sqlite"
+          ]
+        }
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "RETAIN_HISTORY",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": []
+      },
+      "state": "WITHDRAWN"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "scope": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "unknown_fields": [
+          "runtime_os"
+        ]
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "ESTABLISH_REQUIRED_FACTS",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": [
+          "runtime_os"
+        ]
+      },
+      "state": "PROPOSED"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "scope": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "unknown_fields": [
+          "runtime_os"
+        ]
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "ESTABLISH_REQUIRED_FACTS",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": [
+          "runtime_os"
+        ]
+      },
+      "state": "EVIDENCE_PENDING"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "scope": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "unknown_fields": [
+          "runtime_os"
+        ]
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "ESTABLISH_REQUIRED_FACTS",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": [
+          "runtime_os"
+        ]
+      },
+      "state": "ADMITTED_BOUNDED"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "scope": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "unknown_fields": [
+          "runtime_os"
+        ]
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "ESTABLISH_REQUIRED_FACTS",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": [
+          "runtime_os"
+        ]
+      },
+      "state": "PUBLISHED"
+    },
+    {
+      "body": {
+        "necessary_conditions": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "scope": {
+          "runtime_os": [
+            "linux"
+          ]
+        },
+        "unknown_fields": [
+          "runtime_os"
+        ]
+      },
+      "expected": {
+        "adoption": "UNKNOWN",
+        "authority": "UNTRUSTED_DECLARATION",
+        "causal_benefit": "UNKNOWN",
+        "missing_fields": [],
+        "next_action": "ESTABLISH_REQUIRED_FACTS",
+        "scope_status": "DECLARED_UNVERIFIED",
+        "unknown_required_facts": [
+          "runtime_os"
+        ]
+      },
+      "state": "WITHDRAWN"
+    }
+  ],
+  "canonical_cases": [
+    {
+      "canonical": "null",
+      "input": "null",
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    {
+      "canonical": "true",
+      "input": "true",
+      "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "canonical": "false",
+      "input": "false",
+      "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+    },
+    {
+      "canonical": "0",
+      "input": "0",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "canonical": "0",
+      "input": "-0",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "canonical": "1",
+      "input": "1",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "canonical": "1.0",
+      "input": "1.0",
+      "sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "canonical": "1.0",
+      "input": "1e0",
+      "sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "canonical": "-0.0",
+      "input": "-0.0",
+      "sha256": "c26617c7ccbcaa6631b45d851b8cf56e21d2ca624bdb1193afdbd4b560702cec"
+    },
+    {
+      "canonical": "-0.0",
+      "input": "-0e2",
+      "sha256": "c26617c7ccbcaa6631b45d851b8cf56e21d2ca624bdb1193afdbd4b560702cec"
+    },
+    {
+      "canonical": "0.0",
+      "input": "1e-999",
+      "sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "canonical": "-0.0",
+      "input": "-1e-999",
+      "sha256": "c26617c7ccbcaa6631b45d851b8cf56e21d2ca624bdb1193afdbd4b560702cec"
+    },
+    {
+      "canonical": "0.0001",
+      "input": "1e-4",
+      "sha256": "e539aebac7fd2ed8aba8854fedeaa65436962f8ee1c82341b394698f085b6496"
+    },
+    {
+      "canonical": "1e-05",
+      "input": "1e-5",
+      "sha256": "5a9530d3c6d5faad6ba8afe16fb8e438df23865128370b2ec14ef622bb5f2ec9"
+    },
+    {
+      "canonical": "1000000000000000.0",
+      "input": "1e15",
+      "sha256": "c02731631f61648f06ba5501a9c68e2b0a9186a934ff45f40ab28eb6f3673021"
+    },
+    {
+      "canonical": "1e+16",
+      "input": "1e16",
+      "sha256": "a144838520595009e7daf5aff8472573f9ce6a4bcd8c30673675618883464ab0"
+    },
+    {
+      "canonical": "1.2345678901234567e+20",
+      "input": "1.2345678901234567e20",
+      "sha256": "ecc1c75212d1c6e26af67645b76620c10e9afe9abf35598908529f4b926776bb"
+    },
+    {
+      "canonical": "340282366920938463463374607431768211456",
+      "input": "340282366920938463463374607431768211456",
+      "sha256": "2bebd8c50579bb419bfa77966f212469b05d13e43bf0423daa2f9403bf5c26ff"
+    },
+    {
+      "canonical": "-340282366920938463463374607431768211456",
+      "input": "-340282366920938463463374607431768211456",
+      "sha256": "67cb61b52ed17df2e18530e16cd883b7da1605a6d934003e89ce1484e8de65b4"
+    },
+    {
+      "canonical": "[]",
+      "input": "[]",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "canonical": "{}",
+      "input": "{}",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "canonical": "{\"a\":1,\"known\":false,\"unknown\":null,\"z\":1.0}",
+      "input": "{\"z\":1.0,\"a\":1,\"unknown\":null,\"known\":false}",
+      "sha256": "e8edc1dea0be5943d656567d6f26ee80310cf0c9ecb79da132963cb5f5d765b7"
+    },
+    {
+      "canonical": "{\"\\u0000\":\"\\b\\f\\n\\r\\t\\u001f\",\"unicode\":\"中文  😀<&>/\"}",
+      "input": "{\"unicode\": \"\\u4e2d\\u6587\\u2028\\u2029\\ud83d\\ude00<&>/\", \"\\u0000\": \"\\b\\f\\n\\r\\t\\u001f\"}",
+      "sha256": "ef9ce665f434d39ef48064bdf682a00d4b9911c188a505d565bf04c91288262d"
+    },
+    {
+      "canonical": "[1,1.0,true,null,\"UNKNOWN\",{\"state\":\"NOT_OBSERVED\"}]",
+      "input": "[1,1.0,true,null,\"UNKNOWN\",{\"state\":\"NOT_OBSERVED\"}]",
+      "sha256": "5ba034db6910bc42b0ce766d9f8dea700afa553b0040e735afd2cb72d5fa1097"
+    },
+    {
+      "canonical": "{\"value\":-5.419827782685596e-37}",
+      "input": "{\"value\": -5.419827782685596e-37}",
+      "sha256": "6967c45c10a9d392394ccaf186aca7c8d39e6645fc4400b187e97ab2c1603207"
+    },
+    {
+      "canonical": "{\"value\":1.159497864500885e-162}",
+      "input": "{\"value\": 1.159497864500885e-162}",
+      "sha256": "9bd20cf440ffcc18a9b2184a84d0c46c987bcc6070859af9c3ec1235577b0f3b"
+    },
+    {
+      "canonical": "{\"value\":2.6432619392592607e+89}",
+      "input": "{\"value\": 2.6432619392592607e+89}",
+      "sha256": "2e1754c3c5c53a3caea51b8323603cb3f9f1f5a9aa6bde4cbc43a8e55e025131"
+    },
+    {
+      "canonical": "{\"value\":2.448424405047478e-60}",
+      "input": "{\"value\": 2.448424405047478e-60}",
+      "sha256": "e57b07d58dcfd3278d94c25d9030e2309fb8589ec5330a39293489d2db10b316"
+    },
+    {
+      "canonical": "{\"value\":-9.508290060117838e+245}",
+      "input": "{\"value\": -9.508290060117838e+245}",
+      "sha256": "b15ab0da106a96e0104c622d84a2911032290b022ec566c7eda036c4857e8bc8"
+    },
+    {
+      "canonical": "{\"value\":-3.9354856080120973e+127}",
+      "input": "{\"value\": -3.9354856080120973e+127}",
+      "sha256": "eb3d7c26190ecc6945974fff4faf2fef72e2173d9fc2df85e2bf7f5e55b033ac"
+    },
+    {
+      "canonical": "{\"value\":2.6703560778597837e+50}",
+      "input": "{\"value\": 2.6703560778597837e+50}",
+      "sha256": "831b6de093266c743c431185de71b1912e590a7c22f676c714c6a6c95f920c40"
+    },
+    {
+      "canonical": "{\"value\":-2.4376759721643467e+215}",
+      "input": "{\"value\": -2.4376759721643467e+215}",
+      "sha256": "ebcdd3680002e85cc3eaa2d282b8c109cffb786432771ea4885dccb7e3184313"
+    },
+    {
+      "canonical": "{\"value\":7.925978136514598e+252}",
+      "input": "{\"value\": 7.925978136514598e+252}",
+      "sha256": "24ca3770cb790859e635ed7e90e5300ace224cd075983597af703c102c239a94"
+    },
+    {
+      "canonical": "{\"value\":4.828071313173411e-162}",
+      "input": "{\"value\": 4.828071313173411e-162}",
+      "sha256": "9a0945f0896793cf10a07d37cfcb17a1089e0e4a9f8ce4b178b59df932506abe"
+    },
+    {
+      "canonical": "{\"value\":1.1733979565840148e-213}",
+      "input": "{\"value\": 1.1733979565840148e-213}",
+      "sha256": "efaf48cad3d46bc37d6ba80e70deca527639f71cf4a652df689606373b9a5cce"
+    },
+    {
+      "canonical": "{\"value\":-8.345290357698825e-149}",
+      "input": "{\"value\": -8.345290357698825e-149}",
+      "sha256": "b569bd502e999b2c5fdfcc1e1551eb771417b2cfbf0d08e8527bc2df9e24c7a2"
+    },
+    {
+      "canonical": "{\"value\":-1.5257379522048567e-257}",
+      "input": "{\"value\": -1.5257379522048567e-257}",
+      "sha256": "9fbf3226d25eaa6224803178529e1374692f811fd4a5e2de4198a79f84d5e1ff"
+    },
+    {
+      "canonical": "{\"value\":-8.934528058075953e-100}",
+      "input": "{\"value\": -8.934528058075953e-100}",
+      "sha256": "854e7ed9636f068e4e0d12324064b51021a300c98b562b44eb68df2e6d05f84a"
+    },
+    {
+      "canonical": "{\"value\":1.6369350761680481e+307}",
+      "input": "{\"value\": 1.6369350761680481e+307}",
+      "sha256": "e334be4dd46ff8cba927c0e0bad326f45be3b3059242fc2288da3f005f2409bc"
+    },
+    {
+      "canonical": "{\"value\":5.246360377164349e-66}",
+      "input": "{\"value\": 5.246360377164349e-66}",
+      "sha256": "1ad2a778d93628049d0e318115adc6c803633933373a69580eec5dbeb0a5709a"
+    },
+    {
+      "canonical": "{\"value\":8.228176081308976e-183}",
+      "input": "{\"value\": 8.228176081308976e-183}",
+      "sha256": "b12b36557d2f961969026af9f6aa39b71218751b7b09075ef457790d5bc8bdb8"
+    },
+    {
+      "canonical": "{\"value\":-1.120946018658426e-222}",
+      "input": "{\"value\": -1.120946018658426e-222}",
+      "sha256": "a30816111a86444e621326e6f6bf3ed57013ee62784749b497531a35d280c5d7"
+    },
+    {
+      "canonical": "{\"value\":-1.3117554015426092e+180}",
+      "input": "{\"value\": -1.3117554015426092e+180}",
+      "sha256": "ecca1e96b991a3b6a970dd95b8497ad231c5f351c3ba3ba3090386136df9c925"
+    },
+    {
+      "canonical": "{\"value\":-9697469681035380.0}",
+      "input": "{\"value\": -9697469681035380.0}",
+      "sha256": "d9c284f6ec02e759f635c4633de8dd214fc482f1498541bac78628b702b8b305"
+    },
+    {
+      "canonical": "{\"value\":-2.4555473677453093e-90}",
+      "input": "{\"value\": -2.4555473677453093e-90}",
+      "sha256": "b29ca845421ca1e83eb5caf4f379eca21045c5f798e8bfdfad1b6927990fcf3b"
+    },
+    {
+      "canonical": "{\"value\":4.127363653460473e-120}",
+      "input": "{\"value\": 4.127363653460473e-120}",
+      "sha256": "de484dd5de88220ea9c6e80d74320725b244d783b313d205f1e3d4f5e776dd2c"
+    },
+    {
+      "canonical": "{\"value\":3.459150759604803e+200}",
+      "input": "{\"value\": 3.459150759604803e+200}",
+      "sha256": "8aaa020e1611d0ffacdc3232ae03227b12a06f445cc85e9708e5223e8f54a8ba"
+    },
+    {
+      "canonical": "{\"value\":-3.2539700282220894e-37}",
+      "input": "{\"value\": -3.2539700282220894e-37}",
+      "sha256": "fd0b31f10e220f482444aa20110434054b3c8203e34d7497417251cae00d1e5d"
+    },
+    {
+      "canonical": "{\"value\":5.170663221249823e-71}",
+      "input": "{\"value\": 5.170663221249823e-71}",
+      "sha256": "98da88792500623cdab14704b1db412e5c57596cd0b26b548d8fc19522abbd33"
+    },
+    {
+      "canonical": "{\"value\":-7.188604797072694e-201}",
+      "input": "{\"value\": -7.188604797072694e-201}",
+      "sha256": "b3f9a60f3590abb267355f7a9072ef8711f999463720bdcaa1ad181303b4905a"
+    },
+    {
+      "canonical": "{\"value\":2.9677301463838893e-195}",
+      "input": "{\"value\": 2.9677301463838893e-195}",
+      "sha256": "4fd93de7b1579d8afdee2e8da7e2c4a7739aecc364e2e29f62b3f45b6300386c"
+    },
+    {
+      "canonical": "{\"value\":-3.458825345537084e+81}",
+      "input": "{\"value\": -3.458825345537084e+81}",
+      "sha256": "8daf0eb30cd76b8c0a64aafa8a1048ec7c6b61ed443f865dcd43ba3b9081c3ea"
+    },
+    {
+      "canonical": "{\"value\":-2.938010366179222e+132}",
+      "input": "{\"value\": -2.938010366179222e+132}",
+      "sha256": "ae432b91500c4a851c99b6b0d818a8a4341c31a888c316a73257a7c24f03688b"
+    },
+    {
+      "canonical": "{\"value\":8.448690979706386e-291}",
+      "input": "{\"value\": 8.448690979706386e-291}",
+      "sha256": "b51da7e96a432c1f7f03fd00af9b9d28817745de58c107e7b894a67b6fd3994a"
+    },
+    {
+      "canonical": "{\"value\":-1.2506024601463404e-187}",
+      "input": "{\"value\": -1.2506024601463404e-187}",
+      "sha256": "2479c9e1eabecb0ff3014f95e9b5a22324f77bb0a13e13a85c428ada98fb2219"
+    },
+    {
+      "canonical": "{\"value\":4.827139646525082e+19}",
+      "input": "{\"value\": 4.827139646525082e+19}",
+      "sha256": "57e1a4b7f5d1f2901242054f26cdfac0dcfcf60e58e553f11a365d7e85852b1a"
+    },
+    {
+      "canonical": "{\"value\":2.8738658632372646e+289}",
+      "input": "{\"value\": 2.8738658632372646e+289}",
+      "sha256": "e8ee74f36a275583eb41964c0bd40d72df9f23c0c4b8af0cc94d1ab49fa635f0"
+    },
+    {
+      "canonical": "{\"value\":3.025720424724447e-240}",
+      "input": "{\"value\": 3.025720424724447e-240}",
+      "sha256": "68e0af24717f861a3c3adf9ce447501b136886448bf9d2462d1fd2cfdb4db28c"
+    },
+    {
+      "canonical": "{\"value\":-1.4304882845367195e+163}",
+      "input": "{\"value\": -1.4304882845367195e+163}",
+      "sha256": "55402771e9991cce41b65289d8a0e154266134bae208c4982e688f22f3415934"
+    },
+    {
+      "canonical": "{\"value\":6.815718973072437e-264}",
+      "input": "{\"value\": 6.815718973072437e-264}",
+      "sha256": "c35e6eec1bc81f70e95872d0c96eaf868e87745b06c968b99efa00c64d251ddf"
+    },
+    {
+      "canonical": "{\"value\":3.1994626282354497e+305}",
+      "input": "{\"value\": 3.1994626282354497e+305}",
+      "sha256": "ef910ac5c92864f9cf886296dd0343361c636fbe870e34b8fa2631957005fca6"
+    },
+    {
+      "canonical": "{\"value\":2.048772412711587e+16}",
+      "input": "{\"value\": 2.048772412711587e+16}",
+      "sha256": "c72243b3d874fb8d4e4b2452d4ac840305b922b905ab6a5cdbb8cc24935bd01e"
+    },
+    {
+      "canonical": "{\"value\":-2.0393845937960425e+209}",
+      "input": "{\"value\": -2.0393845937960425e+209}",
+      "sha256": "5eb354742800c84fd3288a78c4f9282023029b82071e09366c191fca28b972c1"
+    },
+    {
+      "canonical": "{\"value\":1.0266688628125867e-131}",
+      "input": "{\"value\": 1.0266688628125867e-131}",
+      "sha256": "4891fbbb8947db2838edc2dd0aaa0c10e86da5b8de287c873b858973bf000fcd"
+    },
+    {
+      "canonical": "{\"value\":7.370735647641405e+96}",
+      "input": "{\"value\": 7.370735647641405e+96}",
+      "sha256": "02041e1f7edd8db02af3213876bfbd5e69597f692c64834c0c64d1e80d10cbac"
+    },
+    {
+      "canonical": "{\"value\":-1.479666990391163e-104}",
+      "input": "{\"value\": -1.479666990391163e-104}",
+      "sha256": "3064a13d4be7911a211f5c8c5c6f68599a1b91aa30f14d2094437cf77e317848"
+    },
+    {
+      "canonical": "{\"value\":2.42594779347943e-77}",
+      "input": "{\"value\": 2.42594779347943e-77}",
+      "sha256": "ed886f8e6609e0a40b8ca387946e46d3aebd899925f9dde6ca1b940a0f24985d"
+    },
+    {
+      "canonical": "{\"value\":-1.7028628312978215e+253}",
+      "input": "{\"value\": -1.7028628312978215e+253}",
+      "sha256": "8adbf391449ba901c1aa597de1627c928350e193b7c743d0a822e41c5a21d636"
+    },
+    {
+      "canonical": "{\"value\":-4.9537342014916223e-287}",
+      "input": "{\"value\": -4.9537342014916223e-287}",
+      "sha256": "387ca23c5859c4325529a02e2157d5f1e50c436fce32d1284a76313c4e7a5c4a"
+    },
+    {
+      "canonical": "{\"value\":-1.1877956062186743e+99}",
+      "input": "{\"value\": -1.1877956062186743e+99}",
+      "sha256": "60a090a7d6e070d0f969b78c2b0ad8b85af897e02e242da1fb596a9bece11004"
+    },
+    {
+      "canonical": "{\"value\":1.347121799549655e+113}",
+      "input": "{\"value\": 1.347121799549655e+113}",
+      "sha256": "12c0ff38786c9eb524770f2074f3fe28f6f268cce84b06f51ea7d10d2c4f4d93"
+    },
+    {
+      "canonical": "{\"value\":-5.262680473499739e-64}",
+      "input": "{\"value\": -5.262680473499739e-64}",
+      "sha256": "c070d8d7f2934926b5ee486a6106e5d0f233846ffa5a953f6fb6427019814790"
+    },
+    {
+      "canonical": "{\"value\":3.7076204949724034e-223}",
+      "input": "{\"value\": 3.7076204949724034e-223}",
+      "sha256": "ec5e1e8ae818ce6a6e012839763294946af5b3beb02206e95ab81a8c64ef8b4e"
+    },
+    {
+      "canonical": "{\"value\":-4.928582330977139e+95}",
+      "input": "{\"value\": -4.928582330977139e+95}",
+      "sha256": "54c5402287af24f7d89c4a531e568482b01a4e23d871c9e9708cd661af8e4cb0"
+    },
+    {
+      "canonical": "{\"value\":-3.739850829408342e-160}",
+      "input": "{\"value\": -3.739850829408342e-160}",
+      "sha256": "78ced42788d754cf56bedfd3cd358d9a4b0aa3c4d4381a327480ddae2aab46cb"
+    },
+    {
+      "canonical": "{\"value\":-3.4068179914788802e+44}",
+      "input": "{\"value\": -3.4068179914788802e+44}",
+      "sha256": "3dfe69a951cb186f071d6be0291d9418babe070cfd23625cae819a9ae4ec35cb"
+    },
+    {
+      "canonical": "{\"value\":7.32614725932181e-45}",
+      "input": "{\"value\": 7.32614725932181e-45}",
+      "sha256": "8667f802fe6c24a3ad30f0f9c23c89255e45ce27dd2286c2990ccf53be316ce4"
+    },
+    {
+      "canonical": "{\"value\":-1.6453753472939182e+299}",
+      "input": "{\"value\": -1.6453753472939182e+299}",
+      "sha256": "2f8760a9fee3de9c8810412883a91dbae9d6a84d8ee94d9b568b12b6c997bbb4"
+    },
+    {
+      "canonical": "{\"value\":-4.1173372671787284e+61}",
+      "input": "{\"value\": -4.1173372671787284e+61}",
+      "sha256": "27e6736a761bc32891575423f6e138c93d131d54133b2b3202c8793dc52cdbc5"
+    },
+    {
+      "canonical": "{\"value\":4.7833687733383226e+243}",
+      "input": "{\"value\": 4.7833687733383226e+243}",
+      "sha256": "d10855b4e34bfbbd6ab0bca610527f9f0a119382500215d2753fb670fcdc5df8"
+    },
+    {
+      "canonical": "{\"value\":-1.9930866977778051e-25}",
+      "input": "{\"value\": -1.9930866977778051e-25}",
+      "sha256": "593521b079c3a6698715a1c48aa9150d362fa065a720e69c6312efdf98ac7f89"
+    },
+    {
+      "canonical": "{\"value\":-7.312722351834861e+61}",
+      "input": "{\"value\": -7.312722351834861e+61}",
+      "sha256": "04dfddc4acb95658ea7a918f0678bdc23880442e57e066e42592752afcb349a6"
+    },
+    {
+      "canonical": "{\"value\":-4.140624628685355e-173}",
+      "input": "{\"value\": -4.140624628685355e-173}",
+      "sha256": "eee94bdc522c90e8cb8d13330780c6540b86c3ca49047d3d0b0dc235524b5f93"
+    },
+    {
+      "canonical": "{\"value\":-2.547704517487688e+278}",
+      "input": "{\"value\": -2.547704517487688e+278}",
+      "sha256": "7d096f2659efce50df29240fa7b0184c3cf45e716bdd1d9deb2c164d92909d7b"
+    },
+    {
+      "canonical": "{\"value\":-1.6534518221310775e+169}",
+      "input": "{\"value\": -1.6534518221310775e+169}",
+      "sha256": "57139b2d15953b2b0c6bbc46360ba6a3246871a95df1130d3e335089d044e5a6"
+    },
+    {
+      "canonical": "{\"value\":1.6192169626240226e-122}",
+      "input": "{\"value\": 1.6192169626240226e-122}",
+      "sha256": "24e0e4ab5622bad78b280b28129967f0d4892b819394689291dc7c922a74c81b"
+    },
+    {
+      "canonical": "{\"value\":-6.642475724084752e-216}",
+      "input": "{\"value\": -6.642475724084752e-216}",
+      "sha256": "cdccdd7112a5601e003e66683053abdcbffc9c030d42eb834b60b5b72c5b6372"
+    },
+    {
+      "canonical": "{\"value\":-1.4979460777276025e-260}",
+      "input": "{\"value\": -1.4979460777276025e-260}",
+      "sha256": "edb63273bfdb7fa4af535e37aa06a7a7c186655bf4278c80cbb6de1523fc7778"
+    },
+    {
+      "canonical": "{\"value\":-4.1803683433139466e+18}",
+      "input": "{\"value\": -4.1803683433139466e+18}",
+      "sha256": "2529df436d960bf2a3651c761f0d735974636c30d3ec7c951d9043f78397586d"
+    },
+    {
+      "canonical": "{\"value\":-0.08827042093352466}",
+      "input": "{\"value\": -0.08827042093352466}",
+      "sha256": "b6212d9e13e8fae8490bfade0747d7c0d8c440608048b1e2ad4793159e3286a6"
+    },
+    {
+      "canonical": "{\"value\":-2.124030015965534e-191}",
+      "input": "{\"value\": -2.124030015965534e-191}",
+      "sha256": "529409fbd7fd69a1484a342214cc6e7741029abc6e4ad812402100e36aaddcf3"
+    },
+    {
+      "canonical": "{\"value\":-2.814797055731113e-181}",
+      "input": "{\"value\": -2.814797055731113e-181}",
+      "sha256": "230731bd31d1e6e5a6a2c32d13b4ce2df25926431d803228acc115a54959d4ff"
+    },
+    {
+      "canonical": "{\"value\":2.9002448606318055e-242}",
+      "input": "{\"value\": 2.9002448606318055e-242}",
+      "sha256": "26d8915b585a4a4bc1d2b64d1a211d5d9722c4375051a908040c4f52a0e54ad2"
+    },
+    {
+      "canonical": "{\"value\":-4.651198550194875e+94}",
+      "input": "{\"value\": -4.651198550194875e+94}",
+      "sha256": "9792b65612189c5bc106b1f5798a4d1489d5750d9690aa68d1a615e1e1538a37"
+    },
+    {
+      "canonical": "{\"value\":-1.0176588245371074e-147}",
+      "input": "{\"value\": -1.0176588245371074e-147}",
+      "sha256": "1e3196236573cc7111d79d7f6bf827c44340345c7716d3b53edd3b02632d3e2b"
+    },
+    {
+      "canonical": "{\"value\":4.8684968656827065e+39}",
+      "input": "{\"value\": 4.8684968656827065e+39}",
+      "sha256": "6ba167eefd34a5ab4a36bf029b82e4dc82ea5286a0bd3e0433cc7d0d6988432e"
+    },
+    {
+      "canonical": "{\"value\":-1.1487505642370969e-263}",
+      "input": "{\"value\": -1.1487505642370969e-263}",
+      "sha256": "5a3ce6a0c3c0309c0e6c1e7a25c676268d58e9997a88cddab1e1a2e9ac55d7d7"
+    },
+    {
+      "canonical": "{\"value\":9.434252339277732e+275}",
+      "input": "{\"value\": 9.434252339277732e+275}",
+      "sha256": "311e32d132d6ead355e08702b38ca7a9182ae7ca3d018918adb0b1d78659e4ef"
+    },
+    {
+      "canonical": "{\"value\":-7.924247335722537e-48}",
+      "input": "{\"value\": -7.924247335722537e-48}",
+      "sha256": "e8e052433cb1aad4f8d94ee3ee7858153982aac9a6dcd7d2cb0d5f973d537af4"
+    },
+    {
+      "canonical": "{\"value\":-3.795597421421271e+214}",
+      "input": "{\"value\": -3.795597421421271e+214}",
+      "sha256": "765177f93e01768bc9eeb5aad376c2d2deb601aa32dc9aecdb1de8c24ff17875"
+    },
+    {
+      "canonical": "{\"value\":3.5224245956884165e+101}",
+      "input": "{\"value\": 3.5224245956884165e+101}",
+      "sha256": "1d7c4f6f3589225d96a704b5fb9be5c1086cc0b7165bda455376c63bd13e5021"
+    },
+    {
+      "canonical": "{\"value\":1.8702205926416524e-274}",
+      "input": "{\"value\": 1.8702205926416524e-274}",
+      "sha256": "85b83173ea50b0ae68cb5ceb2bbf5bb0ae8e640a03b168454fdaadb77c7154b9"
+    },
+    {
+      "canonical": "{\"value\":1.3139642223636126e-143}",
+      "input": "{\"value\": 1.3139642223636126e-143}",
+      "sha256": "365430d05e30e05aa7db571ae4193a5e46d7fd8963245e36a8fdf8c8598110c0"
+    },
+    {
+      "canonical": "{\"value\":-3.913986129131948e-244}",
+      "input": "{\"value\": -3.913986129131948e-244}",
+      "sha256": "d9dce21a6d2f36b1fcbe4883135d1e5bc587ffe176dbb68bec4fc5ea4d72c8db"
+    },
+    {
+      "canonical": "{\"value\":6.095531612560232e+118}",
+      "input": "{\"value\": 6.095531612560232e+118}",
+      "sha256": "7dc8345a756a985c15bd5f3b8faf8f0250a47b00a9f0a23760939e04f2eb75f2"
+    },
+    {
+      "canonical": "{\"value\":-9.681712433622797e+132}",
+      "input": "{\"value\": -9.681712433622797e+132}",
+      "sha256": "aa51b014f740ee3001b9cf66a59eb4721f12ac2dbb8dff480b8a19a84ef23bc5"
+    },
+    {
+      "canonical": "{\"value\":-6.770302921081719e+54}",
+      "input": "{\"value\": -6.770302921081719e+54}",
+      "sha256": "38b34fcf268b59d32dd9dcacd24027ec99b79da1add714fe5111c1b564491829"
+    },
+    {
+      "canonical": "{\"value\":-1.1762237386349042e-05}",
+      "input": "{\"value\": -1.1762237386349042e-05}",
+      "sha256": "f8873c4a409e912400bb3a6a095b745e52cab8b328c9b888e156e4aa0ca0834c"
+    },
+    {
+      "canonical": "{\"value\":-1.0455897535628497e-12}",
+      "input": "{\"value\": -1.0455897535628497e-12}",
+      "sha256": "d26960d696dff029e348d6657f7b447c7d847058c845f3726a0aafba63f66b05"
+    },
+    {
+      "canonical": "{\"value\":-4.2165027105480536e+254}",
+      "input": "{\"value\": -4.2165027105480536e+254}",
+      "sha256": "051324b53ae4db028d00f889f3727aaa00ed08b3aaf70681bbfedb01468d3eb7"
+    },
+    {
+      "canonical": "{\"value\":-4.127186933001358e+23}",
+      "input": "{\"value\": -4.127186933001358e+23}",
+      "sha256": "8559c1b7612f260163017348d5d89c380104d37001cfb2587028c6759ba9daff"
+    },
+    {
+      "canonical": "{\"value\":1.8298277587449933e-172}",
+      "input": "{\"value\": 1.8298277587449933e-172}",
+      "sha256": "3f003efc074b6f3f66d0432c3703fff12dc992f91714592d724a87b74e4702bf"
+    },
+    {
+      "canonical": "{\"value\":-1.3607512866499271e+275}",
+      "input": "{\"value\": -1.3607512866499271e+275}",
+      "sha256": "399d256976e106a41f1fe1797fe7d49f933c058b1e3eb14984884db79e2935e4"
+    },
+    {
+      "canonical": "{\"value\":-3.3748943160714438e-93}",
+      "input": "{\"value\": -3.3748943160714438e-93}",
+      "sha256": "da827898a1b1c4198dca422cb5bb2616e41136ee2aa09419731490039a8912e2"
+    },
+    {
+      "canonical": "{\"value\":-3.4733497176546755e+291}",
+      "input": "{\"value\": -3.4733497176546755e+291}",
+      "sha256": "1f2323022ad6fc22410f5fcbcf5b43a20c3d8d8d981705bda9da1fe63d4ebdca"
+    },
+    {
+      "canonical": "{\"value\":-1.3841526038540844e+69}",
+      "input": "{\"value\": -1.3841526038540844e+69}",
+      "sha256": "427e5bd9c716b87750731089a33835e731df96b51c553ca2f84dc56506d1586a"
+    },
+    {
+      "canonical": "{\"value\":7.756275483401207e-26}",
+      "input": "{\"value\": 7.756275483401207e-26}",
+      "sha256": "5f8db979e312afccaf987ff3978741ca17e315acf16f086530be290c5567f1c0"
+    },
+    {
+      "canonical": "{\"value\":2.9356644067989066e-271}",
+      "input": "{\"value\": 2.9356644067989066e-271}",
+      "sha256": "f9e921120686170b6fa7092d060d654c42e2af8e8cad98b782e954870069d4bf"
+    },
+    {
+      "canonical": "{\"value\":1.401395299067129e+219}",
+      "input": "{\"value\": 1.401395299067129e+219}",
+      "sha256": "bac8a0b1c44ef142d5937cbefe4bb0f4617c28a30440735076dceab30524f890"
+    },
+    {
+      "canonical": "{\"value\":3.7230073064342564e+116}",
+      "input": "{\"value\": 3.7230073064342564e+116}",
+      "sha256": "45fd95b6100440f3a10263dc32cb65d3ad6babb5c1ecbc1530f859b4f40963f8"
+    },
+    {
+      "canonical": "{\"value\":-1.1812973971618538e-46}",
+      "input": "{\"value\": -1.1812973971618538e-46}",
+      "sha256": "69c619f5a8fb9abaee7034cd26b724b5faf53bf2f58e77c8ec3267f5960d098a"
+    },
+    {
+      "canonical": "{\"value\":5.0509812717284435e-303}",
+      "input": "{\"value\": 5.0509812717284435e-303}",
+      "sha256": "7e68997f73b22b44222416c31aa3a4cdbaff6f864c604079fdd0247b14cedad1"
+    },
+    {
+      "canonical": "{\"value\":-2.2255472590665654e+54}",
+      "input": "{\"value\": -2.2255472590665654e+54}",
+      "sha256": "c3d3a4158a25c23d74bc5945a53e707182e0f5580b8d9a9809321865dd310fb8"
+    },
+    {
+      "canonical": "{\"value\":3.078323171262699e+107}",
+      "input": "{\"value\": 3.078323171262699e+107}",
+      "sha256": "9f2bb2808bdbea9a179264c0c6cb84c281decaa202986dbfa0619f4a4d5155f9"
+    },
+    {
+      "canonical": "{\"value\":1.3181394067033604e-230}",
+      "input": "{\"value\": 1.3181394067033604e-230}",
+      "sha256": "50090354ae894c969a7f3801e66349494da65a9a3ac709842e89b5c8688d6ca4"
+    },
+    {
+      "canonical": "{\"value\":3.7883503979201916e+114}",
+      "input": "{\"value\": 3.7883503979201916e+114}",
+      "sha256": "1b59ee60f99a7600f9e60844edaf066ca7aad5239906acc9ec9a7fd2657fafc8"
+    },
+    {
+      "canonical": "{\"value\":1.4666605702773093e+292}",
+      "input": "{\"value\": 1.4666605702773093e+292}",
+      "sha256": "d3bf32bd9e41027d79d9e48d854fd07fbefe68bf0f45100d075aca35a6249167"
+    },
+    {
+      "canonical": "{\"value\":-6.551638600910039e+109}",
+      "input": "{\"value\": -6.551638600910039e+109}",
+      "sha256": "72c9d5fa4b9b2d59c573bc19e8c54c24338784bb30f9da1ed2ea075bd6600375"
+    },
+    {
+      "canonical": "{\"value\":1.2868720242261457e+131}",
+      "input": "{\"value\": 1.2868720242261457e+131}",
+      "sha256": "2bee91fefe6b40eb0c568e04787710d7404cc64db62c08c22b77be53e09d899b"
+    },
+    {
+      "canonical": "{\"value\":-8.831395977317878e-32}",
+      "input": "{\"value\": -8.831395977317878e-32}",
+      "sha256": "c780fb95b72efe1ec7d46fbbd74ba997030cff439733f61b45eda5d2a9e8d44f"
+    },
+    {
+      "canonical": "{\"value\":-9.389715720306367e-74}",
+      "input": "{\"value\": -9.389715720306367e-74}",
+      "sha256": "8c5a4c41e444bdd1b8ee0ffdab92e7a9a5c8fae701cff4b6acfedf520a73d1a5"
+    },
+    {
+      "canonical": "{\"value\":-1.5733103072476187e-81}",
+      "input": "{\"value\": -1.5733103072476187e-81}",
+      "sha256": "fa2de09842ab130fa4800a65421fc9a68b29ff6dfea2b55a8a559faabeab968b"
+    },
+    {
+      "canonical": "{\"value\":-1.7490905074898392e+87}",
+      "input": "{\"value\": -1.7490905074898392e+87}",
+      "sha256": "ec8fb20ca7a58721984fdd2723fee4ef12e2c2dbd6ea20984f26011a6c381c9c"
+    },
+    {
+      "canonical": "{\"value\":-1.6456191060938442e+276}",
+      "input": "{\"value\": -1.6456191060938442e+276}",
+      "sha256": "07bdb3716840402059d5bb55b9598db8b65c6580d927d835eda1e1e923b0b928"
+    },
+    {
+      "canonical": "{\"value\":-1.6784358144441067e-234}",
+      "input": "{\"value\": -1.6784358144441067e-234}",
+      "sha256": "fdad211376a1d169f3312b440f0d3b5bddd2c59e4d1595fe380839733290ec6d"
+    },
+    {
+      "canonical": "{\"value\":2.0440531430144087e+132}",
+      "input": "{\"value\": 2.0440531430144087e+132}",
+      "sha256": "038a23c0de0956c3df4b9cac733df74cd00173dabfdf259e5675b0becf7bd978"
+    },
+    {
+      "canonical": "{\"value\":1.0934457027849162e+171}",
+      "input": "{\"value\": 1.0934457027849162e+171}",
+      "sha256": "86b770815f30b4567a4a807fae337187b23d4f303553025d49abf15e13c5cb24"
+    },
+    {
+      "canonical": "{\"value\":-1.8330998902644172e+175}",
+      "input": "{\"value\": -1.8330998902644172e+175}",
+      "sha256": "f425a635d6363fb8740edd27e6cea86f2bd46a59f13c06fa417d06a6baa8bad1"
+    },
+    {
+      "canonical": "{\"value\":-1.133845610451541e+36}",
+      "input": "{\"value\": -1.133845610451541e+36}",
+      "sha256": "7133490bf090a7cd5372c4d5c79e7e6cf4b2e9a2e4b6eb968e577217963669ba"
+    },
+    {
+      "canonical": "{\"value\":4.591858312140675e+203}",
+      "input": "{\"value\": 4.591858312140675e+203}",
+      "sha256": "6a6a00ac87a407b2f4f608e94d9d96019626d9200b4efb8f92c9b311a1af0e32"
+    },
+    {
+      "canonical": "{\"value\":-7.420790780060381e+173}",
+      "input": "{\"value\": -7.420790780060381e+173}",
+      "sha256": "029e82a50e58850dca31a5f122ad8f55696531c39d861533ece81c5bff35fcc9"
+    },
+    {
+      "canonical": "{\"value\":-6.023752609722223e+80}",
+      "input": "{\"value\": -6.023752609722223e+80}",
+      "sha256": "77f2cc0a6fc1e049daa8182fccddc9837c7f478255b7e4be731726fac46508f7"
+    },
+    {
+      "canonical": "{\"value\":-3.5366724047519107e+279}",
+      "input": "{\"value\": -3.5366724047519107e+279}",
+      "sha256": "a2ad9143c351f6fb16afdf3cc44f9fe297de54b57ca8fe4c53e26c796597a9b8"
+    },
+    {
+      "canonical": "{\"value\":-9.069317074155055e+117}",
+      "input": "{\"value\": -9.069317074155055e+117}",
+      "sha256": "78d973c3e059c8680528ab957ffc279fb5a9b0aa10338500df13f1db4138d053"
+    },
+    {
+      "canonical": "{\"value\":3.1695333510305235e-161}",
+      "input": "{\"value\": 3.1695333510305235e-161}",
+      "sha256": "1683566aaf1c1cd7d626e50b373d648771da8b48a32d9a894d62ca41421dbd4a"
+    },
+    {
+      "canonical": "{\"value\":2.5393588899087005e+236}",
+      "input": "{\"value\": 2.5393588899087005e+236}",
+      "sha256": "b7684154e31cdae1821a457b5b3ff90ef39a53f85675752922c21f3a3baf9be3"
+    },
+    {
+      "canonical": "{\"value\":1.7251581854857464e+271}",
+      "input": "{\"value\": 1.7251581854857464e+271}",
+      "sha256": "da249f1f648a46907383383ec238bff0a9af9e99c1cddd6ce3ac0e7a1369c937"
+    },
+    {
+      "canonical": "{\"value\":1.4724197552198975e+137}",
+      "input": "{\"value\": 1.4724197552198975e+137}",
+      "sha256": "f2101e9b04a0fd0dccba8245af88b9589a2837c3482cecf321e9a4b43401310f"
+    },
+    {
+      "canonical": "{\"value\":3.110021006315209e+294}",
+      "input": "{\"value\": 3.110021006315209e+294}",
+      "sha256": "4e8fd797455e2d8154c0713ca6f20014fd468dd541203daa4266b849e771aed5"
+    },
+    {
+      "canonical": "{\"value\":-3.1988844240091277e-65}",
+      "input": "{\"value\": -3.1988844240091277e-65}",
+      "sha256": "b489864717ad92d113b9f552bb64b3b6cae2d515a1fecfb937f670fcb19486a6"
+    },
+    {
+      "canonical": "{\"value\":1.5653373591632546e-18}",
+      "input": "{\"value\": 1.5653373591632546e-18}",
+      "sha256": "4a163b55eed2719d18e652830bedea049cf8f30b8ff3f46f676648dc9f176a7e"
+    },
+    {
+      "canonical": "{\"value\":5.721824377365189e-249}",
+      "input": "{\"value\": 5.721824377365189e-249}",
+      "sha256": "cce3e0f16f77eef60947c4fa10cec610cb9107cf534f3849d9b942ff5905d57a"
+    },
+    {
+      "canonical": "{\"value\":-9.349009913539719e-201}",
+      "input": "{\"value\": -9.349009913539719e-201}",
+      "sha256": "a578013a314f4fc58639de61152d06b0819fb152765374dec201bc178efe60ef"
+    },
+    {
+      "canonical": "{\"value\":3.674700565353762e+57}",
+      "input": "{\"value\": 3.674700565353762e+57}",
+      "sha256": "da34b97f45d96e1b4cbbec795a6bc49177c6ec3ebc1fb7ffccc54dc08881c273"
+    },
+    {
+      "canonical": "{\"value\":6.934023375685392e+242}",
+      "input": "{\"value\": 6.934023375685392e+242}",
+      "sha256": "6ed1e5528930a64c6323828ad000a2f2ff543480ee8ae560f8dec3c06366c7d1"
+    },
+    {
+      "canonical": "{\"value\":2.7528817954303387e-148}",
+      "input": "{\"value\": 2.7528817954303387e-148}",
+      "sha256": "77b0d234635c9e111c54e8dc988227f952b29189674e2ddefeb2f73dce1fe72d"
+    },
+    {
+      "canonical": "{\"value\":-1.876832031085428e-139}",
+      "input": "{\"value\": -1.876832031085428e-139}",
+      "sha256": "754d390ff848508a81837be23e64c8f34641cdeb561d4fa24f79aa9380e37bd5"
+    },
+    {
+      "canonical": "{\"value\":-5.945266363254443e+232}",
+      "input": "{\"value\": -5.945266363254443e+232}",
+      "sha256": "8b46bf021b8865f481a54b01bb2df1ed345730c8208f7c0252d11ffdd43a9d7b"
+    },
+    {
+      "canonical": "{\"value\":2.3473048773303862e-15}",
+      "input": "{\"value\": 2.3473048773303862e-15}",
+      "sha256": "053a7721c6bfb4e0b297c0632b8e3b01d662fbe14e5467402caff7568c006e74"
+    },
+    {
+      "canonical": "{\"value\":-2.989883028621878e+161}",
+      "input": "{\"value\": -2.989883028621878e+161}",
+      "sha256": "bd5e47afc57ebcca4b199ac54b94ea3a30339344fe8a78ad8f6efc150f15f61c"
+    },
+    {
+      "canonical": "{\"value\":-1.3231998030817737e-277}",
+      "input": "{\"value\": -1.3231998030817737e-277}",
+      "sha256": "625b10288a4b0308cba664a6588c5221e081b23bce9549d149435ce2dc22713a"
+    },
+    {
+      "canonical": "{\"value\":1.547269932422929e-302}",
+      "input": "{\"value\": 1.547269932422929e-302}",
+      "sha256": "1bbfe8afba002a2accd185325fb66fcb495712a1a4464acc9ca09d3c6b9cfe68"
+    },
+    {
+      "canonical": "{\"value\":-5.536407161140352e+105}",
+      "input": "{\"value\": -5.536407161140352e+105}",
+      "sha256": "3a03b6a4ac2c1e3b7110f90a5487732520ee82111c018a61201834eacd3715e1"
+    },
+    {
+      "canonical": "{\"value\":-1.5215580750974907e+59}",
+      "input": "{\"value\": -1.5215580750974907e+59}",
+      "sha256": "035a3536a8a477ca3dc08a5d9614ca47f36ebe3ea604cd300a92fd0549ea5499"
+    },
+    {
+      "canonical": "{\"value\":2.729106491578917e+88}",
+      "input": "{\"value\": 2.729106491578917e+88}",
+      "sha256": "17baaa00b9acffb1d2351cd6168fe9fcb947c5fcb246e7fa210365999a86679f"
+    },
+    {
+      "canonical": "{\"value\":1.1447358772963197e+255}",
+      "input": "{\"value\": 1.1447358772963197e+255}",
+      "sha256": "81fce2d7056a0071ede6198f0cde7fdc1b5b1885ea9a8adc3b6169eb7ec80dcf"
+    },
+    {
+      "canonical": "{\"value\":4.5967993571734686e+123}",
+      "input": "{\"value\": 4.5967993571734686e+123}",
+      "sha256": "2c6fbc557e54b709512276d5477cfa6b23b734dd3e35e254e37dadd4343e9689"
+    },
+    {
+      "canonical": "{\"value\":-3.905668089371964e+266}",
+      "input": "{\"value\": -3.905668089371964e+266}",
+      "sha256": "6f9fb05e6f13645d1d163093c689cc756e8492bad2379bc335ec36b9693f8ee5"
+    },
+    {
+      "canonical": "{\"value\":3.3642178593847386e+168}",
+      "input": "{\"value\": 3.3642178593847386e+168}",
+      "sha256": "49085ec4ee101b3bb7f2a34afa2f232282ef1013d18cb63174bb17f4f0e52efb"
+    },
+    {
+      "canonical": "{\"value\":-4.177252049018466e-147}",
+      "input": "{\"value\": -4.177252049018466e-147}",
+      "sha256": "d02c6e7fb9fc5c38497f86a3be896c40090fd33907a10509e2cb95b1153d61b1"
+    },
+    {
+      "canonical": "{\"value\":8.002455335246904e+53}",
+      "input": "{\"value\": 8.002455335246904e+53}",
+      "sha256": "3eadaa9c8281049aeff44d0769e02f5ae27fa2098c70dfb006b7f3cdf702dfd2"
+    },
+    {
+      "canonical": "{\"value\":8.257049265669521e+139}",
+      "input": "{\"value\": 8.257049265669521e+139}",
+      "sha256": "34ccd146d04ef0baade94e8f3781f38783eaa923f337e14300d8c0f365543ca8"
+    },
+    {
+      "canonical": "{\"value\":4.7472350906473486e+104}",
+      "input": "{\"value\": 4.7472350906473486e+104}",
+      "sha256": "19abc46dd9468e583d87924d74a4f1fc91e52ef5f99e71f76971d16bb413194a"
+    },
+    {
+      "canonical": "{\"value\":2.283748752813208e-74}",
+      "input": "{\"value\": 2.283748752813208e-74}",
+      "sha256": "5bb71e6e9ace91e751c5bf857268881bdb32bd4aef9da57d6087b284173c3aa2"
+    },
+    {
+      "canonical": "{\"value\":-7.287226822310798e+152}",
+      "input": "{\"value\": -7.287226822310798e+152}",
+      "sha256": "70a7edd416738438a5fd0bef38e8be0caa5e6c5f220026439266abc32b1a07d5"
+    },
+    {
+      "canonical": "{\"value\":-5.322193127487067e-172}",
+      "input": "{\"value\": -5.322193127487067e-172}",
+      "sha256": "7d0ee74c78b8b2942835b411832e7442f8f64e69f0ece5b45c5883d6a623671a"
+    },
+    {
+      "canonical": "{\"value\":2.381720067175523e-32}",
+      "input": "{\"value\": 2.381720067175523e-32}",
+      "sha256": "84190ccb26034ae94477c10d92fdb45ed646fa57f23561cd779c6fd569813464"
+    },
+    {
+      "canonical": "{\"value\":-6.090274302189441e+58}",
+      "input": "{\"value\": -6.090274302189441e+58}",
+      "sha256": "322c1ae83b27397a04b5c15e5c495fec56aa4ea5534272d705e05bbe36fda134"
+    },
+    {
+      "canonical": "{\"value\":2.7803620790454244e-14}",
+      "input": "{\"value\": 2.7803620790454244e-14}",
+      "sha256": "b58b9cd07fa7bfc5a9fd5845cd8ad00791e317d5b659508c60efb851752c5c0d"
+    },
+    {
+      "canonical": "{\"value\":-3.3612777256951956e-15}",
+      "input": "{\"value\": -3.3612777256951956e-15}",
+      "sha256": "e0188ea639e19462e2aede798db0b2a04952cbd8e748cafa7057b153262cca85"
+    },
+    {
+      "canonical": "{\"value\":-4.9130532930743336e+235}",
+      "input": "{\"value\": -4.9130532930743336e+235}",
+      "sha256": "7bb589336abc7f5e1e560c2b4c7549266399d148b728471d1aefcaab98cc06ca"
+    },
+    {
+      "canonical": "{\"value\":-8.913377378611803e+187}",
+      "input": "{\"value\": -8.913377378611803e+187}",
+      "sha256": "44ea4d8589b79c4ed7069b8b799d71881a98356d2bf945138cae8eb2f172e6d7"
+    },
+    {
+      "canonical": "{\"value\":3.5604178292995145e-35}",
+      "input": "{\"value\": 3.5604178292995145e-35}",
+      "sha256": "1873007d0282ee8d95705364d17d41dcf0888f55f0a06f9a2cd9e0b9cc742300"
+    },
+    {
+      "canonical": "{\"value\":-2.4867913088585243e+163}",
+      "input": "{\"value\": -2.4867913088585243e+163}",
+      "sha256": "b17e43136754d4050c251d4820a20640966d5777020dfab89354d5f4033904be"
+    },
+    {
+      "canonical": "{\"value\":1.099013375695491e-213}",
+      "input": "{\"value\": 1.099013375695491e-213}",
+      "sha256": "700a3a863b82731d55546dd3d3271c6cdddec8c75d1f59cdc7a4e55c146e24fe"
+    },
+    {
+      "canonical": "{\"value\":1.3861005684785096e+148}",
+      "input": "{\"value\": 1.3861005684785096e+148}",
+      "sha256": "5bd50626c70fd886142bf1979d957b9aec7584ac8a59e80b5ae3cff36d835efe"
+    },
+    {
+      "canonical": "{\"value\":3.2913916439064797e+53}",
+      "input": "{\"value\": 3.2913916439064797e+53}",
+      "sha256": "351e181b48926349d7547fe536703fbc92353b1f10f43d246d2ac8912a4392a3"
+    },
+    {
+      "canonical": "{\"value\":-1.4633733808106826e+205}",
+      "input": "{\"value\": -1.4633733808106826e+205}",
+      "sha256": "6b917155d6d63845f324dadaf76ee44605b7554109519fcbdac738106e62222d"
+    },
+    {
+      "canonical": "{\"value\":-1.5949991694245252e-106}",
+      "input": "{\"value\": -1.5949991694245252e-106}",
+      "sha256": "1d9fa6dc57c1a5d2396ff1dc2c257f475bce80dfed995810930fb97a6b062dc6"
+    },
+    {
+      "canonical": "{\"value\":2.071102706791197e+155}",
+      "input": "{\"value\": 2.071102706791197e+155}",
+      "sha256": "aab1886cf992855ad10c87a2d2db35a107190c1dc608177cfd1926239b1aade5"
+    },
+    {
+      "canonical": "{\"value\":3.4292355984122113e+139}",
+      "input": "{\"value\": 3.4292355984122113e+139}",
+      "sha256": "e830d344ea26a809c1962251eced4d03f7677d9631aae79324a6504aac8cbe90"
+    },
+    {
+      "canonical": "{\"value\":-4.037559956185568e-187}",
+      "input": "{\"value\": -4.037559956185568e-187}",
+      "sha256": "a91c2dc37f6b44f97966de5cce1a6899cdc02e69553f2b00ce1acfdebddfec09"
+    },
+    {
+      "canonical": "{\"value\":2.1099379934972125e+283}",
+      "input": "{\"value\": 2.1099379934972125e+283}",
+      "sha256": "d881ca212a6b17030351c6f89d2d63c7ecd0b01048c044b6dbaac6e766c231d7"
+    },
+    {
+      "canonical": "{\"value\":-1.711670619042793e-272}",
+      "input": "{\"value\": -1.711670619042793e-272}",
+      "sha256": "999439855d650da1f8c62aadc432fbeb5e0837ff0406c96229f325f3e4c4af3d"
+    },
+    {
+      "canonical": "{\"value\":-7.176022684456939e+192}",
+      "input": "{\"value\": -7.176022684456939e+192}",
+      "sha256": "74181e9c07eeafde8adbfe8675db8ce05c37f46db6af33d7aeb0c336c748e3ab"
+    },
+    {
+      "canonical": "{\"value\":-1.3898655092603167e-248}",
+      "input": "{\"value\": -1.3898655092603167e-248}",
+      "sha256": "4f6c1c92961250ad8f4fd28ebafb20d71947d409856bd2e7348f8ed84854e73b"
+    },
+    {
+      "canonical": "{\"value\":7.103460120894318e-238}",
+      "input": "{\"value\": 7.103460120894318e-238}",
+      "sha256": "b157fc5a0b26d75c522c924a2feaa1bca8a69622797f934af3df714b7dafff54"
+    },
+    {
+      "canonical": "{\"value\":3.8106948494798867e+108}",
+      "input": "{\"value\": 3.8106948494798867e+108}",
+      "sha256": "2302794111d83cd47c019c751ca3bee17e078a26cd78fb20b666bde950d0b9f5"
+    },
+    {
+      "canonical": "{\"value\":-1.4874165550293457e+249}",
+      "input": "{\"value\": -1.4874165550293457e+249}",
+      "sha256": "98a443afe48fe02a13a3c3d9e0d43af1e3c63122227aac4a916d8aa6aa1598f5"
+    },
+    {
+      "canonical": "{\"value\":6.428846002504731e+68}",
+      "input": "{\"value\": 6.428846002504731e+68}",
+      "sha256": "2d416b71fdfce7a252295ec074e52d743dada8770ec32fece45477fdf62f0435"
+    },
+    {
+      "canonical": "{\"value\":-5.448017108689667e+26}",
+      "input": "{\"value\": -5.448017108689667e+26}",
+      "sha256": "764a56c2f78cff8e1d9f62946743e2789ef22396ee372af72f14ed9bf966a3a2"
+    },
+    {
+      "canonical": "{\"value\":-5.604571670884147e-173}",
+      "input": "{\"value\": -5.604571670884147e-173}",
+      "sha256": "785f2a18e0a018bd735190b254a40e63acb9394de9a05b7affc65bada5c2c048"
+    },
+    {
+      "canonical": "{\"value\":4.274769845601034e+217}",
+      "input": "{\"value\": 4.274769845601034e+217}",
+      "sha256": "95ae1702db3f71d988286d42b7c239a86c806bb12d00a98857a16f7bb0e9fe41"
+    },
+    {
+      "canonical": "{\"value\":2.761797782342492e-237}",
+      "input": "{\"value\": 2.761797782342492e-237}",
+      "sha256": "33e30cb51ea5e0462ad10de30912c843685fb2119dbab6a5ade4edcce5bc01ed"
+    },
+    {
+      "canonical": "{\"value\":-7.640568372692094e+36}",
+      "input": "{\"value\": -7.640568372692094e+36}",
+      "sha256": "8f83f63da9efa6c29b18ccb26dfdf78dc0a9d0728c944bd0fa22ff5ecb40df07"
+    },
+    {
+      "canonical": "{\"value\":9.058587398507844e-113}",
+      "input": "{\"value\": 9.058587398507844e-113}",
+      "sha256": "4340756a4fa3425a719020db0c1f072959d2ce31372d2778ffad2d385df3d9b0"
+    },
+    {
+      "canonical": "{\"value\":2.9075810427624474e+131}",
+      "input": "{\"value\": 2.9075810427624474e+131}",
+      "sha256": "f5f10b947aeda24b84da7ce649ea8419d1f4defd8f5d0d5464410f430e1b17fb"
+    },
+    {
+      "canonical": "{\"value\":-3.236929167362881e+301}",
+      "input": "{\"value\": -3.236929167362881e+301}",
+      "sha256": "dbc132b92177cda8a2f8b62f7e75e2c61001f72f84cd689b3d9b9c04af6637f7"
+    },
+    {
+      "canonical": "{\"value\":1.6806911129729262e-46}",
+      "input": "{\"value\": 1.6806911129729262e-46}",
+      "sha256": "ed9d06607ce5ec84576621250dce5f54f93e51cdff732f928f837107890883fd"
+    },
+    {
+      "canonical": "{\"value\":-8.106162049557946e+50}",
+      "input": "{\"value\": -8.106162049557946e+50}",
+      "sha256": "fa0f05b0b21c17b3081488453535d4597f535638f0c8a8567c1f893989269cb5"
+    },
+    {
+      "canonical": "{\"value\":1.0245111439654061e+167}",
+      "input": "{\"value\": 1.0245111439654061e+167}",
+      "sha256": "6545b4dd0265766ad9ed776217e44800a4b01a07e895d92e017c9cd5181713aa"
+    },
+    {
+      "canonical": "{\"value\":-6.58070262272222e+107}",
+      "input": "{\"value\": -6.58070262272222e+107}",
+      "sha256": "acfff14a19fb8da853014378f697ce864ec8c1a2454970118875c864218b7fd5"
+    },
+    {
+      "canonical": "{\"value\":1.4511629219747395e+45}",
+      "input": "{\"value\": 1.4511629219747395e+45}",
+      "sha256": "d64f6d298f02dacb5bcd2a867679c9f1ed73c1e420583346b1cde54af59fd534"
+    },
+    {
+      "canonical": "{\"value\":-1.7497884413857482e+226}",
+      "input": "{\"value\": -1.7497884413857482e+226}",
+      "sha256": "b1c8c44e0d407f4263a123f736c5d975c5b87868a4aa7e97596e4f9202ef77fc"
+    },
+    {
+      "canonical": "{\"value\":5.297767404049196e-48}",
+      "input": "{\"value\": 5.297767404049196e-48}",
+      "sha256": "41cdc8c6b0c9ccf11232f9fa163a8652c41025fd14bc25bf81db97a6b43b1b43"
+    },
+    {
+      "canonical": "{\"value\":-3.144793165857828e+226}",
+      "input": "{\"value\": -3.144793165857828e+226}",
+      "sha256": "6f7faab44819ea9194a28141beab27555f1b4b1b46e99b25fc9a5a8cfdaa6f6c"
+    },
+    {
+      "canonical": "{\"value\":-3.120768529316406e-84}",
+      "input": "{\"value\": -3.120768529316406e-84}",
+      "sha256": "e11d6c386e82e8cc0f728bd8d569fd5bb6f8b47bf86be6b6cba1a6db5d754e18"
+    },
+    {
+      "canonical": "{\"value\":4.6201603509203334e-288}",
+      "input": "{\"value\": 4.6201603509203334e-288}",
+      "sha256": "96516d4ef9032d2aa3217e6a50a794cfd23f40368006ebbb764e64cdb769661c"
+    },
+    {
+      "canonical": "{\"value\":6.6683025445744e-72}",
+      "input": "{\"value\": 6.6683025445744e-72}",
+      "sha256": "16f885ffa317b186a9f9961c4fb317fb5ef16bc018b95769d8f7b6c74a26e85a"
+    },
+    {
+      "canonical": "{\"value\":-5.722475561296732e-97}",
+      "input": "{\"value\": -5.722475561296732e-97}",
+      "sha256": "89f9886e8c76a4f64c7074990fec92ffb38ad25c2847506f9ea460a8738e2bcb"
+    },
+    {
+      "canonical": "{\"value\":1.2961648547923204e+36}",
+      "input": "{\"value\": 1.2961648547923204e+36}",
+      "sha256": "2aff3aced764c5ba3df3803f1e6fd1c72088af3ce9bc8940dbee7fda3abc32e5"
+    },
+    {
+      "canonical": "{\"value\":6.99875932554592e-87}",
+      "input": "{\"value\": 6.99875932554592e-87}",
+      "sha256": "99de7bd4ec2af084da44eed73c3ede8d33c9650e8270366c5c84adc8a4f96b98"
+    },
+    {
+      "canonical": "{\"value\":-4.3538209343894946e+194}",
+      "input": "{\"value\": -4.3538209343894946e+194}",
+      "sha256": "c10a45d48402c70945c0999e310ecab90d036c2bd20aa80b51516b2c058f941e"
+    },
+    {
+      "canonical": "{\"value\":2.1124014697677457e-20}",
+      "input": "{\"value\": 2.1124014697677457e-20}",
+      "sha256": "f4f4541d80d37a6a744bd75b442a791d843026ccbae9a33f11358ec8466cb5f1"
+    },
+    {
+      "canonical": "{\"value\":-3.6675978563218637e-91}",
+      "input": "{\"value\": -3.6675978563218637e-91}",
+      "sha256": "f3796f66372ee0f3d06b2a9a5b575a736194c956ab38498ea5b94c9947a9503d"
+    },
+    {
+      "canonical": "{\"value\":2.544254426975617e-168}",
+      "input": "{\"value\": 2.544254426975617e-168}",
+      "sha256": "3b805a772e3f30810a75fa7e6379e4338f98d04965e0f43695ddbe9cadcb7096"
+    },
+    {
+      "canonical": "{\"value\":-3.1192548377845017e-176}",
+      "input": "{\"value\": -3.1192548377845017e-176}",
+      "sha256": "fe0bf54a64f38eb933392c605370bf1b7047a22ff1a69696d188b066870bcb4d"
+    },
+    {
+      "canonical": "{\"value\":3.9360328243297576e+175}",
+      "input": "{\"value\": 3.9360328243297576e+175}",
+      "sha256": "56e8ff968dce1056815cfb55ca43dad7e49a9e6923e110e24d4da494556b0b7b"
+    },
+    {
+      "canonical": "{\"value\":1.4969591143009816e+56}",
+      "input": "{\"value\": 1.4969591143009816e+56}",
+      "sha256": "4c1be423e2c2e0408c3d75e96c53238d9c37c51ed2648019385990e897c9b0f6"
+    },
+    {
+      "canonical": "{\"value\":-3.0849755912076067e+212}",
+      "input": "{\"value\": -3.0849755912076067e+212}",
+      "sha256": "9ca7e6c57cdc31a20f673b968c8bc91a3d69009509d7484301e1b0699f74b711"
+    },
+    {
+      "canonical": "{\"value\":-6.7912163831635236e-276}",
+      "input": "{\"value\": -6.7912163831635236e-276}",
+      "sha256": "fc63763f5448cb6a504f9c579430b4531e04b8a1277e4469ecb7de10d0c7c22d"
+    },
+    {
+      "canonical": "{\"value\":-2.8251834633382387e-65}",
+      "input": "{\"value\": -2.8251834633382387e-65}",
+      "sha256": "5983af5ac0e2769f23583dbb2dd635c65c0013e4ab6035098ea67f6a698774fe"
+    },
+    {
+      "canonical": "{\"value\":5.705849618597321e-203}",
+      "input": "{\"value\": 5.705849618597321e-203}",
+      "sha256": "06d9426f8ac50b96e52c3de5cf50f4a0cf06ba8f769544ec73e92aa1c787322f"
+    },
+    {
+      "canonical": "{\"value\":-8.251109195595346e+36}",
+      "input": "{\"value\": -8.251109195595346e+36}",
+      "sha256": "7690d5c9a705e56d529a5d4a65461d440ac515b738ac375ea0fd2dc6983b8935"
+    },
+    {
+      "canonical": "{\"value\":5.52440626127917e+128}",
+      "input": "{\"value\": 5.52440626127917e+128}",
+      "sha256": "35a94de3300e92513c81b07796f56fd2e26ef6d0c73bbf1a5b48eb173506ec48"
+    },
+    {
+      "canonical": "{\"value\":-2.0807529488882769e+239}",
+      "input": "{\"value\": -2.0807529488882769e+239}",
+      "sha256": "e5fc930841d8d37686d391de980cf884f24ad0a59231a60de323f2be02fa63b9"
+    },
+    {
+      "canonical": "{\"value\":-7.869342030722947e-204}",
+      "input": "{\"value\": -7.869342030722947e-204}",
+      "sha256": "cd21ba91e9fff51bbd7d3bb32a4171e51ae92ec2d628a8d706a11dedcf028468"
+    },
+    {
+      "canonical": "{\"value\":-4.25018251639355e+50}",
+      "input": "{\"value\": -4.25018251639355e+50}",
+      "sha256": "47e8fea5deba04103efd6a0d2fab5a28cc7f29206fdaba74e2b2238a4916be56"
+    },
+    {
+      "canonical": "{\"value\":-2.528444087082074e-266}",
+      "input": "{\"value\": -2.528444087082074e-266}",
+      "sha256": "2e457fc5492d93e6df85bbf459dd0f086265bb437fab3974379c158e74919120"
+    },
+    {
+      "canonical": "{\"value\":-1.3214642624654269e-256}",
+      "input": "{\"value\": -1.3214642624654269e-256}",
+      "sha256": "6ff5ca57ae2e6148b220dd00825874b6128feedd250301896eab1f0b3eb7df58"
+    },
+    {
+      "canonical": "{\"value\":1.8876253577866478e+65}",
+      "input": "{\"value\": 1.8876253577866478e+65}",
+      "sha256": "510523770ed381fce07916f4a7016704391c68e082e33e2f990a9bcae1ccfe5d"
+    },
+    {
+      "canonical": "{\"value\":1.6291295586044895e+118}",
+      "input": "{\"value\": 1.6291295586044895e+118}",
+      "sha256": "7e69aa7cff23e5cdcba7b079a9893f0cbcc02b9ef4b34f934497040a75a725ee"
+    },
+    {
+      "canonical": "{\"value\":-3.687094902729112e-244}",
+      "input": "{\"value\": -3.687094902729112e-244}",
+      "sha256": "62edb433bde78c5c830846ac6ae0a852968c92951142729957a8e0b05609e7b2"
+    },
+    {
+      "canonical": "{\"value\":3.1334279883063284e-275}",
+      "input": "{\"value\": 3.1334279883063284e-275}",
+      "sha256": "7ab59302b799c45fc14556a1bc9f483f0a82186c795e1f1b09e42b199569255a"
+    },
+    {
+      "canonical": "{\"value\":2.102805316583482e-144}",
+      "input": "{\"value\": 2.102805316583482e-144}",
+      "sha256": "a051f5e2f440171386875b486ba967d76fde7b80b26aef4949ff3f5667a99522"
+    },
+    {
+      "canonical": "{\"value\":4.231587001397433e-63}",
+      "input": "{\"value\": 4.231587001397433e-63}",
+      "sha256": "33b659fe3ca4e5484120b94900aa9b01231c6cffd0ab101b0cec3a9c04d3857d"
+    },
+    {
+      "canonical": "{\"value\":1.033344964014759e+243}",
+      "input": "{\"value\": 1.033344964014759e+243}",
+      "sha256": "3dd53dd7d71e3a8223c5584cd0d4af83f05a99cca3ca9ca6291bac9b6a4ca05d"
+    },
+    {
+      "canonical": "{\"value\":2.6723184027703793e+188}",
+      "input": "{\"value\": 2.6723184027703793e+188}",
+      "sha256": "d357b76560b7353b190069ee79be95f4dea20f340d34fdebf8e00f4d31af00c1"
+    },
+    {
+      "canonical": "{\"value\":1.4338039522437256e+206}",
+      "input": "{\"value\": 1.4338039522437256e+206}",
+      "sha256": "58ec8faae6e2cf9d043731cea749116d61c043a6b37472e9d4b4660d7dd4040d"
+    },
+    {
+      "canonical": "{\"value\":-4.86954930304974e-284}",
+      "input": "{\"value\": -4.86954930304974e-284}",
+      "sha256": "d028ff5bb1ea55282dcc44f74759ca2ab8495bff9d45013eb2bbc5fcd394ed8d"
+    },
+    {
+      "canonical": "{\"value\":-1.3986190801683299e-73}",
+      "input": "{\"value\": -1.3986190801683299e-73}",
+      "sha256": "1d32783d40fb967a125f128ac8e23a109ba66f97a7258d5bba6e35015305eb13"
+    },
+    {
+      "canonical": "{\"value\":6.664743892053099e-123}",
+      "input": "{\"value\": 6.664743892053099e-123}",
+      "sha256": "5b8af3c399ae8ad9d253cd1b08444fce038332482c7361f9fd03c57bd295cf18"
+    },
+    {
+      "canonical": "{\"value\":-5.043080413872113e+229}",
+      "input": "{\"value\": -5.043080413872113e+229}",
+      "sha256": "f1d5276ce0357478f28cb5e41d66d8bc5ed2c0bd9571c20a19e12efefe8377ac"
+    },
+    {
+      "canonical": "{\"value\":-6.443742384620656e+103}",
+      "input": "{\"value\": -6.443742384620656e+103}",
+      "sha256": "d8ad9aa1494c74c51618f87d4c3ab147ce4236057d783611deacbcd2bbafd275"
+    },
+    {
+      "canonical": "{\"value\":-7.847741135889302e+220}",
+      "input": "{\"value\": -7.847741135889302e+220}",
+      "sha256": "47f01d5596a4c8d659be6d6628fee32643a7da66415de9dfaa772ff8f8c62802"
+    },
+    {
+      "canonical": "{\"value\":-5.189137891309188e-308}",
+      "input": "{\"value\": -5.189137891309188e-308}",
+      "sha256": "7f33d57f193ac535b431f1bbf78c4b0d4779695dc5448cbb977b89fcefc54f13"
+    },
+    {
+      "canonical": "{\"value\":1.2962099590161906e+149}",
+      "input": "{\"value\": 1.2962099590161906e+149}",
+      "sha256": "70fdb4b7b664aa49b441f11a7a84df64851e9024101ff21229ac54c97a84b5f3"
+    },
+    {
+      "canonical": "{\"value\":-4.187361182244222e-102}",
+      "input": "{\"value\": -4.187361182244222e-102}",
+      "sha256": "3cbe98f493e4c3abd0a6c4dae56f82bdd042796cbc5e25c0fce66d5e39c48ce3"
+    },
+    {
+      "canonical": "{\"value\":-1.2405707930382339e-232}",
+      "input": "{\"value\": -1.2405707930382339e-232}",
+      "sha256": "ac766452aaad0520bfc73451d36ee737236dc4ebf146591099783328fbd7d14f"
+    },
+    {
+      "canonical": "{\"value\":-1.6500217716973574e+258}",
+      "input": "{\"value\": -1.6500217716973574e+258}",
+      "sha256": "c8a7e1a58f06741958381830c09d9ad99729b4c2f131e07ece0b9fc1d4177614"
+    },
+    {
+      "canonical": "{\"value\":1.0561717293748883e+192}",
+      "input": "{\"value\": 1.0561717293748883e+192}",
+      "sha256": "0c0092a145aeb20eec797cc3d95943566bc4d5c7ac9006d6fa0b94c1062f6708"
+    },
+    {
+      "canonical": "{\"value\":3.798146841059507e-19}",
+      "input": "{\"value\": 3.798146841059507e-19}",
+      "sha256": "b797219364bf7b7907a799bd2d4ea2c87823e26715a051fd9bafe10f31c2e1d3"
+    },
+    {
+      "canonical": "{\"value\":-9.793755907526285e+26}",
+      "input": "{\"value\": -9.793755907526285e+26}",
+      "sha256": "9f89acca7f4efe31d38b47242cf6e1835d02754ecf751ee8507118b325cfa513"
+    },
+    {
+      "canonical": "{\"value\":1.8165099571368108e+31}",
+      "input": "{\"value\": 1.8165099571368108e+31}",
+      "sha256": "7189eed7532eab69cb0a19d9c31e8aa1440862dda4ee93ad7890b05432e9e25e"
+    },
+    {
+      "canonical": "{\"value\":1.9015997920160243e-48}",
+      "input": "{\"value\": 1.9015997920160243e-48}",
+      "sha256": "3b2316439f56de8cc38a3b747ff1675f6a8ae12e9d01f635f9796f59c7643fdb"
+    },
+    {
+      "canonical": "{\"value\":8.518720317520513e-61}",
+      "input": "{\"value\": 8.518720317520513e-61}",
+      "sha256": "718b5ca9ee4565b7a83af01328e4f14b2485a866ae94f8e19a01f222a1e24618"
+    },
+    {
+      "canonical": "{\"value\":-8.31171255878841e+96}",
+      "input": "{\"value\": -8.31171255878841e+96}",
+      "sha256": "511ed7334af9fc19dd2f8b4bf6294f49b1c83a774c6b8fc2d695b03aa15740b9"
+    },
+    {
+      "canonical": "{\"value\":-5.398287010260166e-52}",
+      "input": "{\"value\": -5.398287010260166e-52}",
+      "sha256": "9e7e5713bcc166bbbd34b0bc29903bb306ec51a186743a321202830c923515fd"
+    },
+    {
+      "canonical": "{\"value\":-3.0247988419435695e+177}",
+      "input": "{\"value\": -3.0247988419435695e+177}",
+      "sha256": "e33c15e2d21b6bbdc6f45c0c31774af3365b8a31a0f61e94970c658d26915002"
+    },
+    {
+      "canonical": "{\"value\":4.112208085530717e+92}",
+      "input": "{\"value\": 4.112208085530717e+92}",
+      "sha256": "494155cefa78f57cb25ddf802743bc06526bf15c9862c184fe40067aece0282d"
+    },
+    {
+      "canonical": "{\"value\":-6.034152373174781e-23}",
+      "input": "{\"value\": -6.034152373174781e-23}",
+      "sha256": "cdff34bb1a654a369d453f40db32a374a991c6a946afee65bd05344271b2a133"
+    },
+    {
+      "canonical": "{\"value\":1.1130905916765218e-63}",
+      "input": "{\"value\": 1.1130905916765218e-63}",
+      "sha256": "1a8d79709b6c3a22ba69f433aec10743a7b4278ab1dfdd1ab560d2e92d5e8181"
+    },
+    {
+      "canonical": "{\"value\":-5.71273861124569e+30}",
+      "input": "{\"value\": -5.71273861124569e+30}",
+      "sha256": "f7521dbb3c3f125170eec71808ef80ae2492c7d71bdc3806314d8a21ff16ed37"
+    },
+    {
+      "canonical": "{\"value\":-8.205689856262093e+213}",
+      "input": "{\"value\": -8.205689856262093e+213}",
+      "sha256": "ad966e36e9b925472394c39aa967fd3b75789b3c0c0918ec2a61196819c72fab"
+    },
+    {
+      "canonical": "{\"value\":-4.470956771444637e+281}",
+      "input": "{\"value\": -4.470956771444637e+281}",
+      "sha256": "8ca78583179e29f9d2035751fabc5f2c3b1e5ec6c25ce903ae3e41469962f46d"
+    },
+    {
+      "canonical": "{\"value\":-6.514488049575725e+196}",
+      "input": "{\"value\": -6.514488049575725e+196}",
+      "sha256": "f1a5284660fbe0bd63dd35b3a9742852aa9becb9a950f6406f7b6e615f72c220"
+    },
+    {
+      "canonical": "{\"value\":5.8949021365654547e-238}",
+      "input": "{\"value\": 5.8949021365654547e-238}",
+      "sha256": "481b77d9b5425748b8b0653913eec4e7481eaff58a44165652ab294517a8dbb3"
+    },
+    {
+      "canonical": "{\"value\":2.3994252546318987e-56}",
+      "input": "{\"value\": 2.3994252546318987e-56}",
+      "sha256": "f60cd664716ad42c6beb7ef69563e01ca0d34a94593499a3d5b0e1c46722367b"
+    },
+    {
+      "canonical": "{\"value\":-6.1327826805261045e+299}",
+      "input": "{\"value\": -6.1327826805261045e+299}",
+      "sha256": "dd891303e327b68361e27f3f06f1e213743b165879d2fda6b2c25eed9eb18cd9"
+    },
+    {
+      "canonical": "{\"value\":-1.6901409474335044e-06}",
+      "input": "{\"value\": -1.6901409474335044e-06}",
+      "sha256": "5b5f1a40be6ac3e380c507d4654cfe296a341d630e6a8dbbc5186eb89effafb2"
+    }
+  ],
+  "console_facts": [
+    "authority_model",
+    "authority_validation",
+    "clock_domain",
+    "concurrency_scope",
+    "console_access",
+    "contract_version",
+    "durability_requirement",
+    "failure_domain",
+    "lease_expiry_semantics",
+    "observed_failure_mode",
+    "operation_kind",
+    "operation_semantics",
+    "runtime_arch",
+    "runtime_engine",
+    "runtime_os",
+    "runtime_revision",
+    "runtime_version",
+    "shared_object_scope",
+    "shared_state_kind",
+    "sqlite_journal_mode",
+    "storage_backend",
+    "supported_operation_set",
+    "synchronization_scope",
+    "transaction_guarantees",
+    "worker_count",
+    "worker_count_known"
+  ],
+  "console_fields": {
+    "Agent": [
+      "id",
+      "runtime",
+      "source_type"
+    ],
+    "AuditEvent": [
+      "id",
+      "event_type",
+      "candidate_id",
+      "record_id",
+      "authority",
+      "public_reason",
+      "created_at"
+    ],
+    "Candidate": [
+      "id",
+      "run_id",
+      "body_sha256",
+      "authority",
+      "provenance",
+      "created_at",
+      "schema_version",
+      "title",
+      "public_summary",
+      "strategy",
+      "necessary_conditions",
+      "inapplicable_conditions",
+      "scope",
+      "unknown_fields",
+      "limitations",
+      "derived_from_candidate_id"
+    ],
+    "CandidateEvent": [
+      "id",
+      "candidate_id",
+      "from_state",
+      "to_state",
+      "sequence",
+      "previous_event_id",
+      "event_key",
+      "authority",
+      "principal",
+      "reason",
+      "created_at"
+    ],
+    "Context": [
+      "id",
+      "facts",
+      "source_type"
+    ],
+    "Decision": [
+      "id",
+      "run_id",
+      "query_id",
+      "experience_id",
+      "decision",
+      "reason",
+      "verification_steps",
+      "authority",
+      "adoption",
+      "attribution",
+      "created_at",
+      "query_snapshot_id"
+    ],
+    "Evidence": [
+      "id",
+      "source_type",
+      "source_run_id",
+      "public_summary",
+      "attribution",
+      "created_at"
+    ],
+    "Experience": [
+      "id",
+      "title",
+      "public_summary",
+      "strategy",
+      "source_type",
+      "limitations",
+      "origin_run_id",
+      "origin_patch_sha256",
+      "publication_candidate_id",
+      "created_at"
+    ],
+    "ExperienceRevision": [
+      "id",
+      "experience_id",
+      "revision_kind",
+      "revision_reason",
+      "base_revision_ids",
+      "created_at",
+      "declared_rule_id",
+      "scope"
+    ],
+    "ExternalObservation": [
+      "id",
+      "run_id",
+      "status",
+      "authority",
+      "source_sha256",
+      "public_summary",
+      "created_at",
+      "trusted_outcome",
+      "attribution",
+      "record_kind",
+      "candidate_id",
+      "purpose",
+      "disposition",
+      "elapsed_seconds"
+    ],
+    "Feedback": [
+      "id",
+      "experience_id",
+      "outcome_id",
+      "attribution",
+      "feedback_status",
+      "source_type"
+    ],
+    "GovernanceEvent": [
+      "id",
+      "target_id",
+      "target_label",
+      "event_type",
+      "authority",
+      "source_type",
+      "public_reason",
+      "scope",
+      "effective_at",
+      "created_at"
+    ],
+    "LifecycleHead": [
+      "id",
+      "candidate_id",
+      "state",
+      "sequence",
+      "event_id"
+    ],
+    "ObservedAction": [
+      "id",
+      "run_id",
+      "submission_digest",
+      "patch_sha256",
+      "source_type",
+      "authority",
+      "attribution",
+      "mental_influence",
+      "strategy_association",
+      "created_at"
+    ],
+    "Premise": [
+      "id",
+      "fact_key",
+      "allowed_values",
+      "required"
+    ],
+    "Query": [
+      "id",
+      "run_id",
+      "created_at",
+      "query_snapshot_ids",
+      "decision_engine_version"
+    ],
+    "QuerySnapshot": [
+      "id",
+      "content_sha256",
+      "created_at"
+    ],
+    "Rule": [
+      "id",
+      "experience_id",
+      "version",
+      "principle",
+      "strategy",
+      "created_at",
+      "valid_from",
+      "valid_until"
+    ],
+    "Schema": [
+      "id",
+      "version"
+    ],
+    "SourceVerification": [
+      "id",
+      "candidate_id",
+      "run_id",
+      "origin",
+      "authority",
+      "source_sha256",
+      "submission_sha256",
+      "outcome_id",
+      "facts",
+      "native_thread_id",
+      "source_epoch",
+      "causal_benefit"
+    ],
+    "Task": [
+      "id",
+      "public_title",
+      "scenario_version"
+    ],
+    "VerifiedOutcome": [
+      "id",
+      "run_id",
+      "verdict",
+      "test_count",
+      "source_type",
+      "submission_digest",
+      "evaluator_fingerprint",
+      "test_suite_fingerprint",
+      "attribution"
+    ]
+  },
+  "governance_cases": [
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [],
+        "revisions": [],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [],
+        "revisions": [],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [],
+        "revisions": [],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "WITHDRAW",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "withdraw",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "WITHDRAW",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "withdraw",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "WITHDRAW",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "withdraw",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ]
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "withdraw",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "WITHDRAW",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "withdraw",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ]
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "withdraw",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "EXPIRE",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "expire",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "EXPIRE",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "expire",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "EXPIRE",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "expire",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ]
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "expire",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [
+          "revision:legacy"
+        ],
+        "excluded_targets": [
+          {
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "inactive_records": [
+          {
+            "event_id": "governance:one",
+            "reason": "EXPIRE",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision"
+          }
+        ],
+        "integrity_issues": [
+          "No uniquely selected effective graph rule"
+        ],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [],
+        "selected_rule_ids": [],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "expire",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [],
+        "scope_checks": [],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ]
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "expire",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "restrict_scope",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "restrict_scope",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [],
+        "path_scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "restrict_scope",
+              "id": "governance:one",
+              "material_fact_keys": [],
+              "scope": {},
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {},
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [
+          "operation_semantics"
+        ],
+        "path_scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ],
+        "scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "restrict_scope",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": "conditional_write"
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [
+          "operation_semantics"
+        ],
+        "path_scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "MATCH",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": []
+          }
+        ],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "restrict_scope",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "as_of": "2026-10-24T00:00:00+00:00",
+      "context": {
+        "operation_semantics": null
+      },
+      "expected": {
+        "as_of": "2026-10-24T00:00:00+00:00",
+        "excluded_target_ids": [],
+        "excluded_targets": [],
+        "inactive_records": [],
+        "integrity_issues": [],
+        "material_fact_keys": [
+          "operation_semantics"
+        ],
+        "path_scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ],
+        "scope_checks": [
+          {
+            "event_id": "governance:one",
+            "material_fact_keys": [
+              "operation_semantics"
+            ],
+            "relation": "UNKNOWN",
+            "target_id": "revision:legacy",
+            "target_label": "ExperienceRevision",
+            "unknown_facts": [
+              "operation_semantics"
+            ]
+          }
+        ],
+        "selected_revision_ids": [
+          "revision:legacy"
+        ],
+        "selected_rule_ids": [
+          "rule:legacy"
+        ],
+        "selection_policy": "EXPLICIT_SUPERSEDES_AND_FACTUAL_SCOPE; NO_RECENCY_PRIORITY",
+        "superseded_revision_ids": [],
+        "uncertain_records": []
+      },
+      "view": {
+        "events": [
+          {
+            "complete": true,
+            "edge_present": true,
+            "record": {
+              "effective_at": "2026-10-20T00:00:00+00:00",
+              "event_type": "restrict_scope",
+              "id": "governance:one",
+              "material_fact_keys": [
+                "operation_semantics"
+              ],
+              "scope": {
+                "operation_semantics": [
+                  "conditional_write"
+                ]
+              },
+              "target_id": "revision:legacy",
+              "target_label": "ExperienceRevision"
+            }
+          }
+        ],
+        "revisions": [
+          {
+            "complete": true,
+            "record": {
+              "id": "revision:legacy",
+              "revision_reason": "initial_verified_history_import"
+            },
+            "rule_ids": [
+              "rule:legacy"
+            ]
+          }
+        ],
+        "supersedes": []
+      }
+    }
+  ],
+  "lifecycle_guidance": {
+    "ADMITTED_BOUNDED": {
+      "action": "Host publishes with review --state PUBLISHED and the inspected expected head.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    },
+    "EVIDENCE_PENDING": {
+      "action": "Run an independent verifier; import with source-project, then review ADMITTED_BOUNDED using --source and --scope. Self-test PASS is insufficient.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    },
+    "PROPOSED": {
+      "action": "Host inspects the immutable proposal, then reviews it into EVIDENCE_PENDING or REJECTED.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    },
+    "PUBLISHED": {
+      "action": "Query with a new Run and independently known context; inspect the evidence bundle. Adoption and causal benefit remain UNKNOWN.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    },
+    "PUBLISHING": {
+      "action": "Retry review --state PUBLISHED with the current inspected head to finish the same publication, or withdraw.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    },
+    "REJECTED": {
+      "action": "Retain this rejected proposal; submit a corrected proposal with a new candidate key.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    },
+    "SUPERSEDED": {
+      "action": "Retain this history and query the independently published replacement.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    },
+    "WITHDRAWN": {
+      "action": "This candidate is excluded from recommendations. New evidence requires a new reviewed candidate.",
+      "guide": "docs/PROJECT_SOURCES.md",
+      "host_only": true
+    }
+  },
+  "public_fields": {
+    "Context": [
+      "id",
+      "facts",
+      "source_type"
+    ],
+    "Evidence": [
+      "id",
+      "source_type",
+      "public_summary",
+      "created_at",
+      "source_run_id",
+      "attribution"
+    ],
+    "Experience": [
+      "id",
+      "strategy",
+      "title",
+      "source_type",
+      "created_at",
+      "public_summary",
+      "limitations",
+      "origin_run_id",
+      "origin_patch_sha256",
+      "publication_candidate_id"
+    ],
+    "ExperienceRevision": [
+      "id",
+      "experience_id",
+      "created_at",
+      "revision_reason",
+      "attribution",
+      "revision_kind",
+      "declared_rule_id",
+      "scope",
+      "valid_from",
+      "valid_until",
+      "source_type",
+      "supersedes_ids",
+      "publication_audit_id",
+      "query_snapshot_ids",
+      "base_revision_ids"
+    ],
+    "GovernanceEvent": [
+      "id",
+      "target_id",
+      "target_label",
+      "event_type",
+      "source_type",
+      "public_reason",
+      "scope",
+      "effective_at",
+      "created_at",
+      "material_fact_keys",
+      "completion_audit_id",
+      "authority"
+    ],
+    "Premise": [
+      "id",
+      "fact_key",
+      "allowed_values",
+      "required",
+      "public_description"
+    ],
+    "Rule": [
+      "id",
+      "version",
+      "public_description",
+      "premise_ids",
+      "premise_count"
+    ],
+    "Task": [
+      "id",
+      "public_title",
+      "scenario_version"
+    ],
+    "VerifiedOutcome": [
+      "id",
+      "run_id",
+      "verdict",
+      "submission_digest",
+      "evaluator_fingerprint",
+      "test_suite_fingerprint",
+      "test_count",
+      "source_type",
+      "attribution"
+    ]
+  },
+  "replay_cases": [
+    {
+      "case": "case-a",
+      "sha256": "0e1541c79dd5ce004f35c51459a38689dc366f83c6d2ac201241b2e6b14a75e5",
+      "stage": "before"
+    },
+    {
+      "case": "case-b",
+      "sha256": "90e15ed0ff2261b5984521434850c5850281f3074d1d73a7c44ca7085bee5f51",
+      "stage": "before"
+    },
+    {
+      "case": "case-c",
+      "sha256": "670bd27f760da8a08f57d7c90f75bfda65d27c6e326958baeba4ff8081ef47bc",
+      "stage": "before"
+    },
+    {
+      "case": "case-c",
+      "sha256": "25b13456252d40bf26fbba87cf05c063c7c85832854486721e867e178f105a3d",
+      "stage": "after"
+    },
+    {
+      "case": "case-c",
+      "sha256": "30088982f89016f053f2def478d9d98e7fc890539feafbb34530bc0cc5a32cf4",
+      "stage": "restored"
+    }
+  ],
+  "schema_version": "aevora.native-reference/1",
+  "schemas": {
+    "aevora.graph/1.0": {
+      "labels": [
+        "Agent",
+        "AuditEvent",
+        "Context",
+        "Decision",
+        "Evidence",
+        "Experience",
+        "ExperienceRevision",
+        "Feedback",
+        "ObservedAction",
+        "Premise",
+        "Query",
+        "Rule",
+        "Schema",
+        "Task",
+        "VerifiedOutcome"
+      ],
+      "query_version": "aevora.multihop/1.0",
+      "relationships": [
+        "CLAIMS_ADOPTION",
+        "CONSIDERED",
+        "COUNTEREXAMPLE",
+        "DECIDED",
+        "DERIVED_FROM",
+        "FOR_TASK",
+        "FROM_OUTCOME",
+        "HAS_FEEDBACK",
+        "HAS_REVISION",
+        "IN_CONTEXT",
+        "OBSERVED_ACTION",
+        "OBSERVED_OUTCOME",
+        "QUERIED",
+        "REQUIRES",
+        "RESPONDS_TO",
+        "REVISES",
+        "SUPPORTED_BY",
+        "USES_RULE",
+        "VERIFIES"
+      ],
+      "schema_version": "aevora.graph/1.0"
+    },
+    "aevora.graph/1.1": {
+      "labels": [
+        "Agent",
+        "AuditEvent",
+        "Context",
+        "Decision",
+        "Evidence",
+        "Experience",
+        "ExperienceRevision",
+        "Feedback",
+        "GovernanceEvent",
+        "ObservedAction",
+        "Premise",
+        "Query",
+        "QuerySnapshot",
+        "Rule",
+        "Schema",
+        "Task",
+        "VerifiedOutcome"
+      ],
+      "query_version": "aevora.multihop/1.1",
+      "relationships": [
+        "AT_SNAPSHOT",
+        "CLAIMS_ADOPTION",
+        "CONSIDERED",
+        "COUNTEREXAMPLE",
+        "DECIDED",
+        "DERIVED_FROM",
+        "FOR_TASK",
+        "FROM_OUTCOME",
+        "GOVERNS",
+        "HAS_FEEDBACK",
+        "HAS_REVISION",
+        "IN_CONTEXT",
+        "OBSERVED_ACTION",
+        "OBSERVED_OUTCOME",
+        "QUERIED",
+        "REQUIRES",
+        "RESPONDS_TO",
+        "REVISES",
+        "SUPERSEDES",
+        "SUPPORTED_BY",
+        "USES_RULE",
+        "VERIFIES"
+      ],
+      "schema_version": "aevora.graph/1.1"
+    },
+    "aevora.graph/1.2": {
+      "labels": [
+        "Agent",
+        "AuditEvent",
+        "Candidate",
+        "CandidateEvent",
+        "Context",
+        "Decision",
+        "Evidence",
+        "Experience",
+        "ExperienceRevision",
+        "ExternalObservation",
+        "Feedback",
+        "GovernanceEvent",
+        "LifecycleHead",
+        "ObservedAction",
+        "Premise",
+        "Query",
+        "QuerySnapshot",
+        "Rule",
+        "Schema",
+        "SourceVerification",
+        "Task",
+        "VerifiedOutcome"
+      ],
+      "query_version": "aevora.multihop/1.1",
+      "relationships": [
+        "AT_SNAPSHOT",
+        "CLAIMS_ADOPTION",
+        "CONSIDERED",
+        "COUNTEREXAMPLE",
+        "DECIDED",
+        "DERIVED_FROM",
+        "FOR_TASK",
+        "FROM_OUTCOME",
+        "GOVERNS",
+        "HAS_CANDIDATE_EVENT",
+        "HAS_FEEDBACK",
+        "HAS_LIFECYCLE",
+        "HAS_REVISION",
+        "HAS_SOURCE_VERIFICATION",
+        "IN_CONTEXT",
+        "OBSERVED_ACTION",
+        "OBSERVED_OUTCOME",
+        "PREVIOUS_EVENT",
+        "PUBLISHED_FROM",
+        "QUERIED",
+        "REQUIRES",
+        "RESPONDS_TO",
+        "REVISES",
+        "SUPERSEDES",
+        "SUPPORTED_BY",
+        "USES_RULE",
+        "VERIFIES"
+      ],
+      "schema_version": "aevora.graph/1.2"
+    }
+  }
+}

@@ -9,7 +9,7 @@ import json
 from typing import Any, Mapping, Sequence
 
 from .models import InvalidRecord, digest, normalize_context, validate_id
-from .historical_import import public_context
+from .context import public_context
 from .orderflow_outcome_bridge import TrustAnchor, verify_outcome, _Archive, _MAX_REPORT, _json
 
 

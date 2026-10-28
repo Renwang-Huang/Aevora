@@ -1,0 +1,165 @@
+{
+  "candidate": {
+    "authority": "UNTRUSTED_PROPOSAL",
+    "body_sha256": "acbed37c43e2777810422bcfb862cc260983d830bb8cf04b4030788dfc17c2d2",
+    "created_at": "2026-10-12T13:01:47.471076+00:00",
+    "id": "candidate:405c481e-ae7a-420d-8502-fb1d9ede02e6:sqlite-current-state-reservation",
+    "provenance": "UNVERIFIED_UNTIL_HOST_REVIEW",
+    "run_id": "405c481e-ae7a-420d-8502-fb1d9ede02e6",
+    "schema_version": "aevora.candidate/1.0"
+  },
+  "events": [
+    {
+      "authority": "UNTRUSTED_PROPOSAL",
+      "candidate_id": "candidate:405c481e-ae7a-420d-8502-fb1d9ede02e6:sqlite-current-state-reservation",
+      "created_at": "2026-10-12T13:01:47.471076+00:00",
+      "from_state": null,
+      "id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:proposed",
+      "metadata": {},
+      "previous_event_id": null,
+      "reason": "Untrusted run-bound proposal",
+      "sequence": 0,
+      "to_state": "PROPOSED"
+    },
+    {
+      "authority": "TRUSTED_HOST_REVIEW",
+      "candidate_id": "candidate:405c481e-ae7a-420d-8502-fb1d9ede02e6:sqlite-current-state-reservation",
+      "created_at": "2026-10-12T13:04:07.425674+00:00",
+      "from_state": "PROPOSED",
+      "id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-open",
+      "metadata": {},
+      "previous_event_id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:proposed",
+      "principal": "aevora-h3-host-reviewer",
+      "reason": "Real proposal pending independently pinned source verification",
+      "sequence": 1,
+      "to_state": "EVIDENCE_PENDING"
+    },
+    {
+      "authority": "TRUSTED_HOST_REVIEW",
+      "candidate_id": "candidate:405c481e-ae7a-420d-8502-fb1d9ede02e6:sqlite-current-state-reservation",
+      "created_at": "2026-10-12T13:04:07.649512+00:00",
+      "from_state": "EVIDENCE_PENDING",
+      "id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-admit",
+      "metadata": {
+        "scope": {
+          "concurrency_scope": [
+            "single_process_threads"
+          ],
+          "shared_state_kind": [
+            "sqlite_file"
+          ],
+          "synchronization_scope": [
+            "shared_process_object"
+          ],
+          "transaction_guarantees": [
+            "sqlite_atomic_write_transactions"
+          ],
+          "worker_count_known": [
+            true
+          ]
+        },
+        "source_id": "source-verification:ca28a5ddaffde46ff5483ddca316e33ff3b3daacbba22b8a49ab88eed79771e3",
+        "strength": "BOUNDED_SUPPORT_NOT_CAUSAL"
+      },
+      "previous_event_id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-open",
+      "principal": "aevora-h3-host-reviewer",
+      "reason": "Independent submission passed in the verified factual scope; causal benefit UNKNOWN",
+      "sequence": 2,
+      "to_state": "ADMITTED_BOUNDED"
+    },
+    {
+      "authority": "TRUSTED_HOST_REVIEW",
+      "candidate_id": "candidate:405c481e-ae7a-420d-8502-fb1d9ede02e6:sqlite-current-state-reservation",
+      "created_at": "2026-10-12T13:04:07.670583+00:00",
+      "from_state": "ADMITTED_BOUNDED",
+      "id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-publish-begin",
+      "metadata": {
+        "experience_id": "experience:published:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c"
+      },
+      "previous_event_id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-admit",
+      "principal": "aevora-h3-host-reviewer",
+      "reason": "Host approves bounded factual support and a public conditional principle",
+      "sequence": 3,
+      "to_state": "PUBLISHING"
+    },
+    {
+      "authority": "TRUSTED_HOST_REVIEW",
+      "candidate_id": "candidate:405c481e-ae7a-420d-8502-fb1d9ede02e6:sqlite-current-state-reservation",
+      "created_at": "2026-10-12T13:04:07.714153+00:00",
+      "from_state": "PUBLISHING",
+      "id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-publish-complete",
+      "metadata": {
+        "experience_id": "experience:published:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c"
+      },
+      "previous_event_id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-publish-begin",
+      "principal": "aevora-h3-host-reviewer",
+      "reason": "Host approves bounded factual support and a public conditional principle",
+      "sequence": 4,
+      "to_state": "PUBLISHED"
+    }
+  ],
+  "experience_id": "experience:published:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c",
+  "head": {
+    "candidate_id": "candidate:405c481e-ae7a-420d-8502-fb1d9ede02e6:sqlite-current-state-reservation",
+    "event_id": "candidate-event:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c:host-publish-complete",
+    "id": "candidate-head:e872a71b53c3c417d33ccd0cabe688e496518285dd98d5cdb9b53303bdc7955c",
+    "sequence": 4,
+    "state": "PUBLISHED"
+  },
+  "head_sha256": "8091059c5174594c6f68f59d3b51dfd8c9f2c6ab4254375500b7910821c0fc63",
+  "proposal_authority": "UNTRUSTED_PROPOSAL; Host review supports only the declared scope",
+  "public_proposal": {
+    "inapplicable_conditions": {
+      "concurrency_scope": [
+        "independent_processes"
+      ],
+      "shared_state_kind": [
+        "non_sqlite_shared_state"
+      ],
+      "transaction_guarantees": [
+        "no_atomic_write_transaction"
+      ]
+    },
+    "limitations": [
+      "Observed under normal single-process, multi-threaded execution with a shared OrderFlow object, a SQLite file, 50 initial units, and 200 one-unit requests; it does not establish behavior for multiple OS processes.",
+      "The run did not test crashes, retries after process failure, journal-mode-specific behavior, or every future operation type.",
+      "The public regression uses an existing optional scheduling seam to align contention; its outcome is evidence from this run only and is not an independently verified outcome."
+    ],
+    "necessary_conditions": {
+      "concurrency_scope": [
+        "single_process_threads"
+      ],
+      "shared_state_kind": [
+        "sqlite_file"
+      ],
+      "transaction_guarantees": [
+        "sqlite_atomic_write_transactions"
+      ]
+    },
+    "public_summary": "This run deterministically reproduced a stale-snapshot lost update with 50 units and 200 one-unit threaded requests: 200 reservations returned while inventory showed only one reserved unit. Replacing the stale absolute write with the existing capacity-conditioned relative update inside the transaction produced 50 reservations, 150 InsufficientInventory business results, and a consistent audit in the public regression and repeated load checks.",
+    "scope": {
+      "concurrency_scope": [
+        "single_process_threads"
+      ],
+      "shared_state_kind": [
+        "sqlite_file"
+      ],
+      "synchronization_scope": [
+        "shared_process_object"
+      ],
+      "transaction_guarantees": [
+        "sqlite_atomic_write_transactions"
+      ],
+      "worker_count_known": [
+        true
+      ]
+    },
+    "strategy": "For a single-process threaded service backed by one SQLite file, keep order creation, capacity-conditioned relative inventory update, and reservation-ledger insertion in one write transaction. Do not use a caller or pre-transaction inventory snapshot to calculate an absolute replacement value.",
+    "title": "Reserve against current SQLite state inside one write transaction",
+    "unknown_fields": [
+      "sqlite_journal_mode",
+      "failure_domain",
+      "supported_operation_set"
+    ]
+  }
+}

@@ -1,1 +1,0 @@
-MATCH(e:Experience) WHERE e.scope_token IN $tokens AND e.id>$after AND e.visibility='PUBLIC' MATCH(s:TenantState {id:$state})-[:COMMITS]->(m:PublicationManifest {experience_id:e.id}) WHERE m.epoch<=$epoch RETURN DISTINCT e.id ORDER BY e.id LIMIT 65

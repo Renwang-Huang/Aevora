@@ -1,4 +1,4 @@
-"""Aevora's three public tools, served by the official MCP Python SDK.
+"""Aevora's public tools, served by the official MCP Python SDK.
 
 The trusted broker supplies immutable run authority before MCP initialization.
 This module and the graph password file are never mounted in Participant.
@@ -10,75 +10,39 @@ import json
 import re
 import sys
 import uuid
-from typing import Annotated, Any
-
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, ValidationError, WithJsonSchema
+from typing import Any
 
 from .graph_repository import GraphRepository
 from .proposal_contract import CandidateProposal
+from .observation_contract import ObservationUseReport
 from .models import GraphError, GraphUnavailable, canonical_json, digest, normalize_context, utc_now, validate_id, PUBLIC_CONTEXT_FACTS
 
 
-VERSION = "aevora.mcp/1.2"
+AGENT_INSTRUCTIONS = (
+    "When Aevora is enabled, proactively call resolve_experience once before choosing an approach "
+    "for nontrivial coding, debugging, or design tasks; do not wait for the user to mention Aevora. "
+    "Skip trivial requests and respect explicit opt-outs. Pass a short public task description as query; "
+    "use task_context={} when facts are unknown. Query text affects relevance only, never trusted facts. "
+    "Native task recall defaults to bounded summaries; use build_evidence_bundle with query_id for complete evidence. "
+    "Caller claims do not establish applicability. If no experience is returned, optionally search_observations "
+    "with concrete task keywords and mode=ranked on native SQLite for UNTRUSTED investigative leads, then continue normal work. "
+    "Observation search never establishes APPLY, verified facts or outcomes; check actual state and evidence. "
+    "After investigating an observation, record its actual use or rejection with record_observation_use when supported; "
+    "the report is an untrusted claim, not proof of exposure, adoption or outcome. "
+    "For returned experience IDs, inspect evidence and record the actual APPLY/VERIFY/ABSTAIN choice; "
+    "do not invent IDs or decisions when the result is empty. After meaningful work, propose reusable "
+    "public observations with limitations, if proposal tools are enabled. Empty necessary_conditions "
+    "and scope are allowed for unscoped UNTRUSTED drafts; never invent facts to fill them. "
+    "Such drafts cannot be admitted or published; once bounds are established, submit a new bounded "
+    "proposal with a new candidate_key, retaining the original draft history. "
+    "Report tool failures briefly and continue independent work when possible. No credentials, private "
+    "paths or hidden test material in proposals. Decisions and self-tests do not prove adoption, "
+    "verified outcomes or causal benefit. Querying or proposing does not authorize publication."
+)
+
+VERSION = "aevora.mcp/1.1"
 _RUN_ID = re.compile(r"[A-Za-z0-9._-]{1,128}")
 _FACT_KEYS = PUBLIC_CONTEXT_FACTS
-
-
-class PublicContextClaims(BaseModel):
-    """Eight documented MCP facts, never a source of trusted applicability.
-
-    Omit uncertain claims or use null. Text examples describe public vocabulary,
-    not a closed enum or a particular Run's private/pinned values. The Host's
-    existing extended fact vocabulary remains an internal compatibility contract.
-    The serialized UTF-8 claims object is limited to 8192 bytes before graph
-    access; errors never echo the supplied values.
-    """
-
-    model_config = ConfigDict(extra="forbid", strict=True, hide_input_in_errors=True)
-    concurrency_scope: StrictStr | None = Field(default=None,
-        description="Public topology label, e.g. single_process_threads or independent_processes. Omit/null if unknown.")
-    worker_count_known: StrictBool | None = Field(default=None,
-        description="Whether the public worker count is known: boolean, NOT a count or [2,4] array. Omit/null if unknown.")
-    shared_state_kind: StrictStr | None = Field(default=None,
-        description="Public shared-state kind, e.g. sqlite_file. Text label, not a narrative object.")
-    synchronization_scope: StrictStr | None = Field(default=None,
-        description="Public synchronization scope label, e.g. shared_process_object or per_process.")
-    transaction_guarantees: StrictStr | None = Field(default=None,
-        description="Declared public transaction capability label, e.g. sqlite_atomic_write_transactions; not proof of a repair.")
-    observed_failure_mode: StrictStr | None = Field(default=None,
-        description="Public failure/symptom label. Missing facts remain unknown; claims cannot establish premises.")
-    shared_object_scope: StrictStr | None = Field(default=None,
-        description="Public shared-object scope label, when independently known. Omit/null otherwise.")
-    sqlite_journal_mode: StrictStr | None = Field(default=None,
-        description="Observed public SQLite journal-mode label, when known. Omit/null otherwise; no closed enum is imposed.")
-
-
-# Official SDK still transports an object. Its disclosed schema and our pre-tool
-# validation both come from this model. Validation stays here so errors never
-# echo argument values through SDK-generated Pydantic exception formatting.
-PublicContextArgument = Annotated[dict[str, Any], WithJsonSchema(PublicContextClaims.model_json_schema())]
-
-
-class ContextClaimsConflict(ValueError):
-    """A claim cannot override a known authorized public environment fact."""
-
-
-def validate_public_context_claims(value):
-    try:
-        claims = PublicContextClaims.model_validate(value).model_dump(exclude_unset=True)
-        if len(json.dumps(claims, ensure_ascii=False).encode("utf-8")) > 8192:
-            raise ValueError("AEVORA_CONTEXT_SIZE_INVALID")
-        return claims
-    except UnicodeError:
-        raise ValueError("AEVORA_CONTEXT_ENCODING_INVALID") from None
-    except ValidationError as error:
-        issues = []
-        for detail in error.errors(include_input=False, include_context=False, include_url=False):
-            field = detail["loc"][0] if detail["loc"] else "task_context"
-            if field not in PublicContextClaims.model_fields:
-                field = "unsupported_field"
-            issues.append(str(field) + ":" + detail["type"])
-        raise ValueError("AEVORA_CONTEXT_SCHEMA_INVALID: " + ", ".join(sorted(set(issues)))) from None
 
 
 class LazyGraphRepository:
@@ -130,7 +94,14 @@ class ExperienceService:
         from .candidate import CandidateLifecycle
         return CandidateLifecycle(self.repository).propose(self.run_id, proposal)
 
-    def resolve_experience(self, task_context: dict) -> dict:
+    def search_observations(self, args:dict)->dict:
+        from .observations import search
+        return search(self.repository,args['query'],args.get('limit',10))
+
+    def resolve_experience(self, task_context: dict, query: str | None = None,
+                           limit: int = 5, detail: str = 'summary') -> dict:
+        if query is not None:
+            raise ValueError('Task-text recall requires the native SQLite runtime; Python reference supports condition diagnostics only')
         from .experience_resolver import is_unknown
         claims = normalize_context(task_context)
         if set(claims) - _FACT_KEYS:
@@ -139,7 +110,7 @@ class ExperienceService:
         for key, value in claims.items():
             if key in facts and not is_unknown(facts[key]):
                 if type(value) is not type(facts[key]) or value != facts[key]:
-                    raise ContextClaimsConflict("Claim conflicts with pinned public environment")
+                    raise ValueError("Claim conflicts with pinned public environment")
         # Claims are useful trace data, never a source of verified runtime
         # premises. Unknown or absent pinned facts must remain unknown until
         # the trusted caller supplies independently established public facts.
@@ -260,100 +231,80 @@ def create_server(service: ExperienceService):
     """Use the official SDK transport/initialization/schema machinery."""
     from mcp.server.fastmcp import FastMCP
     from mcp.types import ToolAnnotations
-    from .mcp_projection import PublicProjection, ProjectionCapacityError
 
-    projection = PublicProjection(service)
-
-    class PublicContractServer(FastMCP):
-        async def list_tools(self):
-            tools = await super().list_tools()
-            for tool in tools:
-                if tool.name == "resolve_experience":
-                    tool.inputSchema = {**tool.inputSchema, "additionalProperties": False}
-            return tools
-
-        async def call_tool(self, name, arguments):
-            if name == "resolve_experience":
-                if (not isinstance(arguments, dict) or "task_context" not in arguments
-                        or set(arguments) - {"task_context", "cursor"}):
-                    raise ValueError("AEVORA_CONTEXT_ARGUMENTS_INVALID: provide task_context and optional cursor")
-                # Validate before official SDK pre_parse_json can coerce strings.
-                arguments = {**arguments, "task_context": validate_public_context_claims(arguments["task_context"])}
-            if name in {"resolve_experience", "build_evidence_bundle"}:
-                if not isinstance(arguments, dict):
-                    raise ValueError("AEVORA_INVALID_OR_UNAUTHORIZED_INPUT")
-                cursor = arguments.get("cursor")
-                if cursor is not None and (not isinstance(cursor, str) or not 1 <= len(cursor) <= 256):
-                    raise ValueError("AEVORA_INVALID_OR_UNAUTHORIZED_INPUT")
-            if name == "build_evidence_bundle":
-                if (set(arguments) - {"experience_id", "query_id", "cursor", "view"}
-                        or not isinstance(arguments.get("experience_id"), str)
-                        or len(arguments["experience_id"]) > 240
-                        or arguments.get("query_id") is not None and (
-                            not isinstance(arguments["query_id"], str) or len(arguments["query_id"]) > 240)
-                        or not isinstance(arguments.get("view", "bundle"), str)
-                        or arguments.get("view", "bundle") not in {"bundle", "candidate"}):
-                    raise ValueError("AEVORA_INVALID_OR_UNAUTHORIZED_INPUT")
-            return await super().call_tool(name, arguments)
-
-    server = PublicContractServer("Aevora", instructions=(
-        "Aevora supplies contextual experience evidence. Query before choosing a strategy. "
-        "A query is not proof of adoption and a decision is an untrusted claim. "
-        "Only the independent benchmark evaluator and trusted host can record verified outcomes."))
+    server = FastMCP("Aevora", instructions=AGENT_INSTRUCTIONS)
 
     def invoke(method, value):
         try:
             return method(value)
-        except ProjectionCapacityError:
-            raise RuntimeError("AEVORA_RESPONSE_CAPACITY_EXCEEDED") from None
         except (GraphUnavailable, OSError):
             raise RuntimeError("AEVORA_GRAPH_UNAVAILABLE") from None
         except GraphError:
             raise RuntimeError("AEVORA_GRAPH_RECORD_ERROR") from None
-        except ContextClaimsConflict:
-            raise ValueError("AEVORA_CONTEXT_CONFLICT: claims cannot override the authorized environment; query with task_context={} when uncertain") from None
         except (ValueError, TypeError):
             raise ValueError("AEVORA_INVALID_OR_UNAUTHORIZED_INPUT") from None
 
     @server.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=False), structured_output=True)
-    def resolve_experience(task_context: PublicContextArgument, cursor: str | None = None) -> dict[str, Any]:
-        """Resolve public applicability facts against actual graph evidence.
+    def resolve_experience(task_context: dict[str, Any], query: str | None = None,
+                           limit: int = 5, detail: str = 'summary') -> dict[str, Any]:
+        """Recall task-relevant experience, then check pinned facts against graph evidence.
 
-        task_context may contain concurrency_scope, worker_count_known,
-        shared_state_kind, synchronization_scope, transaction_guarantees,
-        observed_failure_mode, shared_object_scope, sqlite_journal_mode.
-        worker_count_known is boolean, not a worker count or array. All other
-        fields are text labels or null. Arrays, nested objects and extra fields
-        are invalid. Examples in schema are public vocabulary, not pinned values.
-        Use task_context={} to query without claims. Omit or use null for unknown
-        claims; missing trusted facts remain unknown. Preserve returned query_id.
-        Caller claims are archived but cannot establish applicability premises.
-        Responses contain bounded candidate previews with explicit evidence counts.
-        Follow next_cursor (same task_context and connection) until has_more=false.
-        Retrieve build_evidence_bundle using the candidate's detail_reference for
-        full WHEN/WHY and counterexamples; previews disclose all omitted detail.
-        Cursors expire after 900 seconds and cannot cross SDK connections/runs.
+        Native SQLite: query is a short public task description (max 1000 characters;
+        no credentials/private paths). Missing query returns TASK_QUERY_REQUIRED and
+        no recommendations. limit is 1..20 (default 5); detail is summary or full.
+        Summaries contain bounded excerpts; fetch complete evidence with query_id.
+        Native uses BM25, Chinese fragments and disclosed aliases; a protected
+        optional local embedding adapter adds cosine/RRF hybrid retrieval.
+        Provider failure is an explicit lexical fallback. Relevance is never
+        verified applicability or task utility; actual semantic quality depends
+        on the configured model and needs separate evaluation.
+        task_context claims cannot establish or override trusted Host/target_* facts.
+        Preserve query_id. Python reference supports legacy condition diagnostics
+        without query; explicit task-text recall requires the native runtime.
         """
-        return invoke(lambda _: projection.resolve(task_context, cursor), None)
+        if query is not None:
+            return invoke(service.resolve_experience, task_context, query, limit, detail)
+        return invoke(service.resolve_experience, task_context)
 
     @server.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False), structured_output=True)
-    def build_evidence_bundle(experience_id: str, query_id: str | None = None,
-                              cursor: str | None = None, view: str = "bundle") -> dict[str, Any]:
+    def search_observations(query:str,limit:int=10,mode:str='literal')->dict[str,Any]:
+        """Search public untrusted observations across this project using concrete literal keywords.
+
+        Native SQLite additionally accepts mode=ranked: FTS5/BM25, Chinese fragments
+        and a disclosed engineering alias list; bounded public excerpts. Default
+        literal preserves old substring behavior; Python reference is literal only.
+        Ranked native results include up to two ID-ordered untrusted usage claims;
+        they do not change rank or establish exposure, adoption or outcomes.
+        Native auto-diagnostic groups can show an unverified source project hint,
+        source IDs and a count of captured records, not a count of proven failures.
+        Returns at most 20 matches. These are investigative leads only,
+        never verified experience or APPLY. Original Run and current lifecycle
+        remain visible; rejected/withdrawn records are history, not advice.
+        """
+        if mode != 'literal':
+            raise ValueError('Ranked observation recall requires the native SQLite runtime')
+        return invoke(service.search_observations,{'query':query,'limit':limit})
+
+    @server.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False), structured_output=True)
+    def read_observation_sources(candidate_id: str, after: str = '', limit: int = 10) -> dict[str, Any]:
+        """Read bounded public sources for a candidate in the pinned target project.
+
+        Native SQLite only. limit 1..20; use next_cursor for another page.
+        Source observations are untrusted and never prove outcomes or APPLY.
+        Refresh from the start to include later sources with lower IDs.
+        Unknown target project or a different project is refused.
+        """
+        raise ValueError('Observation source reads require the native SQLite runtime')
+
+    @server.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False), structured_output=True)
+    def build_evidence_bundle(experience_id: str, query_id: str | None = None) -> dict[str, Any]:
         """Show public support, counterexamples and versions for a queried experience.
 
         Only IDs actually returned by a query in this run are authorized.
         Hidden tests, reference patches and private report paths are excluded.
-        view=candidate with query_id retrieves the complete immutable resolver
-        decision and bundle. Small responses retain the original shape. Large
-        documents use lossless RFC6901 entries with document_sha256; follow ALL
-        next_cursor pages with the same IDs/view/connection before concluding.
-        Cursors expire after 900 seconds; restart this tool without a cursor if
-        expired/evicted. No outcome or applicability is changed by pagination.
         """
         try:
-            return projection.bundle(experience_id, query_id, cursor, view)
-        except ProjectionCapacityError:
-            raise RuntimeError("AEVORA_RESPONSE_CAPACITY_EXCEEDED") from None
+            return service.build_evidence_bundle(experience_id, query_id)
         except (GraphUnavailable, OSError):
             raise RuntimeError("AEVORA_GRAPH_UNAVAILABLE") from None
         except GraphError:
@@ -372,6 +323,21 @@ def create_server(service: ExperienceService):
         """
         return invoke(service.record_decision, decision)
 
+    @server.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=False), structured_output=True)
+    def record_observation_use(report: ObservationUseReport) -> dict[str, Any]:
+        """Record an untrusted report about an existing observation on native SQLite.
+
+        Supply candidate_id, a stable report_key, purpose (DEBUGGING, PLANNING,
+        IMPLEMENTATION, VALIDATION or OTHER), disposition (INVESTIGATED, REUSED,
+        REJECTED, NOT_RELEVANT or INCONCLUSIVE), and a short public reason.
+        Optional elapsed_seconds is a reported integer from 0 to 86400. Reusing a
+        key with changed content fails. A candidate is checked to exist, but the
+        report does not prove exposure, adoption, a verified outcome or benefit.
+        Native SQLite only; the Python graph reference explicitly refuses it.
+        Never include private paths, credentials or hidden test material.
+        """
+        raise ValueError('Observation usage reports require the native SQLite runtime')
+
     if getattr(service, "enable_proposals", False):
         @server.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=False), structured_output=True)
         def propose_experience(proposal: CandidateProposal) -> dict[str, Any]:
@@ -382,11 +348,12 @@ def create_server(service: ExperienceService):
             and scope (public fact keys mapped to lists of scalar values);
             unknown_fields (public fact NAMES only), limitations (free-text lists); source_references (list of
             {kind: Query|Decision|ObservedAction, id: actual current-run ID}).
-            Use unknown_fields for unproved premises. No paths, credentials,
+            Empty necessary_conditions and scope are accepted as unscoped drafts, never admitted or published.
+            Never fabricate facts to fill these fields. Use unknown_fields for unproved public premises. No paths, credentials,
             run_id, source_type, verified, outcome or publication authority.
             The trusted host independently establishes origin and admission.
             """
-            return invoke(service.propose_experience, proposal.model_dump())
+            return invoke(service.propose_experience, proposal.model_dump(exclude_none=True))
     return server
 
 
@@ -397,15 +364,6 @@ def main() -> int:
     if len(raw) > 16_384 or not raw.endswith(b"\n"):
         raise RuntimeError("Bounded trusted authority header required")
     authority = json.loads(raw)
-    if isinstance(authority, dict) and authority.get("protocol_profile") == "aevora.mcp/2.0.0-rc2":
-        from .mcp_v2 import load_configuration, V2Service, create_server as create_v2_server
-        if set(authority) != {"protocol", "run_id", "public_context", "connection_id", "protocol_profile", "v2_config_path", "enable_proposals"} or authority["protocol"] != "aevora-mcp-uds-v1":
-            raise RuntimeError("Invalid explicit v2 bootstrap")
-        repo, grant, facts = load_configuration(authority["v2_config_path"])
-        if grant.run_id != authority["run_id"]:
-            raise RuntimeError("Invalid explicit v2 authority")
-        create_v2_server(V2Service(repo, grant, facts, authority["connection_id"])).run(transport="stdio")
-        return 0
     if not isinstance(authority, dict) or set(authority) not in (
         {"protocol", "run_id", "public_context", "connection_id"},
         {"protocol", "run_id", "public_context", "connection_id", "enable_proposals"}) or authority["protocol"] != "aevora-mcp-uds-v1":

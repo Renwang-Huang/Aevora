@@ -16,8 +16,8 @@ from .models import LIFECYCLE_LABELS, LIFECYCLE_RELATIONSHIPS, schema_catalog
 
 
 class GraphRepository:
-    def __init__(self, *, host: str = "127.0.0.1", port: int = 16379,
-                 graph_name: str = "aevora_h1", password: str,
+    def __init__(self, *, host: str = "127.0.0.1", port: int = 17692,
+                 graph_name: str = "aevora", password: str,
                  socket_timeout: float = 10.0, query_timeout_ms: int = 5000):
         validate_id(graph_name)
         if not password:
@@ -40,15 +40,22 @@ class GraphRepository:
             raise GraphUnavailable(f"FalkorDB connection unavailable ({type(exc).__name__})") from None
         self.graph_name = graph_name
         self.query_timeout_ms = query_timeout_ms
+        from .backend_guard import BackendGuard
+        self._backend_guard = BackendGuard(host, port, graph_name)
 
     @classmethod
-    def from_environment(cls, environment=None) -> "GraphRepository":
-        environment = os.environ if environment is None else environment
-        password_path = environment.get("AEVORA_FALKORDB_PASSWORD_FILE")
+    def from_environment(cls) -> "GraphRepository":
+        password_path = os.environ.get("AEVORA_FALKORDB_PASSWORD_FILE")
         if not password_path:
-            raise InvalidRecord("AEVORA_FALKORDB_PASSWORD_FILE is required on trusted host")
+            from .startup import StartupError
+            raise StartupError('HOST_CONFIG_REQUIRED', 'No database credential file is configured on this Host.',
+                'Run aevora configure --port PORT --graph GRAPH --password-file ABSOLUTE_PATH, or use --config PATH in this terminal. Explicit deployments may set AEVORA_FALKORDB_PASSWORD_FILE.')
         path = Path(password_path)
-        fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+        try: fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+        except OSError:
+            from .startup import StartupError
+            raise StartupError('DB_CREDENTIAL_FILE_UNAVAILABLE', 'The configured database credential file could not be opened safely.',
+                'Check the Host profile password_file reference and the owned mode-0600 file; recreate missing project secrets with the documented bootstrap, without printing them.') from None
         try:
             metadata = os.fstat(fd)
             if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1 or metadata.st_uid != os.getuid():
@@ -72,13 +79,22 @@ class GraphRepository:
             raise InvalidRecord("DB password must be UTF-8") from None
         if not password:
             raise InvalidRecord("DB password must not be empty")
-        return cls(host=environment.get("AEVORA_FALKORDB_HOST", "127.0.0.1"),
-                   port=int(environment.get("AEVORA_FALKORDB_PORT", "16379")),
-                   graph_name=environment.get("AEVORA_FALKORDB_GRAPH", "aevora_h1"), password=password)
+        return cls(host=os.environ.get("AEVORA_FALKORDB_HOST", "127.0.0.1"),
+                   port=int(os.environ.get("AEVORA_FALKORDB_PORT", "17692")),
+                   graph_name=os.environ.get("AEVORA_FALKORDB_GRAPH", "aevora"), password=password)
 
     def query(self, statement: str, params: dict[str, Any] | None = None,
               *, read_only: bool = True) -> list[list[Any]]:
         """Trusted-host only: the Participant never receives this object or a Cypher tool."""
+        if not read_only:
+            with self._write_guard():
+                return self._execute_query(statement, params, read_only=False)
+        return self._execute_query(statement, params, read_only=True)
+
+    def _write_guard(self):
+        return self._backend_guard.write()
+
+    def _execute_query(self, statement, params, *, read_only):
         try:
             method = self._graph.ro_query if read_only else self._graph.query
             return method(statement, params=params or {}, timeout=self.query_timeout_ms).result_set
@@ -86,12 +102,11 @@ class GraphRepository:
             # Do not include SDK exception text: it may echo parameters or connection secrets.
             raise GraphUnavailable(f"FalkorDB operation unavailable ({type(exc).__name__})") from None
 
-    def v2(self, binding, registry):
-        """Host-only explicit v2 profile. Never upgrades this repository implicitly."""
-        from .graph_v2 import GraphV2Repository
-        return GraphV2Repository(self, binding, registry)
-
     def initialize(self, *, schema_version: str = SCHEMA_VERSION) -> dict[str, Any]:
+        with self._write_guard():
+            return self._initialize(schema_version=schema_version)
+
+    def _initialize(self, *, schema_version):
         """Build and verify actual async constraints before accepting graph records."""
         # db.constraints() is a read-only procedure and FalkorDB rejects it on
         # a nonexistent graph key. A real immutable schema node bootstraps it.
@@ -524,4 +539,7 @@ class GraphRepository:
                 "graph_sha256": digest({"nodes": nodes, "edges": edges}), "query_version": QUERY_VERSION}
 
     def close(self) -> None:
-        self._client.close()
+        try:
+            self._client.close()
+        finally:
+            self._backend_guard.close()
