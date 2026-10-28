@@ -1,9 +1,0 @@
-.git
-**/__pycache__
-**/node_modules
-**/build
-**/dist
-**/*.egg-info
-**/*.key
-**/*.password
-grant.json

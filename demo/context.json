@@ -1,7 +1,0 @@
-{
-  "concurrency_scope": "independent_processes",
-  "shared_state_kind": "sqlite_file",
-  "synchronization_scope": "per_process",
-  "transaction_guarantees": "sqlite_atomic_write_transactions",
-  "worker_count_known": true
-}

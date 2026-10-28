@@ -1,6 +1,0 @@
-graft src/aevora
-include README.md pyproject.toml LICENSE
-prune tests
-prune scripts
-prune docs
-global-exclude *.pyc __pycache__ *.password *.key
